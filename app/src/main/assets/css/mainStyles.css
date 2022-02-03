@@ -1,0 +1,81 @@
+/* General styles */
+
+
+
+
+/*
+*/
+body {
+        font-family: sans-serif;
+}
+
+pre {
+        background-color: #eeeeee;
+        padding: 1em;
+        white-space: pre-wrap;
+}
+
+/*
+Списки
+*/
+ol {
+  list-style-type: upper-roman;/* заглавных римских цифр в упорядоченном списке:*/
+  font-weight: bold;
+}
+/*
+
+*/
+ul {
+
+}
+ul.li ol.li{
+  display: block;
+}
+.box {
+    display: flex;
+    justify-content: space-between;
+}
+/* spacing */
+
+table {
+
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+
+  /*
+  border: 1px solid gray;
+
+    display: inline-table;
+    /*
+    margin: 1em;
+*/
+}
+/*
+table
+*/
+table th,
+table td {
+  border: solid 1px;
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 35%;
+}
+
+th, td {
+  padding: 20px;
+}
+

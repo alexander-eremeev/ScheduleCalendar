@@ -1,0 +1,175 @@
+plugins {
+    id 'com.android.application'            //подключить Yandex AppMetrica SDK через плагин
+    id 'kotlin-android'
+//    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
+}
+/*
+Warning: The 'kotlin-android-extensions' Gradle plugin is deprecated.
+Please use this migration guide (https://goo.gle/kotlin-android-extensions-deprecation) to start working with View Binding
+(https://developer.android.com/topic/libraries/view-binding) and the 'kotlin-parcelize' plugin.
+
+ */
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.childmathematics.android.shiftschedule"
+        minSdk 21
+        targetSdk 31
+        versionCode 5
+        versionName "5.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+        buildConfigField "String", "BUILD_TIMESTAMP", getDate()
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        // TODO
+        useIR = true
+        allWarningsAsErrors = true
+
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+//        kotlinCompilerExtensionVersion = "1.1.0-rc01"            //1.1.0-rc01        1.0.5
+       kotlinCompilerExtensionVersion = "$compose_version"             //'1.5.21'
+    }
+    /*      ADS
+        packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
+     */
+}
+/*
+ */
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation "androidx.fragment:fragment-ktx:1.4.0"               //1.3.6/ 1.4.0
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+//    implementation "io.github.boguszpawlowski.composecalendar:composecalendar:0.2.1"
+    implementation "androidx.compose.runtime:runtime:$compose_version"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+
+    implementation "androidx.activity:activity-compose:$activity_compose_version"                       //1.3.1
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+/*
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.currentTextStyle
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.setContent
+
+ */
+    // HTML
+    /*
+    implementation "androidx.compose.foundation:foundation-Text:$compose_version"
+    implementation "androidx.compose.foundation:foundation-lazy:$compose_version"
+    implementation "androidx.compose.foundation:foundation-currentTextStyle:$compose_version"
+    implementation "androidx.compose.ui:platform-setContent:$compose_version"
+
+     */
+//    implementation "androidx.compose.foundation:foundation-Text:$compose_version"
+//    implementation "androidx.compose.foundation:foundation-lazy:$compose_version"
+//    implementation "androidx.compose.foundation:foundation-currentTextStyle:$compose_version"
+//    implementation "androidx.compose.ui:$compose_version"
+//    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-beta01'
+//    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
+
+
+    implementation "androidx.compose.foundation:foundation-layout:$compose_version"
+    implementation "androidx.compose.animation:animation:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+    implementation "androidx.compose.foundation:foundation:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "androidx.compose.ui:ui:$compose_version"
+
+//    implementation "androidx.navigation:navigation-runtime-ktx:$navigation_version"      //2.4.0-alpha10
+//   implementation "androidx.navigation:navigation-common-ktx:$navigation_version"        //2.4.0-alpha10
+//    implementation "androidx.navigation:navigation-runtime:$navigation_version"         //2.4.0-alpha10
+    implementation "androidx.navigation:navigation-compose:$navigation_version"           //2.4.0-alpha10
+
+//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+//    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$viewmodel_compose_version"
+
+    // Mobile Ads SDK
+    implementation 'com.google.android.gms:play-services-ads:20.5.0'                    //20.3.0
+    // Подключение Yandex Mobile Ads SDK
+    implementation 'com.yandex.android:mobileads:5.0.0-alpha.1'                 // 4.5.0
+    // Yandex AppMetrica SDK.
+    implementation 'com.yandex.android:mobmetricalib:4.1.1'     // API key  9331269b-d88b-49f2-811d-feecc9d4cec3
+
+//------- navigation
+    // Coil
+    implementation("io.coil-kt:coil-compose:1.3.2")
+
+    // Accompanist
+    implementation 'com.google.accompanist:accompanist-insets:0.21.3-beta'
+    implementation 'com.google.accompanist:accompanist-systemuicontroller:0.21.3-beta'
+    implementation 'com.google.accompanist:accompanist-pager:0.21.3-beta'
+//    implementation 'com.google.accompanist:accompanist-drawablepainter:0.21.3-beta'
+
+    // If using indicators, also depend on
+//    implementation 'com.google.accompanist:accompanist-pager-indicators:0.21.3-beta'
+
+    // Coil Accompanist
+//    implementation 'dev.chrisbanes.accompanist:accompanist-coil:0.6.2'
+//    implementation 'dev.chrisbanes.accompanist:accompanist-picasso:0.6.2'
+//    implementation 'dev.chrisbanes.accompanist:accompanist-glide:0.6.2'
+
+//    HTML
+//    implementation "org.jsoup:jsoup:1.13.1"
+
+}
+// Compiler flag to use experimental Compose APIs
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs += [
+                "-Xopt-in=kotlin.RequiresOptIn"
+        ]
+    }
+}
+String getDate() {
+    Date date = new Date();
+//    String dates = "\""+date.format("dd.MM.yyyy", TimeZone.default)+"\"";
+//    String dates = "  ""+date.format("dd.MM.yyyy", TimeZone.default)+""";
+    String dates = "\""+date.format("dd.MM.yyyy", TimeZone.default)+"\"";
+    return dates;
+}
