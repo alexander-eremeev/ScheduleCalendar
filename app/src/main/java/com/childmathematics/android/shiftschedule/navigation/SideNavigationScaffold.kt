@@ -28,14 +28,11 @@ import androidx.navigation.compose.rememberNavController
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.ViewModelSample
-import com.childmathematics.android.shiftschedule.shiftads.mInterstitialAdOnOff
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemMode
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemSpec
 import com.childmathematics.android.shiftschedule.navigation.model.separateIntoActionAndOverflow
 import com.childmathematics.android.shiftschedule.navigation.ui.components.DrawerButton
-import com.childmathematics.android.shiftschedule.shiftads.AdBannerNetworkApp
-import com.childmathematics.android.shiftschedule.shiftads.AdInterstitialNetworkApp
-import com.childmathematics.android.shiftschedule.shiftads.AdNetworkApp
+import com.childmathematics.android.shiftschedule.shiftads.*
 import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoScreen
 import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoViewModel
 import com.childmathematics.android.shiftschedule.webview.WebViewMainScreen
@@ -48,13 +45,13 @@ import kotlinx.coroutines.launch
 //import com.childmathematics.android.shiftschedule.html.ui.application
 @ExperimentalCoroutinesApi
 @Composable
-fun NavigateScreen1(todoViewModel: TodoViewModel) {
-    NavigateContent(todoViewModel)
+fun NavigateScreen1(todoViewModel: TodoViewModel,AdMobEnable: Boolean) {
+    NavigateContent(todoViewModel,AdMobEnable)
 }
 
 @ExperimentalCoroutinesApi
 @Composable
-private fun NavigateContent(todoViewModel: TodoViewModel) {
+private fun NavigateContent(todoViewModel: TodoViewModel,AdMobEnable: Boolean) {
     var currentRoute by remember { mutableStateOf(Routes.HOME_ROUTE) }
 //    var currentAboutRoute by remember { mutableStateOf(AboutRoutes.ABOUTHELP_ROUTE) }
 //    var currentAboutRoute : Int
@@ -137,12 +134,13 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
                     navController.popBackStack()
                     navController.navigate(currentRoute)
                 },
+/*
                 navigateToAdMob = {
                     currentRoute = Routes.ADMOB_ROUTE
                     navController.popBackStack()
                     navController.navigate(currentRoute)
                 },
-/*
+
                 navigateToAboutHelp = {
                     currentRoute = Routes.ABOUTHELP_ROUTE
                     navController.popBackStack()
@@ -208,16 +206,16 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
             startDestination = Routes.HOME_ROUTE
         ) {
             composable(Routes.HOME_ROUTE) {
-                HomeComponent(LocalContext.current)
+                HomeComponent(LocalContext.current,AdMobEnable)
             }
 
 //========Классическое меню Setting  3 ==в правом углу======================
             composable(Routes.SETTINGS_ROUTE) {
-                SettingsComponent(LocalContext.current,currentRoute)
+                SettingsComponent(LocalContext.current,currentRoute,AdMobEnable)
             }
             if (currentRoute == Routes.SETTINGAPPMETRICA_ROUTE) {
                 composable(Routes.SETTINGAPPMETRICA_ROUTE) {
-                    SettingsComponent(LocalContext.current,currentRoute)
+                    SettingsComponent(LocalContext.current,currentRoute,AdMobEnable)
 //                SettingsAppMetricaComponent(LocalContext.current)
                 }
             }
@@ -226,32 +224,35 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++
             composable(Routes.TODO_ROUTE) {
-                TodoComponent(todoViewModel )
+                TodoComponent(todoViewModel,AdMobEnable )
             }
 //------------------------------------------------------
+            /*
             composable(Routes.ADMOB_ROUTE) {
                 AdMobComponent()
             }
+
+             */
 //========Классическое меню ABOUT  3 ==в правом углу======================
             composable(Routes.ABOUT_ROUTE) {
-                AboutComponent(currentRoute)
+                AboutComponent(currentRoute,AdMobEnable)
             }
 //------------------------------------------------------
             composable(Routes.ABOUTHELP_ROUTE) {
-                AboutComponent(currentRoute )
+                AboutComponent(currentRoute ,AdMobEnable)
             }
 //------------------------------------------------------
             composable(Routes.ABOUTLICENSES_ROUTE) {
-              AboutComponent(currentRoute )
+              AboutComponent(currentRoute,AdMobEnable )
             }
 //------------------------------------------------------
             composable(Routes.ABOUTPOLICE_ROUTE) {
-                AboutComponent(currentRoute )
+                AboutComponent(currentRoute ,AdMobEnable)
             }
 //--------------------------------------------------------
             composable(Routes.SCHEDULE_ROUTE) {
 
-                ScheduleComponent()
+                ScheduleComponent(AdMobEnable)
             }
 //--------------------------------------------------------
 
@@ -269,7 +270,7 @@ fun AppDrawer(
     navigateToSettings: () -> Unit,
 //+++++++++++++++++++++++
     navigateToToDo: () -> Unit,
-    navigateToAdMob: () -> Unit,
+//    navigateToAdMob: () -> Unit,
     navigateToAbout: () -> Unit,
     navigateToSchedule: () -> Unit,
 //-----------------------------------
@@ -345,6 +346,7 @@ fun AppDrawer(
             }
         )
 //-----------------------------------------------------------------------
+/*
         DrawerButton(
             icon = Icons.Filled.AdUnits,
             label = "AdMob",
@@ -356,6 +358,8 @@ fun AppDrawer(
                 closeDrawer()
             }
         )
+
+ */
 //---------------------------------------------------------------------------
 
     }
@@ -434,16 +438,20 @@ private fun DrawerButtonPreview() {
 }
 */
 @Composable
-fun HomeComponent(context: Context) {
+fun HomeComponent(context: Context,AdMobEnable: Boolean) {
 
-
-    AdBannerNetworkApp()
-    AdInterstitialNetworkApp(context)
+    if(AdMobEnable) {
+        AdBannerNetworkApp()
+        AdInterstitialNetworkApp(context)
+    }
+    if (YaAdsEnable) {
+        showYaInterstitial()
+    }
 
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .padding(0.dp,50.dp,0.dp,0.dp)
+            .padding(0.dp, 50.dp, 0.dp, 0.dp)
             .fillMaxSize()
             .background(Color(0xff6D4C41))
     ) {
@@ -495,9 +503,15 @@ object Routes {
 
 //++++++++++++++++++++++++++++++++++++
 @Composable
-fun TodoComponent(todoViewModel: TodoViewModel) {
-    AdBannerNetworkApp()
-    AdInterstitialNetworkApp(LocalContext.current)
+fun TodoComponent(todoViewModel: TodoViewModel,AdMobEnable: Boolean) {
+    if (AdMobEnable){
+        AdBannerNetworkApp()
+        AdInterstitialNetworkApp(LocalContext.current)
+    }
+    if(YaAdsEnable) {
+        showYaInterstitial()
+    }
+
 //        .padding(0.dp,50.dp,0.dp,0.dp)
     TodoScreen(
         items = todoViewModel.todoItems,
@@ -513,16 +527,25 @@ fun TodoComponent(todoViewModel: TodoViewModel) {
 
  */
 //++++++++++++++++++++++++++++++++++++
+/*
 @Composable
 fun AdMobComponent() {
     AdNetworkApp()
 }
+*/
+
 //-----------------------------------
 //========Классическое меню ABOUT  5 ==в правом углу======================
 @Composable
-fun AboutComponent(currentRoute : String) {
-    AdBannerNetworkApp()
-    AdInterstitialNetworkApp(LocalContext.current)
+fun AboutComponent(currentRoute : String,AdMobEnable: Boolean) {
+    if (AdMobEnable) {
+        AdBannerNetworkApp()
+        AdInterstitialNetworkApp(LocalContext.current)
+    }
+    if (YaAdsEnable) {
+        showYaInterstitial()
+    }
+
 //    val versionCode = BuildConfig.VERSION_CODE
     val yearStr = BuildConfig.BUILD_TIMESTAMP
     val versionName = BuildConfig.VERSION_NAME
@@ -557,15 +580,21 @@ fun AboutComponent(currentRoute : String) {
 //-----------------------------------
 //========Классическое меню 5 ==в правом углу======================
 @Composable
-fun SettingsComponent(context: Context,currentRoute : String) {
-    AdBannerNetworkApp()
-    AdInterstitialNetworkApp(LocalContext.current)
+fun SettingsComponent(context: Context,currentRoute : String,AdMobEnable: Boolean) {
+    if (AdMobEnable) {
+        AdBannerNetworkApp()
+        AdInterstitialNetworkApp(LocalContext.current)
+    }
+    if (YaAdsEnable) {
+        showYaInterstitial()
+    }
+
 
     if (currentRoute == Routes.SETTINGS_ROUTE) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
-                .padding(0.dp,50.dp,0.dp,0.dp)
+                .padding(0.dp, 50.dp, 0.dp, 0.dp)
                 .fillMaxSize()
                 .background(Color(0xffFF6F00))
         ) {
@@ -588,7 +617,7 @@ fun SettingsAppMetricaComponent(context: Context) {
     Box(
         contentAlignment = Alignment.TopCenter,
         modifier = Modifier
-            .padding(0.dp,50.dp,0.dp,0.dp)
+            .padding(0.dp, 50.dp, 0.dp, 0.dp)
             .fillMaxSize()
             .background(Color(0xffFF6F00))
     ) {
@@ -638,9 +667,16 @@ AppMetrica анализирует данные об использовании �
 //++++++++++++++++++++++++++++++++++++
 @ExperimentalCoroutinesApi
 @Composable
-fun ScheduleComponent() {
-    AdBannerNetworkApp()
-    AdInterstitialNetworkApp(LocalContext.current)
+fun ScheduleComponent(AdMobEnable: Boolean) {
+    if (AdMobEnable) {
+
+        AdBannerNetworkApp()
+        AdInterstitialNetworkApp(LocalContext.current)
+    }
+    if (YaAdsEnable) {
+        showYaInterstitial()
+    }
+
 
     ViewModelSample()
  //   StaticCalendarSamOverflowTopSchedule()

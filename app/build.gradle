@@ -128,12 +128,12 @@ import androidx.compose.ui.platform.setContent
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$viewmodel_compose_version"
 
     // Mobile Ads SDK
- //   implementation 'com.google.android.gms:play-services-ads:20.5.0'                    //20.3.0
+    implementation 'com.google.android.gms:play-services-ads:20.5.0'                    //20.3.0
     // Подключение Yandex Mobile Ads SDK
 //    implementation 'com.yandex.android:mobileads:5.0.0-alpha.1'                 //yandex_mobileads_version   4.5.0
     implementation "com.yandex.android:mobileads:$yandex_mobileads_version"                 //yandex_mobileads_version   4.5.0
     // Yandex AppMetrica SDK.
-    implementation 'com.yandex.android:mobmetricalib:4.1.1'     // API key  9331269b-d88b-49f2-811d-feecc9d4cec3
+    implementation "com.yandex.android:mobmetricalib:$yandex_mobmetrica"     // API key  9331269b-d88b-49f2-811d-feecc9d4cec3
 
 //------- navigation
     // Coil

@@ -14,9 +14,14 @@ import android.util.Log;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 import com.childmathematics.android.shiftschedule.R;
+import com.yandex.mobile.ads.common.InitializationListener;
+import com.yandex.mobile.ads.common.MobileAds;
+
 public class AppYandexMetricaInit extends android.app.Application {
     String API_KEY = "9331269b-d88b-49f2-811d-feecc9d4cec3";
     Boolean AppMetricaOn = false;
+    Boolean YandexMobileAdsOn = true;  // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+    private static final String YANDEX_MOBILE_ADS_TAG = "YandexMobileAds";
     @Override
     public void onCreate() {
         super.onCreate();
@@ -35,6 +40,16 @@ public class AppYandexMetricaInit extends android.app.Application {
     //        YandexMetrica.activate(getApplicationContext(), config);
                 Log.d("AppYandexMetricaInit", "__Yandex metrica init withStatisticsSending(false).----");
         }
+        //0000000000000
+        if (YandexMobileAdsOn) {
+            MobileAds.initialize(this, new InitializationListener() {
+                @Override
+                public void onInitializationCompleted() {
+                    Log.d(YANDEX_MOBILE_ADS_TAG, "SDK initialized");
+                }
+            });
+        }
+        //===============
     }
 }
 /*

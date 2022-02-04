@@ -13,10 +13,9 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import java.util.*
 import kotlin.concurrent.schedule
 
-
+var AdMobEnable = false  // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
 var mInterstitialAd: InterstitialAd? = null
 var mInterstitialAdOnOff = false
-var seconds = 0
 
 // load the interstitial ad
 fun loadInterstitial(context: Context) {
