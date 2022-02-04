@@ -1,7 +1,9 @@
-package com.childmathematics.android.shiftschedule
+package com.childmathematics.android.shiftschedule.shiftads
 
 import android.content.Context
+import android.os.CountDownTimer
 import android.util.Log
+import com.childmathematics.android.shiftschedule.R
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -13,6 +15,8 @@ import kotlin.concurrent.schedule
 
 
 var mInterstitialAd: InterstitialAd? = null
+var mInterstitialAdOnOff = false
+var seconds = 0
 
 // load the interstitial ad
 fun loadInterstitial(context: Context) {
@@ -31,19 +35,14 @@ fun loadInterstitial(context: Context) {
                 mInterstitialAd = interstitialAd
                 Log.d("MainActivity", "Ad was loaded.")
             }
-                /*
-                fun setAdListener(interstitialAd: InterstitialAd) {
- //                   mInterstitialAd = interstitialAd
-                    Log.d("MainActivity", "Ad was destroyed.")
-                }
 
-                 */
-        }
+         }
     )
 }
 
 // add the interstitial ad callbacks
-fun addInterstitialCallbacks(context: Context) {
+//fun addInterstitialCallbacks() {
+    fun addInterstitialCallbacks(context: Context) {
     mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
         override fun onAdFailedToShowFullScreenContent(p0: AdError) {
             Log.d("MainActivity", "Ad failed to show.")
@@ -54,6 +53,7 @@ fun addInterstitialCallbacks(context: Context) {
             Log.d("MainActivity", "Ad showed fullscreen content.")
 
             loadInterstitial(context)
+
         }
 
         override fun onAdDismissedFullScreenContent() {
@@ -63,23 +63,25 @@ fun addInterstitialCallbacks(context: Context) {
 }
 
 // show the interstitial ad
-fun showInterstitial(context: Context) {
+fun showInterstitial(context: Context ) {
     val activity = context.findActivity()
 
-    if (mInterstitialAd != null) {
-        mInterstitialAd?.show(activity!!)
-//        mInterstitialAd.isLoaded()
-
+//    if (mInterstitialAd != null ) {
+        if (mInterstitialAd != null && mInterstitialAdOnOff) {
+             mInterstitialAd?.show(activity!!)
+            mInterstitialAdOnOff = false
+            loadInterstitial(context)
     } else {
         Log.d("MainActivity", "The interstitial ad wasn't ready yet.")
     }
 }
-fun AdsInterstutialTimer( interstutialDelay: Long ){
-//    Timer().schedule(10000){
-        Timer().schedule(interstutialDelay){
-//        mInterstitialAd = null
-            Log.d("MainActivity", "AdsIntTimer ON.")
+fun AdsInterstutialTimer(interstutialDelay: Long){
+        Timer().schedule(interstutialDelay) {
+            mInterstitialAdOnOff = true
 
-    }
+            Log.d("MainActivity", "AdsIntTimer ON1.")
+        }
+
+
 }
 

@@ -1,8 +1,6 @@
 package com.childmathematics.android.shiftschedule.shiftads
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,8 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,11 +18,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.childmathematics.android.shiftschedule.*
-import com.childmathematics.android.shiftschedule.shiftads.ui.theme.AdNetworkTheme
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+
 /*
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -164,64 +159,13 @@ fun AdBannerNetworkApp() {
                 }
             }
         )
-/*
-//        Text("Inline Adaptive Banner", modifier = Modifier.padding(16.dp))
-
-        // shows an inline adaptive banner test ad
-        AndroidView(
-            factory = { context ->
-                AdView(context).apply {
-                    adSize = AdSize.getCurrentOrientationInlineAdaptiveBannerAdSize(
-                        context,
-                        adWidth
-                    )
-                    adUnitId = context.getString(R.string.ad_id_banner)
-                    loadAd(AdRequest.Builder().build())
-                }
-            }
-        )
-
-        Text("Regular Banner", modifier = Modifier.padding(16.dp))
-
-        // shows a traditional banner test ad
-        AndroidView(
-            factory = { context ->
-                AdView(context).apply {
-                    adSize = AdSize.BANNER
-                    adUnitId = context.getString(R.string.ad_id_banner)
-                    loadAd(AdRequest.Builder().build())
-                }
-            }
-        )
-
-        // shows an interstitial ad on button click (on the first click only)
-        Button(
-            onClick = {
-                loadInterstitial(context)
-                showInterstitial(context)
-            },
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text(text = "Show Interstitial")
-        }
-
-        Column(
-            Modifier.weight(1f),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(text = "Hello Ad Network!")
-            Text("More texts")
-        }
-
-        Text("And some more texts")
-        */
     }
+//    AdInterstitialNetworkApp()
 }
 @Composable
-fun AdInterstitialNetworkApp() {
+fun AdInterstitialNetworkApp(context: Context) {
 //    val adWidth = LocalConfiguration.current.screenWidthDp - 32
-    val context = LocalContext.current
+ //   val context = LocalContext.current
 
 //    Text("Regular Banner", modifier = Modifier.padding(16.dp))
     Column(
@@ -231,31 +175,12 @@ fun AdInterstitialNetworkApp() {
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
     ) {
-        // shows an interstitial ad on button click (on the first click only
-/*
-        Button(
-            onClick = {
-*/
-                loadInterstitial(context)
-                showInterstitial(context)
-                AdsInterstutialTimer(50000L)  //реклама продлится
-/*
-            },
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text(text = "Show Interstitial")
-        }
-*/
-        Column(
-            Modifier.weight(1f),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
- //           Text(text = "Hello Ad Network!")
-//            Text("More texts")
-        }
 
-//        Text("And some more texts")
+//                mInterstitialAdOnOff = true
+                showInterstitial(context)
+
+                AdsInterstutialTimer(180000L)  //реклама через 180 cсек
 
     }
+
 }

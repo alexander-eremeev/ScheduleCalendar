@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
  */
 import com.childmathematics.android.shiftschedule.navigation.NavigateScreen1
 import com.childmathematics.android.shiftschedule.shiftads.AdBannerNetworkApp
+import com.childmathematics.android.shiftschedule.shiftads.addInterstitialCallbacks
+import com.childmathematics.android.shiftschedule.shiftads.loadInterstitial
 import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoScreen
 import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoViewModel
 
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         loadInterstitial(this)
 
         // add the interstitial ad callbacks
+//        addInterstitialCallbacks()
         addInterstitialCallbacks(this)
 
     }

@@ -70,7 +70,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation "androidx.fragment:fragment-ktx:1.4.0"               //1.3.6/ 1.4.0
+    implementation "androidx.fragment:fragment-ktx:1.4.1"               //1.4.0/1.3.6/ 1.4.0
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -130,7 +130,8 @@ import androidx.compose.ui.platform.setContent
     // Mobile Ads SDK
     implementation 'com.google.android.gms:play-services-ads:20.5.0'                    //20.3.0
     // Подключение Yandex Mobile Ads SDK
-    implementation 'com.yandex.android:mobileads:5.0.0-alpha.1'                 // 4.5.0
+//    implementation 'com.yandex.android:mobileads:5.0.0-alpha.1'                 //yandex_mobileads_version   4.5.0
+    implementation "com.yandex.android:mobileads:$yandex_mobileads_version"                 //yandex_mobileads_version   4.5.0
     // Yandex AppMetrica SDK.
     implementation 'com.yandex.android:mobmetricalib:4.1.1'     // API key  9331269b-d88b-49f2-811d-feecc9d4cec3
 
@@ -168,8 +169,6 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
 }
 String getDate() {
     Date date = new Date();
-//    String dates = "\""+date.format("dd.MM.yyyy", TimeZone.default)+"\"";
-//    String dates = "  ""+date.format("dd.MM.yyyy", TimeZone.default)+""";
     String dates = "\""+date.format("dd.MM.yyyy", TimeZone.default)+"\"";
     return dates;
 }

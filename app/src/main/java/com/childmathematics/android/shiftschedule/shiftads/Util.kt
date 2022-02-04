@@ -1,4 +1,4 @@
-package com.childmathematics.android.shiftschedule
+package com.childmathematics.android.shiftschedule.shiftads
 
 import android.app.Activity
 import android.content.Context

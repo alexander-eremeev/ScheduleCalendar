@@ -28,6 +28,7 @@ import androidx.navigation.compose.rememberNavController
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.ViewModelSample
+import com.childmathematics.android.shiftschedule.shiftads.mInterstitialAdOnOff
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemMode
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemSpec
 import com.childmathematics.android.shiftschedule.navigation.model.separateIntoActionAndOverflow
@@ -207,7 +208,7 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
             startDestination = Routes.HOME_ROUTE
         ) {
             composable(Routes.HOME_ROUTE) {
-                HomeComponent()
+                HomeComponent(LocalContext.current)
             }
 
 //========Классическое меню Setting  3 ==в правом углу======================
@@ -433,11 +434,12 @@ private fun DrawerButtonPreview() {
 }
 */
 @Composable
-fun HomeComponent() {
+fun HomeComponent(context: Context) {
 
-    AdInterstitialNetworkApp()  // вкл на 10 сек
 
     AdBannerNetworkApp()
+    AdInterstitialNetworkApp(context)
+
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -447,6 +449,7 @@ fun HomeComponent() {
     ) {
         Text(color = Color.White, text = "Home", fontSize = 50.sp, fontWeight = FontWeight.Bold)
     }
+
 }
 /*
 @Preview
@@ -494,6 +497,7 @@ object Routes {
 @Composable
 fun TodoComponent(todoViewModel: TodoViewModel) {
     AdBannerNetworkApp()
+    AdInterstitialNetworkApp(LocalContext.current)
 //        .padding(0.dp,50.dp,0.dp,0.dp)
     TodoScreen(
         items = todoViewModel.todoItems,
@@ -518,6 +522,7 @@ fun AdMobComponent() {
 @Composable
 fun AboutComponent(currentRoute : String) {
     AdBannerNetworkApp()
+    AdInterstitialNetworkApp(LocalContext.current)
 //    val versionCode = BuildConfig.VERSION_CODE
     val yearStr = BuildConfig.BUILD_TIMESTAMP
     val versionName = BuildConfig.VERSION_NAME
@@ -554,6 +559,7 @@ fun AboutComponent(currentRoute : String) {
 @Composable
 fun SettingsComponent(context: Context,currentRoute : String) {
     AdBannerNetworkApp()
+    AdInterstitialNetworkApp(LocalContext.current)
 
     if (currentRoute == Routes.SETTINGS_ROUTE) {
         Box(
@@ -634,6 +640,7 @@ AppMetrica анализирует данные об использовании �
 @Composable
 fun ScheduleComponent() {
     AdBannerNetworkApp()
+    AdInterstitialNetworkApp(LocalContext.current)
 
     ViewModelSample()
  //   StaticCalendarSamOverflowTopSchedule()
