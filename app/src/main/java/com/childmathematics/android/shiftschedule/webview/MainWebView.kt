@@ -22,24 +22,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
-import com.childmathematics.android.shiftschedule.shiftads.AdMobEnable
-import com.childmathematics.android.shiftschedule.shiftads.YaAdsEnable
 import com.childmathematics.android.shiftschedule.webview.presentation.components.CustomButton
 import com.childmathematics.android.shiftschedule.webview.presentation.components.CustomTextField
 import com.childmathematics.android.shiftschedule.webview.ui.theme.WebViewTheme
-/*
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            WebViewTheme {
-//                WebViewMainScreen(siteName )
-            }
-        }
-    }
-}
-*/
+
 @Composable
 fun WebViewMainScreen(siteName:  String) {
 
@@ -48,7 +36,7 @@ fun WebViewMainScreen(siteName:  String) {
 //        var isSearching by remember { mutableStateOf(false) }
     var changeDp: Dp
 
-    if(AdMobEnable || YaAdsEnable) {
+    if(BuildConfig.AdMobEnable|| BuildConfig.YaAdsEnable) {
         changeDp = 50.dp
     } else changeDp = 0.dp
 

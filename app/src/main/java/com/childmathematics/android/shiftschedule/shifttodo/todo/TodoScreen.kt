@@ -48,8 +48,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.childmathematics.android.shiftschedule.shiftads.AdMobEnable
-import com.childmathematics.android.shiftschedule.shiftads.YaAdsEnable
+import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.shifttodo.util.generateRandomTodoItem
 import kotlin.random.Random
 
@@ -92,7 +91,7 @@ fun TodoScreen(
             }
         }
         var changeDp: Dp
-        if(AdMobEnable || YaAdsEnable) {
+        if(BuildConfig.AdMobEnable|| BuildConfig.YaAdsEnable) {
             changeDp = 8.dp
         } else changeDp = 0.dp
         LazyColumn(

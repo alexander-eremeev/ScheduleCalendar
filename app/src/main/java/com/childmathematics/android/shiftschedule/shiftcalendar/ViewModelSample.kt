@@ -39,8 +39,6 @@ import com.childmathematics.android.shiftschedule.composecalendar.rememberSelect
 import com.childmathematics.android.shiftschedule.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode.Period
-import com.childmathematics.android.shiftschedule.shiftads.AdMobEnable
-import com.childmathematics.android.shiftschedule.shiftads.YaAdsEnable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
@@ -62,7 +60,7 @@ fun ViewModelSample() {
     onSelectionChanged = viewModel::onSelectionChanged,
     initialSelectionMode = Period,
   )
-  if(AdMobEnable || YaAdsEnable) {
+  if(BuildConfig.AdMobEnable|| BuildConfig.YaAdsEnable) {
     changeDp = 50.dp
   } else changeDp = 0.dp
 

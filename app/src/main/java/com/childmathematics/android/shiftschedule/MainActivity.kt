@@ -71,10 +71,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             // меню навигации
-            NavigateScreen1(todoViewModel, AdMobEnable)
+            NavigateScreen1(todoViewModel)
 
         }
-        if (AdMobEnable) {
+        if (BuildConfig.AdMobEnable) {
             // initialize the Mobile Ads SDK
             MobileAds.initialize(this) { }
 
@@ -83,8 +83,8 @@ class MainActivity : AppCompatActivity() {
 
             // add the interstitial ad callbacks
             addInterstitialCallbacks(this)
-         }
-        if (YaAdsEnable) {
+        }
+        if (BuildConfig.YaAdsEnable) {
             initInterstitialAd()
             // load the interstitial ad
             loadYaInterstitial()
@@ -94,90 +94,95 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//==================================================================
-    fun initInterstitialAd() {
-        mYaInterstitialAd = InterstitialAd(this)
+        //==================================================================
+        fun initInterstitialAd() {
+            if (BuildConfig.YaAdsEnable) {
+                mYaInterstitialAd = InterstitialAd(this)
 
-        /*
-        * Replace demo R-M-DEMO-320x480 with actual Block ID
-        * Following demo Block IDs may be used for testing:
-        * R-M-DEMO-320x480
-        * R-M-DEMO-480x320
-        * R-M-DEMO-400x240-context
-        * R-M-DEMO-240x400-context
-        * R-M-DEMO-video-interstitial
-        */
-        //       mInterstitialAd.setBlockId("R-M-DEMO-320x480");
-        mYaInterstitialAd!!.setBlockId("R-M-DEMO-320x480")
-        mAdYaRequest = AdRequest.Builder().build()
-        mYaInterstitialAd!!.setInterstitialAdEventListener(mInterstitialAdEventListener)
-        if (BuildConfig.DEBUG) {
-            Log.d("YaAdsInterstutial", "INIT")
+                /*
+                * Replace demo R-M-DEMO-320x480 with actual Block ID
+                * Following demo Block IDs may be used for testing:
+                * R-M-DEMO-320x480
+                * R-M-DEMO-480x320
+                * R-M-DEMO-400x240-context
+                * R-M-DEMO-240x400-context
+                * R-M-DEMO-video-interstitial
+                */
+                //       mInterstitialAd.setBlockId("R-M-DEMO-320x480");
+                mYaInterstitialAd!!.setBlockId("R-M-DEMO-320x480")
+                mAdYaRequest = AdRequest.Builder().build()
+                mYaInterstitialAd!!.setInterstitialAdEventListener(mInterstitialAdEventListener)
+                if (BuildConfig.DEBUG) {
+                    Log.d("YaAdsInterstutial", "INIT")
+                }
+            }
         }
+        override fun onDestroy() {
+            if (BuildConfig.YaAdsEnable) {
+                mYaInterstitialAd!!.destroy()
+            }
+            super.onDestroy()
+        }
+//    if (BuildConfig.AppMetricaOn) {}
+        private val mInterstitialAdEventListener: InterstitialAdEventListener =
+            object : InterstitialAdEventListener {
+                override fun onAdLoaded() {
+                    if (BuildConfig.YaAdsEnable) {
+                        if (mYaInterstitialAdOnOff) {
+                            mYaInterstitialAd!!.show()
+                            mYaInterstitialAdOnOff = false
+                            Toast.makeText(
+                                applicationContext,
+                                "Реклама продлится недолго",
+                                Toast.LENGTH_SHORT
+                            ).show();
+                        }
+                    }
+                }
+
+                override fun onAdFailedToLoad(adRequestError: AdRequestError) {
+                    if (BuildConfig.YaAdsEnable) {
+                        if (BuildConfig.DEBUG) {
+                            Log.d("YaAdsInterstutial", adRequestError.toString())
+                        }
+                        mYaInterstitialAd = null
+                    }
+                }
+
+                override fun onAdShown() {
+                    if (BuildConfig.YaAdsEnable) {
+                        if (BuildConfig.DEBUG) {
+                            Log.d("YaAdsInterstutial", "onAdShown")
+                        }
+                        mYaInterstitialAd!!.loadAd(mAdYaRequest!!)
+                    }
+                }
+
+                override fun onAdDismissed() {
+                    if (BuildConfig.YaAdsEnable) {
+                        if (BuildConfig.DEBUG) {
+                            Log.d("YaAdsInterstutial", "onAdDismissed")
+                        }
+                    }
+                }
+
+                override fun onLeftApplication() {
+                    if (BuildConfig.YaAdsEnable) {
+                        if (BuildConfig.DEBUG) {
+                            Log.d("YaAdsInterstutial", "onLeftApplication")
+                        }
+                    }
+                }
+
+                override fun onReturnedToApplication() {
+                    if (BuildConfig.YaAdsEnable) {
+                        if (BuildConfig.DEBUG) {
+                            Log.d("YaAdsInterstutial", "onReturnedToApplication")
+                        }
+                    }
+                }
+            }
     }
 
-    override fun onDestroy() {
-        if (YaAdsEnable) {
-            mYaInterstitialAd!!.destroy()
-        }
-        super.onDestroy()
-    }
 
-    private val mInterstitialAdEventListener: InterstitialAdEventListener =
-        object : InterstitialAdEventListener {
-            override fun onAdLoaded() {
-                if (YaAdsEnable) {
-                    if (mYaInterstitialAdOnOff) {
-                        mYaInterstitialAd!!.show()
-                        mYaInterstitialAdOnOff = false
-                        Toast.makeText(applicationContext, "Реклама продлится недолго", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            override fun onAdFailedToLoad(adRequestError: AdRequestError) {
-                if (YaAdsEnable) {
-                    if (BuildConfig.DEBUG) {
-                        Log.d("YaAdsInterstutial", adRequestError.toString())
-                    }
-                    mYaInterstitialAd = null
-                }
-            }
-
-            override fun onAdShown() {
-                if (YaAdsEnable) {
-                    if (BuildConfig.DEBUG) {
-                        Log.d("YaAdsInterstutial", "onAdShown")
-                    }
-                    mYaInterstitialAd!!.loadAd(mAdYaRequest!!)
-                }
-            }
-
-            override fun onAdDismissed() {
-                if (YaAdsEnable) {
-                    if (BuildConfig.DEBUG) {
-                        Log.d("YaAdsInterstutial", "onAdDismissed")
-                    }
-                }
-            }
-
-            override fun onLeftApplication() {
-                if (YaAdsEnable) {
-                    if (BuildConfig.DEBUG) {
-                        Log.d("YaAdsInterstutial", "onLeftApplication")
-                    }
-                }
-            }
-
-            override fun onReturnedToApplication() {
-                if (YaAdsEnable) {
-                    if (BuildConfig.DEBUG) {
-                        Log.d("YaAdsInterstutial", "onReturnedToApplication")
-                    }
-                }
-            }
-        }
-
-
-}
 

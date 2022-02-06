@@ -19,13 +19,11 @@ import com.yandex.mobile.ads.common.MobileAds;
 
 public class AppYandexMetricaInit extends android.app.Application {
     String API_KEY = "9331269b-d88b-49f2-811d-feecc9d4cec3";
-    Boolean AppMetricaOn = false;
-    Boolean YandexMobileAdsOn = true;  // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
     private static final String YANDEX_MOBILE_ADS_TAG = "YandexMobileAds";
     @Override
     public void onCreate() {
         super.onCreate();
-        if (AppMetricaOn) {
+        if (BuildConfig.AppMetricaOn) {
             /* Replace API_KEY with your unique API key. Please, read official documentation how to obtain one:
              https://tech.yandex.com/metrica-mobile-sdk/doc/mobile-sdk-dg/concepts/android-initialize-docpage/
              */
@@ -42,8 +40,8 @@ public class AppYandexMetricaInit extends android.app.Application {
                 Log.d("AppYandexMetricaInit", "__Yandex metrica init withStatisticsSending(false).----");
             }
         }
-        //0000000000000
-        if (YandexMobileAdsOn) {
+        //---------------------------------------------
+        if (BuildConfig.YaAdsEnable) {
             MobileAds.initialize(this, new InitializationListener() {
                 @Override
                 public void onInitializationCompleted() {

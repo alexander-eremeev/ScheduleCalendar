@@ -25,6 +25,18 @@ android {
             useSupportLibrary true
         }
         buildConfigField "String", "BUILD_TIMESTAMP", getDate()
+        //------------------------------------------------------------------
+        //  Статистика и реклама
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        buildConfigField "boolean", "YaAdsEnable", "false" // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        buildConfigField "boolean", "AdMobEnable", "false"   // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        buildConfigField "boolean", "AppMetricaOn", "false"   // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        //======================================================================
+        /*AppMetricaOn
+                 // defining the build date
+         buildConfigField "long", "BUILD_DATE", System.currentTimeMillis() + "L"
+           */
 
     }
 

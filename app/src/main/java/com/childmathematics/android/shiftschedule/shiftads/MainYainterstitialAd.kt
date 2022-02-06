@@ -38,7 +38,7 @@ import java.util.*
 import kotlin.concurrent.schedule
 
 
-var YaAdsEnable = true     // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+//var YaAdsEnable = true     // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
 
 var mAdYaRequest: AdRequest? = null
 //var mAdYaBannerRequest: AdRequest? = null

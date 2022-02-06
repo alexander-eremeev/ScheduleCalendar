@@ -46,13 +46,13 @@ import kotlinx.coroutines.launch
 //import com.childmathematics.android.shiftschedule.html.ui.application
 @ExperimentalCoroutinesApi
 @Composable
-fun NavigateScreen1(todoViewModel: TodoViewModel,AdMobEnable: Boolean) {
-    NavigateContent(todoViewModel,AdMobEnable)
+fun NavigateScreen1(todoViewModel: TodoViewModel) {
+    NavigateContent(todoViewModel)
 }
 
 @ExperimentalCoroutinesApi
 @Composable
-private fun NavigateContent(todoViewModel: TodoViewModel,AdMobEnable: Boolean) {
+private fun NavigateContent(todoViewModel: TodoViewModel) {
     var currentRoute by remember { mutableStateOf(Routes.HOME_ROUTE) }
 //    var currentAboutRoute by remember { mutableStateOf(AboutRoutes.ABOUTHELP_ROUTE) }
 //    var currentAboutRoute : Int
@@ -207,16 +207,16 @@ private fun NavigateContent(todoViewModel: TodoViewModel,AdMobEnable: Boolean) {
             startDestination = Routes.HOME_ROUTE
         ) {
             composable(Routes.HOME_ROUTE) {
-                HomeComponent(LocalContext.current,AdMobEnable)
+                HomeComponent(LocalContext.current)
             }
 
 //========Классическое меню Setting  3 ==в правом углу======================
             composable(Routes.SETTINGS_ROUTE) {
-                SettingsComponent(LocalContext.current,currentRoute,AdMobEnable)
+                SettingsComponent(LocalContext.current,currentRoute)
             }
             if (currentRoute == Routes.SETTINGAPPMETRICA_ROUTE) {
                 composable(Routes.SETTINGAPPMETRICA_ROUTE) {
-                    SettingsComponent(LocalContext.current,currentRoute,AdMobEnable)
+                    SettingsComponent(LocalContext.current,currentRoute)
 //                SettingsAppMetricaComponent(LocalContext.current)
                 }
             }
@@ -225,7 +225,7 @@ private fun NavigateContent(todoViewModel: TodoViewModel,AdMobEnable: Boolean) {
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++
             composable(Routes.TODO_ROUTE) {
-                TodoComponent(todoViewModel,AdMobEnable )
+                TodoComponent(todoViewModel )
             }
 //------------------------------------------------------
             /*
@@ -236,24 +236,24 @@ private fun NavigateContent(todoViewModel: TodoViewModel,AdMobEnable: Boolean) {
              */
 //========Классическое меню ABOUT  3 ==в правом углу======================
             composable(Routes.ABOUT_ROUTE) {
-                AboutComponent(currentRoute,AdMobEnable)
+                AboutComponent(currentRoute)
             }
 //------------------------------------------------------
             composable(Routes.ABOUTHELP_ROUTE) {
-                AboutComponent(currentRoute ,AdMobEnable)
+                AboutComponent(currentRoute )
             }
 //------------------------------------------------------
             composable(Routes.ABOUTLICENSES_ROUTE) {
-              AboutComponent(currentRoute,AdMobEnable )
+              AboutComponent(currentRoute )
             }
 //------------------------------------------------------
             composable(Routes.ABOUTPOLICE_ROUTE) {
-                AboutComponent(currentRoute ,AdMobEnable)
+                AboutComponent(currentRoute )
             }
 //--------------------------------------------------------
             composable(Routes.SCHEDULE_ROUTE) {
 
-                ScheduleComponent(AdMobEnable)
+                ScheduleComponent()
             }
 //--------------------------------------------------------
 
@@ -439,18 +439,18 @@ private fun DrawerButtonPreview() {
 }
 */
 @Composable
-fun HomeComponent(context: Context,AdMobEnable: Boolean) {
+fun HomeComponent(context: Context) {
     var changeDp: Dp
 
-    if(AdMobEnable) {
+    if(BuildConfig.AdMobEnable) {
         AdBannerNetworkApp()
         AdInterstitialNetworkApp(context)
     }
-    if (YaAdsEnable) {
+    if (BuildConfig.YaAdsEnable) {
         InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
-    if(AdMobEnable || YaAdsEnable) {
+    if(BuildConfig.AdMobEnable || BuildConfig.YaAdsEnable) {
         changeDp = 50.dp
     } else changeDp = 0.dp
 
@@ -510,12 +510,12 @@ object Routes {
 
 //++++++++++++++++++++++++++++++++++++
 @Composable
-fun TodoComponent(todoViewModel: TodoViewModel,AdMobEnable: Boolean) {
-    if (AdMobEnable){
+fun TodoComponent(todoViewModel: TodoViewModel) {
+    if (BuildConfig.AdMobEnable){
         AdBannerNetworkApp()
         AdInterstitialNetworkApp(LocalContext.current)
     }
-    if (YaAdsEnable) {
+    if (BuildConfig.YaAdsEnable) {
         InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
@@ -546,12 +546,12 @@ fun AdMobComponent() {
 //-----------------------------------
 //========Классическое меню ABOUT  5 ==в правом углу======================
 @Composable
-fun AboutComponent(currentRoute : String,AdMobEnable: Boolean) {
-    if (AdMobEnable) {
+fun AboutComponent(currentRoute : String) {
+    if (BuildConfig.AdMobEnable) {
         AdBannerNetworkApp()
         AdInterstitialNetworkApp(LocalContext.current)
     }
-    if (YaAdsEnable) {
+    if (BuildConfig.YaAdsEnable) {
         InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
@@ -590,19 +590,19 @@ fun AboutComponent(currentRoute : String,AdMobEnable: Boolean) {
 //-----------------------------------
 //========Классическое меню 5 ==в правом углу======================
 @Composable
-fun SettingsComponent(context: Context,currentRoute : String,AdMobEnable: Boolean) {
+fun SettingsComponent(context: Context,currentRoute : String) {
     var changeDp: Dp
 
-    if (AdMobEnable) {
+    if (BuildConfig.AdMobEnable) {
         AdBannerNetworkApp()
         AdInterstitialNetworkApp(LocalContext.current)
     }
-    if (YaAdsEnable) {
+    if (BuildConfig.YaAdsEnable) {
         InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
 
-    if(AdMobEnable || YaAdsEnable) {
+    if(BuildConfig.AdMobEnable || BuildConfig.YaAdsEnable) {
         changeDp = 50.dp
     } else changeDp = 0.dp
 
@@ -632,7 +632,7 @@ fun SettingsComponent(context: Context,currentRoute : String,AdMobEnable: Boolea
 fun SettingsAppMetricaComponent(context: Context) {
     var changeDp: Dp
 
-    if(AdMobEnable || YaAdsEnable) {
+    if(BuildConfig.AdMobEnable || BuildConfig.YaAdsEnable) {
         changeDp = 50.dp
     } else changeDp = 0.dp
 
@@ -690,13 +690,13 @@ AppMetrica анализирует данные об использовании �
 //++++++++++++++++++++++++++++++++++++
 @ExperimentalCoroutinesApi
 @Composable
-fun ScheduleComponent(AdMobEnable: Boolean) {
-    if (AdMobEnable) {
+fun ScheduleComponent() {
+    if (BuildConfig.AdMobEnable) {
 
         AdBannerNetworkApp()
         AdInterstitialNetworkApp(LocalContext.current)
     }
-    if (YaAdsEnable) {
+    if (BuildConfig.YaAdsEnable) {
         InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
