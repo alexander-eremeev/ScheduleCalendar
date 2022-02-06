@@ -38,14 +38,18 @@ public class AppYandexMetricaInit extends android.app.Application {
                 // Initializing the AppMetrica SDK.
                 YandexMetrica.activate(this, config);
     //        YandexMetrica.activate(getApplicationContext(), config);
+            if (BuildConfig.DEBUG) {
                 Log.d("AppYandexMetricaInit", "__Yandex metrica init withStatisticsSending(false).----");
+            }
         }
         //0000000000000
         if (YandexMobileAdsOn) {
             MobileAds.initialize(this, new InitializationListener() {
                 @Override
                 public void onInitializationCompleted() {
-                    Log.d(YANDEX_MOBILE_ADS_TAG, "SDK initialized");
+                    if (BuildConfig.DEBUG) {
+                        Log.d(YANDEX_MOBILE_ADS_TAG, "SDK initialized");
+                    }
                 }
             });
         }

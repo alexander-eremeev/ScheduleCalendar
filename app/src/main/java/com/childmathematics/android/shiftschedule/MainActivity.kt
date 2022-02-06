@@ -1,5 +1,6 @@
 package com.childmathematics.android.shiftschedule
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +10,18 @@ import android.widget.Toast
 
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 /*
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +43,12 @@ import com.childmathematics.android.shiftschedule.navigation.NavigateScreen1
 import com.childmathematics.android.shiftschedule.shiftads.*
 import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoScreen
 import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoViewModel
+import com.google.android.gms.ads.AdView
 
 import com.google.android.gms.ads.MobileAds
+import com.yandex.mobile.ads.banner.AdSize
+import com.yandex.mobile.ads.banner.BannerAdEventListener
+import com.yandex.mobile.ads.banner.BannerAdView
 import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.interstitial.InterstitialAd
@@ -55,10 +70,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            // меню навигации
+            NavigateScreen1(todoViewModel, AdMobEnable)
 
-//            MainScreen(todoViewModel)
-//            AdBannerNetworkApp()
-            NavigateScreen1(todoViewModel,AdMobEnable)
         }
         if (AdMobEnable) {
             // initialize the Mobile Ads SDK
@@ -68,38 +82,19 @@ class MainActivity : AppCompatActivity() {
             loadInterstitial(this)
 
             // add the interstitial ad callbacks
-//        addInterstitialCallbacks()
             addInterstitialCallbacks(this)
-            // initialize the Mobile Ads SDK
- //           MobileAds.initialize(this) { }
-
-            // load the interstitial ad
- //           loadInterstitial(this)
-
-            // add the interstitial ad callbacks
-//        addInterstitialCallbacks()
- //           addInterstitialCallbacks(this)
-
-        }
+         }
         if (YaAdsEnable) {
-            // initialize the Mobile Ads SDK
             initInterstitialAd()
-            Log.d("YaAdsInterstutial", "INIT0")
-
             // load the interstitial ad
-           loadYaInterstitial()
-
-            // add the interstitial ad callbacks
-//        addInterstitialCallbacks()
-//            addInterstitialCallbacks(this)
-
-            // add the interstitial ad callbacks
-//        addInterstitialCallbacks()
-//            addInterstitialCallbacks(this)
-
+            loadYaInterstitial()
+            //==============================
+            //    mBannerAdView = findViewById<View>(R.id.banner_view) as BannerAdView
+//          InitBannerView()
         }
-
     }
+
+//==================================================================
     fun initInterstitialAd() {
         mYaInterstitialAd = InterstitialAd(this)
 
@@ -114,13 +109,17 @@ class MainActivity : AppCompatActivity() {
         */
         //       mInterstitialAd.setBlockId("R-M-DEMO-320x480");
         mYaInterstitialAd!!.setBlockId("R-M-DEMO-320x480")
-        mAdRequest = AdRequest.Builder().build()
+        mAdYaRequest = AdRequest.Builder().build()
         mYaInterstitialAd!!.setInterstitialAdEventListener(mInterstitialAdEventListener)
-        Log.d("YaAdsInterstutial", "INIT")
+        if (BuildConfig.DEBUG) {
+            Log.d("YaAdsInterstutial", "INIT")
+        }
     }
 
     override fun onDestroy() {
-        if (YaAdsEnable) { mYaInterstitialAd!!.destroy()}
+        if (YaAdsEnable) {
+            mYaInterstitialAd!!.destroy()
+        }
         super.onDestroy()
     }
 
@@ -128,43 +127,57 @@ class MainActivity : AppCompatActivity() {
         object : InterstitialAdEventListener {
             override fun onAdLoaded() {
                 if (YaAdsEnable) {
-                    if (mInterstitialAdOnOff) {
+                    if (mYaInterstitialAdOnOff) {
                         mYaInterstitialAd!!.show()
-                        mInterstitialAdOnOff = false
+                        mYaInterstitialAdOnOff = false
+                        Toast.makeText(applicationContext, "Реклама продлится недолго", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
 
             override fun onAdFailedToLoad(adRequestError: AdRequestError) {
                 if (YaAdsEnable) {
-                    Log.d("YaAdsInterstutial", adRequestError.toString())
+                    if (BuildConfig.DEBUG) {
+                        Log.d("YaAdsInterstutial", adRequestError.toString())
+                    }
                     mYaInterstitialAd = null
                 }
             }
 
             override fun onAdShown() {
                 if (YaAdsEnable) {
-                    Log.d("YaAdsInterstutial", "onAdShown")
-                    mYaInterstitialAd!!.loadAd(mAdRequest!!)
+                    if (BuildConfig.DEBUG) {
+                        Log.d("YaAdsInterstutial", "onAdShown")
+                    }
+                    mYaInterstitialAd!!.loadAd(mAdYaRequest!!)
                 }
             }
 
             override fun onAdDismissed() {
                 if (YaAdsEnable) {
-                    Log.d("YaAdsInterstutial", "onAdDismissed")
+                    if (BuildConfig.DEBUG) {
+                        Log.d("YaAdsInterstutial", "onAdDismissed")
+                    }
                 }
             }
 
             override fun onLeftApplication() {
                 if (YaAdsEnable) {
-                    Log.d("YaAdsInterstutial", "onLeftApplication")
+                    if (BuildConfig.DEBUG) {
+                        Log.d("YaAdsInterstutial", "onLeftApplication")
+                    }
                 }
             }
 
             override fun onReturnedToApplication() {
                 if (YaAdsEnable) {
-                    Log.d("YaAdsInterstutial", "onReturnedToApplication")
+                    if (BuildConfig.DEBUG) {
+                        Log.d("YaAdsInterstutial", "onReturnedToApplication")
+                    }
                 }
             }
         }
+
+
 }
+

@@ -18,33 +18,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.childmathematics.android.shiftschedule.*
+import com.childmathematics.android.shiftschedule.util.durationAds
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 
 /*
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-        setContent {
-            AdNetworkTheme {
-                Surface(color = MaterialTheme.colors.background) {
-                    AdNetworkApp()
-                }
-            }
-        }
-
-        // initialize the Mobile Ads SDK
-        MobileAds.initialize(this) { }
-
-        // load the interstitial ad
-        loadInterstitial(this)
-
-        // add the interstitial ad callbacks
-        addInterstitialCallbacks(this)
-    }
-}
 */
 @Composable
 fun AdNetworkApp() {
@@ -160,8 +140,9 @@ fun AdBannerNetworkApp() {
             }
         )
     }
-//    AdInterstitialNetworkApp()
 }
+//============================================================
+//    AdInterstitialNetworkApp()
 @Composable
 fun AdInterstitialNetworkApp(context: Context) {
 //    val adWidth = LocalConfiguration.current.screenWidthDp - 32
@@ -179,7 +160,7 @@ fun AdInterstitialNetworkApp(context: Context) {
 //                mInterstitialAdOnOff = true
                 showInterstitial(context)
 
-                AdsInterstutialTimer(180000L)  //реклама через 180 cсек
+                AdsInterstutialTimer(durationAds)  //реклама через 180 cсек
 
     }
 

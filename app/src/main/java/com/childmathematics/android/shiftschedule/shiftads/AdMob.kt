@@ -3,6 +3,8 @@ package com.childmathematics.android.shiftschedule.shiftads
 import android.content.Context
 import android.os.CountDownTimer
 import android.util.Log
+import android.widget.Toast
+import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -27,12 +29,16 @@ fun loadInterstitial(context: Context) {
             object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 mInterstitialAd = null
-                Log.d("MainActivity", adError.message)
+                if (BuildConfig.DEBUG) {
+                    Log.d("loadInterstitial", adError.message)
+                }
             }
 
             override fun onAdLoaded(interstitialAd: InterstitialAd) {
                 mInterstitialAd = interstitialAd
-                Log.d("MainActivity", "Ad was loaded.")
+                if (BuildConfig.DEBUG) {
+                    Log.d("onAdLoaded", "Ad was loaded.")
+                }
             }
 
          }
@@ -44,19 +50,24 @@ fun loadInterstitial(context: Context) {
     fun addInterstitialCallbacks(context: Context) {
     mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
         override fun onAdFailedToShowFullScreenContent(p0: AdError) {
-            Log.d("MainActivity", "Ad failed to show.")
+            if (BuildConfig.DEBUG) {
+                Log.d("addInterstitialCallb", "Ad failed to show.")
+            }
         }
 
         override fun onAdShowedFullScreenContent() {
             mInterstitialAd = null
-            Log.d("MainActivity", "Ad showed fullscreen content.")
-
+            if (BuildConfig.DEBUG) {
+                Log.d("onAdShowedFull", "Ad showed fullscreen content.")
+            }
             loadInterstitial(context)
 
         }
 
         override fun onAdDismissedFullScreenContent() {
-            Log.d("MainActivity", "Ad was dismissed.")
+            if (BuildConfig.DEBUG) {
+                Log.d("onAdDismissedContent", "Ad was dismissed.")
+            }
         }
     }
 }
@@ -67,18 +78,23 @@ fun showInterstitial(context: Context ) {
 
 //    if (mInterstitialAd != null ) {
         if (mInterstitialAd != null && mInterstitialAdOnOff) {
-             mInterstitialAd?.show(activity!!)
+            Toast.makeText(context, "Реклама продлится недолго", Toast.LENGTH_SHORT).show();
+            mInterstitialAd?.show(activity!!)
             mInterstitialAdOnOff = false
             loadInterstitial(context)
     } else {
-        Log.d("MainActivity", "The interstitial ad wasn't ready yet.")
+            if (BuildConfig.DEBUG) {
+                Log.d("showInterstitial", "The interstitial ad wasn't ready yet.")
+                // Режим отладки, ведём логи
+            }
     }
 }
 fun AdsInterstutialTimer(interstutialDelay: Long){
         Timer().schedule(interstutialDelay) {
             mInterstitialAdOnOff = true
-
-            Log.d("MainActivity", "AdsIntTimer ON1.")
+            if (BuildConfig.DEBUG) {
+                Log.d("AdsInterstutialTimer", "AdsIntTimer ON1.")
+            }
         }
 
 

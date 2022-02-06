@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
@@ -38,6 +39,8 @@ import com.childmathematics.android.shiftschedule.composecalendar.rememberSelect
 import com.childmathematics.android.shiftschedule.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode.Period
+import com.childmathematics.android.shiftschedule.shiftads.AdMobEnable
+import com.childmathematics.android.shiftschedule.shiftads.YaAdsEnable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
@@ -54,15 +57,18 @@ fun ViewModelSample() {
   val viewModel = remember { RecipeViewModel() }
   val recipes by viewModel.recipesFlow.collectAsState()
   val selectedPrice by viewModel.selectedRecipesPriceFlow.collectAsState(0)
-
+  var changeDp: Dp
   val state = rememberSelectableCalendarState(
     onSelectionChanged = viewModel::onSelectionChanged,
     initialSelectionMode = Period,
   )
+  if(AdMobEnable || YaAdsEnable) {
+    changeDp = 50.dp
+  } else changeDp = 0.dp
 
   Column(
     Modifier
-      .padding(0.dp,50.dp,0.dp,0.dp)        // добавлен для баннера
+      .padding(0.dp,changeDp,0.dp,0.dp)        // добавлен для баннера
       .verticalScroll(rememberScrollState())
   ) {
     SelectableCalendar(

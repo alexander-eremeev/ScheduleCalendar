@@ -20,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
@@ -439,24 +440,30 @@ private fun DrawerButtonPreview() {
 */
 @Composable
 fun HomeComponent(context: Context,AdMobEnable: Boolean) {
+    var changeDp: Dp
 
     if(AdMobEnable) {
         AdBannerNetworkApp()
         AdInterstitialNetworkApp(context)
     }
     if (YaAdsEnable) {
+        InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
+    if(AdMobEnable || YaAdsEnable) {
+        changeDp = 50.dp
+    } else changeDp = 0.dp
 
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .padding(0.dp, 50.dp, 0.dp, 0.dp)
+            .padding(0.dp, changeDp, 0.dp, 0.dp)
             .fillMaxSize()
             .background(Color(0xff6D4C41))
     ) {
         Text(color = Color.White, text = "Home", fontSize = 50.sp, fontWeight = FontWeight.Bold)
     }
+
 
 }
 /*
@@ -508,9 +515,11 @@ fun TodoComponent(todoViewModel: TodoViewModel,AdMobEnable: Boolean) {
         AdBannerNetworkApp()
         AdInterstitialNetworkApp(LocalContext.current)
     }
-    if(YaAdsEnable) {
+    if (YaAdsEnable) {
+        InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
+
 
 //        .padding(0.dp,50.dp,0.dp,0.dp)
     TodoScreen(
@@ -543,6 +552,7 @@ fun AboutComponent(currentRoute : String,AdMobEnable: Boolean) {
         AdInterstitialNetworkApp(LocalContext.current)
     }
     if (YaAdsEnable) {
+        InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
 
@@ -581,30 +591,36 @@ fun AboutComponent(currentRoute : String,AdMobEnable: Boolean) {
 //========Классическое меню 5 ==в правом углу======================
 @Composable
 fun SettingsComponent(context: Context,currentRoute : String,AdMobEnable: Boolean) {
+    var changeDp: Dp
+
     if (AdMobEnable) {
         AdBannerNetworkApp()
         AdInterstitialNetworkApp(LocalContext.current)
     }
     if (YaAdsEnable) {
+        InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
 
+    if(AdMobEnable || YaAdsEnable) {
+        changeDp = 50.dp
+    } else changeDp = 0.dp
 
     if (currentRoute == Routes.SETTINGS_ROUTE) {
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .padding(0.dp, 50.dp, 0.dp, 0.dp)
-                .fillMaxSize()
-                .background(Color(0xffFF6F00))
-        ) {
-            Text(
-                color = Color.White,
-                text = "Settings",
-                fontSize = 50.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .padding(0.dp, changeDp, 0.dp, 0.dp)
+                    .fillMaxSize()
+                    .background(Color(0xffFF6F00))
+            ) {
+                Text(
+                    color = Color.White,
+                    text = "Settings",
+                    fontSize = 50.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
 //        Toast.makeText(context, "SettingsComponent: ", Toast.LENGTH_LONG).show()
     }
     if (currentRoute == Routes.SETTINGAPPMETRICA_ROUTE) {
@@ -614,10 +630,16 @@ fun SettingsComponent(context: Context,currentRoute : String,AdMobEnable: Boolea
 }
 @Composable
 fun SettingsAppMetricaComponent(context: Context) {
+    var changeDp: Dp
+
+    if(AdMobEnable || YaAdsEnable) {
+        changeDp = 50.dp
+    } else changeDp = 0.dp
+
     Box(
         contentAlignment = Alignment.TopCenter,
         modifier = Modifier
-            .padding(0.dp, 50.dp, 0.dp, 0.dp)
+            .padding(0.dp, changeDp, 0.dp, 0.dp)
             .fillMaxSize()
             .background(Color(0xffFF6F00))
     ) {
@@ -628,6 +650,7 @@ fun SettingsAppMetricaComponent(context: Context) {
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
+    }
 //        Text(color = Color.White, text = "SettingsAPPMetrica", fontSize = 50.sp, fontWeight = FontWeight.Bold)
 //        Spacer(modifier = Modifier.height(20.dp))
         Text(color = Color.Black, text = "\n\n Это приложение использует сервис аналитики AppMetrica (Яндекс.Метрика для приложений), предоставляемый компанией ООО «ЯНДЕКС», 119021, Россия, Москва, ул. Л. Толстого, 16 (далее — Яндекс) на Условиях использования сервиса.\n" +
@@ -638,7 +661,7 @@ fun SettingsAppMetricaComponent(context: Context) {
                 "Информация об использовании вами данного приложения, собранная при помощи инструментов AppMetrica, в обезличенном виде будет передаваться Яндексу и храниться на сервере Яндекса в ЕС и Российской Федерации.\n" +
                 "Яндекс будет обрабатывать эту информацию для предоставления статистики использования вами приложения, составления для нас отчетов о работе приложения, и предоставления других услуг.\n",
                 fontSize = 14.sp, fontWeight = FontWeight.Normal)
-    }
+
     YandexMetrica.setStatisticsSending(context, true)
 //    Toast.makeText(context, "SettingsAppMetricaComponent:YandexMetrica.setStatisticsSending(context, true) ", Toast.LENGTH_LONG).show()
 
@@ -674,6 +697,7 @@ fun ScheduleComponent(AdMobEnable: Boolean) {
         AdInterstitialNetworkApp(LocalContext.current)
     }
     if (YaAdsEnable) {
+        InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
 
