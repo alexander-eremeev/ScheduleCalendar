@@ -77,18 +77,6 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
 
         },
     )
-//========Классическое меню Графики  1  =======================
-/*
-    val scheduleitems = listOf(
-        ActionItemSpec("Помощь", Icons.Default.Help, ActionItemMode.ALWAYS_SHOW) {
-            currentRoute =Routes.ABOUTHELP_ROUTE
-        },
-        ActionItemSpec("Лицензии", Icons.Default.Apps, ActionItemMode.IF_ROOM) {
-            currentRoute =Routes.ABOUTLiSENSES_ROUTE
-
-        },
-    )
-*/
 //========Классическое меню Настройки  1 =======================
 
     val settingitems = listOf(
@@ -112,23 +100,33 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
                 currentRoute = currentRoute,
                 navigateToHome = {
                     currentRoute = Routes.HOME_ROUTE
-                    navController.popBackStack()
-                    navController.navigate(currentRoute)
+                    if (BuildConfig.HomeRouteEnable) {
+                        navController.popBackStack()
+                        navController.navigate(currentRoute)
+                    }
                 },
-                navigateToSchedule = {
+                navigateToSchedule = {//&& BuildConfig.ScheduleRouteEnable
                     currentRoute = Routes.SCHEDULE_ROUTE
-                    navController.popBackStack()
-                    navController.navigate(currentRoute)
+                    if (BuildConfig.ScheduleRouteEnable) {
+                        navController.popBackStack()
+                        navController.navigate(currentRoute)
+                    }
                 },
                 navigateToToDo = {
                     currentRoute = Routes.TODO_ROUTE
-                    navController.popBackStack()
+                    if (BuildConfig.ToDoRouteEnable) {
+                        navController.popBackStack()
+                        navController.navigate(currentRoute)
+                    }
                     navController.navigate(currentRoute)
                 },
+
                 navigateToSettings = {
                     currentRoute = Routes.SETTINGS_ROUTE
-                    navController.popBackStack()
-                    navController.navigate(currentRoute)
+                    if (BuildConfig.SettingsRouteEnable) {
+                        navController.popBackStack()
+                        navController.navigate(currentRoute)
+                    }
                 },
                 navigateToAbout = {
                     currentRoute = Routes.ABOUT_ROUTE
@@ -168,7 +166,7 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
                 actions = {
 // 1.  второстепенное меню в правом углу
 //========================================================
-                    if (currentRoute == Routes.SCHEDULE_ROUTE) {
+                    if (currentRoute == Routes.SCHEDULE_ROUTE && BuildConfig.ScheduleRouteEnable) {
                         OverflowTopSchedule()
                     }
 //========Классическое меню ABOUT  2 ==в правом углу======================
@@ -185,10 +183,10 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
                         ActionMenu(aboutitems, defaultIconSpace = 3)
                     }
 //========Классическое меню Настройки  2 ==в правом углу======================
-                    if (currentRoute == Routes.SETTINGS_ROUTE) {
+                    if (currentRoute == Routes.SETTINGS_ROUTE && BuildConfig.SettingsRouteEnable) {
                         ActionMenu(settingitems, defaultIconSpace = 3)
                     }
-                    if (currentRoute == Routes.SETTINGAPPMETRICA_ROUTE) {
+                    if (currentRoute == Routes.SETTINGAPPMETRICA_ROUTE && BuildConfig.AppMetricaOn && BuildConfig.SettingsRouteEnable) {
                         ActionMenu(settingappmetricaitems, defaultIconSpace = 3)
                     }
 //========================================================
@@ -211,10 +209,12 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
             }
 
 //========Классическое меню Setting  3 ==в правом углу======================
-            composable(Routes.SETTINGS_ROUTE) {
-                SettingsComponent(LocalContext.current,currentRoute)
+            if (BuildConfig.SettingsRouteEnable) {
+                composable(Routes.SETTINGS_ROUTE) {
+                        SettingsComponent(LocalContext.current, currentRoute)
+                }
             }
-            if (currentRoute == Routes.SETTINGAPPMETRICA_ROUTE) {
+            if (currentRoute == Routes.SETTINGAPPMETRICA_ROUTE && BuildConfig.AppMetricaOn && BuildConfig.SettingsRouteEnable) {
                 composable(Routes.SETTINGAPPMETRICA_ROUTE) {
                     SettingsComponent(LocalContext.current,currentRoute)
 //                SettingsAppMetricaComponent(LocalContext.current)
@@ -224,8 +224,10 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
 
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            composable(Routes.TODO_ROUTE) {
-                TodoComponent(todoViewModel )
+            if (BuildConfig.ToDoRouteEnable) {
+                composable(Routes.TODO_ROUTE) {
+                    TodoComponent(todoViewModel)
+                }
             }
 //------------------------------------------------------
             /*
@@ -251,9 +253,11 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
                 AboutComponent(currentRoute )
             }
 //--------------------------------------------------------
-            composable(Routes.SCHEDULE_ROUTE) {
+            if (BuildConfig.ScheduleRouteEnable) {
+                composable(Routes.SCHEDULE_ROUTE) {
 
-                ScheduleComponent()
+                    ScheduleComponent()
+                }
             }
 //--------------------------------------------------------
 
@@ -277,58 +281,70 @@ fun AppDrawer(
 //-----------------------------------
     closeDrawer: () -> Unit
 ) {
+//------------------------------------------------------------------------
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        DrawerHeader()
-        DrawerButton(
-            icon = Icons.Filled.Home,
-            label = "Главная",
-            isSelected = currentRoute == Routes.HOME_ROUTE,
-            action = {
-                if (currentRoute != Routes.HOME_ROUTE) {
-                    navigateToHome()
+        Column(modifier = Modifier.fillMaxSize()) {
+            DrawerHeader()
+
+            if (BuildConfig.HomeRouteEnable) {
+                DrawerButton(
+                icon = Icons.Filled.Home,
+                label = "Главная",
+                isSelected = currentRoute == Routes.HOME_ROUTE,
+                action = {
+                    if (currentRoute != Routes.HOME_ROUTE) {
+                        navigateToHome()
+                    }
+                    closeDrawer()
                 }
-                closeDrawer()
-            }
-        )
+            )
+        }
 //---------------------------------------------------------------------------
-        DrawerButton(
-//            icon = Icons.Filled.Preview,
-            icon = Icons.Filled.Schedule,
-            label = "Графики смен",
-            isSelected = currentRoute == Routes.SCHEDULE_ROUTE,
-            action = {
-                if (currentRoute != Routes.SCHEDULE_ROUTE) {
-                    navigateToSchedule()
-                }
-                closeDrawer()
-            }
-        )
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        DrawerButton(
-//            icon = Icons.Filled.Settings,
-            icon = Icons.Filled.EventNote,
-            label = "Записная книжка",
-            isSelected = currentRoute == Routes.TODO_ROUTE,
-            action = {
-                if (currentRoute != Routes.TODO_ROUTE) {
-                    navigateToToDo()
-                }
-                closeDrawer()
-            }
-        )
+        if (BuildConfig.ScheduleRouteEnable) {
 
-        DrawerButton(
-            icon = Icons.Filled.Settings,
-            label = "Настройки",
-            isSelected = currentRoute == Routes.SETTINGS_ROUTE,
-            action = {
-                if (currentRoute != Routes.SETTINGS_ROUTE) {
-                    navigateToSettings()
+            DrawerButton(
+//            icon = Icons.Filled.Preview,
+                icon = Icons.Filled.Schedule,
+                label = "Графики смен",
+                isSelected = currentRoute == Routes.SCHEDULE_ROUTE,
+                action = {
+                    if (currentRoute != Routes.SCHEDULE_ROUTE) {
+                        navigateToSchedule()
+                    }
+                    closeDrawer()
                 }
-                closeDrawer()
-            }
-        )
+            )
+        }
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        if (BuildConfig.ToDoRouteEnable) {
+
+            DrawerButton(
+//            icon = Icons.Filled.Settings,
+                icon = Icons.Filled.EventNote,
+                label = "Записная книжка",
+                isSelected = currentRoute == Routes.TODO_ROUTE,
+                action = {
+                    if (currentRoute != Routes.TODO_ROUTE) {
+                        navigateToToDo()
+                    }
+                    closeDrawer()
+                }
+            )
+        }
+//---------------------------------------------------------------
+        if (BuildConfig.SettingsRouteEnable) {
+            DrawerButton(
+                icon = Icons.Filled.Settings,
+                label = "Настройки",
+                isSelected = currentRoute == Routes.SETTINGS_ROUTE,
+                action = {
+                    if (currentRoute != Routes.SETTINGS_ROUTE) {
+                        navigateToSettings()
+                    }
+                    closeDrawer()
+                }
+            )
+        }
 
 //---------------------------------------------------------------------------
         DrawerButton(
@@ -505,6 +521,8 @@ object Routes {
     const val ABOUTPOLICE_ROUTE = "AboutPolice"
     //---------------------------------------------------------
     const val SCHEDULE_ROUTE = "Schedule"
+    const val SCHEDULE01_ROUTE = "Schedule01"
+    const val SCHEDULE500_ROUTE = "Schedule500"
     //---------------------------------------------------------
 }
 

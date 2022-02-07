@@ -30,10 +30,20 @@ android {
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         buildConfigField "boolean", "YaAdsEnable", "false" // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
         // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
-        buildConfigField "boolean", "AdMobEnable", "false"   // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
-        buildConfigField "boolean", "AppMetricaOn", "false"   // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        buildConfigField "boolean", "AdMobEnable", "false"   // Включав не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        buildConfigField "boolean", "AppMetricaOn", "false"   // Включав не забудь об арр AppYandexMetricaInit.java
         //======================================================================
-        /*AppMetricaOn
+        buildConfigField "boolean", "SettinsRouteEnable", "false" // Включение-отключение модуля
+        buildConfigField "boolean", "HomeRouteEnable", "false" // Включение-отключение модуля
+        buildConfigField "boolean", "SettingsRouteEnable", "false" // Включение-отключение модуля
+        buildConfigField "boolean", "ToDoRouteEnable", "false" // Включение-отключение модуля
+        buildConfigField "boolean", "ScheduleRouteEnable", "false" // Включение-отключение модуля
+        buildConfigField "boolean", "Schedule01RouteEnable", "false" // Включение-отключение модуля
+        buildConfigField "boolean", "Schedule500RouteEnable", "true" // Включение-отключение модуля
+
+
+        //======================================================================
+        /*SETTINGS_ROUTE
                  // defining the build date
          buildConfigField "long", "BUILD_DATE", System.currentTimeMillis() + "L"
            */
