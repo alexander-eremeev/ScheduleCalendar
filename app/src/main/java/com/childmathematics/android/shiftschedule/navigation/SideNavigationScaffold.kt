@@ -6,8 +6,11 @@ package com.childmathematics.android.shiftschedule.navigation
 import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -28,6 +31,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
+import com.childmathematics.android.shiftschedule.Schedule500Sample
 import com.childmathematics.android.shiftschedule.ViewModelSample
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemMode
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemSpec
@@ -112,6 +116,13 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
                         navController.navigate(currentRoute)
                     }
                 },
+                 navigateToSchedule500 = {
+                     currentRoute = Routes.SCHEDULE500_ROUTE
+                     if (BuildConfig.Schedule500RouteEnable) {
+                         navController.popBackStack()
+                         navController.navigate(currentRoute)
+                     }
+                 },
                 navigateToToDo = {
                     currentRoute = Routes.TODO_ROUTE
                     if (BuildConfig.ToDoRouteEnable) {
@@ -168,6 +179,10 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
 //========================================================
                     if (currentRoute == Routes.SCHEDULE_ROUTE && BuildConfig.ScheduleRouteEnable) {
                         OverflowTopSchedule()
+                    }
+//========================================================
+                    if (currentRoute == Routes.SCHEDULE500_ROUTE && BuildConfig.Schedule500RouteEnable) {
+                        OverflowTopSchedule500()
                     }
 //========Классическое меню ABOUT  2 ==в правом углу======================
                     if (currentRoute == Routes.ABOUT_ROUTE) {
@@ -260,6 +275,13 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
                 }
             }
 //--------------------------------------------------------
+            if (BuildConfig.Schedule500RouteEnable) {
+                composable(Routes.SCHEDULE500_ROUTE) {
+
+                    Schedule500Component()
+                }
+            }
+//--------------------------------------------------------
 
         }
     }
@@ -278,12 +300,16 @@ fun AppDrawer(
 //    navigateToAdMob: () -> Unit,
     navigateToAbout: () -> Unit,
     navigateToSchedule: () -> Unit,
+    navigateToSchedule500: () -> Unit,
 //-----------------------------------
     closeDrawer: () -> Unit
 ) {
 //------------------------------------------------------------------------
 
-        Column(modifier = Modifier.fillMaxSize()) {
+//    Column(modifier = Modifier.scrollable()) {
+        Column(modifier = Modifier.fillMaxSize()
+                                    .verticalScroll(rememberScrollState())
+                            ) {
             DrawerHeader()
 
             if (BuildConfig.HomeRouteEnable) {
@@ -315,6 +341,24 @@ fun AppDrawer(
                 }
             )
         }
+//---------------------------------------------------------------------
+            //---------------------------------------------------------------------------
+            if (BuildConfig.Schedule500RouteEnable) {
+
+                DrawerButton(
+//            icon = Icons.Filled.Preview,
+                    icon = Icons.Filled.Schedule,
+                    label = "График непрерывный 12 часовой 4-х бригадный 2-х сменный",
+                    isSelected = currentRoute == Routes.SCHEDULE500_ROUTE,
+                    action = {
+                        if (currentRoute != Routes.SCHEDULE500_ROUTE) {
+                            navigateToSchedule500()
+                        }
+                        closeDrawer()
+                    }
+                )
+            }
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         if (BuildConfig.ToDoRouteEnable) {
 
@@ -718,11 +762,7 @@ fun ScheduleComponent() {
         InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
-
-
     ViewModelSample()
- //   StaticCalendarSamOverflowTopSchedule()
-
 }
 @Composable
 fun OverflowTopSchedule() {
@@ -736,33 +776,33 @@ fun OverflowTopSchedule() {
 }
 
 //==============================================
-//===================================================
-/*
+//++++++++++++++++++++++++++++++++++++
+@ExperimentalCoroutinesApi
 @Composable
-fun OverflowTopAppBar2() {
+fun Schedule500Component() {
+    if (BuildConfig.AdMobEnable) {
+
+        AdBannerNetworkApp()
+        AdInterstitialNetworkApp(LocalContext.current)
+    }
+    if (BuildConfig.YaAdsEnable) {
+        InitBannerView(mBannerAdEventListener)
+        showYaInterstitial()
+    }
+    Schedule500Sample()
+}
+@Composable
+fun OverflowTopSchedule500() {
     val items = listOf(
         ActionItemSpec("Call", Icons.Default.Call, ActionItemMode.ALWAYS_SHOW) {},
         ActionItemSpec("Send", Icons.Default.Send, ActionItemMode.IF_ROOM) {},
         ActionItemSpec("Email", Icons.Default.Email, ActionItemMode.IF_ROOM) {},
         ActionItemSpec("Delete", Icons.Default.Delete, ActionItemMode.IF_ROOM) {},
     )
-    TopAppBar(
-        title = { Text("Overflow2") },
-        navigationIcon = {
-            IconButton(onClick = {}) {
-                Icon(Icons.Default.Menu, "Menu")
-            }
-        },
-        actions = {
-            ActionMenu(items, defaultIconSpace = 3)
-        }
-
-    )
-//-----------------------------
-
-//==========================
+    ActionMenu(items, defaultIconSpace = 3)
 }
-*/
+
+//==============================================
 @Composable
 fun ActionMenu(
     items: List<ActionItemSpec>,

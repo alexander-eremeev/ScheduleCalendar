@@ -106,12 +106,13 @@ fun AdNetworkApp() {
         Text("And some more texts")
     }
 }
-
+/*
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-//    AdNetworkApp()
+    AdNetworkApp()
 }
+*/
 @Composable
 fun AdBannerNetworkApp() {
     val adWidth = LocalConfiguration.current.screenWidthDp - 32
@@ -141,14 +142,15 @@ fun AdBannerNetworkApp() {
         )
     }
 }
+@Preview(showBackground = true)
+@Composable
+fun AdBannerNetworkAppPreview() {
+    AdBannerNetworkApp()
+}
 //============================================================
 //    AdInterstitialNetworkApp()
 @Composable
 fun AdInterstitialNetworkApp(context: Context) {
-//    val adWidth = LocalConfiguration.current.screenWidthDp - 32
- //   val context = LocalContext.current
-
-//    Text("Regular Banner", modifier = Modifier.padding(16.dp))
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -164,4 +166,9 @@ fun AdInterstitialNetworkApp(context: Context) {
 
     }
 
+}
+@Preview(showBackground = true)
+@Composable
+fun AdInterstitialNetworkAppPreview() {
+    AdInterstitialNetworkApp(LocalContext.current)
 }
