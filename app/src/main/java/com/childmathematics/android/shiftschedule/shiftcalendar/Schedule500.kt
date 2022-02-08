@@ -28,7 +28,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -69,7 +72,12 @@ fun Schedule500Sample() {
   Text(
     textAlign =   TextAlign.Center,
     text = "График непрерывный 12 часовой 4-х бригадный 2-х сменный",
-    style = MaterialTheme.typography.h6,
+    style = MaterialTheme.typography.body1,
+    color = MaterialTheme.colors.secondary,
+    softWrap = true,
+    fontStyle = Italic ,
+    maxLines = 2,
+    textDecoration = TextDecoration.Underline,
   )
 
   Spacer(modifier = Modifier.height(20.dp))  //====================================================
