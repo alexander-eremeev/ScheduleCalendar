@@ -2,6 +2,7 @@ package com.childmathematics.android.shiftschedule.composecalendar.week
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,6 +23,7 @@ public fun DefaultWeekHeader(
   Row(modifier = modifier) {
     daysOfWeek.forEach { dayOfWeek ->
       Text(
+        style = MaterialTheme.typography.h6,
         textAlign = TextAlign.Center,
 //        text = dayOfWeek.value ,
 //        text = dayOfWeek.getDisplayName(SHORT, Locale.ROOT),

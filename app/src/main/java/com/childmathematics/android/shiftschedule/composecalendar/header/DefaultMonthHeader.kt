@@ -65,7 +65,7 @@ public fun DefaultMonthHeader(
     Spacer(modifier = Modifier.width(8.dp))
     //   Text(text = monthState.currentMonth.year.toString(), style = MaterialTheme.typography.h4)
     Text(text = NameMonthRus(monthState.currentMonth.month.value)+ "  "+
-            monthState.currentMonth.year.toString(), style = MaterialTheme.typography.h4)
+            monthState.currentMonth.year.toString(), style = MaterialTheme.typography.h5)
 /* --------------------------------------------------------------------------
 *     Обработка кнопки + месяц NameMonthRus(monthState.currentMonth.year)
 */
@@ -87,27 +87,21 @@ public fun DefaultMonthHeader(
 fun NameMonthRus(monthNumber: Int): String {
   if (monthNumber == 1) {
     return "Январь"
-//    System.out.println("Сегодня - понедельник")
   }
   else if (monthNumber == 2) {
     return "Февраль"
-//    System.out.println("Сегодня - вторник")
   }
   else if (monthNumber == 3) {
     return "Март"
-//    System.out.println("Сегодня - среда")
   }
   else if (monthNumber == 4) {
     return "Апрель"
-    //    System.out.println("Сегодня - четверг")
   }
   else if (monthNumber == 5) {
     return "Май"
-//    System.out.println("Сегодня - пятница. Ура!!!")
   }
   else if (monthNumber == 6) {
     return "Июнь"
-//    System.out.println("Сегодня - суббота")
   }
   else if (monthNumber == 7) {
     return "Июль"
@@ -128,8 +122,7 @@ fun NameMonthRus(monthNumber: Int): String {
     return "Декабрь"
   }
   else {
-    return "Error"
-//    System.out.println("Ошибка: такого дня недели нет")
+    return "MonthEr"
   }
 }
 

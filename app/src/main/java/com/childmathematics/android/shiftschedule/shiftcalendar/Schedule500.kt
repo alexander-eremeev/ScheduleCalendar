@@ -1,5 +1,7 @@
 package com.childmathematics.android.shiftschedule
 
+import android.graphics.fonts.FontStyle
+import android.graphics.fonts.FontStyle.FONT_WEIGHT_BOLD
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -28,8 +30,8 @@ import com.childmathematics.android.shiftschedule.composecalendar.selection.Sele
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import java.lang.Long.getLong
 import java.time.LocalDate
-import java.time.format.TextStyle
 import java.util.*
 
 /**
@@ -112,7 +114,7 @@ fun Schedule500Sample() {
 @Composable
 fun Sch500RecipeDay(
   state: DayState<DynamicSelectionState>,
-  plannedRecipe: PlannedRecipe?,
+  plannedRecipe: Sch500PlannedRecipe?,
   modifier: Modifier = Modifier,
 ) {
   val date = state.date
@@ -135,11 +137,19 @@ fun Sch500RecipeDay(
         selectionState.onDateSelected(date)
       },
       horizontalAlignment = Alignment.CenterHorizontally,
+//      horizontalAlignment = Alignment.Horizontal,
     ) {
-      Text(text = date.dayOfMonth.toString())
+      Text(
+        style = MaterialTheme.typography.h6,
+        textAlign = TextAlign.Center,
+        text = date.dayOfMonth.toString(),
+
+        )
       if (plannedRecipe != null) {
+       /*
         Box(
           modifier = Modifier
+
             .size(10.dp)
             .clip(CircleShape)
             .background(MaterialTheme.colors.primary)   //
@@ -147,9 +157,20 @@ fun Sch500RecipeDay(
 //            .background(MaterialTheme.colors.error)     // red
 //            .background(Resources.Theme.ShiftCalendar.colors.)     // red
         )
+        */
         Text(
-          text = plannedRecipe.price.toString(),
-          fontSize = 8.sp,
+ //         textAlign = TextAlign.Left,
+//          text = plannedRecipe.price.toString(),
+          text = "11.1"+" / "+"11.2",
+          fontSize = 10.sp,
+//          style = MaterialTheme.typography.body2,
+        )
+        Text(
+//          textAlign = TextAlign.Left,
+//          text = plannedRecipe.price.toString(),
+          text = "11.3"+" / "+"11.4",
+          fontSize = 10.sp,
+//          textStyle = FONT_WEIGHT_BOLD,
         )
       }
     }
@@ -189,13 +210,15 @@ data class Sch500PlannedRecipe(
  */
 class Sch500RecipeViewModel : ViewModel() {
 
+
   private val selectionFlow = MutableStateFlow(emptyList<LocalDate>())
   val recipesFlow = MutableStateFlow(
     listOf(
-      PlannedRecipe(LocalDate.now().plusDays(1), 20.0),
-      PlannedRecipe(LocalDate.now().plusDays(3), 20.0),
-      PlannedRecipe(LocalDate.now().plusDays(5), 10.0),
-      PlannedRecipe(LocalDate.now().plusDays(-2), 25.0),
+//      PlannedRecipe(LocalDate.now().plusDays(1), getLong(LocalDate(2022,1,31))),
+      Sch500PlannedRecipe(LocalDate.now().plusDays(1), 20.0),
+      Sch500PlannedRecipe(LocalDate.now().plusDays(3), 20.0),
+      Sch500PlannedRecipe(LocalDate.now().plusDays(5), 10.0),
+      Sch500PlannedRecipe(LocalDate.now().plusDays(-2), 25.0),
     )
   )
   val selectedRecipesPriceFlow = recipesFlow.combine(selectionFlow) { recipes, selection ->
@@ -215,3 +238,82 @@ fun Schedule500SamplePreview() {
     Schedule500Sample()
   }
 }
+//---------------------------------------------------------------------
+/*
+fun  shiftDuring()
+{
+  var Shift: Int
+  var today_hour_1: Int
+  var today_hour_2: Int
+  var today_hour_3: Int
+  var today_hour_4: Int
+
+  var today_hour_night_1: Int
+  var today_hour_night_2: Int
+  var today_hour_night_3: Int
+  var today_hour_night_4: Int
+
+  var selected_date_days: Long
+  var selected_Shift: Long
+  var selected_date: Long =202020
+  selected_date_days = selected_date / (1000 * 60 * 60 * 24)
+  //selected_date_days = selected_date_days as Int
+  selected_Shift = selected_date_days  % 4
+  //----------------------------------------------------------------------------------------
+  //----------------------------------------------------------------------------------------
+  Shift = selected_Shift as Int
+  //                Toast.makeText(getApplicationContext(), "You have Selected : "+timeZone.getRawOffset()/(1000*60*60)+"/"+selected_date +"/"+selected_date/(1000*60*60)%24+"/" +selected_Shift, Toast.LENGTH_LONG).show();
+
+  when (Shift) {
+    0 -> {
+      today_hour_1 = 0
+      today_hour_night_1 = 0
+      today_hour_2 = 8
+      today_hour_night_2 = 6
+      today_hour_3 = 4
+      today_hour_night_3 = 2
+      today_hour_4 = 12
+      today_hour_night_4 = 0
+    }
+    1 -> {
+      today_hour_1 = 12
+      today_hour_night_1 = 0
+      today_hour_2 = 0
+      today_hour_night_2 = 0
+      today_hour_3 = 8
+      today_hour_night_3 = 6
+      today_hour_4 = 4
+      today_hour_night_4 = 2
+    }
+    2 -> {
+      today_hour_1 = 4
+      today_hour_night_1 = 2
+      today_hour_2 = 12
+      today_hour_night_2 = 0
+      today_hour_3 = 0
+      today_hour_night_3 = 0
+      today_hour_4 = 8
+      today_hour_night_4 = 6
+    }
+    3 -> {
+      today_hour_1 = 8
+      today_hour_night_1 = 6
+      today_hour_2 = 4
+      today_hour_night_2 = 2
+      today_hour_3 = 12
+      today_hour_night_3 = 0
+      today_hour_4 = 0
+      today_hour_night_4 = 0
+    }
+    else -> {
+      today_hour_1 = 999
+      today_hour_2 = 999
+      today_hour_3 = 999
+      today_hour_4 = 999
+    }
+  }
+
+}
+
+ */
+//-------------------------------------------------------------------
