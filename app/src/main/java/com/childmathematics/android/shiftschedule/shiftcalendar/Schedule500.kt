@@ -3,6 +3,8 @@ package com.childmathematics.android.shiftschedule
 import android.graphics.fonts.FontFamily
 import android.graphics.fonts.FontStyle
 import android.graphics.fonts.FontStyle.FONT_WEIGHT_BOLD
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -14,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -30,6 +33,7 @@ import com.childmathematics.android.shiftschedule.composecalendar.rememberSelect
 import com.childmathematics.android.shiftschedule.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode.Period
+import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode.Single
 import com.google.android.material.datepicker.MaterialCalendar
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -51,8 +55,10 @@ fun Schedule500Sample() {
 //  val selectedPrice by viewModel.selectedRecipesPriceFlow.collectAsState(0)
   var changeDp: Dp
   val state = rememberSelectableCalendarState(
-    onSelectionChanged = viewModel::onSelectionChanged,
-    initialSelectionMode = Period,
+    onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
+//    onSelectionChanged = viewModel::SelectionMode.Single, //SelectionMode
+//    initialSelectionMode = Period,
+    initialSelectionMode = Single,
   )
   if(BuildConfig.AdMobEnable|| BuildConfig.YaAdsEnable) {
     changeDp = 50.dp
@@ -203,6 +209,9 @@ fun Sch500RecipeDay(
 private fun SelectionControls(
   selectionState: DynamicSelectionState,
 ) {
+  if (BuildConfig.DEBUG) {
+    Log.d("Schedule500", "SelectionControls")
+  }
   Text(
     text = "Calendar Selection Mode",
     style = MaterialTheme.typography.h6,
@@ -245,7 +254,11 @@ class Sch500RecipeViewModel : ViewModel() {
   }
 
   fun onSelectionChanged(selection: List<LocalDate>) {
-    selectionFlow.value = selection
+//    fun onSelectionChanged(selection:LocalDate) {
+    //selectionFlow.value = selection
+    if (BuildConfig.DEBUG) {
+      Log.d("Schedule500", "onSelectionChanged: "+selection[0].dayOfMonth+"/"
+      +selection[0].monthValue+"/"+selection[0].year)    }
   }
 }
 
