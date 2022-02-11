@@ -1,5 +1,6 @@
 package com.childmathematics.android.shiftschedule
 
+import android.graphics.fonts.FontFamily
 import android.graphics.fonts.FontStyle
 import android.graphics.fonts.FontStyle.FONT_WEIGHT_BOLD
 import androidx.compose.foundation.*
@@ -14,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontStyle.Companion.Italic
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,17 +23,19 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
+import com.childmathematics.android.shiftschedule.composecalendar.CalendarState
 import com.childmathematics.android.shiftschedule.composecalendar.SelectableCalendar
 import com.childmathematics.android.shiftschedule.composecalendar.day.DayState
 import com.childmathematics.android.shiftschedule.composecalendar.rememberSelectableCalendarState
 import com.childmathematics.android.shiftschedule.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode.Period
+import com.google.android.material.datepicker.MaterialCalendar
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import java.lang.Long.getLong
-import java.time.LocalDate
+import java.time.*
 import java.util.*
 
 /**
@@ -43,8 +47,8 @@ import java.util.*
 @Composable
 fun Schedule500Sample() {
   val viewModel = remember { Sch500RecipeViewModel() }
-  val recipes by viewModel.recipesFlow.collectAsState()
-  val selectedPrice by viewModel.selectedRecipesPriceFlow.collectAsState(0)
+//  val recipes by viewModel.recipesFlow.collectAsState()
+//  val selectedPrice by viewModel.selectedRecipesPriceFlow.collectAsState(0)
   var changeDp: Dp
   val state = rememberSelectableCalendarState(
     onSelectionChanged = viewModel::onSelectionChanged,
@@ -53,13 +57,6 @@ fun Schedule500Sample() {
   if(BuildConfig.AdMobEnable|| BuildConfig.YaAdsEnable) {
     changeDp = 50.dp
   } else changeDp = 0.dp
-  //===========================================
-  //Calendar
-//  val timeZone: TimeZone = TimeZone.getDefault()
-//  val myCalendar: Calendar = Calendar.getInstance(timeZone, Locale.forLanguageTag("RU"))
-//  myCalendar.get(Calendar.WEDNESDAY)
- // myCalendar.get(Calendar.DATE)
-
 //-------------------------------------------------
   Spacer(modifier = Modifier.height(20.dp))
   Column(
@@ -68,17 +65,15 @@ fun Schedule500Sample() {
     ) {
     Text(
       textAlign = TextAlign.Center,
-//      text = "График непрерывный 12 часовой 4-х бригадный 2-х сменный "+  myCalendar.getDisplayNames(TextStyle.SHORT, Locale.US)
       text = "График непрерывный 12 часовой 4-х бригадный 2-х сменный "      ,
       style = MaterialTheme.typography.body1,
-      color = MaterialTheme.colors.secondary,
+//      color = MaterialTheme.colors.secondary,
       softWrap = true,
       fontStyle = Italic,
       maxLines = 2,
       textDecoration = TextDecoration.Underline,
     )
   }
-
   Spacer(modifier = Modifier.height(20.dp))  //====================================================
   Column(
     Modifier
@@ -90,15 +85,51 @@ fun Schedule500Sample() {
       dayContent = { dayState ->
         Sch500RecipeDay(
           state = dayState,
-          plannedRecipe = recipes.firstOrNull { it.date == dayState.date },
+          //plannedRecipe = recipes.firstOrNull { it.date == dayState.date },
         )
       }
     )
 
     Spacer(modifier = Modifier.height(20.dp))
+//    selectedPrice = getShift500NightSelect(date.CurrentDay,1)
+//   state.monthState.currentMonth.month
+//    state.monthState.currentMonth.year
+//    YearMonth.
+
     Text(
-      text = "Selected recipes price: $selectedPrice",
-      style = MaterialTheme.typography.h6,
+//      text = "Selected recipes price: $selectedPrice",
+      text = "ВСЕГО   Бригада 1:"+"Ночных:"+ (getShift500NightMonth(state.monthState.currentMonth.year,
+            state.monthState.currentMonth.monthValue,1)).toInt().toString()+"/ Рабочих:"+(getShift500Month(
+            state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,1)).toInt().toString()+" час"
+//              +"/"+state.monthState.currentMonth.monthValue+"/"+state.monthState.currentMonth.year
+      ,
+//      style = MaterialTheme.typography.h6,
+      fontSize = 12.sp,    )
+    Text(
+//      text = "Selected recipes price: $selectedPrice",
+//      text = "ВСЕГО ЗА МЕСЯЦ Бригада 2:"+"Ночные:"+ (getShift500NightMonth(state.monthState.currentMonth.year,
+      text = "                Бригада 2:"+"Ночных:"+ (getShift500NightMonth(state.monthState.currentMonth.year,
+        state.monthState.currentMonth.monthValue,2)).toInt().toString()+"/ Рабочих:"+(getShift500Month(
+        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,2)).toInt().toString()+" час",
+      fontSize = 12.sp,
+      //style = MaterialTheme.typography.h6,
+    )
+    Text(
+//      text = "Selected recipes price: $selectedPrice",
+      text = "                Бригада 3:"+"Ночных:"+ (getShift500NightMonth(state.monthState.currentMonth.year,
+        state.monthState.currentMonth.monthValue,3)).toInt().toString()+"/ Рабочих:"+(getShift500Month(
+        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,3)).toInt().toString()+" час",
+      fontSize = 12.sp,
+      //      style = MaterialTheme.typography.h6,
+    )
+    Text(
+//      text = "Selected recipes price: $selectedPrice",
+      text = "                Бригада 4:"+"Ночных:"+ (getShift500NightMonth(state.monthState.currentMonth.year,
+        state.monthState.currentMonth.monthValue,4)).toInt().toString()+"/ Hабочих:"+(getShift500Month(
+        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,4)).toInt().toString()+" час",
+//      style = MaterialTheme.typography.h6,
+//      style = MaterialTheme.typography.h6,
+      fontSize = 12.sp,
     )
 
     Spacer(modifier = Modifier.height(20.dp))
@@ -114,7 +145,7 @@ fun Schedule500Sample() {
 @Composable
 fun Sch500RecipeDay(
   state: DayState<DynamicSelectionState>,
-  plannedRecipe: Sch500PlannedRecipe?,
+  //plannedRecipe: Sch500PlannedRecipe?,
   modifier: Modifier = Modifier,
 ) {
   val date = state.date
@@ -137,42 +168,30 @@ fun Sch500RecipeDay(
         selectionState.onDateSelected(date)
       },
       horizontalAlignment = Alignment.CenterHorizontally,
-//      horizontalAlignment = Alignment.Horizontal,
     ) {
       Text(
-        style = MaterialTheme.typography.h6,
+        fontSize = 10.sp,
+        fontWeight= FontWeight.Bold,
+//        Style= MaterialTheme.typography.subtitle2   ,
+
+
+//        fontStyle = FONT_WEIGHT_BOLD,
+//        style = MaterialTheme.typography.h6,
         textAlign = TextAlign.Center,
         text = date.dayOfMonth.toString(),
 
         )
-      if (plannedRecipe != null) {
-       /*
-        Box(
-          modifier = Modifier
-
-            .size(10.dp)
-            .clip(CircleShape)
-            .background(MaterialTheme.colors.primary)   //
-//            .background(MaterialTheme.colors.secondary)   // blue
-//            .background(MaterialTheme.colors.error)     // red
-//            .background(Resources.Theme.ShiftCalendar.colors.)     // red
-        )
-        */
         Text(
- //         textAlign = TextAlign.Left,
 //          text = plannedRecipe.price.toString(),
-          text = "11.1"+" / "+"11.2",
-          fontSize = 10.sp,
+          text = (getShift500(date,1)).toInt().toString()+" / "+(getShift500(date,2)).toInt().toString(),
+          fontSize = 9.sp,
 //          style = MaterialTheme.typography.body2,
         )
         Text(
-//          textAlign = TextAlign.Left,
 //          text = plannedRecipe.price.toString(),
-          text = "11.3"+" / "+"11.4",
-          fontSize = 10.sp,
-//          textStyle = FONT_WEIGHT_BOLD,
+          text = (getShift500(date,3)).toInt().toString()+" / "+(getShift500(date,4)).toInt().toString(),
+          fontSize = 9.sp,
         )
-      }
     }
   }
 }
@@ -238,82 +257,158 @@ fun Schedule500SamplePreview() {
     Schedule500Sample()
   }
 }
-//---------------------------------------------------------------------
-/*
-fun  shiftDuring()
+//====================================================================
+// расчетосновного рабочего времени по дате по номеру бригады
+//==============================================
+fun getShift500 (dateforCalc: LocalDate,nBrig: Int):Double
 {
-  var Shift: Int
-  var today_hour_1: Int
-  var today_hour_2: Int
-  var today_hour_3: Int
-  var today_hour_4: Int
+  val shift : Int
+  shift=(dateforCalc.toEpochDay() % 4).toInt()
 
-  var today_hour_night_1: Int
-  var today_hour_night_2: Int
-  var today_hour_night_3: Int
-  var today_hour_night_4: Int
-
-  var selected_date_days: Long
-  var selected_Shift: Long
-  var selected_date: Long =202020
-  selected_date_days = selected_date / (1000 * 60 * 60 * 24)
-  //selected_date_days = selected_date_days as Int
-  selected_Shift = selected_date_days  % 4
-  //----------------------------------------------------------------------------------------
-  //----------------------------------------------------------------------------------------
-  Shift = selected_Shift as Int
-  //                Toast.makeText(getApplicationContext(), "You have Selected : "+timeZone.getRawOffset()/(1000*60*60)+"/"+selected_date +"/"+selected_date/(1000*60*60)%24+"/" +selected_Shift, Toast.LENGTH_LONG).show();
-
-  when (Shift) {
+  when (shift) {
     0 -> {
-      today_hour_1 = 0
-      today_hour_night_1 = 0
-      today_hour_2 = 8
-      today_hour_night_2 = 6
-      today_hour_3 = 4
-      today_hour_night_3 = 2
-      today_hour_4 = 12
-      today_hour_night_4 = 0
+      when (nBrig){
+        1 -> return 0.0
+        2 -> return 8.0
+        3 -> return 4.0
+        4 -> return 12.0
+        else -> return 0.0
+      }
     }
     1 -> {
-      today_hour_1 = 12
-      today_hour_night_1 = 0
-      today_hour_2 = 0
-      today_hour_night_2 = 0
-      today_hour_3 = 8
-      today_hour_night_3 = 6
-      today_hour_4 = 4
-      today_hour_night_4 = 2
+      when (nBrig){
+        1 -> return 12.0
+        2 -> return 0.0
+        3 -> return 8.0
+        4 -> return 4.0
+        else -> return 0.0
+      }
     }
     2 -> {
-      today_hour_1 = 4
-      today_hour_night_1 = 2
-      today_hour_2 = 12
-      today_hour_night_2 = 0
-      today_hour_3 = 0
-      today_hour_night_3 = 0
-      today_hour_4 = 8
-      today_hour_night_4 = 6
+      when (nBrig){
+        1 -> return 4.0
+        2 -> return 12.0
+        3 -> return 0.0
+        4 -> return 8.0
+        else -> return 0.0
+      }
     }
     3 -> {
-      today_hour_1 = 8
-      today_hour_night_1 = 6
-      today_hour_2 = 4
-      today_hour_night_2 = 2
-      today_hour_3 = 12
-      today_hour_night_3 = 0
-      today_hour_4 = 0
-      today_hour_night_4 = 0
-    }
-    else -> {
-      today_hour_1 = 999
-      today_hour_2 = 999
-      today_hour_3 = 999
-      today_hour_4 = 999
+      when (nBrig){
+        1 -> return 8.0
+        2 -> return 4.0
+        3 -> return 12.0
+        4 -> return 0.0
+        else -> return 0.0
+      }
     }
   }
-
+    if (nBrig > 4 || nBrig<1) {return -1999.0}
+  return -2999.0
 }
+//====================================================================
+// расчет ночных по дате по номеру бригады
+//==============================================
+fun getShift500Night (dateforCalc: LocalDate,nBrig: Int):Double
+{
+  val shift : Int
+  shift=(dateforCalc.toEpochDay() % 4).toInt()
 
- */
-//-------------------------------------------------------------------
+  when (shift) {
+    0 -> {
+      when (nBrig){
+        1 -> return 0.0
+        2 -> return 6.0
+        3 -> return 2.0
+        4 -> return 0.0
+        else -> return 0.0
+      }
+    }
+    1 -> {
+      when (nBrig){
+        1 -> return 0.0
+        2 -> return 0.0
+        3 -> return 6.0
+        4 -> return 2.0
+        else -> return 0.0
+      }
+    }
+    2 -> {
+      when (nBrig){
+        1 -> return 2.0
+        2 -> return 0.0
+        3 -> return 0.0
+        4 -> return 6.0
+        else -> return 0.0
+      }
+    }
+    3 -> {
+      when (nBrig){
+        1 -> return 6.0
+        2 -> return 2.0
+        3 -> return 0.0
+        4 -> return 0.0
+        else -> return 0.0
+      }
+    }
+  }
+  if (nBrig > 4 || nBrig<1) {return -1999.0}
+  return -2999.0
+}
+//====================================================================
+// расчет ночных до выбранной даты по номеру бригады
+//==============================================
+fun getShift500NightSelect(dateforCalc: LocalDate,nBrig: Int):Double {
+  var summ: Double =getShift500Night(dateforCalc ,nBrig)
+  for (i in dateforCalc.dayOfMonth downTo 1 step 1) {
+    summ+=getShift500Night(dateforCalc.minusDays(i.toLong()) ,nBrig)
+  }
+return summ
+}
+//====================================================================
+// расчет основного времени до выбранной даты по номеру бригады
+//==============================================
+fun getShift500Select (dateforCalc: LocalDate,nBrig: Int):Double {
+  var summ: Double =getShift500(dateforCalc ,nBrig)
+  for (i in dateforCalc.dayOfMonth downTo 1 step 1) {
+    summ+=getShift500(dateforCalc.minusDays(i.toLong()) ,nBrig)
+  }
+  return summ
+}//====================================================================
+//====================================================================
+// расчет ночных до выбранной даты по номеру бригады
+//==============================================
+fun getShift500NightMonth (year: Int,month: Int,nBrig: Int):Double {
+  var monthW: Int=month+1
+  var yearW: Int=year
+  if (monthW >12) {
+    monthW=1
+    yearW=yearW+1
+  }
+  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1)
+  var summ: Double =0.0
+  for (i in dateforCalc.minusDays(1).dayOfMonth downTo 1 step 1) {
+    summ+=getShift500Night(dateforCalc.minusDays(i.toLong()) ,nBrig)
+  }
+  return summ
+}
+//====================================================================
+// расчет основного времени до выбранной даты по номеру бригады
+//==============================================
+fun getShift500Month (year: Int,month: Int,nBrig: Int):Double {
+  var monthW: Int=month+1
+  var yearW: Int=year
+  if (monthW >12) {
+    monthW=1
+    yearW=yearW+1
+  }
+//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
+  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1)
+
+  var summ: Double =0.0
+  for (i in dateforCalc.minusDays(1).dayOfMonth downTo 1 step 1) {
+    summ+=getShift500(dateforCalc.minusDays(i.toLong()) ,nBrig)
+  }
+  return summ
+}
+//====================================================================
