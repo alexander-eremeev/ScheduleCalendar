@@ -73,18 +73,11 @@ object RoutesSch500 {
   fun Schedule500Sample(currentRouteSchedule500: String) {
 //===========================================================================
   val viewModel = remember { Sch500RecipeViewModel() }
-//  val recipes by viewModel.recipesFlow.collectAsState()
-//  val selectedPrice by viewModel.selectedRecipesPriceFlow.collectAsState(0)
-//  var showAlertDialog by remember { mutableStateOf(true) }
-var showAlertDialog by remember { mutableStateOf(false) }
-//  var showAlertDialogWithStyle by remember { mutableStateOf(false) }
-//  var showDialog by remember { mutableStateOf(false) }
+  var showDialog by remember { mutableStateOf(false) }
   var changeDp: Dp
   val state = rememberSelectableCalendarState(
     onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
-//    onSelectionChanged = viewModel::SelectionMode.Single, //SelectionMode
     initialSelectionMode = Period,
-//    initialSelectionMode = Single,
   )
 
   if(BuildConfig.AdMobEnable|| BuildConfig.YaAdsEnable) {
@@ -131,8 +124,8 @@ var showAlertDialog by remember { mutableStateOf(false) }
 
     Text(
 //      text = "Selected recipes price: $selectedPrice",
-      text = "ВСЕГО   Бригада 1:"+"Ночных:"+ (getShift500NightMonth(state.monthState.currentMonth.year,
-            state.monthState.currentMonth.monthValue,1)).toInt().toString()+"/ Рабочих:"+(getShift500Month(
+      text = "ВСЕГО:\n\t\t\t\t\tБригада 1:\t"+"Ночных:\t"+ (getShift500NightMonth(state.monthState.currentMonth.year,
+            state.monthState.currentMonth.monthValue,1)).toInt().toString()+"\t/\tРабочих:\t"+(getShift500Month(
             state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,1)).toInt().toString()+" час"
 //              +"/"+state.monthState.currentMonth.monthValue+"/"+state.monthState.currentMonth.year
       ,
@@ -141,24 +134,24 @@ var showAlertDialog by remember { mutableStateOf(false) }
     Text(
 //      text = "Selected recipes price: $selectedPrice",
 //      text = "ВСЕГО ЗА МЕСЯЦ Бригада 2:"+"Ночные:"+ (getShift500NightMonth(state.monthState.currentMonth.year,
-      text = "                Бригада 2:"+"Ночных:"+ (getShift500NightMonth(state.monthState.currentMonth.year,
-        state.monthState.currentMonth.monthValue,2)).toInt().toString()+"/ Рабочих:"+(getShift500Month(
+      text = "\t\t\t\t\tБригада 2:\t"+"Ночных:\t"+ (getShift500NightMonth(state.monthState.currentMonth.year,
+        state.monthState.currentMonth.monthValue,2)).toInt().toString()+"\t/\tРабочих:\t"+(getShift500Month(
         state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,2)).toInt().toString()+" час",
       fontSize = 12.sp,
       //style = MaterialTheme.typography.h6,
     )
     Text(
 //      text = "Selected recipes price: $selectedPrice",
-      text = "                Бригада 3:"+"Ночных:"+ (getShift500NightMonth(state.monthState.currentMonth.year,
-        state.monthState.currentMonth.monthValue,3)).toInt().toString()+"/ Рабочих:"+(getShift500Month(
+      text = "\t\t\t\t\tБригада 3:\t"+"Ночных:\t"+ (getShift500NightMonth(state.monthState.currentMonth.year,
+        state.monthState.currentMonth.monthValue,3)).toInt().toString()+"\t/\tРабочих:\t"+(getShift500Month(
         state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,3)).toInt().toString()+" час",
       fontSize = 12.sp,
       //      style = MaterialTheme.typography.h6,
     )
     Text(
 //      text = "Selected recipes price: $selectedPrice",
-      text = "                Бригада 4:"+"Ночных:"+ (getShift500NightMonth(state.monthState.currentMonth.year,
-        state.monthState.currentMonth.monthValue,4)).toInt().toString()+"/ Hабочих:"+(getShift500Month(
+      text = "\t\t\t\t\tБригада 4:\t"+"Ночных:\t"+ (getShift500NightMonth(state.monthState.currentMonth.year,
+        state.monthState.currentMonth.monthValue,4)).toInt().toString()+"\t/\tРабочих:\t"+(getShift500Month(
         state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,4)).toInt().toString()+" час",
 //      style = MaterialTheme.typography.h6,
 //      style = MaterialTheme.typography.h6,
@@ -166,11 +159,6 @@ var showAlertDialog by remember { mutableStateOf(false) }
     )
 
     Spacer(modifier = Modifier.height(20.dp))
-  }
-  if (BuildConfig.DEBUG) {
-     Log.d(
-      "Sch500+currentRoute500=", currentRouteSchedule500+"+++++SCHEDULE500SELSINGLE:======="
-    )
   }
 
  if  (currentRouteSchedule500 == RoutesSchedule500.SCHEDULE500SELPERIOD ||
@@ -189,15 +177,13 @@ var showAlertDialog by remember { mutableStateOf(false) }
        )
    }
 */
-
-  showAlertDialog = !showAlertDialog
+   showDialog=!showDialog
    if (currentDialog ) {
 
-//     if (state.selectionState.selection.size!=0) {
        if (!state.selectionState.selection.isEmpty()) {
-       AlertDialogExample {
-         showAlertDialog = !showAlertDialog
-         currentDialog = !currentDialog        //false
+         DialogSchedule500(state.selectionState.selection){
+           showDialog=!showDialog
+           currentDialog = !currentDialog        //false
        }
      }
      if (state.selectionState.selection.size==0) {
@@ -527,8 +513,8 @@ fun getShift500Month (year: Int,month: Int,nBrig: Int):Double {
 }
 //====================================================================
 @Composable
-fun DialogSchedule500(onDismiss: () -> Unit) {
-//  onDismiss: () -> Unit
+fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
+
 
   Dialog(
     onDismissRequest = onDismiss,
@@ -537,25 +523,81 @@ fun DialogSchedule500(onDismiss: () -> Unit) {
     Surface(elevation = 8.dp, shape = RoundedCornerShape(12.dp)) {
       Column(
         modifier = Modifier
-          .width(400.dp)
+          .verticalScroll(rememberScrollState())
+          .width(500.dp)
+//          .width(400.dp)
+
           .wrapContentHeight()
           .background(androidx.compose.ui.graphics.Color.White)
           .padding(8.dp)
       ) {
 
         Text(
-          text = "Dialog Title",
+          text = "Расчет для выделенных дат:",
           fontWeight = FontWeight.Bold,
           fontSize = 20.sp,
           modifier = Modifier.padding(8.dp)
         )
 
         CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-          Text(dialogText, modifier = Modifier.padding(8.dp))
+          Text(
+            "\tДиалог=======Selection=\t"+selection.size+"\n\n"
+                    +"\n\n\tДиалог=======Selection=\t"+selection.size
+                  ,
+                    fontSize = 17.sp
+          , modifier = Modifier.padding(8.dp))
         }
 
+    Text(
+      text = "ВСЕГО:\n\t\t\t\t\tБригада 1:\t"+"Ночных:\t"
+//      + (getShift500NightMonth(state.monthState.currentMonth.year,
+//            state.monthState.currentMonth.monthValue,1)).toInt().toString()
+            +"\t/\tРабочих:\t"
+//            +(getShift500Month(
+//            state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,1)).toInt().toString()
+            +" час"
+      ,
+      fontSize = 12.sp,    )
+
+
+    Text(
+      text = "\t\t\t\t\tБригада 2:\t"+"Ночных:\t"
+//      + (getShift500NightMonth(state.monthState.currentMonth.year,
+//        state.monthState.currentMonth.monthValue,2)).toInt().toString()
+        +"\t/\tРабочих:\t"
+//        +(getShift500Month(
+//        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,2)).toInt().toString()
+        +" час",
+      fontSize = 12.sp,
+      //style = MaterialTheme.typography.h6,
+    )
+
+
+    Text(
+      text = "\t\t\t\t\tБригада 3:\t"+"Ночных:\t"
+//      + (getShift500NightMonth(state.monthState.currentMonth.year,
+//        state.monthState.currentMonth.monthValue,3)).toInt().toString()
+        +"\t/\tРабочих:\t"
+//        +(getShift500Month(
+//        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,3)).toInt().toString()
+        +" час",
+      fontSize = 12.sp,
+    )
+
+
+    Text(
+      text = "\t\t\t\t\tБригада 4:\t"+"Ночных:\t"//+ (getShift500NightMonth(state.monthState.currentMonth.year,
+//        state.monthState.currentMonth.monthValue,4)).toInt().toString()
+        +"\t/\tРабочих:\t"
+              //+(getShift500Month(
+//        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,4)).toInt().toString()
+        +" час",
+      fontSize = 12.sp,
+    )
+
+
         Spacer(modifier = Modifier.height(8.dp))
- //       DialogButtons(onDismiss)
+        DialogButtons(onDismiss)
       }
     }
   }
@@ -563,100 +605,20 @@ fun DialogSchedule500(onDismiss: () -> Unit) {
 @Composable
 private fun DialogButtons(onDismiss: () -> Unit) {
   Row {
+    /*
     TextButton(
       onClick = onDismiss,
       modifier = Modifier.padding(8.dp)
     ) {
       Text(text = "Cancel")
     }
+    */
     TextButton(
       onClick = onDismiss,
       modifier = Modifier.padding(8.dp)
     ) {
-      Text(text = "OK")
+      Text(text = "Далее")
     }
   }
 }
 
-val dialogText = """
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
-    printer took a galley of type and scrambled it to make a type specimen book.
-""".trimIndent()
-
-@Composable
-private fun AlertDialogExample(onDismiss: () -> Unit) {
-  AlertDialog(
-    onDismissRequest = onDismiss,
-    dismissButton = {
-      TextButton(
-        onClick = onDismiss,
-        modifier = Modifier
-          .padding(8.dp)
-      ) {
-        Text(text = "Cancel")
-      }
-    },
-    confirmButton = {
-      TextButton(
-        onClick = onDismiss,
-        modifier = Modifier
-          .padding(8.dp)
-      ) {
-        Text(text = "OK")
-      }
-    },
-    title = {
-      Text(text = "AlertDialog Title", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-    },
-    text = {
-      Text(text = dialogText)
-    }
-  )
-}
-
-@Composable
-private fun AlertDialogExample2(onDismiss: () -> Unit) {
-  // This example uses button Composable to create buttons instead of confirmButton and dismissButton
-
-  AlertDialog(
-    onDismissRequest = onDismiss,
-    // Properties used to customize the behavior of dialog
-    properties = DialogProperties(
-      dismissOnBackPress = true,
-      dismissOnClickOutside = false,
-      securePolicy = SecureFlagPolicy.Inherit
-    ),
-    title = {
-      Text("AlertDialog with Style", fontWeight = FontWeight.Bold)
-    },
-    text = {
-      Text(text = "This dialog has buttons with custom style and aligned vertically as in Column. Properties set custom behaviour of a dialog such as dismissing when back button pressed or pressed outside of dialog")
-    },
-    buttons = {
-      OutlinedButton(
-        shape = RoundedCornerShape(percent = 30),
-        onClick = onDismiss,
-        modifier = Modifier
-          .padding(8.dp)
-          .fillMaxWidth()
-      ) {
-        Text(text = "Cancel")
-      }
-      Spacer(modifier = Modifier.width(8.dp))
-      OutlinedButton(
-        shape = RoundedCornerShape(percent = 30),
-        onClick = onDismiss,
-        colors = ButtonDefaults.outlinedButtonColors(
-          backgroundColor = Color(0xff8BC34A),
-          contentColor = androidx.compose.ui.graphics.Color.Companion.White
-        ),
-        modifier = Modifier
-          .padding(8.dp)
-          .fillMaxWidth()
-      ) {
-        Text(text = "OK")
-      }
-    }
-  )
-}
