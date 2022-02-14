@@ -1,5 +1,6 @@
 package com.childmathematics.android.shiftschedule
 
+import android.content.Context
 import android.graphics.fonts.FontFamily
 import android.graphics.fonts.FontStyle
 import android.graphics.fonts.FontStyle.FONT_WEIGHT_BOLD
@@ -8,14 +9,19 @@ import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Send
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.BlendMode.Companion.Color
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.text.font.FontWeight
@@ -25,8 +31,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.window.SecureFlagPolicy
 import androidx.lifecycle.ViewModel
-import com.childmathematics.android.shiftschedule.composecalendar.CalendarState
+import com.childmathematics.android.shiftschedule.RoutesSch500.currentDialog
 import com.childmathematics.android.shiftschedule.composecalendar.SelectableCalendar
 import com.childmathematics.android.shiftschedule.composecalendar.day.DayState
 import com.childmathematics.android.shiftschedule.composecalendar.rememberSelectableCalendarState
@@ -34,6 +43,11 @@ import com.childmathematics.android.shiftschedule.composecalendar.selection.Dyna
 import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode.Period
 import com.childmathematics.android.shiftschedule.composecalendar.selection.SelectionMode.Single
+import com.childmathematics.android.shiftschedule.navigation.ActionMenu
+import com.childmathematics.android.shiftschedule.navigation.RoutesSchedule500
+//import com.childmathematics.android.shiftschedule.navigation.RoutesSchedule500
+import com.childmathematics.android.shiftschedule.navigation.model.ActionItemMode
+import com.childmathematics.android.shiftschedule.navigation.model.ActionItemSpec
 import com.google.android.material.datepicker.MaterialCalendar
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -47,19 +61,32 @@ import java.util.*
  * the composable in real world use-case, by an example implementation of a calendar
  * which can display planned recipes along with their prices
  */
+//var currentRouteSchedule500 by remember { mutableStateOf(RoutesSchedule500.SCHEDULE500SELNULL) }
+object RoutesSch500 {
+   var currentDialog: Boolean =false
+  //---------------------------------------------------------
+}
+
 @ExperimentalCoroutinesApi
 @Composable
-fun Schedule500Sample() {
+//fun Schedule500Sample() {
+  fun Schedule500Sample(currentRouteSchedule500: String) {
+//===========================================================================
   val viewModel = remember { Sch500RecipeViewModel() }
 //  val recipes by viewModel.recipesFlow.collectAsState()
 //  val selectedPrice by viewModel.selectedRecipesPriceFlow.collectAsState(0)
+//  var showAlertDialog by remember { mutableStateOf(true) }
+var showAlertDialog by remember { mutableStateOf(false) }
+//  var showAlertDialogWithStyle by remember { mutableStateOf(false) }
+//  var showDialog by remember { mutableStateOf(false) }
   var changeDp: Dp
   val state = rememberSelectableCalendarState(
     onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
 //    onSelectionChanged = viewModel::SelectionMode.Single, //SelectionMode
-//    initialSelectionMode = Period,
-    initialSelectionMode = Single,
+    initialSelectionMode = Period,
+//    initialSelectionMode = Single,
   )
+
   if(BuildConfig.AdMobEnable|| BuildConfig.YaAdsEnable) {
     changeDp = 50.dp
   } else changeDp = 0.dp
@@ -140,7 +167,48 @@ fun Schedule500Sample() {
 
     Spacer(modifier = Modifier.height(20.dp))
   }
+  if (BuildConfig.DEBUG) {
+     Log.d(
+      "Sch500+currentRoute500=", currentRouteSchedule500+"+++++SCHEDULE500SELSINGLE:======="
+    )
+  }
+
+ if  (currentRouteSchedule500 == RoutesSchedule500.SCHEDULE500SELPERIOD ||
+      currentRouteSchedule500 == RoutesSchedule500.SCHEDULE500SELSINGLE) {
+/*
+   if (BuildConfig.DEBUG) {
+     //-------------------------
+     for (i in  state.selectionState.selection.lastIndex downTo 0 step 1) {
+         Log.d(
+           "Schedule500", "+++++SCHEDULE500SELSINGLE: " +  state.selectionState.selection[i].dayOfMonth + "/"
+                   +  state.selectionState.selection[i].monthValue + "/" +  state.selectionState.selection[i].year
+         )
+     }
+       Log.d(
+         "Schedule500", "+++++SCHEDULE500SELSINGLE:======="
+       )
+   }
+*/
+
+  showAlertDialog = !showAlertDialog
+   if (currentDialog ) {
+
+//     if (state.selectionState.selection.size!=0) {
+       if (!state.selectionState.selection.isEmpty()) {
+       AlertDialogExample {
+         showAlertDialog = !showAlertDialog
+         currentDialog = !currentDialog        //false
+       }
+     }
+     if (state.selectionState.selection.size==0) {
+       Toast.makeText(LocalContext.current,"Нет выделенных дат для расчета!! ",Toast.LENGTH_SHORT).show()
+       currentDialog = !currentDialog        //false
+     }
+
+   }
+ }
 }
+
 
 /**
  * Custom implementation of DayContent, which shows a dot
@@ -252,22 +320,55 @@ class Sch500RecipeViewModel : ViewModel() {
   val selectedRecipesPriceFlow = recipesFlow.combine(selectionFlow) { recipes, selection ->
     recipes.filter { it.date in selection }.sumOf { it.price }
   }
-
-  fun onSelectionChanged(selection: List<LocalDate>) {
+//@Composable
+fun onSelectionChanged(selection: List<LocalDate>) {
 //    fun onSelectionChanged(selection:LocalDate) {
     //selectionFlow.value = selection
+//    var showDialog by remember { mutableStateOf(false) }
+//    var showDialog1: Boolean = true
+//  var showAlertDialog by remember { mutableStateOf(false) }
+//  showAlertDialog = !showAlertDialog
+
+//
+  for (i in selection.lastIndex downTo 0 step 1) {
     if (BuildConfig.DEBUG) {
-      Log.d("Schedule500", "onSelectionChanged: "+selection[0].dayOfMonth+"/"
-      +selection[0].monthValue+"/"+selection[0].year)    }
+//      Log.d(
+//        "Schedule500", "onSelectionChanged: " + selection[i].dayOfMonth + "/"
+//                + selection[i].monthValue + "/" + selection[i].year
+//      )
+    }
+  }
+
+
+/*
+//         DialogSchedule500()
+//---------------------------------
+      OutlinedButton(
+        modifier = Modifier.fillMaxSize(),
+        onClick = {
+          showAlertDialog = !showAlertDialog
+        }) {
+        Text("AlertDialog")
+
+        if (showAlertDialog) {
+          AlertDialogExample {
+            showAlertDialog = !showAlertDialog
+          }
+        }
+      }
+*/
+//============================
+
   }
 }
 
 @ExperimentalCoroutinesApi
 @Preview
 @Composable
-fun Schedule500SamplePreview() {
+fun Schedule500SamplePreview( ) {
   MaterialTheme {
-    Schedule500Sample()
+    Schedule500Sample(RoutesSchedule500.SCHEDULE500SELNULL)
+//    Schedule500Sample()
   }
 }
 //====================================================================
@@ -371,20 +472,20 @@ fun getShift500Night (dateforCalc: LocalDate,nBrig: Int):Double
 //====================================================================
 // расчет ночных до выбранной даты по номеру бригады
 //==============================================
-fun getShift500NightSelect(dateforCalc: LocalDate,nBrig: Int):Double {
-  var summ: Double =getShift500Night(dateforCalc ,nBrig)
-  for (i in dateforCalc.dayOfMonth downTo 1 step 1) {
-    summ+=getShift500Night(dateforCalc.minusDays(i.toLong()) ,nBrig)
+fun getShift500NightSelect(selection: List<LocalDate>,nBrig: Int):Double {
+  var summ: Double =getShift500Night(selection[selection.lastIndex] ,nBrig)
+  for (i in selection.lastIndex downTo 0 step 1) {
+    summ+=getShift500Night(selection[selection.lastIndex-i] ,nBrig)
   }
 return summ
 }
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады
 //==============================================
-fun getShift500Select (dateforCalc: LocalDate,nBrig: Int):Double {
-  var summ: Double =getShift500(dateforCalc ,nBrig)
-  for (i in dateforCalc.dayOfMonth downTo 1 step 1) {
-    summ+=getShift500(dateforCalc.minusDays(i.toLong()) ,nBrig)
+fun getShift500Select (selection: List<LocalDate>,nBrig: Int):Double {
+  var summ: Double =getShift500(selection[selection.lastIndex] ,nBrig)
+  for (i in selection.lastIndex downTo 0 step 1) {
+    summ+=getShift500(selection[selection.lastIndex-i] ,nBrig)
   }
   return summ
 }//====================================================================
@@ -425,3 +526,137 @@ fun getShift500Month (year: Int,month: Int,nBrig: Int):Double {
   return summ
 }
 //====================================================================
+@Composable
+fun DialogSchedule500(onDismiss: () -> Unit) {
+//  onDismiss: () -> Unit
+
+  Dialog(
+    onDismissRequest = onDismiss,
+    properties = DialogProperties()
+  ) {
+    Surface(elevation = 8.dp, shape = RoundedCornerShape(12.dp)) {
+      Column(
+        modifier = Modifier
+          .width(400.dp)
+          .wrapContentHeight()
+          .background(androidx.compose.ui.graphics.Color.White)
+          .padding(8.dp)
+      ) {
+
+        Text(
+          text = "Dialog Title",
+          fontWeight = FontWeight.Bold,
+          fontSize = 20.sp,
+          modifier = Modifier.padding(8.dp)
+        )
+
+        CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+          Text(dialogText, modifier = Modifier.padding(8.dp))
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+ //       DialogButtons(onDismiss)
+      }
+    }
+  }
+}
+@Composable
+private fun DialogButtons(onDismiss: () -> Unit) {
+  Row {
+    TextButton(
+      onClick = onDismiss,
+      modifier = Modifier.padding(8.dp)
+    ) {
+      Text(text = "Cancel")
+    }
+    TextButton(
+      onClick = onDismiss,
+      modifier = Modifier.padding(8.dp)
+    ) {
+      Text(text = "OK")
+    }
+  }
+}
+
+val dialogText = """
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
+    printer took a galley of type and scrambled it to make a type specimen book.
+""".trimIndent()
+
+@Composable
+private fun AlertDialogExample(onDismiss: () -> Unit) {
+  AlertDialog(
+    onDismissRequest = onDismiss,
+    dismissButton = {
+      TextButton(
+        onClick = onDismiss,
+        modifier = Modifier
+          .padding(8.dp)
+      ) {
+        Text(text = "Cancel")
+      }
+    },
+    confirmButton = {
+      TextButton(
+        onClick = onDismiss,
+        modifier = Modifier
+          .padding(8.dp)
+      ) {
+        Text(text = "OK")
+      }
+    },
+    title = {
+      Text(text = "AlertDialog Title", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+    },
+    text = {
+      Text(text = dialogText)
+    }
+  )
+}
+
+@Composable
+private fun AlertDialogExample2(onDismiss: () -> Unit) {
+  // This example uses button Composable to create buttons instead of confirmButton and dismissButton
+
+  AlertDialog(
+    onDismissRequest = onDismiss,
+    // Properties used to customize the behavior of dialog
+    properties = DialogProperties(
+      dismissOnBackPress = true,
+      dismissOnClickOutside = false,
+      securePolicy = SecureFlagPolicy.Inherit
+    ),
+    title = {
+      Text("AlertDialog with Style", fontWeight = FontWeight.Bold)
+    },
+    text = {
+      Text(text = "This dialog has buttons with custom style and aligned vertically as in Column. Properties set custom behaviour of a dialog such as dismissing when back button pressed or pressed outside of dialog")
+    },
+    buttons = {
+      OutlinedButton(
+        shape = RoundedCornerShape(percent = 30),
+        onClick = onDismiss,
+        modifier = Modifier
+          .padding(8.dp)
+          .fillMaxWidth()
+      ) {
+        Text(text = "Cancel")
+      }
+      Spacer(modifier = Modifier.width(8.dp))
+      OutlinedButton(
+        shape = RoundedCornerShape(percent = 30),
+        onClick = onDismiss,
+        colors = ButtonDefaults.outlinedButtonColors(
+          backgroundColor = Color(0xff8BC34A),
+          contentColor = androidx.compose.ui.graphics.Color.Companion.White
+        ),
+        modifier = Modifier
+          .padding(8.dp)
+          .fillMaxWidth()
+      ) {
+        Text(text = "OK")
+      }
+    }
+  )
+}

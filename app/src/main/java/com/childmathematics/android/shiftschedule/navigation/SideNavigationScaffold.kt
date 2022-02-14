@@ -4,6 +4,7 @@ package com.childmathematics.android.shiftschedule.navigation
 //import com.childmathematics.android.shiftschedule.navigation.ui.components.DrawerButton
 //import com.childmathematics.android.shiftschedule.html.loadWebUrl
 import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.scrollable
@@ -29,10 +30,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.childmathematics.android.shiftschedule.BuildConfig
+import com.childmathematics.android.shiftschedule.*
 import com.childmathematics.android.shiftschedule.R
-import com.childmathematics.android.shiftschedule.Schedule500Sample
-import com.childmathematics.android.shiftschedule.ViewModelSample
+import com.childmathematics.android.shiftschedule.RoutesSch500.currentDialog
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemMode
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemSpec
 import com.childmathematics.android.shiftschedule.navigation.model.separateIntoActionAndOverflow
@@ -65,6 +65,8 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
     val coroutineScope = rememberCoroutineScope()
     val openDrawer: () -> Unit = { coroutineScope.launch { scaffoldState.drawerState.open() } }
     val closeDrawer: () -> Unit = { coroutineScope.launch { scaffoldState.drawerState.close() } }
+    var currentRouteSchedule500 by remember { mutableStateOf(RoutesSchedule500.SCHEDULE500SELNULL) }
+
 
 //    val context = LocalContext.current
 //========Классическое меню ABOUT  1 ====в правом углу====================
@@ -95,6 +97,21 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
         },
     )
 
+//------------------------------------------------------------------------
+    val schedule500items = listOf(
+        ActionItemSpec("Расчет для выделенных дат", Icons.Default.Summarize, ActionItemMode.IF_ROOM) {
+ //           currentDialog= !currentDialog
+            currentDialog= true
+            if (currentRouteSchedule500 == RoutesSchedule500.SCHEDULE500SELSINGLE){
+                currentRouteSchedule500 = RoutesSchedule500.SCHEDULE500SELPERIOD
+
+            }
+            else {
+                currentRouteSchedule500 = RoutesSchedule500.SCHEDULE500SELSINGLE
+            }
+
+        },
+    )
 //------------------------------------
 
     Scaffold(
@@ -182,7 +199,9 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
                     }
 //========================================================
                     if (currentRoute == Routes.SCHEDULE500_ROUTE && BuildConfig.Schedule500RouteEnable) {
-                        OverflowTopSchedule500()
+                        currentRouteSchedule500=RoutesSchedule500.SCHEDULE500SELNULL
+                       ActionMenu(schedule500items, defaultIconSpace = 0)
+//                        OverflowTopSchedule500()
                     }
 //========Классическое меню ABOUT  2 ==в правом углу======================
                     if (currentRoute == Routes.ABOUT_ROUTE) {
@@ -278,7 +297,10 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
             if (BuildConfig.Schedule500RouteEnable) {
                 composable(Routes.SCHEDULE500_ROUTE) {
 
-                    Schedule500Component()
+                    Schedule500Component(currentRouteSchedule500)
+                    if (       !currentDialog
+                    )
+                    currentRouteSchedule500 = RoutesSchedule500.SCHEDULE500SELNULL
                 }
             }
 //--------------------------------------------------------
@@ -569,7 +591,12 @@ object Routes {
     const val SCHEDULE500_ROUTE = "Schedule500"
     //---------------------------------------------------------
 }
-
+object RoutesSchedule500 {
+    const val SCHEDULE500SELNULL = ""
+    const val SCHEDULE500SELSINGLE = "Schedule500SelSingle"
+    const val SCHEDULE500SELPERIOD = "Schedule500SelPeriod"
+    //---------------------------------------------------------
+}
 //++++++++++++++++++++++++++++++++++++
 @Composable
 fun TodoComponent(todoViewModel: TodoViewModel) {
@@ -779,7 +806,14 @@ fun OverflowTopSchedule() {
 //++++++++++++++++++++++++++++++++++++
 @ExperimentalCoroutinesApi
 @Composable
-fun Schedule500Component() {
+//fun Schedule500Component() {
+    fun Schedule500Component(currentRouteSchedule500:String) {
+var vStr:String=currentRouteSchedule500
+    vStr=vStr+" /"
+
+            if (BuildConfig.DEBUG) {
+                Log.d ("Schedule500", vStr)
+            }
     if (BuildConfig.AdMobEnable) {
 
         AdBannerNetworkApp()
@@ -789,19 +823,20 @@ fun Schedule500Component() {
         InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
-    Schedule500Sample()
-}
-@Composable
-fun OverflowTopSchedule500() {
-    val items = listOf(
-        ActionItemSpec("Call", Icons.Default.Call, ActionItemMode.ALWAYS_SHOW) {},
-        ActionItemSpec("Send", Icons.Default.Send, ActionItemMode.IF_ROOM) {},
-        ActionItemSpec("Email", Icons.Default.Email, ActionItemMode.IF_ROOM) {},
-        ActionItemSpec("Delete", Icons.Default.Delete, ActionItemMode.IF_ROOM) {},
-    )
-    ActionMenu(items, defaultIconSpace = 3)
-}
+    Schedule500Sample(currentRouteSchedule500)
+//    currentRouteSchedule500 = RoutesSchedule500.SCHEDULE500SELNULL
 
+//    Schedule500Sample()
+}
+/*
+@Composable
+fun OverflowTopSchedule500(currentRouteSchedule500 : String) {
+//    const val SCHEDULE500SELSINGLE = "Schedule500SelSingle"
+//    const val SCHEDULE500SELPERIOD = "Schedule500SelPeriod"
+
+    ActionMenu(schedule500items, defaultIconSpace = 3)
+}
+*/
 //==============================================
 @Composable
 fun ActionMenu(
