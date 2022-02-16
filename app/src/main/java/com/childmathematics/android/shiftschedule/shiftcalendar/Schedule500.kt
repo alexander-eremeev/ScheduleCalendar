@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement.Absolute.Center
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -18,6 +19,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.BlendMode.Companion.Color
@@ -48,7 +50,9 @@ import com.childmathematics.android.shiftschedule.navigation.RoutesSchedule500
 //import com.childmathematics.android.shiftschedule.navigation.RoutesSchedule500
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemMode
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemSpec
+import com.childmathematics.android.shiftschedule.util.DialogButtonOK
 import com.google.android.material.datepicker.MaterialCalendar
+import com.yandex.metrica.impl.ob.If
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
@@ -123,38 +127,41 @@ object RoutesSch500 {
 //    YearMonth.
 
     Text(
-//      text = "Selected recipes price: $selectedPrice",
-      text = "ВСЕГО:\n\t\t\t\t\tБригада 1:\t"+"Ночных:\t"+ (getShift500NightMonth(state.monthState.currentMonth.year,
-            state.monthState.currentMonth.monthValue,1)).toInt().toString()+"\t/\tРабочих:\t"+(getShift500Month(
-            state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,1)).toInt().toString()+" час"
-//              +"/"+state.monthState.currentMonth.monthValue+"/"+state.monthState.currentMonth.year
-      ,
-//      style = MaterialTheme.typography.h6,
+      text = "ВСЕГО:\n\t\t\t\t\tБригада 1:\t"+"Ночных:\t"
+              + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
+                    state.monthState.currentMonth.monthValue,1)).toInt())
+              +"\t/\tРабочих:\t"+String.format("%4d",(getShift500Month(
+            state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,1)).toInt())
+              +" час",
       fontSize = 12.sp,    )
     Text(
-//      text = "Selected recipes price: $selectedPrice",
-//      text = "ВСЕГО ЗА МЕСЯЦ Бригада 2:"+"Ночные:"+ (getShift500NightMonth(state.monthState.currentMonth.year,
-      text = "\t\t\t\t\tБригада 2:\t"+"Ночных:\t"+ (getShift500NightMonth(state.monthState.currentMonth.year,
-        state.monthState.currentMonth.monthValue,2)).toInt().toString()+"\t/\tРабочих:\t"+(getShift500Month(
-        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,2)).toInt().toString()+" час",
+      text = "\t\t\t\t\tБригада 2:\t"+"Ночных:\t"
+              + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
+        state.monthState.currentMonth.monthValue,2)).toInt())
+              +"\t/\tРабочих:\t"
+              +String.format("%4d",(getShift500Month(
+        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,2)).toInt())
+              +" час",
       fontSize = 12.sp,
-      //style = MaterialTheme.typography.h6,
     )
     Text(
-//      text = "Selected recipes price: $selectedPrice",
-      text = "\t\t\t\t\tБригада 3:\t"+"Ночных:\t"+ (getShift500NightMonth(state.monthState.currentMonth.year,
-        state.monthState.currentMonth.monthValue,3)).toInt().toString()+"\t/\tРабочих:\t"+(getShift500Month(
-        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,3)).toInt().toString()+" час",
+      text = "\t\t\t\t\tБригада 3:\t"+"Ночных:\t"
+              + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
+        state.monthState.currentMonth.monthValue,3)).toInt())
+              +"\t/\tРабочих:\t"
+              +String.format("%4d",(getShift500Month(
+        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,3)).toInt())
+              +" час",
       fontSize = 12.sp,
-      //      style = MaterialTheme.typography.h6,
     )
     Text(
-//      text = "Selected recipes price: $selectedPrice",
-      text = "\t\t\t\t\tБригада 4:\t"+"Ночных:\t"+ (getShift500NightMonth(state.monthState.currentMonth.year,
-        state.monthState.currentMonth.monthValue,4)).toInt().toString()+"\t/\tРабочих:\t"+(getShift500Month(
-        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,4)).toInt().toString()+" час",
-//      style = MaterialTheme.typography.h6,
-//      style = MaterialTheme.typography.h6,
+      text = "\t\t\t\t\tБригада 4:\t"+"Ночных:\t"
+              + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
+        state.monthState.currentMonth.monthValue,4)).toInt())
+              +"\t/\tРабочих:\t"
+              +String.format("%4d",(getShift500Month(
+        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,4)).toInt())
+              +" час",
       fontSize = 12.sp,
     )
 
@@ -243,13 +250,17 @@ fun Sch500RecipeDay(
         )
         Text(
 //          text = plannedRecipe.price.toString(),
-          text = (getShift500(date,1)).toInt().toString()+" / "+(getShift500(date,2)).toInt().toString(),
+          text = String.format("%2d",(getShift500(date,1)).toInt())
+                  +" / "
+                  +String.format("%2d",(getShift500(date,2)).toInt()),
           fontSize = 9.sp,
 //          style = MaterialTheme.typography.body2,
         )
         Text(
 //          text = plannedRecipe.price.toString(),
-          text = (getShift500(date,3)).toInt().toString()+" / "+(getShift500(date,4)).toInt().toString(),
+          text = String.format("%2d",(getShift500(date,3)).toInt())
+                  +" / "
+                  +String.format("%2d",(getShift500(date,4)).toInt()),
           fontSize = 9.sp,
         )
     }
@@ -358,7 +369,7 @@ fun Schedule500SamplePreview( ) {
   }
 }
 //====================================================================
-// расчетосновного рабочего времени по дате по номеру бригады
+// расчет основного рабочего времени по дате по номеру бригады
 //==============================================
 fun getShift500 (dateforCalc: LocalDate,nBrig: Int):Double
 {
@@ -456,6 +467,55 @@ fun getShift500Night (dateforCalc: LocalDate,nBrig: Int):Double
   return -2999.0
 }
 //====================================================================
+// расчет основного рабочего времени по дате по номеру бригады
+//==============================================
+fun getShift500Text (dateforCalc: LocalDate,nBrig: Int):String
+{
+    val shift : Int
+    shift=(dateforCalc.toEpochDay() % 4).toInt()
+
+    when (shift) {
+        0 -> {
+            when (nBrig){
+                1 -> return "выходной"
+                2 -> return "с ночи"
+                3 -> return "в ночь"
+                4 -> return "в день"
+                else -> return "Error"
+            }
+        }
+        1 -> {
+            when (nBrig){
+                1 -> return "в день"
+                2 -> return "выходной"
+                3 -> return "с ночи"
+                4 -> return "в ночь"
+                else -> return "Error"
+            }
+        }
+        2 -> {
+            when (nBrig){
+                1 -> return "в ночь"
+                2 -> return "в день"
+                3 -> return "выходной"
+                4 -> return "с ночи"
+                else -> return "Error"
+            }
+        }
+        3 -> {
+            when (nBrig){
+                1 -> return "с ночи"
+                2 -> return "в ночь"
+                3 -> return "в день"
+                4 -> return "выходной"
+                else -> return "Error"
+            }
+        }
+    }
+    if (nBrig > 4 || nBrig<1) {return "Error"}
+    return "Error"
+}
+//====================================================================
 // расчет ночных до выбранной даты по номеру бригады
 //==============================================
 fun getShift500NightSelect(selection: List<LocalDate>,nBrig: Int):Double {
@@ -496,20 +556,72 @@ fun getShift500NightMonth (year: Int,month: Int,nBrig: Int):Double {
 // расчет основного времени до выбранной даты по номеру бригады
 //==============================================
 fun getShift500Month (year: Int,month: Int,nBrig: Int):Double {
-  var monthW: Int=month+1
-  var yearW: Int=year
-  if (monthW >12) {
-    monthW=1
-    yearW=yearW+1
-  }
+    var monthW: Int=month+1
+    var yearW: Int=year
+    if (monthW >12) {
+        monthW=1
+        yearW=yearW+1
+    }
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
-  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1)
+    var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1)
 
-  var summ: Double =0.0
-  for (i in dateforCalc.minusDays(1).dayOfMonth downTo 1 step 1) {
-    summ+=getShift500(dateforCalc.minusDays(i.toLong()) ,nBrig)
-  }
-  return summ
+    var summ: Double =0.0
+    for (i in dateforCalc.minusDays(1).dayOfMonth downTo 1 step 1) {
+        summ+=getShift500(dateforCalc.minusDays(i.toLong()) ,nBrig)
+    }
+    return summ
+}
+//====================================================================
+// расчет основного времени до выбранной даты по номеру бригады с начала месяца
+//==============================================
+fun getShift500MonthDate (datecalc: LocalDate,nBrig: Int):Double {
+//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
+    var dateforCalc: LocalDate= datecalc
+
+    var summ: Double =getShift500(dateforCalc, nBrig)
+    for (i in dateforCalc.dayOfMonth-1 downTo 1 step 1) {
+            summ += getShift500(dateforCalc.minusDays(i.toLong()), nBrig)
+    }
+    return summ
+}
+//====================================================================
+// расчет основного времени до выбранной даты по номеру бригады с начала месяца
+//==============================================
+fun getShift500MonthDateNight (datecalc: LocalDate,nBrig: Int):Double {
+//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
+    var dateforCalc: LocalDate= datecalc
+
+    var summ: Double =getShift500Night(dateforCalc ,nBrig)
+    for (i in dateforCalc.dayOfMonth-1 downTo 1 step 1) {
+        summ+=getShift500Night(dateforCalc.minusDays(i.toLong()) ,nBrig)
+    }
+    return summ
+}
+//====================================================================
+// расчет основного времени между выбранной даты по номеру бригады с начала месяца
+//==============================================
+fun getShift500Date1Date2 (date1: LocalDate,date2: LocalDate,nBrig: Int):Double {
+//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
+    var dateforCalc: LocalDate= date2
+
+    var summ: Double =getShift500(dateforCalc, nBrig)
+    for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
+        summ += getShift500(dateforCalc.minusDays(i.toLong()), nBrig)
+    }
+    return summ
+}
+//====================================================================
+// расчет основного времени между выбранной даты по номеру бригады с начала месяца
+//==============================================
+fun getShift500Date1Date2Night (date1: LocalDate,date2: LocalDate,nBrig: Int):Double {
+//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
+    var dateforCalc: LocalDate= date2
+
+    var summ: Double = getShift500Night(dateforCalc, nBrig)
+    for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
+        summ += getShift500Night(dateforCalc.minusDays(i.toLong()), nBrig)
+    }
+    return summ
 }
 //====================================================================
 @Composable
@@ -533,92 +645,214 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
       ) {
 
         Text(
-          text = "Расчет для выделенных дат:",
+          text = "Расчет рабочих часов\nдля выделенных дат:",
           fontWeight = FontWeight.Bold,
           fontSize = 20.sp,
-          modifier = Modifier.padding(8.dp)
+//          modifier = Modifier.padding(8.dp)
+          modifier = Modifier
+              .align(CenterHorizontally),
+        )
+    if (selection.size ==1 ) {
+    //-------------------------------------------------------
+      Text(
+        text = "\n"
+                +selection[0].dayOfMonth.toString()+"."
+                +selection[0].monthValue.toString()+"."
+                +selection[0].year.toString()
+        ,
+        modifier = Modifier.align(CenterHorizontally) ,
+        fontSize = 20.sp,    )
+
+      Text(
+        text = "\tБригада 1:"
+                +String.format("%4d",getShift500 (selection[0],1).toInt())
+                +"("
+                +String.format("%2d",getShift500Night (selection[0],1).toInt())
+                +") час"
+//                +"\t\t\t"
+                +String.format("%10s",getShift500Text (selection[0],1))
+          ,
+        fontSize = 15.sp,    )
+
+
+      Text(
+        text = "\tБригада 2:"
+                +String.format("%4d",getShift500 (selection[0],2).toInt())
+                +"("
+                +String.format("%2d",getShift500Night (selection[0],2).toInt())
+                +") час"
+//                +"\t\t\t"
+                +String.format("%10s",getShift500Text (selection[0],2))
+          ,
+         fontSize = 15.sp,
+      )
+
+
+      Text(
+        text = "\tБригада 3:"
+                +String.format("%4d",getShift500 (selection[0],3).toInt())
+                +"("
+                +String.format("%2d",getShift500Night (selection[0],3).toInt())
+                +") час"
+//                +"\t\t\t"
+                +String.format("%10s",getShift500Text (selection[0],3))
+          ,
+
+        fontSize = 15.sp,
+      )
+        Text(
+            text = "\tБригада 4:"
+                    +String.format("%4d",getShift500 (selection[0],4).toInt())
+                    +"("
+                    +String.format("%2d",getShift500Night (selection[0],4).toInt())
+                    +") час"
+//                    +"\t\t\t"
+                    +String.format("%10s",getShift500Text (selection[0],4))
+                ,
+
+            fontSize = 15.sp,
+        )
+//------------------------------------------------------------------------------------------------------------------------------
+
+        Text(
+            text = "\nС начала месяца:\n",
+            fontWeight = FontWeight.Bold,
+            fontSize = 15.sp,
+//          modifier = Modifier.padding(8.dp)
+            modifier = Modifier
+                .align(CenterHorizontally),
+        )
+        Text(
+            text = "\tБригада 1:"
+                    +String.format("%5d",getShift500MonthDate (selection[0],1).toInt())
+                    +"("
+                    +String.format("%5d",getShift500MonthDateNight (selection[0],1).toInt())
+                    +") час"
+            ,
+            fontSize = 15.sp,    )
+
+
+        Text(
+            text = "\tБригада 2:"
+                    +String.format("%5d",getShift500MonthDate (selection[0],2).toInt())
+                    +"("
+                    +String.format("%5d",getShift500MonthDateNight (selection[0],2).toInt())
+                    +") час"
+            ,
+            fontSize = 15.sp,
+            //style = MaterialTheme.typography.h6,
         )
 
-        CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+
+        Text(
+            text = "\tБригада 3:"
+                    +String.format("%5d",getShift500MonthDate(selection[0],3).toInt())
+                    +"("
+                    +String.format("%5d",getShift500MonthDateNight (selection[0],3).toInt())
+                    +") час"
+            ,
+
+            fontSize = 15.sp,
+        )
+        Text(                                   //getShift500MonthDate (datecalc: LocalDate,nBrig: Int):Double
+            text = "\tБригада 4:"
+                    +String.format("%5d",getShift500MonthDate (selection[0],4).toInt())
+                    +"("
+                    +String.format("%5d",getShift500MonthDateNight (selection[0],4).toInt())
+                    +") час"
+            ,
+
+            fontSize = 15.sp,
+        )
+
+//========================================================================
+        Text(
+            text = "\n\tПояснение:\tв скобках - ночные часы"
+                ,
+            fontSize = 15.sp,
+        )
+
+      //=====================================================
+    } else
+      if (selection.size >1 &&
+          selection[selection.lastIndex].toEpochDay()-selection[0].toEpochDay()< 70) {
+        //------------------------------------------------
+        Text(
+          text = "\n"
+                  +selection[0].dayOfMonth.toString()+"."
+                  +selection[0].monthValue.toString()+"."
+                  +selection[0].year.toString()+"\t\t--\t\t"
+                  +selection[selection.lastIndex].dayOfMonth.toString()+"."
+                  +selection[selection.lastIndex].monthValue.toString()+"."
+                  +selection[selection.lastIndex].year.toString()
+                  +"\n"
+          ,
+          modifier = Modifier.align(CenterHorizontally) ,
+//          textAlign= Center,
+          fontSize = 20.sp,    )
+        //--------------------------------------------getShift500Date1Date2 (date1: LocalDate,date2: LocalDate------------------
           Text(
-            "\tДиалог=======Selection=\t"+selection.size+"\n\n"
-                    +"\n\n\tДиалог=======Selection=\t"+selection.size
-                  ,
-                    fontSize = 17.sp
-          , modifier = Modifier.padding(8.dp))
-        }
-
-    Text(
-      text = "ВСЕГО:\n\t\t\t\t\tБригада 1:\t"+"Ночных:\t"
-//      + (getShift500NightMonth(state.monthState.currentMonth.year,
-//            state.monthState.currentMonth.monthValue,1)).toInt().toString()
-            +"\t/\tРабочих:\t"
-//            +(getShift500Month(
-//            state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,1)).toInt().toString()
-            +" час"
-      ,
-      fontSize = 12.sp,    )
+              text = "\tБригада 1:"
+                      +String.format("%5d",getShift500Date1Date2 (selection[0],selection[selection.lastIndex],1).toInt())
+                      +"("
+                      +String.format("%5d",getShift500Date1Date2Night (selection[0],selection[selection.lastIndex],1).toInt())
+                      +") час"
+              ,
+              fontSize = 15.sp,    )
 
 
-    Text(
-      text = "\t\t\t\t\tБригада 2:\t"+"Ночных:\t"
-//      + (getShift500NightMonth(state.monthState.currentMonth.year,
-//        state.monthState.currentMonth.monthValue,2)).toInt().toString()
-        +"\t/\tРабочих:\t"
-//        +(getShift500Month(
-//        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,2)).toInt().toString()
-        +" час",
-      fontSize = 12.sp,
-      //style = MaterialTheme.typography.h6,
-    )
+          Text(
+              text = "\tБригада 2:"
+//                +"\t/\tРабочих:\t"
+                      +String.format("%5d",getShift500Date1Date2 (selection[0],selection[selection.lastIndex],2).toInt())
+//                +"Ночных:\t"
+                      +"("
+                      +String.format("%5d",getShift500Date1Date2Night (selection[0],selection[selection.lastIndex],2).toInt())
+                      +") час"
+              ,
+              fontSize = 15.sp,
+          )
 
 
-    Text(
-      text = "\t\t\t\t\tБригада 3:\t"+"Ночных:\t"
-//      + (getShift500NightMonth(state.monthState.currentMonth.year,
-//        state.monthState.currentMonth.monthValue,3)).toInt().toString()
-        +"\t/\tРабочих:\t"
-//        +(getShift500Month(
-//        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,3)).toInt().toString()
-        +" час",
-      fontSize = 12.sp,
-    )
+          Text(
+              text = "\tБригада 3:"
+                      +String.format("%5d",getShift500Date1Date2 (selection[0],selection[selection.lastIndex],3).toInt())
+                      +"("
+                      +String.format("%5d",getShift500Date1Date2Night (selection[0],selection[selection.lastIndex],3).toInt())
+                      +") час"
+              ,
+              fontSize = 15.sp,
+          )
+          Text(                                   //getShift500MonthDate (datecalc: LocalDate,nBrig: Int):Double
+              text = "\tБригада 4:"
+                      +String.format("%5d",getShift500Date1Date2 (selection[0],selection[selection.lastIndex],4).toInt())
+                      +"("
+                      +String.format("%5d",getShift500Date1Date2Night (selection[0],selection[selection.lastIndex],4).toInt())
+                      +") час"
+              ,
 
+              fontSize = 15.sp,
+          )
+          Text(
+              text = "\n\tПояснение:\tв скобках - ночные часы"
+              ,
+              fontSize = 15.sp,
+          )
 
-    Text(
-      text = "\t\t\t\t\tБригада 4:\t"+"Ночных:\t"//+ (getShift500NightMonth(state.monthState.currentMonth.year,
-//        state.monthState.currentMonth.monthValue,4)).toInt().toString()
-        +"\t/\tРабочих:\t"
-              //+(getShift500Month(
-//        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,4)).toInt().toString()
-        +" час",
-      fontSize = 12.sp,
-    )
+        //=======================================================
+      } else {
+          Text(
+              text = "\n\nСлишком длинный промежуток\nмежду выделенными датами!!"
+              ,
+              modifier = Modifier.align(CenterHorizontally) ,
+              color = androidx.compose.ui.graphics.Color.Red ,
+              fontSize = 20.sp,
+          )
 
-
-        Spacer(modifier = Modifier.height(8.dp))
-        DialogButtons(onDismiss)
+      }
+        Spacer(modifier = Modifier.height(4.dp))
+        DialogButtonOK(onDismiss)
       }
     }
   }
 }
-@Composable
-private fun DialogButtons(onDismiss: () -> Unit) {
-  Row {
-    /*
-    TextButton(
-      onClick = onDismiss,
-      modifier = Modifier.padding(8.dp)
-    ) {
-      Text(text = "Cancel")
-    }
-    */
-    TextButton(
-      onClick = onDismiss,
-      modifier = Modifier.padding(8.dp)
-    ) {
-      Text(text = "Далее")
-    }
-  }
-}
-

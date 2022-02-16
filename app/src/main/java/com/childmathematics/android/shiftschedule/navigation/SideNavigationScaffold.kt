@@ -181,7 +181,7 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text("Производственный календарь")
+                    Text("Рабочий календарь")
                 },
                 navigationIcon = {
                     IconButton(onClick = openDrawer) {
@@ -487,6 +487,7 @@ private fun DrawerHeader() {
 
             Spacer(modifier = Modifier.height(4.dp))
             Text(text = "Производственный календарь", color = Color.White)
+//            Text(text = "Рабочий календарь", color = Color.White)
             Text(text = "trening.childmathematics@gmail.com", color = Color.White)
         }
     }
