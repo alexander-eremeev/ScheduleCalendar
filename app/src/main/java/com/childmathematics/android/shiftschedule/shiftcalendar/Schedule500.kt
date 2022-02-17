@@ -121,23 +121,8 @@ object RoutesSch500 {
     )
 
     Spacer(modifier = Modifier.height(20.dp))
-//    selectedPrice = getShift500NightSelect(date.CurrentDay,1)
-//   state.monthState.currentMonth.month
-//    state.monthState.currentMonth.year
-//    YearMonth.
-/*
-    Text(
-      text = "ВСЕГО:\n\t\t\t\t\tБригада 1:\t"+"Ночных:\t"
-              + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
-                    state.monthState.currentMonth.monthValue,1)).toInt())
-              +"\t/\tРабочих:\t"+String.format("%4d",(getShift500Month(
-            state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,1)).toInt())
-              +" час",
-      fontSize = 12.sp,    )
-
- */
         Text(
-            text = "\tВСЕГО:\n"
+            text = "\tВСЕГО за месяц:\n"
                     +"\tБригада 1:"
                     + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
                     state.monthState.currentMonth.monthValue,1)).toInt())
@@ -686,24 +671,24 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
         fontSize = 20.sp,    )
 
       Text(
-        text = "\tБригада 1:"
-                +String.format("%4d",getShift500 (selection[0],1).toInt())
+        text = "Бригада 1:"
+                +String.format("%3d",getShift500 (selection[0],1).toInt())
                 +"("
-                +String.format("%2d",getShift500Night (selection[0],1).toInt())
+                +String.format("%1d",getShift500Night (selection[0],1).toInt())
                 +") час"
-//                +"\t\t\t"
+//                +"\t"
                 +String.format("%10s",getShift500Text (selection[0],1))
           ,
         fontSize = 15.sp,    )
 
 
       Text(
-        text = "\tБригада 2:"
-                +String.format("%4d",getShift500 (selection[0],2).toInt())
+        text = "Бригада 2:"
+                +String.format("%3d",getShift500 (selection[0],2).toInt())
                 +"("
-                +String.format("%2d",getShift500Night (selection[0],2).toInt())
+                +String.format("%1d",getShift500Night (selection[0],2).toInt())
                 +") час"
-//                +"\t\t\t"
+//                +"\t"
                 +String.format("%10s",getShift500Text (selection[0],2))
           ,
          fontSize = 15.sp,
@@ -711,24 +696,24 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
 
 
       Text(
-        text = "\tБригада 3:"
-                +String.format("%4d",getShift500 (selection[0],3).toInt())
+        text = "Бригада 3:"
+                +String.format("%3d",getShift500 (selection[0],3).toInt())
                 +"("
-                +String.format("%2d",getShift500Night (selection[0],3).toInt())
+                +String.format("%1d",getShift500Night (selection[0],3).toInt())
                 +") час"
-//                +"\t\t\t"
+//                +"\t"
                 +String.format("%10s",getShift500Text (selection[0],3))
           ,
 
         fontSize = 15.sp,
       )
         Text(
-            text = "\tБригада 4:"
-                    +String.format("%4d",getShift500 (selection[0],4).toInt())
+            text = "Бригада 4:"
+                    +String.format("%3d",getShift500 (selection[0],4).toInt())
                     +"("
-                    +String.format("%2d",getShift500Night (selection[0],4).toInt())
+                    +String.format("%1d",getShift500Night (selection[0],4).toInt())
                     +") час"
-//                    +"\t\t\t"
+//                    +"\t"
                     +String.format("%10s",getShift500Text (selection[0],4))
                 ,
 
