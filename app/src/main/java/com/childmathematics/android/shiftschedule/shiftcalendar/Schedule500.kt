@@ -125,7 +125,7 @@ object RoutesSch500 {
 //   state.monthState.currentMonth.month
 //    state.monthState.currentMonth.year
 //    YearMonth.
-
+/*
     Text(
       text = "ВСЕГО:\n\t\t\t\t\tБригада 1:\t"+"Ночных:\t"
               + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
@@ -134,38 +134,60 @@ object RoutesSch500 {
             state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,1)).toInt())
               +" час",
       fontSize = 12.sp,    )
-    Text(
-      text = "\t\t\t\t\tБригада 2:\t"+"Ночных:\t"
-              + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
-        state.monthState.currentMonth.monthValue,2)).toInt())
-              +"\t/\tРабочих:\t"
-              +String.format("%4d",(getShift500Month(
-        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,2)).toInt())
-              +" час",
-      fontSize = 12.sp,
-    )
-    Text(
-      text = "\t\t\t\t\tБригада 3:\t"+"Ночных:\t"
-              + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
-        state.monthState.currentMonth.monthValue,3)).toInt())
-              +"\t/\tРабочих:\t"
-              +String.format("%4d",(getShift500Month(
-        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,3)).toInt())
-              +" час",
-      fontSize = 12.sp,
-    )
-    Text(
-      text = "\t\t\t\t\tБригада 4:\t"+"Ночных:\t"
-              + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
-        state.monthState.currentMonth.monthValue,4)).toInt())
-              +"\t/\tРабочих:\t"
-              +String.format("%4d",(getShift500Month(
-        state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,4)).toInt())
-              +" час",
-      fontSize = 12.sp,
-    )
 
-    Spacer(modifier = Modifier.height(20.dp))
+ */
+        Text(
+            text = "\tВСЕГО:\n"
+                    +"\tБригада 1:"
+                    + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
+                    state.monthState.currentMonth.monthValue,1)).toInt())
+                    +"("
+                    +String.format("%4d",(getShift500Month(
+                    state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,1)).toInt())
+                    +") час"
+            ,
+            fontSize = 14.sp,    )
+      Text(
+          text =
+                  "\tБригада 2:"
+                  + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
+              state.monthState.currentMonth.monthValue,2)).toInt())
+                  +"("
+                  +String.format("%4d",(getShift500Month(
+              state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,2)).toInt())
+                  +") час"
+          ,
+          fontSize = 14.sp,    )
+      Text(
+          text =
+          "\tБригада 3:"
+                  + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
+              state.monthState.currentMonth.monthValue,3)).toInt())
+                  +"("
+                  +String.format("%4d",(getShift500Month(
+              state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,3)).toInt())
+                  +") час"
+          ,
+          fontSize = 14.sp,    )
+      Text(
+          text =
+          "\tБригада 4:"
+                  + String.format("%4d",(getShift500NightMonth(state.monthState.currentMonth.year,
+              state.monthState.currentMonth.monthValue,4)).toInt())
+                  +"("
+                  +String.format("%4d",(getShift500Month(
+              state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,4)).toInt())
+                  +") час"
+          ,
+          fontSize = 14.sp,    )
+      //========================================================================
+      Text(
+          text = "\n\tПояснение:\tв скобках - ночные часы"
+          ,
+          fontSize = 14.sp,
+      )
+
+      Spacer(modifier = Modifier.height(20.dp))
   }
 
  if  (currentRouteSchedule500 == RoutesSchedule500.SCHEDULE500SELPERIOD ||
@@ -636,7 +658,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
       Column(
         modifier = Modifier
           .verticalScroll(rememberScrollState())
-          .width(500.dp)
+            .fillMaxWidth()
 //          .width(400.dp)
 
           .wrapContentHeight()

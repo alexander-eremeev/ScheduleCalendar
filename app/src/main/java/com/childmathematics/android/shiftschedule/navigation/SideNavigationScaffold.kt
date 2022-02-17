@@ -66,9 +66,6 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
     val openDrawer: () -> Unit = { coroutineScope.launch { scaffoldState.drawerState.open() } }
     val closeDrawer: () -> Unit = { coroutineScope.launch { scaffoldState.drawerState.close() } }
     var currentRouteSchedule500 by remember { mutableStateOf(RoutesSchedule500.SCHEDULE500SELNULL) }
-
-
-//    val context = LocalContext.current
 //========Классическое меню ABOUT  1 ====в правом углу====================
     val aboutitems = listOf(
         ActionItemSpec("Помощь", Icons.Default.Help, ActionItemMode.ALWAYS_SHOW) {
@@ -100,7 +97,6 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
 //------------------------------------------------------------------------
     val schedule500items = listOf(
         ActionItemSpec("Расчет для выделенных дат", Icons.Default.Summarize, ActionItemMode.IF_ROOM) {
- //           currentDialog= !currentDialog
             currentDialog= true
             if (currentRouteSchedule500 == RoutesSchedule500.SCHEDULE500SELSINGLE){
                 currentRouteSchedule500 = RoutesSchedule500.SCHEDULE500SELPERIOD
