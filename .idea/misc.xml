@@ -5,12 +5,15 @@
       <map>
         <entry key="..\:/Public/AndroidStudioProjects/Schedule/ShiftSchedule/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.18888888888888888" />
         <entry key="..\:/Public/AndroidStudioProjects/Schedule/ShiftSchedule/app/src/main/res/drawable/ic_baseline_star_12.xml" value="0.1" />
+        <entry key="..\:/Public/AndroidStudioProjects/Schedule/ShiftSchedule/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2775" />
         <entry key="..\:/Public/AndroidStudioProjects/Schedule/ShiftSchedule/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.31979166666666664" />
         <entry key="..\:/Public/AndroidStudioProjects/Schedule/ShiftSchedule/app/src/main/res/drawable/ic_launcher_foregroundS.xml" value="0.31979166666666664" />
         <entry key="..\:/Public/AndroidStudioProjects/Schedule/ShiftSchedule/app/src/main/res/drawable/side_nav_bar.xml" value="0.1" />
         <entry key="..\:/Public/AndroidStudioProjects/Schedule/ShiftSchedule/app/src/main/res/drawable/vd_account_active.xml" value="0.1" />
         <entry key="..\:/Public/AndroidStudioProjects/Schedule/ShiftSchedule/app/src/main/res/drawable/vd_profile.xml" value="0.3151041666666667" />
         <entry key="..\:/Public/AndroidStudioProjects/Schedule/ShiftSchedule/app/src/main/res/layout/activity_main.xml" value="0.25025227043390513" />
+        <entry key="..\:/Public/AndroidStudioProjects/Schedule/ShiftSchedule/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Public/AndroidStudioProjects/Schedule/ShiftSchedule/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>

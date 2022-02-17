@@ -466,7 +466,7 @@ private fun DrawerHeader() {
         Image(
             contentScale = ContentScale.Crop,
             modifier = Modifier.height(160.dp),
-            painter = painterResource(id = R.drawable.drawer_bg2),
+            painter = painterResource(id = R.drawable.work_1280),
             contentDescription = null
         )
 
