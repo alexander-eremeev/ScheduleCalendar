@@ -182,9 +182,14 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text("Рабочий календарь")
+                    Text("Рабочий календарь",
+                        fontSize = 15.sp ,
+                        )
                 },
-                navigationIcon = {
+
+//                .fontWeight = FontWeight.Bold,
+
+                        navigationIcon = {
                     IconButton(onClick = openDrawer) {
                         Icon(
                             imageVector = Icons.Filled.Menu,
@@ -519,22 +524,6 @@ fun HomeComponent() {
         InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
-/*
-    if(BuildConfig.AdMobEnable || BuildConfig.YaAdsEnable) {
-        changeDp = 50.dp
-    } else changeDp = 0.dp
-
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .padding(0.dp, changeDp, 0.dp, 0.dp)
-            .fillMaxSize()
-            .background(Color(0xff6D4C41))
-    ) {
-        Text(color = Color.White, text = "Home", fontSize = 50.sp, fontWeight = FontWeight.Bold)
-    }
-
-*/
     HomePageShow()
 }
 
