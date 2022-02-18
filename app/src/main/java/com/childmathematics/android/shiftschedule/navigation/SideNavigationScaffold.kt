@@ -4,6 +4,7 @@ package com.childmathematics.android.shiftschedule.navigation
 //import com.childmathematics.android.shiftschedule.navigation.ui.components.DrawerButton
 //import com.childmathematics.android.shiftschedule.html.loadWebUrl
 import android.content.Context
+import android.content.res.Configuration
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -24,6 +25,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,9 +36,11 @@ import androidx.navigation.compose.rememberNavController
 import com.childmathematics.android.shiftschedule.*
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.RoutesSch500.currentDialog
+import com.childmathematics.android.shiftschedule.mainpage.HomePageShow
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemMode
 import com.childmathematics.android.shiftschedule.navigation.model.ActionItemSpec
 import com.childmathematics.android.shiftschedule.navigation.model.separateIntoActionAndOverflow
+import com.childmathematics.android.shiftschedule.navigation.ui.ComposeTutorialsTheme
 import com.childmathematics.android.shiftschedule.navigation.ui.components.DrawerButton
 import com.childmathematics.android.shiftschedule.shiftads.*
 import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoScreen
@@ -235,7 +240,7 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
             startDestination = Routes.HOME_ROUTE
         ) {
             composable(Routes.HOME_ROUTE) {
-                HomeComponent(LocalContext.current)
+                HomeComponent()
             }
 
 //========Классическое меню Setting  3 ==в правом углу======================
@@ -424,22 +429,6 @@ fun AppDrawer(
                 closeDrawer()
             }
         )
-//-----------------------------------------------------------------------
-/*
-        DrawerButton(
-            icon = Icons.Filled.AdUnits,
-            label = "AdMob",
-            isSelected = currentRoute == Routes.ADMOB_ROUTE,
-            action = {
-                if (currentRoute != Routes.ADMOB_ROUTE) {
-                    navigateToAdMob()
-                }
-                closeDrawer()
-            }
-        )
-
- */
-//---------------------------------------------------------------------------
 
     }
 }
@@ -488,7 +477,7 @@ private fun DrawerHeader() {
         }
     }
 }
-/*
+
 @Preview
 @Preview("dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Preview(device = Devices.PIXEL_C)
@@ -498,8 +487,8 @@ private fun DrawerHeaderPreview() {
         DrawerHeader()
     }
 }
-*/
-/*
+
+
 @Preview
 @Preview("dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Preview(device = Devices.PIXEL_C)
@@ -508,7 +497,7 @@ private fun DrawerButtonPreview() {
     ComposeTutorialsTheme {
         DrawerButton(
             icon = Icons.Filled.Home,
-            label = "Home",
+            label = "Главная",
             isSelected = true,
             action = {
 
@@ -516,19 +505,21 @@ private fun DrawerButtonPreview() {
         )
     }
 }
-*/
+
+//========================================================================
 @Composable
-fun HomeComponent(context: Context) {
-    var changeDp: Dp
+fun HomeComponent() {
+//    var changeDp: Dp
 
     if(BuildConfig.AdMobEnable) {
         AdBannerNetworkApp()
-        AdInterstitialNetworkApp(context)
+        AdInterstitialNetworkApp(LocalContext.current)
     }
     if (BuildConfig.YaAdsEnable) {
         InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
+/*
     if(BuildConfig.AdMobEnable || BuildConfig.YaAdsEnable) {
         changeDp = 50.dp
     } else changeDp = 0.dp
@@ -543,9 +534,10 @@ fun HomeComponent(context: Context) {
         Text(color = Color.White, text = "Home", fontSize = 50.sp, fontWeight = FontWeight.Bold)
     }
 
-
+*/
+    HomePageShow()
 }
-/*
+
 @Preview
 @Preview("dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Preview(device = Devices.PIXEL_C)
@@ -555,7 +547,8 @@ private fun HomeComponentPreview() {
         HomeComponent()
     }
 }
-*/
+//=======================================================================
+
 /*
 @Preview
 @Preview("dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
@@ -618,18 +611,6 @@ fun TodoComponent(todoViewModel: TodoViewModel) {
         onEditDone = todoViewModel::onEditDone
     )
 }
-/*
-
- */
-//++++++++++++++++++++++++++++++++++++
-/*
-@Composable
-fun AdMobComponent() {
-    AdNetworkApp()
-}
-*/
-
-//-----------------------------------
 //========Классическое меню ABOUT  5 ==в правом углу======================
 @Composable
 fun AboutComponent(currentRoute : String) {
@@ -821,9 +802,6 @@ var vStr:String=currentRouteSchedule500
         showYaInterstitial()
     }
     Schedule500Sample(currentRouteSchedule500)
-//    currentRouteSchedule500 = RoutesSchedule500.SCHEDULE500SELNULL
-
-//    Schedule500Sample()
 }
 /*
 @Composable
