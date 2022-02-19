@@ -188,7 +188,8 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
         ]
     }
 }
-String getDate() {
+
+static String getDate() {
     Date date = new Date();
     String dates = "\""+date.format("dd.MM.yyyy", TimeZone.default)+"\"";
     return dates;
