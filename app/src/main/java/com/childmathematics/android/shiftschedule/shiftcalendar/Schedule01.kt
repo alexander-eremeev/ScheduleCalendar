@@ -19,6 +19,8 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Bottom
+import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -95,8 +97,12 @@ object RoutesSch01 {
       .padding(0.dp,changeDp,0.dp,0.dp)        // добавлен для баннера
     ) {
     Text(
-      textAlign = TextAlign.Center,
-      text = "График непрерывный 12 часовой 4-х бригадный 2-х сменный "      ,
+//        textAlign = TextAlign.Center,
+//        textAlign = Center,
+        modifier = Modifier
+            .align(CenterHorizontally),
+
+      text = "График прерывный, односменный,\n 8 часовой с выходными СБ и ВС"      ,
       style = MaterialTheme.typography.body1,
 //      color = MaterialTheme.colors.secondary,
       softWrap = true,
@@ -123,56 +129,27 @@ object RoutesSch01 {
 
     Spacer(modifier = Modifier.height(20.dp))
         Text(
-            text = "\tВСЕГО за месяц:\n"
-                    +"\tБригада 1:"
-                    + String.format("%4d",(getShift01NightMonth(state.monthState.currentMonth.year,
-                    state.monthState.currentMonth.monthValue,1)).toInt())
-                    +"("
+            text = "\tВСЕГО за месяц:\n\t"
+//                    +"\tБригада 1:"
+                    + String.format("%4d",(getShift01WorkDayMonth(state.monthState.currentMonth.year,
+                    state.monthState.currentMonth.monthValue)))
+                    +"\tраб.дней\t"
                     +String.format("%4d",(getShift01Month(
-                    state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,1)).toInt())
-                    +") час"
+                    state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue)).toInt())
+                    +"\tчасов"
             ,
-            fontSize = 14.sp,    )
-      Text(
-          text =
-                  "\tБригада 2:"
-                  + String.format("%4d",(getShift01NightMonth(state.monthState.currentMonth.year,
-              state.monthState.currentMonth.monthValue,2)).toInt())
-                  +"("
-                  +String.format("%4d",(getShift01Month(
-              state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,2)).toInt())
-                  +") час"
-          ,
-          fontSize = 14.sp,    )
-      Text(
-          text =
-          "\tБригада 3:"
-                  + String.format("%4d",(getShift01NightMonth(state.monthState.currentMonth.year,
-              state.monthState.currentMonth.monthValue,3)).toInt())
-                  +"("
-                  +String.format("%4d",(getShift01Month(
-              state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,3)).toInt())
-                  +") час"
-          ,
-          fontSize = 14.sp,    )
-      Text(
-          text =
-          "\tБригада 4:"
-                  + String.format("%4d",(getShift01NightMonth(state.monthState.currentMonth.year,
-              state.monthState.currentMonth.monthValue,4)).toInt())
-                  +"("
-                  +String.format("%4d",(getShift01Month(
-              state.monthState.currentMonth.year,state.monthState.currentMonth.monthValue,4)).toInt())
-                  +") час"
-          ,
-          fontSize = 14.sp,    )
+            fontSize = 15.sp,
+            fontWeight= FontWeight.Bold,
+
+        )
       //========================================================================
+/*
       Text(
-          text = "\n\tПояснение:\tв скобках - ночные часы"
+          text = "\n\tПояснение:\tв скобках - кол-во рабочих дней"
           ,
           fontSize = 14.sp,
       )
-
+*/
       Spacer(modifier = Modifier.height(20.dp))
   }
 
@@ -233,7 +210,15 @@ fun Sch01RecipeDay(
       .aspectRatio(1f)
       .padding(2.dp),
     elevation = if (state.isFromCurrentMonth) 4.dp else 0.dp,
-    border = if (state.isCurrentDay) BorderStroke(1.dp, MaterialTheme.colors.primary) else null,
+    border = if (state.isCurrentDay){ BorderStroke(1.dp, MaterialTheme.colors.primary)
+//      if (state.isCurrentDay){ BorderStroke(2.dp, MaterialTheme.colors.primary)
+                } else if (state.isCurrentDay && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
+                    BorderStroke(2.dp, MaterialTheme.colors.error)
+                else if (state.isFromCurrentMonth && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
+                    BorderStroke(1.dp, MaterialTheme.colors.error)
+//        else if (date.dayOfWeek.value==6 || date.dayOfWeek.value==7) BorderStroke(1.dp,
+//      if (state.isCurrentDay){ BorderStroke(2.dp, MaterialTheme.colors.primary)
+        else null,
     contentColor = if (isSelected) MaterialTheme.colors.secondary else contentColorFor(
       backgroundColor = MaterialTheme.colors.surface
     )
@@ -244,33 +229,42 @@ fun Sch01RecipeDay(
       },
       horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-      Text(
-        fontSize = 10.sp,
-        fontWeight= FontWeight.Bold,
-//        Style= MaterialTheme.typography.subtitle2   ,
+            Text(
+//                modifier = Modifier.background(androidx.compose.ui.graphics.Color.Red, CircleShape),
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                text = date.dayOfMonth.toString(),
+//          style = MaterialTheme.typography.h6,
 
-
-//        fontStyle = FONT_WEIGHT_BOLD,
-//        style = MaterialTheme.typography.h6,
-        textAlign = TextAlign.Center,
-        text = date.dayOfMonth.toString(),
-
-        )
-        Text(
+            )
+        if (date.dayOfWeek.value==6 || date.dayOfWeek.value==7) {
+/*
+            Box(
+                modifier = Modifier
+                    .padding(3.dp)
+                    .size(10.dp)
+                    .clip(CircleShape)
+                    .background(MaterialTheme.colors.error)   //
+//            .background(MaterialTheme.colors.secondary)   // blue
+//            .background(MaterialTheme.colors.error)     // red
+//            .background(Resources.Theme.ShiftCalendar.colors.)     // red
+            )
+*/
+            Text(
+                text = "",
+            )
+        }
+            else {
+            Text(
 //          text = plannedRecipe.price.toString(),
-          text = String.format("%2d",(getShift01(date,1)).toInt())
-                  +" / "
-                  +String.format("%2d",(getShift01(date,2)).toInt()),
-          fontSize = 9.sp,
-//          style = MaterialTheme.typography.body2,
-        )
-        Text(
-//          text = plannedRecipe.price.toString(),
-          text = String.format("%2d",(getShift01(date,3)).toInt())
-                  +" / "
-                  +String.format("%2d",(getShift01(date,4)).toInt()),
-          fontSize = 9.sp,
-        )
+                text = //String.format("%2d",(getShift01(date)).toInt())
+//                  +" / "+
+                String.format("%2d", (getShift01(date)).toInt()),
+//          fontSize = 9.sp,
+                style = MaterialTheme.typography.body2,
+            )
+        }
     }
   }
 }
@@ -379,174 +373,37 @@ fun Schedule01SamplePreview( ) {
 //====================================================================
 // расчет основного рабочего времени по дате по номеру бригады
 //==============================================
-fun getShift01 (dateforCalc: LocalDate,nBrig: Int):Double
+fun getShift01 (dateforCalc: LocalDate):Double
 {
   val shift : Int
-  shift=(dateforCalc.toEpochDay() % 4).toInt()
+  shift=dateforCalc.dayOfWeek.value
 
   when (shift) {
-    0 -> {
-      when (nBrig){
-        1 -> return 0.0
+         1 -> return 8.0
         2 -> return 8.0
-        3 -> return 4.0
-        4 -> return 12.0
-        else -> return 0.0
-      }
-    }
-    1 -> {
-      when (nBrig){
-        1 -> return 12.0
-        2 -> return 0.0
         3 -> return 8.0
-        4 -> return 4.0
-        else -> return 0.0
-      }
-    }
-    2 -> {
-      when (nBrig){
-        1 -> return 4.0
-        2 -> return 12.0
-        3 -> return 0.0
         4 -> return 8.0
-        else -> return 0.0
+        5 -> return 8.0
+        6 -> return 0.0
+        7 -> return 0.0
+        else -> return 099.0
       }
-    }
-    3 -> {
-      when (nBrig){
-        1 -> return 8.0
-        2 -> return 4.0
-        3 -> return 12.0
-        4 -> return 0.0
-        else -> return 0.0
-      }
-    }
-  }
-    if (nBrig > 4 || nBrig<1) {return -1999.0}
-  return -2999.0
 }
 //====================================================================
-// расчет ночных по дате по номеру бригады
-//==============================================
-fun getShift01Night (dateforCalc: LocalDate,nBrig: Int):Double
-{
-  val shift : Int
-  shift=(dateforCalc.toEpochDay() % 4).toInt()
-
-  when (shift) {
-    0 -> {
-      when (nBrig){
-        1 -> return 0.0
-        2 -> return 6.0
-        3 -> return 2.0
-        4 -> return 0.0
-        else -> return 0.0
-      }
-    }
-    1 -> {
-      when (nBrig){
-        1 -> return 0.0
-        2 -> return 0.0
-        3 -> return 6.0
-        4 -> return 2.0
-        else -> return 0.0
-      }
-    }
-    2 -> {
-      when (nBrig){
-        1 -> return 2.0
-        2 -> return 0.0
-        3 -> return 0.0
-        4 -> return 6.0
-        else -> return 0.0
-      }
-    }
-    3 -> {
-      when (nBrig){
-        1 -> return 6.0
-        2 -> return 2.0
-        3 -> return 0.0
-        4 -> return 0.0
-        else -> return 0.0
-      }
-    }
-  }
-  if (nBrig > 4 || nBrig<1) {return -1999.0}
-  return -2999.0
-}
 //====================================================================
-// расчет основного рабочего времени по дате по номеру бригады
+// расчет основного времени до выбранной даты
 //==============================================
-fun getShift01Text (dateforCalc: LocalDate,nBrig: Int):String
-{
-    val shift : Int
-    shift=(dateforCalc.toEpochDay() % 4).toInt()
-
-    when (shift) {
-        0 -> {
-            when (nBrig){
-                1 -> return "выходной"
-                2 -> return "с ночи"
-                3 -> return "в ночь"
-                4 -> return "в день"
-                else -> return "Error"
-            }
-        }
-        1 -> {
-            when (nBrig){
-                1 -> return "в день"
-                2 -> return "выходной"
-                3 -> return "с ночи"
-                4 -> return "в ночь"
-                else -> return "Error"
-            }
-        }
-        2 -> {
-            when (nBrig){
-                1 -> return "в ночь"
-                2 -> return "в день"
-                3 -> return "выходной"
-                4 -> return "с ночи"
-                else -> return "Error"
-            }
-        }
-        3 -> {
-            when (nBrig){
-                1 -> return "с ночи"
-                2 -> return "в ночь"
-                3 -> return "в день"
-                4 -> return "выходной"
-                else -> return "Error"
-            }
-        }
-    }
-    if (nBrig > 4 || nBrig<1) {return "Error"}
-    return "Error"
-}
-//====================================================================
-// расчет ночных до выбранной даты по номеру бригады
-//==============================================
-fun getShift01NightSelect(selection: List<LocalDate>,nBrig: Int):Double {
-  var summ: Double =getShift01Night(selection[selection.lastIndex] ,nBrig)
+fun getShift01Select (selection: List<LocalDate>):Double {
+  var summ: Double =getShift01(selection[selection.lastIndex] )
   for (i in selection.lastIndex downTo 0 step 1) {
-    summ+=getShift01Night(selection[selection.lastIndex-i] ,nBrig)
-  }
-return summ
-}
-//====================================================================
-// расчет основного времени до выбранной даты по номеру бригады
-//==============================================
-fun getShift01Select (selection: List<LocalDate>,nBrig: Int):Double {
-  var summ: Double =getShift01(selection[selection.lastIndex] ,nBrig)
-  for (i in selection.lastIndex downTo 0 step 1) {
-    summ+=getShift01(selection[selection.lastIndex-i] ,nBrig)
+    summ+=getShift01(selection[selection.lastIndex-i] )
   }
   return summ
 }//====================================================================
 //====================================================================
-// расчет ночных до выбранной даты по номеру бригады
+// расчет рабочих дней до конца месяца
 //==============================================
-fun getShift01NightMonth (year: Int,month: Int,nBrig: Int):Double {
+fun getShift01WorkDayMonth (year: Int,month: Int):Int {
   var monthW: Int=month+1
   var yearW: Int=year
   if (monthW >12) {
@@ -554,16 +411,17 @@ fun getShift01NightMonth (year: Int,month: Int,nBrig: Int):Double {
     yearW=yearW+1
   }
   var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1)
-  var summ: Double =0.0
+  var daysInMonth:Int =0
   for (i in dateforCalc.minusDays(1).dayOfMonth downTo 1 step 1) {
-    summ+=getShift01Night(dateforCalc.minusDays(i.toLong()) ,nBrig)
+      if (getShift01(dateforCalc.minusDays(i.toLong())) >0.0)
+          daysInMonth  +=1
   }
-  return summ
+  return daysInMonth
 }
 //====================================================================
-// расчет основного времени до выбранной даты по номеру бригады
+// расчет основного времени до выбранной даты
 //==============================================
-fun getShift01Month (year: Int,month: Int,nBrig: Int):Double {
+fun getShift01Month (year: Int,month: Int):Double {
     var monthW: Int=month+1
     var yearW: Int=year
     if (monthW >12) {
@@ -575,63 +433,71 @@ fun getShift01Month (year: Int,month: Int,nBrig: Int):Double {
 
     var summ: Double =0.0
     for (i in dateforCalc.minusDays(1).dayOfMonth downTo 1 step 1) {
-        summ+=getShift01(dateforCalc.minusDays(i.toLong()) ,nBrig)
+        summ+=getShift01(dateforCalc.minusDays(i.toLong()) )
     }
     return summ
 }
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады с начала месяца
 //==============================================
-fun getShift01MonthDate (datecalc: LocalDate,nBrig: Int):Double {
+fun getShift01MonthDateDays (datecalc: LocalDate):Int {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= datecalc
 
-    var summ: Double =getShift01(dateforCalc, nBrig)
+    var summDays: Int
+        if (getShift01(dateforCalc)>0.0) summDays  =1 else summDays  =0
     for (i in dateforCalc.dayOfMonth-1 downTo 1 step 1) {
-            summ += getShift01(dateforCalc.minusDays(i.toLong()), nBrig)
+        if (getShift01(dateforCalc.minusDays(i.toLong())) >0.0)
+            summDays  +=1
+
     }
-    return summ
+    return summDays
 }
+
+
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады с начала месяца
 //==============================================
-fun getShift01MonthDateNight (datecalc: LocalDate,nBrig: Int):Double {
+fun getShift01MonthDate (datecalc: LocalDate):Double {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= datecalc
 
-    var summ: Double =getShift01Night(dateforCalc ,nBrig)
+    var summ: Double =getShift01(dateforCalc)
     for (i in dateforCalc.dayOfMonth-1 downTo 1 step 1) {
-        summ+=getShift01Night(dateforCalc.minusDays(i.toLong()) ,nBrig)
+            summ += getShift01(dateforCalc.minusDays(i.toLong()))
     }
     return summ
 }
 //====================================================================
 // расчет основного времени между выбранной даты по номеру бригады с начала месяца
 //==============================================
-fun getShift01Date1Date2 (date1: LocalDate,date2: LocalDate,nBrig: Int):Double {
+fun getShift01Date1Date2 (date1: LocalDate,date2: LocalDate):Double {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= date2
 
-    var summ: Double =getShift01(dateforCalc, nBrig)
+    var summ: Double =getShift01(dateforCalc)
     for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
-        summ += getShift01(dateforCalc.minusDays(i.toLong()), nBrig)
+        summ += getShift01(dateforCalc.minusDays(i.toLong()))
     }
     return summ
 }
 //====================================================================
 // расчет основного времени между выбранной даты по номеру бригады с начала месяца
 //==============================================
-fun getShift01Date1Date2Night (date1: LocalDate,date2: LocalDate,nBrig: Int):Double {
+fun getShift01Date1Date2Days (date1: LocalDate,date2: LocalDate):Int {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= date2
 
-    var summ: Double = getShift01Night(dateforCalc, nBrig)
+    var summDays: Int
+    if (getShift01(dateforCalc)>0.0) summDays  =1 else summDays  =0
     for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
-        summ += getShift01Night(dateforCalc.minusDays(i.toLong()), nBrig)
+        if (getShift01(dateforCalc.minusDays(i.toLong())) >0.0)
+            summDays  +=1
+
+
     }
-    return summ
-}
-//====================================================================
+    return summDays
+}//====================================================================
 @Composable
 fun DialogSchedule01(selection: List<LocalDate>,onDismiss: () -> Unit) {
 
@@ -671,114 +537,49 @@ fun DialogSchedule01(selection: List<LocalDate>,onDismiss: () -> Unit) {
         modifier = Modifier.align(CenterHorizontally) ,
         fontSize = 20.sp,    )
 
-      Text(
-        text = "Бригада 1:"
-                +String.format("%3d",getShift01 (selection[0],1).toInt())
-                +"("
-                +String.format("%1d",getShift01Night (selection[0],1).toInt())
-                +") час"
-//                +"\t"
-                +String.format("%10s",getShift01Text (selection[0],1))
-          ,
-        fontSize = 15.sp,    )
-
-
-      Text(
-        text = "Бригада 2:"
-                +String.format("%3d",getShift01 (selection[0],2).toInt())
-                +"("
-                +String.format("%1d",getShift01Night (selection[0],2).toInt())
-                +") час"
-//                +"\t"
-                +String.format("%10s",getShift01Text (selection[0],2))
-          ,
-         fontSize = 15.sp,
-      )
-
-
-      Text(
-        text = "Бригада 3:"
-                +String.format("%3d",getShift01 (selection[0],3).toInt())
-                +"("
-                +String.format("%1d",getShift01Night (selection[0],3).toInt())
-                +") час"
-//                +"\t"
-                +String.format("%10s",getShift01Text (selection[0],3))
-          ,
-
-        fontSize = 15.sp,
-      )
-        Text(
-            text = "Бригада 4:"
-                    +String.format("%3d",getShift01 (selection[0],4).toInt())
-                    +"("
-                    +String.format("%1d",getShift01Night (selection[0],4).toInt())
-                    +") час"
-//                    +"\t"
-                    +String.format("%10s",getShift01Text (selection[0],4))
-                ,
-
-            fontSize = 15.sp,
-        )
 //------------------------------------------------------------------------------------------------------------------------------
 
         Text(
-            text = "\nС начала месяца:\n",
+            text = "\nС начала месяца:\n\t"
+                    +String.format("%4d",(getShift01MonthDateDays(selection[0])))
+                    +"\tраб.дней\t"
+                    + String.format("%4d",(getShift01MonthDate (selection[0]).toInt()))
+                    +"\tчасов"
+            ,
+
             fontWeight = FontWeight.Bold,
             fontSize = 15.sp,
 //          modifier = Modifier.padding(8.dp)
             modifier = Modifier
                 .align(CenterHorizontally),
         )
+         Spacer(modifier = Modifier.height(20.dp))
+/*
         Text(
-            text = "\tБригада 1:"
-                    +String.format("%5d",getShift01MonthDate (selection[0],1).toInt())
-                    +"("
-                    +String.format("%5d",getShift01MonthDateNight (selection[0],1).toInt())
-                    +") час"
-            ,
-            fontSize = 15.sp,    )
-
-
-        Text(
-            text = "\tБригада 2:"
-                    +String.format("%5d",getShift01MonthDate (selection[0],2).toInt())
-                    +"("
-                    +String.format("%5d",getShift01MonthDateNight (selection[0],2).toInt())
-                    +") час"
+            text = "\tВСЕГО за месяц:\t"
+//                    +"\tБригада 1:"
+                    + String.format("%4d",(getShift01MonthDate (selection[0]).toInt()))
+                    +"\tраб.дней\t"
+                    +String.format("%4d",(getShift01MonthDateDays(selection[0])))
+                    +"\tчасов"
             ,
             fontSize = 15.sp,
-            //style = MaterialTheme.typography.h6,
-        )
+            fontWeight= FontWeight.Bold,
 
+            )
 
-        Text(
-            text = "\tБригада 3:"
-                    +String.format("%5d",getShift01MonthDate(selection[0],3).toInt())
-                    +"("
-                    +String.format("%5d",getShift01MonthDateNight (selection[0],3).toInt())
-                    +") час"
-            ,
-
-            fontSize = 15.sp,
-        )
-        Text(                                   //getShift01MonthDate (datecalc: LocalDate,nBrig: Int):Double
-            text = "\tБригада 4:"
-                    +String.format("%5d",getShift01MonthDate (selection[0],4).toInt())
-                    +"("
-                    +String.format("%5d",getShift01MonthDateNight (selection[0],4).toInt())
-                    +") час"
-            ,
-
-            fontSize = 15.sp,
-        )
+ */
+        //========================================================================
 
 //========================================================================
+/*
         Text(
             text = "\n\tПояснение:\tв скобках - ночные часы"
                 ,
             fontSize = 15.sp,
         )
+
+ */
 
       //=====================================================
     } else
@@ -800,53 +601,22 @@ fun DialogSchedule01(selection: List<LocalDate>,onDismiss: () -> Unit) {
           fontSize = 20.sp,    )
         //--------------------------------------------getShift01Date1Date2 (date1: LocalDate,date2: LocalDate------------------
           Text(
-              text = "\tБригада 1:"
-                      +String.format("%5d",getShift01Date1Date2 (selection[0],selection[selection.lastIndex],1).toInt())
-                      +"("
-                      +String.format("%5d",getShift01Date1Date2Night (selection[0],selection[selection.lastIndex],1).toInt())
-                      +") час"
+              text = "\tОтработано:\n\t"
+                      +String.format("%4d",(getShift01Date1Date2Days(selection[0],selection[selection.lastIndex])))
+                      +"\tраб.дней\t"
+//                      + String.format("%4d",(getShift01MonthDate (selection[0],selection[selection.lastIndex]))
+                      +String.format("%5d",getShift01Date1Date2 (selection[0],selection[selection.lastIndex]).toInt())
+                      +"\tчас"
               ,
               fontSize = 15.sp,    )
+/*
 
-
-          Text(
-              text = "\tБригада 2:"
-//                +"\t/\tРабочих:\t"
-                      +String.format("%5d",getShift01Date1Date2 (selection[0],selection[selection.lastIndex],2).toInt())
-//                +"Ночных:\t"
-                      +"("
-                      +String.format("%5d",getShift01Date1Date2Night (selection[0],selection[selection.lastIndex],2).toInt())
-                      +") час"
-              ,
-              fontSize = 15.sp,
-          )
-
-
-          Text(
-              text = "\tБригада 3:"
-                      +String.format("%5d",getShift01Date1Date2 (selection[0],selection[selection.lastIndex],3).toInt())
-                      +"("
-                      +String.format("%5d",getShift01Date1Date2Night (selection[0],selection[selection.lastIndex],3).toInt())
-                      +") час"
-              ,
-              fontSize = 15.sp,
-          )
-          Text(                                   //getShift01MonthDate (datecalc: LocalDate,nBrig: Int):Double
-              text = "\tБригада 4:"
-                      +String.format("%5d",getShift01Date1Date2 (selection[0],selection[selection.lastIndex],4).toInt())
-                      +"("
-                      +String.format("%5d",getShift01Date1Date2Night (selection[0],selection[selection.lastIndex],4).toInt())
-                      +") час"
-              ,
-
-              fontSize = 15.sp,
-          )
           Text(
               text = "\n\tПояснение:\tв скобках - ночные часы"
               ,
               fontSize = 15.sp,
           )
-
+*/
         //=======================================================
       } else {
           Text(

@@ -408,6 +408,23 @@ fun AppDrawer(
                 }
             )
         }
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            if (BuildConfig.Schedule01RouteEnable) {
+
+                DrawerButton(
+//            icon = Icons.Filled.Preview,
+                    icon = Icons.Filled.Schedule,
+                    label = "График прерывный, односменный, 8 часовой с выходными днями суббота,воскресенье",
+                    isSelected = currentRoute == Routes.SCHEDULE01_ROUTE,
+                    action = {
+                        if (currentRoute != Routes.SCHEDULE01_ROUTE) {
+                            navigateToSchedule01()
+                        }
+                        closeDrawer()
+                    }
+                )
+            }
+
 //---------------------------------------------------------------------
             //---------------------------------------------------------------------------
             if (BuildConfig.Schedule500RouteEnable) {
@@ -420,23 +437,6 @@ fun AppDrawer(
                     action = {
                         if (currentRoute != Routes.SCHEDULE500_ROUTE) {
                             navigateToSchedule500()
-                        }
-                        closeDrawer()
-                    }
-                )
-            }
-
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            if (BuildConfig.Schedule01RouteEnable) {
-
-                DrawerButton(
-//            icon = Icons.Filled.Preview,
-                    icon = Icons.Filled.Schedule,
-                    label = "График прерывный, односменный, 8 часовой с выходными днями суббота,воскресенье",
-                    isSelected = currentRoute == Routes.SCHEDULE01_ROUTE,
-                    action = {
-                        if (currentRoute != Routes.SCHEDULE01_ROUTE) {
-                            navigateToSchedule01()
                         }
                         closeDrawer()
                     }
@@ -874,7 +874,7 @@ fun Schedule01Component(currentRouteSchedule01:String) {
         InitBannerView(mBannerAdEventListener)
         showYaInterstitial()
     }
-    Schedule500Sample(currentRouteSchedule01)
+    Schedule01Sample(currentRouteSchedule01)
 }
 /*
 @Composable

@@ -94,7 +94,7 @@ object RoutesSch500 {
       .padding(0.dp,changeDp,0.dp,0.dp)        // добавлен для баннера
     ) {
     Text(
-      textAlign = TextAlign.Center,
+//      textAlign = TextAlign.Center,
       text = "График непрерывный 12 часовой 4-х бригадный 2-х сменный "      ,
       style = MaterialTheme.typography.body1,
 //      color = MaterialTheme.colors.secondary,
@@ -102,6 +102,8 @@ object RoutesSch500 {
       fontStyle = Italic,
       maxLines = 2,
       textDecoration = TextDecoration.Underline,
+        modifier = Modifier
+            .align(CenterHorizontally),
     )
   }
   Spacer(modifier = Modifier.height(20.dp))  //====================================================
