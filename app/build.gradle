@@ -17,8 +17,8 @@ android {
         applicationId "com.childmathematics.android.shiftschedule"
         minSdk 21
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 11
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -37,7 +37,7 @@ android {
         buildConfigField "boolean", "SettingsRouteEnable", "false" // Включение-отключение модуля
         buildConfigField "boolean", "ToDoRouteEnable", "false" // Включение-отключение модуля
         buildConfigField "boolean", "ScheduleRouteEnable", "false" // Включение-отключение модуля
-        buildConfigField "boolean", "Schedule01RouteEnable", "false" // Включение-отключение модуля
+        buildConfigField "boolean", "Schedule01RouteEnable", "true" // Включение-отключение модуля
         buildConfigField "boolean", "Schedule500RouteEnable", "true" // Включение-отключение модуля
 
 

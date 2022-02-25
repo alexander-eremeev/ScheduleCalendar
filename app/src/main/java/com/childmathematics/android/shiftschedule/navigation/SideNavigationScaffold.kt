@@ -71,6 +71,7 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
     val openDrawer: () -> Unit = { coroutineScope.launch { scaffoldState.drawerState.open() } }
     val closeDrawer: () -> Unit = { coroutineScope.launch { scaffoldState.drawerState.close() } }
     var currentRouteSchedule500 by remember { mutableStateOf(RoutesSchedule500.SCHEDULE500SELNULL) }
+    var currentRouteSchedule01 by remember { mutableStateOf(RoutesSchedule01.SCHEDULE01SELNULL) }
 //========Классическое меню ABOUT  1 ====в правом углу====================
     val aboutitems = listOf(
         ActionItemSpec("Помощь", Icons.Default.Help, ActionItemMode.ALWAYS_SHOW) {
@@ -113,6 +114,20 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
 
         },
     )
+//------------------------------------------------------------------------
+    val schedule01items = listOf(
+        ActionItemSpec("Расчет для выделенных дат", Icons.Default.Summarize, ActionItemMode.IF_ROOM) {
+            currentDialog= true
+            if (currentRouteSchedule01 == RoutesSchedule01.SCHEDULE01SELSINGLE){
+                currentRouteSchedule01 = RoutesSchedule01.SCHEDULE01SELPERIOD
+
+            }
+            else {
+                currentRouteSchedule01 = RoutesSchedule01.SCHEDULE01SELSINGLE
+            }
+
+        },
+    )
 //------------------------------------
 
     Scaffold(
@@ -137,6 +152,13 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
                  navigateToSchedule500 = {
                      currentRoute = Routes.SCHEDULE500_ROUTE
                      if (BuildConfig.Schedule500RouteEnable) {
+                         navController.popBackStack()
+                         navController.navigate(currentRoute)
+                     }
+                 },
+                 navigateToSchedule01 = {
+                     currentRoute = Routes.SCHEDULE01_ROUTE
+                     if (BuildConfig.Schedule01RouteEnable) {
                          navController.popBackStack()
                          navController.navigate(currentRoute)
                      }
@@ -207,6 +229,12 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
                     if (currentRoute == Routes.SCHEDULE500_ROUTE && BuildConfig.Schedule500RouteEnable) {
                         currentRouteSchedule500=RoutesSchedule500.SCHEDULE500SELNULL
                        ActionMenu(schedule500items, defaultIconSpace = 0)
+//                        OverflowTopSchedule500()
+                    }
+//========================================================
+                    if (currentRoute == Routes.SCHEDULE01_ROUTE && BuildConfig.Schedule01RouteEnable) {
+                        currentRouteSchedule01=RoutesSchedule01.SCHEDULE01SELNULL
+                        ActionMenu(schedule01items, defaultIconSpace = 0)
 //                        OverflowTopSchedule500()
                     }
 //========Классическое меню ABOUT  2 ==в правом углу======================
@@ -310,6 +338,16 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
                 }
             }
 //--------------------------------------------------------
+            if (BuildConfig.Schedule01RouteEnable) {
+                composable(Routes.SCHEDULE01_ROUTE) {
+
+                    Schedule01Component(currentRouteSchedule01)
+                    if (       !currentDialog
+                    )
+                        currentRouteSchedule01 = RoutesSchedule01.SCHEDULE01SELNULL
+                }
+            }
+//--------------------------------------------------------
 
         }
     }
@@ -329,6 +367,7 @@ fun AppDrawer(
     navigateToAbout: () -> Unit,
     navigateToSchedule: () -> Unit,
     navigateToSchedule500: () -> Unit,
+    navigateToSchedule01: () -> Unit,
 //-----------------------------------
     closeDrawer: () -> Unit
 ) {
@@ -381,6 +420,23 @@ fun AppDrawer(
                     action = {
                         if (currentRoute != Routes.SCHEDULE500_ROUTE) {
                             navigateToSchedule500()
+                        }
+                        closeDrawer()
+                    }
+                )
+            }
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            if (BuildConfig.Schedule01RouteEnable) {
+
+                DrawerButton(
+//            icon = Icons.Filled.Preview,
+                    icon = Icons.Filled.Schedule,
+                    label = "График прерывный, односменный, 8 часовой с выходными днями суббота,воскресенье",
+                    isSelected = currentRoute == Routes.SCHEDULE01_ROUTE,
+                    action = {
+                        if (currentRoute != Routes.SCHEDULE01_ROUTE) {
+                            navigateToSchedule01()
                         }
                         closeDrawer()
                     }
@@ -574,6 +630,12 @@ object RoutesSchedule500 {
     const val SCHEDULE500SELNULL = ""
     const val SCHEDULE500SELSINGLE = "Schedule500SelSingle"
     const val SCHEDULE500SELPERIOD = "Schedule500SelPeriod"
+    //---------------------------------------------------------
+}
+object RoutesSchedule01 {
+    const val SCHEDULE01SELNULL = ""
+    const val SCHEDULE01SELSINGLE = "Schedule01SelSingle"
+    const val SCHEDULE01SELPERIOD = "Schedule01SelPeriod"
     //---------------------------------------------------------
 }
 //++++++++++++++++++++++++++++++++++++
@@ -791,6 +853,28 @@ var vStr:String=currentRouteSchedule500
         showYaInterstitial()
     }
     Schedule500Sample(currentRouteSchedule500)
+}
+//++++++++++++++++++++++++++++++++++++
+@ExperimentalCoroutinesApi
+@Composable
+//fun Schedule500Component() {
+fun Schedule01Component(currentRouteSchedule01:String) {
+    var vStr:String=currentRouteSchedule01
+    vStr=vStr+" /"
+
+    if (BuildConfig.DEBUG) {
+        Log.d ("Schedule01", vStr)
+    }
+    if (BuildConfig.AdMobEnable) {
+
+        AdBannerNetworkApp()
+        AdInterstitialNetworkApp(LocalContext.current)
+    }
+    if (BuildConfig.YaAdsEnable) {
+        InitBannerView(mBannerAdEventListener)
+        showYaInterstitial()
+    }
+    Schedule500Sample(currentRouteSchedule01)
 }
 /*
 @Composable
