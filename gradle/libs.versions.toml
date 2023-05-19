@@ -34,9 +34,9 @@ jetbrainsKotlin = "1.8.10"                           # org.jetbrains.kotlin",
 #===================
 #===== Google =====
 #===================
-firebase = "31.0.3"                             #
-firebaseCrashlytics= "2.9.2"
-firebasePerformance= "1.4.2"
+googleFirebase = "31.0.3"                             #com.google.firebase
+googleFirebaseCrashlytics= "2.9.2"
+googleFirebasePerformance= "1.4.2"
 
 hilt = "2.44"                                   #
 accompanist = "0.25.1"
@@ -254,9 +254,9 @@ jetbrains-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutin
 #===================
 #====Google  Libraries
 #===================
-google-firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlytics" }
-google-firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerformance" }
-google-firebase = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
+google-firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "googleFirebaseCrashlytics" }
+google-firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "googleFirebasePerformance" }
+google-firebase = { group = "com.google.firebase", name = "firebase-bom", version.ref = "googleFirebase" }
 
 google-hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
 google-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
