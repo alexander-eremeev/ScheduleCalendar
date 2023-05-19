@@ -105,9 +105,7 @@ androidxProfileinstaller = "1.2.0"
 
 androidxStartup = "1.2.0-alpha01"
 
-androidxWindow = "1.1.0-alpha03"
-
-
+androidxWindow = "1.1.0"    #"1.1.0-alpha03"
 
 #===========================
 #===== Android Compose =====
