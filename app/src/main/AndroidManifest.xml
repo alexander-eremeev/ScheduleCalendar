@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Include required permissions for Google Mobile Ads to run-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <!-- Yandex Metrica optional permission. Approximate location derived from network location sources such as cell towers and Wi-Fi -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <!-- Yandex Metrica optional permission. Precise location from location sources such as GPS, cell towers, and Wi-Fi -->
+    <!--
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    -->
+    <!-- Yandex Metrica optional permission. Wifi state: mac, ssid, ... -->
+    <!--
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    -->
+<!--
+    Murphy с.36 Supporting Screens
+    -->
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true"/>
+
+    <!--android:theme="@android:style/Theme.Black.NoTitleBar"-->
+
+    <application
+        android:name=".AppYandexMetricaInit"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ShiftSchedule"
+        android:hardwareAccelerated="true"> <!-- Enable hardware acceleration for video ads on banner -->
+
+        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
+        -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+
+        <!--
+            В Yandex Mobile Ads SDK, начиная с версии 4.5.0, появилось новое разрешение com.google.android.gms.permission.AD_ID.
+            Оно прописано в файле AndroidManifest.xml библиотеки. Поэтому указывать его дополнительно в основном манифесте приложения не нужно.
+            Разрешение позволяет использовать рекламный идентификатор для подбора релевантной рекламы от рекламных сетей.
+            При необходимости вы можете удалить разрешение. Например, если какие-то политики, как Families Policy,
+            не позволяют использовать идентификатор для подбора рекламы.
+            Чтобы разрешение не попало в основной манифест приложения, добавьте в файл AndroidManifest.xml строку:
+            <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
+        -->
+
+        <activity
+
+       android:name=".MainActivity"
+
+        android:label="@string/app_name"
+       android:exported="true">
+       <intent-filter>
+           <action android:name="android.intent.action.MAIN" />
+
+           <category android:name="android.intent.category.LAUNCHER" />
+       </intent-filter>
+   </activity>
+</application>
+
+</manifest>

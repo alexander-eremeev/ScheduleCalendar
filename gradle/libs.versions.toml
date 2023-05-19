@@ -1,0 +1,700 @@
+[versions]
+#===================
+#===== Project =====
+#===================
+# @keep
+compile-sdk = "33"
+# @keep
+min-sdk = "23"
+# @keep
+target-sdk = "33"
+# @keep
+ndk-sdk = "25.2.9519653"  #"21.1.6352462" # 22.1.7171670     это набор инструментов, которые позволяют реализовать часть вашего приложения используя такие языки как С/С++.
+
+# @keep
+versionCode = "11"
+# @keep
+versionName = "1.1.0"
+# @keep
+applicationId="com.childmathematics.android.shiftschedule"
+# @keep
+appNameRelease="ScheduleCalendar"
+# @keep
+appNameDebug="ScheduleCalendar Debug"
+
+
+
+#===================
+#===== Compile =====
+#===================
+agp = "8.0.1"
+#androidGradlePlugin = "8.0.1"               #
+
+kotlin = "1.8.10"
+#===================
+#===== Google =====
+#===================
+firebase = "31.0.3"                             #
+firebaseCrashlytics= "2.9.2"
+firebasePerformance= "1.4.2"
+
+hilt = "2.44"                                   #
+accompanist = "0.25.1"
+protobuf = "4.0.0-rc-2"
+
+devtoolsKsp = "1.7.20-1.0.7"
+googleservices = "4.3.14"
+googleads = "21.3.0" 
+
+
+#=================================
+#===== Android dependencies ======
+#=================================
+androidDesugarJdkLibs = "1.2.2"                 #"1.2.2"    "2.0.0" for 7.4.0-alpha10
+
+coroutines = "1.6.4"
+#kotlinxCoroutines = "1.6.4"
+
+material = "1.8.0"
+
+appcompat = "1.6.1"
+
+activity-ktx = "1.7.1"
+
+fragment-ktx = "1.5.7"
+
+core-ktx = "1.9.0"
+androidxCore = "1.9.0"
+
+multidex = "2.0.1"
+
+preference = "1.2.0"
+
+recyclerview = "1.2.1"
+
+constraintlayout = "2.1.4"
+
+coordinatorlayout = "1.2.0"
+
+navigation = "2.5.3"
+
+concurrent-futures-ktx = "1.1.0"
+
+lifecycle = "2.6.1"
+
+annotation = "1.6.0"
+
+cardview = "1.0.0"
+
+viewpager2 = "1.0.0"
+
+swiperefreshlayout = "1.1.0"
+
+room = "2.5.1"
+#room = "2.5.0-alpha03"
+
+camera = "1.2.0-beta01"
+
+exifinterface = "1.3.3"
+
+androidxDataStore = "1.0.0"
+
+androidxMacroBenchmark = "1.1.1"                #1.1.0
+
+androidxProfileinstaller = "1.2.0"
+
+androidxStartup = "1.2.0-alpha01"
+
+androidxWindow = "1.1.0-alpha03"
+
+
+
+#===========================
+#===== Android Compose =====
+#===========================
+compose = "1.3.1"                       #1.4.3      "1.3.1"
+androidxCompose = "1.3.1"               #"1.3.1"
+androidxComposeUi = "1.3.2"              #1.3.2    1.4.0-alpha02
+
+
+androidx-activity-compose = "1.6.0"
+
+androidxComposeCompiler = "1.4.5"       #1.4.7 ?  "1.4.4"
+
+androidxComposeMaterial3 = "1.0.1"
+androidxHiltNavigationCompose = "1.0.0"
+
+composeWidget = "1.0.0-alpha05"
+
+#=======================
+#===== Third party =====
+#=======================
+protoWirePlugin = "4.6.2"                       #4.4.1
+#protoWirePlugin = "4.4.1"                       #4.4.2 НЕ СОВМЕСТИМ С kotlin = "1.7.20"  ТОЛЬКО С kotlin = "1.7.10"
+
+detekt = "1.22.0"
+dokka = "1.7.10"
+ktlint = "0.48.2"			# https://pinterest.github.io/ktlint	
+ktlint-gradle = "11.3.1"	# latest 03 March 2023
+benmanes = "0.46.0"
+
+jacoco = "0.8.8"			# EclEmma инструмент создания отчета покрытия кода JUnit тестами 
+kover =  "0.6.1"			# jetbrains инструмент создания отчета покрытия кода JUnit тестами для Kotlin
+
+sonarqube = "4.0.0.2929"
+# vcu = "0.6.1"
+
+composeLottie = "5.2.0"
+
+coil = "2.2.1"
+coilcompose = "2.2.1"
+
+glide = "4.13.2"
+glide-transformations = "4.3.0"
+
+square-okhttp = "4.10.0"
+okhttp = "4.10.0"
+
+square-retrofit2 = "2.9.0"
+retrofit = "2.9.0"
+
+square-moshi = "1.3.10"
+rxjava2 = "2.2.21"
+rxjava2-android = "2.1.1"
+rxjava3 = "3.1.5"
+rxjava3-android = "3.0.0"
+gson = "2.10"
+eventbus = "3.3.1"
+mars-xlog = "1.2.6"
+karn-notify = "1.5.0"
+mmkv = "1.2.14"
+fasterxml = "2.13.4"
+xx-permissions = "16.2"
+bson = "2.13.1" # As of 2.13.0, you need to add fasterxml jackson manually. Начиная с версии 2.13.0 вам необходимо вручную добавить jackson fastxml.
+free-reflection = "3.1.0"
+flyco-tablayout = "2.2.0"
+srl = "2.0.5"
+netty = "4.1.82.Final"
+koin = "3.2.1"
+bytedeco-ffmpeg = "5.0-1.5.7"
+bytedeco-javacpp = "1.5.7"
+material-dialogs = "3.3.0"
+android-animations = "2.4"
+java-mail = "1.6.7"
+jzlib = "1.1.3"
+androidasync = "3.1.0"
+net = "3.5.1"
+subsampling-scale-image-view = "3.10.0"
+mannodermaus-android-junit5 = "1.8.2.1"
+mannodermaus-junit5 = "1.3.0"
+
+debuggingchucker = "3.5.2" 
+#================
+#===== Yandex =====
+#================
+
+yandexmobileads = "5.4.0"            #5.4.0     5.5.0
+yandexmobmetrica = "5.2.0"
+
+
+#================
+#===== Test =====
+#================
+jupiter = "5.9.2" # JUnit 5
+
+androidx-test = "1.5.0"
+
+androidx-test-ext = "1.1.5"
+
+androidx-test-runner = "1.5.2"
+
+androidx-test-monitor = "1.6.1"
+androidx-test-uiautomator = "2.2.0"
+
+espresso-core = "3.5.1"
+testandroidxespressoCore = "3.5.1"	# "3.5.0"         #3.4.0
+
+kluent = "1.72"
+mockk = "1.13.4"
+arch = "2.2.0"
+
+powermock-version = "2.0.9"
+
+robolectric-version = "4.9.2"
+testrobolectric =  "4.9.2"	#"4.9"
+
+testandroidxjunit = "1.1.3" 
+testandroidxrules =  "1.4.0" 
+testandroidxuiautomator =  "2.2.0" 
+testjunit = "4.13.2" 
+testturbine = "0.12.0" 
+
+#===================#===================#===================#===================
+#===================#===================#===================#===================
+#===================#===================#===================#===================
+
+[libraries]
+#=========================================================
+#===== Compile =====
+#=========================================================
+#===================
+#===== Android  Libraries =====
+#===================
+#agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+android-material = { module = "com.google.android.material:material", version.ref = "material" }
+#===================
+#====jetbrains  Libraries
+#===================
+#kgp = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+jetbrains-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+#kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+jetbrains-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+jetbrains-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+#kotlin-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+#===================
+#====Google  Libraries
+#===================
+google-firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlytics" }
+google-firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerformance" }
+google-firebase = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
+
+google-hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
+google-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+google-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+
+google-kspPlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "devtoolsKsp" }
+google-servicesPlugin = { group = "com.google.gms", name = "google-services", version.ref = "googleservices" }
+
+google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+google-protobuf = { group = "com.google.protobuf", name = "protobuf-javalite", version.ref = "protobuf" }
+
+google-accompanist-navigation = { group = "com.google.accompanist", name = "accompanist-navigation-material", version.ref = "accompanist" }
+google-accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
+google-accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanist" }
+google-accompanist-insets = { group = "com.google.accompanist", name = "accompanist-insets", version.ref = "accompanist" }
+
+google-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "googleads" }
+
+
+#=========================
+#===== yandex Libraries =====
+#=========================
+
+yandex-mobileads = { group = "com.yandex.android", name = "mobileads", version.ref = "yandexmobileads" }
+yandex-mobmetrica = { group = "com.yandex.android", name = "mobmetricalib", version.ref = "yandexmobmetrica" }
+
+#=========================
+#===== debugging Libraries =====
+#=========================
+
+debugging-chucker = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "debuggingchucker" }
+debugging-compose-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidxCompose" }
+debugging-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+#===================
+#===== Androidx =====
+#===================
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+
+androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "activity-ktx" }
+androidx-benchmark-macro = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "androidxMacroBenchmark" }
+
+androidx-dataStore-core = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
+
+androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment-ktx" }
+androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+androidx-preference = { module = "androidx.preference:preference-ktx", version.ref = "preference" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+androidx-concurrent-futures-ktx = { module = "androidx.concurrent:concurrent-futures-ktx", version.ref = "concurrent-futures-ktx" }
+androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
+androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidx-coordinatorlayout = { module = "androidx.coordinatorlayout:coordinatorlayout", version.ref = "coordinatorlayout" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
+# CameraX core library
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "camera" }
+# CameraX Camera2 extensions
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camera" }
+androidx-camera-video = { module = "androidx.camera:camera-video", version.ref = "camera" }
+# CameraX Lifecycle library
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camera" }
+# CameraX View class
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "camera" }
+# CameraX Extensions library
+androidx-camera-ext = { module = "androidx.camera:camera-extensions", version.ref = "camera" }
+androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
+
+androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "androidxProfileinstaller" }
+androidx-startup = { group = "androidx.startup", name = "startup-runtime", version.ref = "androidxStartup" }
+androidx-window = { group = "androidx.window", name = "window", version.ref = "androidxWindow" }
+
+#=============================
+#===== Androidx Lifecycle =====
+#=============================
+# ViewModel
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+# LiveData
+androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+# optional - helpers for implementing LifecycleOwner in a Service
+androidx-lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.ref = "lifecycle" }
+# Lifecycles only (without ViewModel or LiveData)
+androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
+# Saved state module for ViewModel
+androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "lifecycle" }
+androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+
+#===========================
+#===== Androidx Room ========
+#===========================
+#room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+# kapt
+#room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+# optional - Kotlin Extensions and Coroutines support for Room
+#room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+# optional - RxJava support for Room
+androidx-room-rxjava2 = { module = "androidx.room:room-rxjava2", version.ref = "room" }
+
+#===========================
+#===== Android Compose =====
+#===========================
+
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
+
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+
+androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+androidx-compose-material-iconsCore = { group = "androidx.compose.material", name = "material-icons-core", version.ref = "androidxCompose" }
+androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "androidxCompose" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxComposeMaterial3" }
+
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
+
+androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "androidxComposeUi" }
+androidx-compose-widget = { group = "androidx.glance", name = "glance", version.ref = "composeWidget" }
+
+#=======================
+#===== Third party =====
+#=======================
+detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+# https://github.com/Kotlin/dokka
+dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+dokka-core = { module = "org.jetbrains.dokka:dokka-core", version.ref = "dokka" }
+
+#Protocol Buffers
+squareup-wire-gradlePlugin = { group = "com.squareup.wire", name = "wire-gradle-plugin", version.ref = "protoWirePlugin" }
+square-moshi = { module = "com.squareup.moshi:moshi", version.ref = "square-moshi" }
+square-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "square-okhttp" }
+square-okhttp-LogInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "square-okhttp" }
+square-okhttp-mock = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "square-okhttp" }
+square-retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "square-retrofit2" }
+square-retrofit2-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "square-retrofit2" }
+square-retrofit2-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "square-retrofit2" }
+square-retrofit2-converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "square-retrofit2" }
+square-retrofit2-adapter-rxjava2 = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref = "square-retrofit2" }
+squareup-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+squareup-retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
+squareup-retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "composeLottie" }
+
+
+rxjava2-java = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava2" }
+rxjava2-android = { module = "io.reactivex.rxjava2:rxandroid", version.ref = "rxjava2-android" }
+rxjava3-java = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava3" }
+rxjava3-android = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxjava3-android" }
+
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+
+io-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilcompose" }
+coil = { module = "io.coil-kt:coil", version.ref = "coil" }
+coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coil" }
+coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
+coil-video = { module = "io.coil-kt:coil-video", version.ref = "coil" }
+
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+# kapt(libs.glide.compiler)
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+glide-okhttp3 = { module = "com.github.bumptech.glide:okhttp3-integration", version.ref = "glide" }
+# https://github.com/wasabeef/glide-transformations
+glide-transformations = { module = "jp.wasabeef:glide-transformations", version.ref = "glide-transformations" }
+
+flycoTabLayout = { module = "com.flyco.tablayout:FlycoTabLayout_Lib", version.ref = "flyco-tablayout" }
+
+srl-footer = { module = "com.scwang.smart:refresh-footer-classics", version.ref = "srl" }
+srl-header = { module = "com.scwang.smart:refresh-header-classics", version.ref = "srl" }
+srl-kernel = { module = "com.scwang.smart:refresh-layout-kernel", version.ref = "srl" }
+
+jacoco = { module = "org.jacoco:org.jacoco.core", version.ref = "jacoco" }
+
+eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
+
+netty-codec-http = { module = "io.netty:netty-codec-http", version.ref = "netty" }
+netty-handler = { module = "io.netty:netty-handler", version.ref = "netty" }
+netty-proxy = { module = "io.netty:netty-handler-proxy", version.ref = "netty" }
+netty-all = { module = "io.netty:netty-all", version.ref = "netty" }
+
+koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+
+# https://mvnrepository.com/artifact/org.bytedeco/ffmpeg
+# In module `build.gradle.kts`
+# dependencies {
+#     implementation(libs.bytedeco.ffmpeg)
+#     implementation(libs.bytedeco.ffmpeg) {
+#         artifact {
+#             classifier = "android-arm"
+#         }
+#     }
+# }
+bytedeco-ffmpeg = { module = "org.bytedeco:ffmpeg", version.ref = "bytedeco-ffmpeg" }
+
+# https://mvnrepository.com/artifact/org.bytedeco/javacpp
+# In module `build.gradle.kts`
+# dependencies {
+#     implementation(libs.bytedeco.javacpp)
+#     implementation(libs.bytedeco.javacpp) {
+#         artifact {
+#             classifier = "android-arm"
+#         }
+#     }
+# }
+bytedeco-javacpp = { module = "org.bytedeco:javacpp", version.ref = "bytedeco-javacpp" }
+material-dialogs = { module = "com.afollestad.material-dialogs:input", version.ref = "material-dialogs" }
+karn-notify = { module = "io.karn:notify", version.ref = "karn-notify" }
+xx-permissions = { module = "com.github.getActivity:XXPermissions", version.ref = "xx-permissions" }
+mmkv = { module = "com.tencent:mmkv", version.ref = "mmkv" }
+# In module `build.gradle.kts`
+# dependencies {
+#     implementation(libs.android.animations) {
+#         artifact {
+#             type = "aar"
+#         }
+#     }
+# }
+android-animations = { module = "com.daimajia.androidanimations:library", version.ref = "android-animations" }
+
+java-mail = { module = "com.sun.mail:android-mail", version.ref = "java-mail" }
+java-activation = { module = "com.sun.mail:android-activation", version.ref = "java-mail" }
+# By using netty,
+# no need to use this library when adding pipeline however we indeed need its library.
+# So what's the magic?
+# Используя netty,
+## нет необходимости использовать эту библиотеку при добавлении пайплайна, однако нам действительно нужна ее библиотека.
+# Так в чем магия?
+# https://mvnrepository.com/artifact/com.jcraft/jzlib
+jzlib = { module = "com.jcraft:jzlib", version.ref = "jzlib" }
+# As of bson4jackson 2.13.0, you need add fasterxml jackson manually.
+# Начиная с bson4jackson 2.13.0, вам нужно вручную добавить fastxml jackson.
+bson = { module = "de.undercouch:bson4jackson", version.ref = "bson" }
+fasterxml-jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "fasterxml" }
+fasterxml-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "fasterxml" }
+fasterxml-jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "fasterxml" }
+free-reflection = { module = "com.github.tiann:FreeReflection", version.ref = "free-reflection" }
+androidasync = { module = "com.koushikdutta.async:androidasync", version.ref = "androidasync" }
+net = { module = "com.github.liangjingkanji:Net", version.ref = "net" }
+subsampling-scale-image-view = { module = "com.davemorrissey.labs:subsampling-scale-image-view-androidx", version.ref = "subsampling-scale-image-view" }
+
+#================
+#===== Test =====
+#================
+# testImplementation
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jupiter" }
+# testRuntimeOnly
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "jupiter" }
+# (Optional) If you need "Parameterized Tests"
+# testImplementation
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "jupiter" }
+# testRuntimeOnly
+junit-vintage-engine = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "jupiter" }
+
+kotlin-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
+#OLD ----------------------------------
+
+junit-test = { group = "junit", name = "junit", version.ref = "testjunit"}
+turbine-test = { group = "app.cash.turbine", name = "turbine", version.ref = "testturbine" }
+#--------------
+androidx-test-espressoCore = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
+androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso-core" }
+androidx-espresso-web = { module = "androidx.test.espresso:espresso-web", version.ref = "espresso-core" }
+androidx-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso-core" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidx-test" }
+androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidx-test" }
+androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-runner" }
+androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext" }
+androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-ext" }
+androidx-test-monitor = { module = "androidx.test:monitor", version.ref = "androidx-test-monitor" }
+androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "androidx-test-uiautomator" }
+
+jetbrains-test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+
+kluent-android = { module = "org.amshove.kluent:kluent-android", version.ref = "kluent" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+arch = { module = "androidx.arch.core:core-testing", version.ref = "arch" }
+compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
+square-okhttp-mockjunit5 = { module = "com.squareup.okhttp3:mockwebserver3-junit5", version.ref = "square-okhttp" }
+powermock-junit4 = { module = "org.powermock:powermock-module-junit4", version.ref = "powermock-version" }
+powermock-core = { module = "org.powermock:powermock-core", version.ref = "powermock-version" }
+powermock-api = { module = "org.powermock:powermock-api-mockito2", version.ref = "powermock-version" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric-version" }
+#test-robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "testrobolectric"}
+mars-xlog = { module = "com.tencent.mars:mars-xlog", version.ref = "mars-xlog" }
+# androidTestImplementation
+mannodermaus-junit5-core = { module = "de.mannodermaus.junit5:android-test-core", version.ref = "mannodermaus-junit5" }
+# androidTestRuntimeOnly
+mannodermaus-junit5-runner = { module = "de.mannodermaus.junit5:android-test-runner", version.ref = "mannodermaus-junit5" }
+
+#===================#===================#===================#===================
+#===================#===================#===================#===================
+#===================#===================#===================#===================
+
+[bundles]
+networking = ["squareup-retrofit-core", "squareup-retrofit-converter", "squareup-okhttp"]
+
+androidx-full = [
+    "androidx-core-ktx",
+    "androidx-appcompat",
+    "androidx-annotation",
+    "androidx-constraintlayout",
+    "androidx-coordinatorlayout",
+    "androidx-recyclerview",
+    "androidx-cardview",
+    "androidx-fragment",
+    "androidx-viewpager2"
+]
+androidx-main = [
+    "androidx-core-ktx",
+    "androidx-appcompat",
+    "androidx-annotation",
+    "androidx-constraintlayout",
+    "androidx-recyclerview",
+    "androidx-cardview",
+    "androidx-fragment"
+]
+androidx-simple = [
+    "androidx-core-ktx",
+    "androidx-appcompat",
+    "androidx-annotation",
+    "androidx-constraintlayout"
+]
+kotlin = ["jetbrains-kotlin-reflect", "jetbrains-kotlin-coroutines"]
+navigation = ["androidx-navigation-fragment", "androidx-navigation-ui"]
+lifecycle-full = [
+    "androidx-lifecycle-viewmodel",
+    "androidx-lifecycle-livedata",
+    "androidx-lifecycle-service",
+    "androidx-lifecycle-viewmodel-savedstate"
+]
+lifecycle-simple = [
+    "androidx-lifecycle-viewmodel",
+    "androidx-lifecycle-livedata"
+]
+room = ["androidx-room-runtime", "androidx-room-ktx"]
+coil = ["coil", "coil-gif", "coil-svg", "coil-video"]
+glide = ["glide", "glide-okhttp3", "glide-transformations"]
+srl = ["srl-kernel", "srl-header", "srl-footer"]
+java-mail = ["java-mail", "java-activation"]
+fasterxml = [
+    "fasterxml-jackson-core",
+    "fasterxml-jackson-databind",
+    "fasterxml-jackson-annotations"
+]
+# As of bson4jackson 2.13.0, you need add fasterxml jackson manually.
+# Начиная с bson4jackson 2.13.0, вам нужно вручную добавить fastxml jackson.
+bson = [
+    "bson",
+    "fasterxml-jackson-core",
+    "fasterxml-jackson-databind",
+    "fasterxml-jackson-annotations"
+]
+square-retrofit2 = [
+    "square-retrofit2",
+    "square-retrofit2-gson",
+    "square-retrofit2-moshi",
+    "square-retrofit2-converter-scalars",
+    "square-retrofit2-adapter-rxjava2",
+]
+camerax = [
+    "androidx-camera-core",
+    "androidx-camera-camera2",
+    "androidx-camera-video",
+    "androidx-camera-lifecycle",
+    "androidx-camera-view",
+    "androidx-camera-ext"
+]
+test = [
+    "kotlin-junit5",
+    "junit-jupiter-api",
+    "junit-jupiter-params",
+    "mockk",
+    "jetbrains-test-coroutines",
+    "kluent-android",
+    "arch",
+    "robolectric"
+]
+android-test = [
+    "androidx-test-core",
+    "androidx-test-core-ktx",
+    "androidx-test-runner",
+    "androidx-test-ext-junit-ktx",
+    "androidx-test-monitor",
+    "androidx-test-uiautomator",
+    "androidx-espresso-core",
+    "androidx-espresso-contrib",
+    "androidx-espresso-web",
+    "androidx-espresso-intents"
+]
+test-runtime-only = ["junit-jupiter-engine", "junit-vintage-engine"]
+powermock = [
+    "powermock-junit4",
+    "powermock-core",
+    "powermock-api"
+]
+
+#===================#===================#===================#===================
+#===================#===================#===================#===================
+#===================#===================#===================#===================
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+
+navigation = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
+
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+
+#This plugin creates convenient tasks in your Gradle project that run ktlint checks or do code auto format.
+#Этот плагин создает удобные задачи в вашем проекте Gradle, которые запускают проверки ktlint или выполняют автоматическое форматирование кода.
+ktlint-gradle = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-gradle" }
+
+#Плагин Gradle для обнаружения обновлений зависимостей
+benmanes-versions = { id = "com.github.ben-manes.versions", version.ref = "benmanes" }
+# vcu = { id = "nl.littlerobots.version-catalog-update", version.ref = "vcu" }
+
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
+android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "mannodermaus-android-junit5" }
+
+# инструмент создания отчета покрытия кода JUnit тестами для Kotlin
+kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }

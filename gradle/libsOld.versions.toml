@@ -1,0 +1,131 @@
+[versions]
+androidGradlePlugin = "8.0.1"               #7.4.2
+protoWirePlugin = "4.4.1"                       #4.4.2 НЕ СОВМЕСТИМ С kotlin = "1.7.20"  ТОЛЬКО С kotlin = "1.7.10"
+
+accompanist = "0.25.1"
+androidDesugarJdkLibs = "1.2.2"                 #"1.2.2"    "2.0.0" for 7.4.0-alpha10
+androidxActivity = "1.6.0"
+androidxAppCompat = "1.6.0-rc01"
+androidxCompose = "1.3.1"              #1.3.0-rc01
+androidxComposeUi = "1.3.2"              #1.3.2    1.4.0-alpha02
+androidxComposeCompiler = "1.4.4"        #1.4.0-alpha02  "1.3.2"        1.3.0-beta01
+androidxComposeMaterial3 = "1.0.1"     #1.0.0-rc01
+androidxCore = "1.9.0"
+androidxDataStore = "1.0.0"
+androidxHiltNavigationCompose = "1.0.0"
+androidxLifecycle = "2.6.0-alpha02"
+androidxMacroBenchmark = "1.1.1"                #1.1.0
+androidxNavigation = "2.5.2"
+androidxProfileinstaller = "1.2.0"
+androidxStartup = "1.2.0-alpha01"
+androidxWindow = "1.1.0-alpha03"
+composeLottie = "5.2.0"
+composeWidget = "1.0.0-alpha05"
+firebase = "31.0.3"                             #"31.0.0"
+firebaseCrashlytics= "2.9.2"
+firebasePerformance= "1.4.2"
+hilt = "2.44"                                   #2.44   ??? 2.43.2
+kotlin = "1.8.10"                               # 1.8.20??? "1.8.10"   не совместим androidxComposeCompiler = "1.4.0-alpha02"
+
+kotlinxCoroutines = "1.6.4"
+material = "1.7.0"                              #1.6.1
+okhttp = "4.10.0"
+protobuf = "4.0.0-rc-2"
+retrofit = "2.9.0"
+room = "2.5.0-beta01"
+devtoolsKsp = "1.7.20-1.0.7"
+googleservices = "4.3.14"
+googleads = "21.3.0"                    #20.6.0
+yandexmobileads = "5.4.0"            #5.4.0     5.5.0
+yandexmobmetrica = "5.2.0"
+
+coilcompose = "2.2.0"
+
+debuggingchucker = "3.5.2" 
+
+testandroidxcore =  "1.4.0" 
+testandroidxespressoCore =  "3.5.0"         #3.4.0
+testandroidxext = "1.1.4"
+testandroidxjunit = "1.1.3" 
+testandroidxrunner = "1.4.0" 
+testandroidxrules =  "1.4.0" 
+testandroidxuiautomator =  "2.2.0" 
+testjunit = "4.13.2" 
+testrobolectric =  "4.9" 
+testturbine = "0.12.0" 
+
+[libraries]
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+google-firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlytics" }
+google-firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerformance" }
+google-hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
+google-kspPlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "devtoolsKsp" }
+google-servicesPlugin = { group = "com.google.gms", name = "google-services", version.ref = "googleservices" }
+jetbrains-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+squareup-wire-gradlePlugin = { group = "com.squareup.wire", name = "wire-gradle-plugin", version.ref = "protoWirePlugin" }
+
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
+androidx-benchmark-macro = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "androidxMacroBenchmark" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidxCompose" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "androidxCompose" }
+androidx-compose-material-iconsCore = { group = "androidx.compose.material", name = "material-icons-core", version.ref = "androidxCompose" }
+androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "androidxCompose" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxComposeMaterial3" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "androidxComposeUi" }
+androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "androidxComposeUi" }
+androidx-compose-widget = { group = "androidx.glance", name = "glance", version.ref = "composeWidget" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
+androidx-dataStore-core = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
+androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
+androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "androidxProfileinstaller" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-startup = { group = "androidx.startup", name = "startup-runtime", version.ref = "androidxStartup" }
+androidx-window = { group = "androidx.window", name = "window", version.ref = "androidxWindow" }
+google-accompanist-navigation = { group = "com.google.accompanist", name = "accompanist-navigation-material", version.ref = "accompanist" }
+google-accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
+google-accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanist" }
+google-accompanist-insets = { group = "com.google.accompanist", name = "accompanist-insets", version.ref = "accompanist" }
+
+google-firebase = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
+google-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+google-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+google-protobuf = { group = "com.google.protobuf", name = "protobuf-javalite", version.ref = "protobuf" }
+jetbrains-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "composeLottie" }
+squareup-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+squareup-retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
+squareup-retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+
+google-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "googleads" }
+
+yandex-mobileads = { group = "com.yandex.android", name = "mobileads", version.ref = "yandexmobileads" }
+yandex-mobmetrica = { group = "com.yandex.android", name = "mobmetricalib", version.ref = "yandexmobmetrica" }
+
+io-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilcompose" }
+
+debugging-chucker = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "debuggingchucker" }
+debugging-compose-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidxCompose" }
+debugging-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+test-androidx-core = { group = "androidx.test", name = "core", version.ref = "testandroidxcore" }
+test-androidx-espressoCore = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "testandroidxespressoCore" }
+test-androidx-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "testandroidxext"}
+test-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "testandroidxjunit" }
+test-androidx-runner = { group = "androidx.test", name = "runner", version.ref = "testandroidxrunner" }
+test-androidx-rules = { group = "androidx.test", name = "rules", version.ref = "testandroidxrules" }
+test-androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "testandroidxuiautomator" }
+test-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+test-junit = { group = "junit", name = "junit", version.ref = "testjunit"}
+test-robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "testrobolectric"}
+test-turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "testturbine" }
+
+[bundles]
+networking = ["squareup-retrofit-core", "squareup-retrofit-converter", "squareup-okhttp"]

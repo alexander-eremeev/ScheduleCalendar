@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package com.childmathematics.android.shiftschedule.basis.datasource.preference.model;
+
+enum ThemePreference {
+  SYSTEM = 0;
+  LIGHT = 1;
+  NIGHT = 2;
+  SUNRISE = 3;
+  AURORA = 4;
+  TWILIGHT = 5;
+  WALLPAPER = 6;
+}

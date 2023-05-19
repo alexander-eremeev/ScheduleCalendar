@@ -1,0 +1,51 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">ScheduleCalendar</string>
+
+    <string name="cd_crop_square" tools:ignore="ExtraTranslation">Crop</string>
+    <string name="cd_done">Done</string>
+    <string name="cd_event">Event</string>
+    <string name="cd_privacy">Privacy</string>
+    <string name="cd_restore">Restore</string>
+
+    <string name="ad_id_banner">ca-app-pub-3940256099942544/6300978111</string> <!-- Test Ad -->
+    <!-- Test Ad -->
+    <string name="ad_id_interstitial">ca-app-pub-3940256099942544/1033173712</string>
+
+
+
+    <string name="ya_metrica_api_key">9331269b-d88b-49f2-811d-feecc9d4cec3</string>     <!-- YandexMetrica API KEY -->
+
+    <string name="ya_ads_banner_id">demo-banner-yandex</string>     <!-- Yandex ADS Banner -->
+    <string name="ya_ads_demo_banner_id">demo-banner-yandex</string>     <!-- Yandex ADS DEMO Banner -->
+    <string name="ya_ads_interstitial_id">R-M-DEMO-interstitial</string>     <!-- Yandex ADS DEMO interstitial  -->
+    <string name="ya_ads_demo_interstitial_id">demo-interstitial-yandex</string>     <!-- Yandex ADS DEMO interstitial -->
+    <!--
+    WebView
+
+    <string name="flex_banner_title">Flex banner</string>
+
+   -->
+    <string name="login_login">Log in</string>
+    <string name="login_email">Email</string>
+    <string name="login_email_invalid">Email invalid</string>
+    <string name="login_password">Password</string>
+
+    <string name="setting_title">Main menu</string>
+    <string name="setting_theme">Themes</string>
+    <string name="setting_theme_automatic">Automatic</string>
+    <string name="setting_theme_wallpaper" translatable="false">Wallpaper</string>
+    <string name="setting_theme_light">Daylight</string>
+    <string name="setting_theme_twilight">Twilight</string>
+    <string name="setting_theme_night">Midnight</string>
+    <string name="setting_theme_sunrise">Sunrise</string>
+    <string name="setting_theme_aurora">Aurora</string>
+    <string name="setting_logout">Log out</string>
+    <string name="setting_logout_confirm">Log out?</string>
+    <string name="setting_language">Language</string>
+    <string name="setting_language_english" translatable="false">English</string>
+    <string name="setting_language_indonesia" translatable="false">Bahasa Indonesia</string>
+
+    <string name="todo_cancel">Cancel</string>
+
+
+</resources>
