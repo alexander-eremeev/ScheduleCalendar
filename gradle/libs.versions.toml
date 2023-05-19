@@ -34,9 +34,9 @@ jetbrainsKotlin = "1.8.10"                           # org.jetbrains.kotlin",
 #===================
 #===== Google =====
 #===================
-googleFirebase = "31.0.3"                             #com.google.firebase
-googleFirebaseCrashlytics= "2.9.2"
-googleFirebasePerformance= "1.4.2"
+googleFirebase = "32.0.0"                               #com.google.firebase:firebase-bom
+googleFirebaseCrashlytics= "2.9.5"                      #com.google.firebase:firebase-crashlytics-gradle
+googleFirebasePerformance= "1.4.2"                       #com.google.firebase:perf-plugin
 
 hilt = "2.44"                                   #
 accompanist = "0.25.1"
