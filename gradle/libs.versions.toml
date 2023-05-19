@@ -27,10 +27,10 @@ appNameDebug="ScheduleCalendar Debug"
 #===================
 #===== Compile =====
 #===================
-agp = "8.0.1"
-#androidGradlePlugin = "8.0.1"               #
+#androidGradlePlugin
+agp = "8.0.1"                               # com.android.tools.build:gradle /  com.android.application / com.android.library
 
-kotlin = "1.8.10"
+jetbrainsKotlin = "1.8.10"                           # org.jetbrains.kotlin",
 #===================
 #===== Google =====
 #===================
@@ -105,7 +105,7 @@ androidxProfileinstaller = "1.2.0"
 
 androidxStartup = "1.2.0-alpha01"
 
-androidxWindow = "1.1.0"    #"1.1.0-alpha03"
+androidxWindow = "1.1.0-alpha03"    #"1.1.0"    ??
 
 #===========================
 #===== Android Compose =====
@@ -245,10 +245,10 @@ android-material = { module = "com.google.android.material:material", version.re
 #===================
 #====jetbrains  Libraries
 #===================
-#kgp = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-jetbrains-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+#kgp = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "jetbrainsKotlin" }
+jetbrains-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "jetbrainsKotlin" }
 #kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-jetbrains-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+jetbrains-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "jetbrainsKotlin" }
 jetbrains-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 #kotlin-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 #===================
@@ -521,7 +521,7 @@ junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", vers
 # testRuntimeOnly
 junit-vintage-engine = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "jupiter" }
 
-kotlin-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
+kotlin-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "jetbrainsKotlin" }
 #OLD ----------------------------------
 
 junit-test = { group = "junit", name = "junit", version.ref = "testjunit"}
@@ -675,9 +675,9 @@ powermock = [
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrainsKotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "jetbrainsKotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "jetbrainsKotlin" }
 
 navigation = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
 
