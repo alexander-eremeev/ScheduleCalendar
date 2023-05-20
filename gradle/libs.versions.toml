@@ -38,8 +38,8 @@ googleFirebase = "32.0.0"                               #com.google.firebase:fir
 googleFirebaseCrashlytics= "2.9.5"                      #com.google.firebase:firebase-crashlytics-gradle
 googleFirebasePerformance= "1.4.2"                       #com.google.firebase:perf-plugin
 
-hilt = "2.44"                                   #
-accompanist = "0.25.1"
+googleHilt = "2.46.1"                                   #com.google.dagger
+googleAccompanist = "0.28.0"                            # 0.25.1?  com.google.accompanist
 protobuf = "4.0.0-rc-2"
 
 devtoolsKsp = "1.7.20-1.0.7"
@@ -258,9 +258,9 @@ google-firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name
 google-firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "googleFirebasePerformance" }
 google-firebase = { group = "com.google.firebase", name = "firebase-bom", version.ref = "googleFirebase" }
 
-google-hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
-google-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
-google-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+google-hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "googleHilt" }
+google-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "googleHilt" }
+google-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "googleHilt" }
 
 google-kspPlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "devtoolsKsp" }
 google-servicesPlugin = { group = "com.google.gms", name = "google-services", version.ref = "googleservices" }
@@ -269,10 +269,10 @@ google-material = { group = "com.google.android.material", name = "material", ve
 
 google-protobuf = { group = "com.google.protobuf", name = "protobuf-javalite", version.ref = "protobuf" }
 
-google-accompanist-navigation = { group = "com.google.accompanist", name = "accompanist-navigation-material", version.ref = "accompanist" }
-google-accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
-google-accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanist" }
-google-accompanist-insets = { group = "com.google.accompanist", name = "accompanist-insets", version.ref = "accompanist" }
+google-accompanist-navigation = { group = "com.google.accompanist", name = "accompanist-navigation-material", version.ref = "googleAccompanist" }
+google-accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "googleAccompanist" }
+google-accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "googleAccompanist" }
+google-accompanist-insets = { group = "com.google.accompanist", name = "accompanist-insets", version.ref = "googleAccompanist" }
 
 google-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "googleads" }
 
