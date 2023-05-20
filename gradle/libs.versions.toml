@@ -64,47 +64,47 @@ androidxActivityKtx = "1.7.1"                       #  androidx.activity:activit
 androidxFragmentKtx = "1.5.7"                      #androidx.fragment:fragment-ktx
 
 androidxCoreKtx = "1.10.1"                       #1.9.0 androidx.core:core-ktx"
+#Library for legacy multi-dex support
+androidxMultidex = "2.0.1"                  #androidx.multidex:multidex"
 
-multidex = "2.0.1"
+androidxPreference = "1.2.0"                        #androidx.preference:preference-ktx
 
-preference = "1.2.0"
+androidxRecyclerview = "1.3.0"                  # 1.2.1 androidx.recyclerview:recyclerview
 
-recyclerview = "1.2.1"
+androidxConstraintlayout = "2.1.4"                      #androidx.constraintlayout:constraintlayout
 
-constraintlayout = "2.1.4"
+androidxCoordinatorlayout = "1.2.0"                     #androidx.coordinatorlayout:coordinatorlayout
+                                        #androidx.navigation:navigation-ui-ktx
+                                        #androidx.navigation.safeargs.kotlin
+androidxNavigation = "2.5.3"            # androidx.navigation:navigation-fragment-ktx
+                                        #androidx.navigation", name = "navigation-compose
+androidxConcurrentFuturesKtx = "1.1.0"    #androidx.concurrent:concurrent-futures-ktx
+                                        #androidx.lifecycle:lifecycle-viewmodel-ktx
+androidxLifecycle = "2.6.1"             #androidx.lifecycle:lifecycle-livedata-ktx
 
-coordinatorlayout = "1.2.0"
+androidxAnnotation = "1.6.0"            #androidx.annotation:annotation
 
-navigation = "2.5.3"
+androidxCardview = "1.0.0"              #androidx.cardview:cardview
 
-concurrent-futures-ktx = "1.1.0"
+androidxViewpager2 = "1.0.0"            #androidx.viewpager2:viewpager2
 
-lifecycle = "2.6.1"
+androidxSwiperefreshlayout = "1.1.0"    #androidx.swiperefreshlayout:swiperefreshlayout
 
-annotation = "1.6.0"
+androidxRoom = "2.5.1"                  #androidx.room:room-runtime
 
-cardview = "1.0.0"
+androidxCamera = "1.2.2"    #1.2.0-beta01"         #androidx.camera:camera-extensions
 
-viewpager2 = "1.0.0"
+androidxExifinterface = "1.3.6"     #1.3.3"         #androidx.exifinterface:exifinterface
 
-swiperefreshlayout = "1.1.0"
+androidxDataStore = "1.0.0"         #androidx.datastore:datastore
 
-room = "2.5.1"
-#room = "2.5.0-alpha03"
+androidxMacroBenchmark = "1.1.1"    #androidx.benchmark:benchmark-macro-junit4              #
 
-camera = "1.2.0-beta01"
+androidxProfileinstaller = "1.3.1"  #"1.2.0"  #androidx.profileinstaller:profileinstaller
 
-exifinterface = "1.3.3"
+androidxStartup = "1.1.1"   #androidx.startup:startup-runtime
 
-androidxDataStore = "1.0.0"
-
-androidxMacroBenchmark = "1.1.1"                #1.1.0
-
-androidxProfileinstaller = "1.2.0"
-
-androidxStartup = "1.2.0-alpha01"
-
-androidxWindow = "1.1.0-alpha03"    #"1.1.0"    ??
+androidxWindow = "1.0.0"    #androidx.window:window
 
 #===========================
 #===== Android Compose =====
@@ -298,31 +298,31 @@ androidx-benchmark-macro = { group = "androidx.benchmark", name = "benchmark-mac
 androidx-dataStore-core = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
 
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "androidxFragmentKtx" }
-androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
-androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
-androidx-preference = { module = "androidx.preference:preference-ktx", version.ref = "preference" }
-androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
-androidx-concurrent-futures-ktx = { module = "androidx.concurrent:concurrent-futures-ktx", version.ref = "concurrent-futures-ktx" }
-androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
-androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "androidxMultidex" }
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "androidxAnnotation" }
+androidx-preference = { module = "androidx.preference:preference-ktx", version.ref = "androidxPreference" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "androidxSwiperefreshlayout" }
+androidx-concurrent-futures-ktx = { module = "androidx.concurrent:concurrent-futures-ktx", version.ref = "androidxConcurrentFuturesKtx" }
+androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidxNavigation" }
+androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidxNavigation" }
 
-androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
-androidx-coordinatorlayout = { module = "androidx.coordinatorlayout:coordinatorlayout", version.ref = "coordinatorlayout" }
-androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
-androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
-androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidxConstraintlayout" }
+androidx-coordinatorlayout = { module = "androidx.coordinatorlayout:coordinatorlayout", version.ref = "androidxCoordinatorlayout" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidxRecyclerview" }
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "androidxCardview" }
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "androidxViewpager2" }
 # CameraX core library
-androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "camera" }
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "androidxCamera" }
 # CameraX Camera2 extensions
-androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camera" }
-androidx-camera-video = { module = "androidx.camera:camera-video", version.ref = "camera" }
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "androidxCamera" }
+androidx-camera-video = { module = "androidx.camera:camera-video", version.ref = "androidxCamera" }
 # CameraX Lifecycle library
-androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camera" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "androidxCamera" }
 # CameraX View class
-androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "camera" }
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "androidxCamera" }
 # CameraX Extensions library
-androidx-camera-ext = { module = "androidx.camera:camera-extensions", version.ref = "camera" }
-androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
+androidx-camera-ext = { module = "androidx.camera:camera-extensions", version.ref = "androidxCamera" }
+androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "androidxExifinterface" }
 
 androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "androidxProfileinstaller" }
 androidx-startup = { group = "androidx.startup", name = "startup-runtime", version.ref = "androidxStartup" }
@@ -332,31 +332,28 @@ androidx-window = { group = "androidx.window", name = "window", version.ref = "a
 #===== Androidx Lifecycle =====
 #=============================
 # ViewModel
-androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
 # LiveData
-androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
 # optional - helpers for implementing LifecycleOwner in a Service
-androidx-lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.ref = "lifecycle" }
+androidx-lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.ref = "androidxLifecycle" }
 # Lifecycles only (without ViewModel or LiveData)
-androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
-androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
+androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
+androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 # Saved state module for ViewModel
-androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "lifecycle" }
-androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 
 #===========================
 #===== Androidx Room ========
 #===========================
-#room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
-androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidxRoom" }
 # kapt
-#room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
-androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidxRoom" }
 # optional - Kotlin Extensions and Coroutines support for Room
-#room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
-androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidxRoom" }
 # optional - RxJava support for Room
-androidx-room-rxjava2 = { module = "androidx.room:room-rxjava2", version.ref = "room" }
+androidx-room-rxjava2 = { module = "androidx.room:room-rxjava2", version.ref = "androidxRoom" }
 
 #===========================
 #===== Android Compose =====
@@ -371,7 +368,7 @@ androidx-compose-material-iconsCore = { group = "androidx.compose.material", nam
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "androidxCompose" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxComposeMaterial3" }
 
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
 
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
@@ -672,7 +669,7 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrains
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "jetbrainsKotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "jetbrainsKotlin" }
 
-navigation = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
+navigation = { id = "androidx.navigation.safeargs.kotlin", version.ref = "androidxNavigation" }
 
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
