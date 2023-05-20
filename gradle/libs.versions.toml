@@ -50,14 +50,14 @@ googleAds = "22.1.0"                        #21.3.0 com.google.android.gms", nam
 #=================================
 #===== Android dependencies ======
 #=================================
-androidDesugarJdkLibs = "1.2.2"                 #"1.2.2"    "2.0.0" for 7.4.0-alpha10
+#This project contains a small subset of OpenJDK libraries simplified for use on older runtimes. This is not an official Google product.
+androidDesugarJdkLibs = "2.0.3"                 # com.android.tools:desugar_jdk_libs
 
-coroutines = "1.6.4"
-#kotlinxCoroutines = "1.6.4"
+jetbrainsKotlinxCoroutines = "1.7.1"                #"1.6.4" org.jetbrains.kotlinx:kotlinx-coroutines-android
 
-material = "1.8.0"
+googleAndroidMaterial = "1.9.0"                      #1.8.0  com.google.android.material
 
-appcompat = "1.6.1"
+androidxAppcompat = "1.6.1"                                 # androidx.appcompat:appcompat
 
 activity-ktx = "1.7.1"
 
@@ -238,19 +238,15 @@ testturbine = "0.12.0"
 #===================
 #===== Android  Libraries =====
 #===================
-#agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
-android-material = { module = "com.google.android.material:material", version.ref = "material" }
+google-android-material = { group = "com.google.android.material", name = "material", version.ref = "googleAndroidMaterial" }
 #===================
 #====jetbrains  Libraries
 #===================
-#kgp = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "jetbrainsKotlin" }
 jetbrains-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "jetbrainsKotlin" }
-#kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 jetbrains-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "jetbrainsKotlin" }
-jetbrains-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
-#kotlin-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+jetbrains-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "jetbrainsKotlinxCoroutines" }
 #===================
 #====Google  Libraries
 #===================
@@ -264,8 +260,6 @@ google-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compi
 
 google-kspPlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "googleDevToolsKsp" }
 google-servicesPlugin = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
-
-google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 google-protobuf = { group = "com.google.protobuf", name = "protobuf-javalite", version.ref = "googleProtobuf" }
 
@@ -295,7 +289,7 @@ debugging-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-int
 #===================
 #===== Androidx =====
 #===================
-androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
 
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 
@@ -541,7 +535,7 @@ androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.
 androidx-test-monitor = { module = "androidx.test:monitor", version.ref = "androidx-test-monitor" }
 androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "androidx-test-uiautomator" }
 
-jetbrains-test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+jetbrains-test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "jetbrainsKotlinxCoroutines" }
 
 kluent-android = { module = "org.amshove.kluent:kluent-android", version.ref = "kluent" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
