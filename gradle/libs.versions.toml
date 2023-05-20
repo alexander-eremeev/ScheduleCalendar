@@ -53,18 +53,17 @@ googleAds = "22.1.0"                        #21.3.0 com.google.android.gms", nam
 #This project contains a small subset of OpenJDK libraries simplified for use on older runtimes. This is not an official Google product.
 androidDesugarJdkLibs = "2.0.3"                 # com.android.tools:desugar_jdk_libs
 
-jetbrainsKotlinxCoroutines = "1.7.1"                #"1.6.4" org.jetbrains.kotlinx:kotlinx-coroutines-android
+jetbrainsKotlinxCoroutines = "1.7.1"                #org.jetbrains.kotlinx:kotlinx-coroutines-android
 
-googleAndroidMaterial = "1.9.0"                      #1.8.0  com.google.android.material
+googleAndroidMaterial = "1.9.0"                      # com.google.android.material
 
 androidxAppcompat = "1.6.1"                                 # androidx.appcompat:appcompat
 
-activity-ktx = "1.7.1"
+androidxActivityKtx = "1.7.1"                       #  androidx.activity:activity-ktx
 
-fragment-ktx = "1.5.7"
+androidxFragmentKtx = "1.5.7"                      #androidx.fragment:fragment-ktx
 
-core-ktx = "1.9.0"
-androidxCore = "1.9.0"
+androidxCoreKtx = "1.10.1"                       #1.9.0 androidx.core:core-ktx"
 
 multidex = "2.0.1"
 
@@ -291,14 +290,14 @@ debugging-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-int
 #===================
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
 
-androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCoreKtx" }
 
-androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "activity-ktx" }
+androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivityKtx" }
 androidx-benchmark-macro = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "androidxMacroBenchmark" }
 
 androidx-dataStore-core = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
 
-androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment-ktx" }
+androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "androidxFragmentKtx" }
 androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 androidx-preference = { module = "androidx.preference:preference-ktx", version.ref = "preference" }
