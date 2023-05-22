@@ -29,7 +29,7 @@ appNameDebug="ScheduleCalendar Debug"
 #===================
 #androidGradlePlugin
 agp = "8.0.1"                               # com.android.tools.build:gradle /  com.android.application / com.android.library
-
+#---???????????????????
 jetbrainsKotlin = "1.8.10"                           #1.8.21 ? org.jetbrains.kotlin",
 #===================
 #===== Google =====
@@ -39,12 +39,12 @@ googleFirebaseCrashlytics= "2.9.5"                      #com.google.firebase:fir
 googleFirebasePerformance= "1.4.2"                       #com.google.firebase:perf-plugin
 
 googleHilt = "2.46.1"                                   #com.google.dagger
-googleAccompanist = "0.28.0"                            # 0.25.1?  com.google.accompanist
-googleProtobuf = "3.23.1"         #4.0.0-rc-2 com.google.protobuf  Protocol Buffers [Lite]
+googleAccompanist = "0.28.0"                            #  com.google.accompanist
+googleProtobuf = "3.23.1"         #com.google.protobuf  Protocol Buffers [Lite]
 
-googleDevToolsKsp = "1.8.10-1.0.9"        #1.7.20-1.0.7 com.google.devtools.ksp.gradle.plugin
-googleServices = "4.3.15"               #????? 4.3.14 com.google.gms", name = "google-services
-googleAds = "22.1.0"                        #21.3.0 com.google.android.gms", name = "play-services-ads
+googleDevToolsKsp = "1.8.10-1.0.9"        #com.google.devtools.ksp.gradle.plugin
+googleServices = "4.3.15"               #com.google.gms", name = "google-services
+googleAds = "22.1.0"                        #com.google.android.gms", name = "play-services-ads
 
 
 #=================================
@@ -109,13 +109,15 @@ androidxWindow = "1.0.0"    #androidx.window:window
 #===========================
 #===== Android Compose =====
 #===========================
+#--??????????????????????????
 androidxCompose = "1.3.1"               #"1.4.3"?    androidx.compose.foundation:foundation/androidx.compose.ui
-
-androidxActivityCompose = "1.7.1"   #"1.6.0"                    #androidx.activity:activity-compose
-
+#---------------
+androidxActivityCompose = "1.7.1"   #androidx.activity:activity-compose
+#--??????????????????????????
 androidxComposeCompiler = "1.4.5"       #1.4.7 Kotlin version 1.8.21 composeOptions {kotlinCompilerExtensionVersion libs.versions.androidxComposeCompiler.get()
-
+#--??????????????????????????
 androidxComposeMaterial3 = "1.0.1"      #"1.1.0"  ?            #androidx.compose.material3
+#-----------------
 androidxHiltNavigationCompose = "1.0.0"         #androidx.hilt:hilt-navigation-compose
 
 androidxGlanceComposeWidget = "1.0.0-beta01"                 #androidx.glance:glance
@@ -123,105 +125,128 @@ androidxGlanceComposeWidget = "1.0.0-beta01"                 #androidx.glance:gl
 #=======================
 #===== Third party =====
 #=======================
-protoWirePlugin = "4.6.2"                       #4.4.1
-#protoWirePlugin = "4.4.1"                       #4.4.2 НЕ СОВМЕСТИМ С kotlin = "1.7.20"  ТОЛЬКО С kotlin = "1.7.10"
+#gRPC and protocol buffers for Android, Kotlin, and Java.
+squareupProtoWirePlugin = "4.6.2"     #com.squareup.wire:wire-gradle-plugin
+#Static code analysis for Kotlin
+arturboschDetekt = "1.22.0"           #io.gitlab.arturbosch.detekt:detekt-formatting
+#Dokka is an API documentation engine for Kotlin and Java, performing the same function as Javadoc for Java
+jetbrainsDokka = "1.8.10"            #  org.jetbrains.dokka:dokka-gradle-plugin
 
-detekt = "1.22.0"
-dokka = "1.7.10"
 ktlint = "0.48.2"			# https://pinterest.github.io/ktlint	
-ktlint-gradle = "11.3.1"	# latest 03 March 2023
-benmanes = "0.46.0"
+jlleitschuhKtlintGradlePlugin = "11.3.1"	# org.jlleitschuh.gradle.ktlint
 
-jacoco = "0.8.8"			# EclEmma инструмент создания отчета покрытия кода JUnit тестами 
-kover =  "0.6.1"			# jetbrains инструмент создания отчета покрытия кода JUnit тестами для Kotlin
+#this plugin provides a task to determine which dependencies have updates.
+benmanesVersions = "0.46.0"                         #com.github.ben-manes.versions
+# littlerobotsVersionCatalogUpdate = "0.6.1"                         #nl.littlerobots.version-catalog-update
 
-sonarqube = "4.0.0.2929"
-# vcu = "0.6.1"
+# EclEmma инструмент создания отчета покрытия кода JUnit тестами
+jacocoCore = "0.8.10"    #	#org.jacoco:org.jacoco.core
+# jetbrains инструмент создания отчета покрытия кода JUnit тестами для Kotlin
+#Gradle Plugin For Kotlin Code Coverage Tools
+jetbrainsKotlinxKover =  "0.7.0"			# org.jetbrains.kotlinx.kover
 
-composeLottie = "5.2.0"
+#SonarQube (ранее Sonar) – это платформа  для непрерывного контроля качества кода.
+sonarqube = "4.0.0.2929"                    #org.sonarqube  SonarQube Gradle Plugin
 
-coil = "2.2.1"
-coilcompose = "2.2.1"
+airbnbAndroidComposeLottie = "5.2.0"             #6.0.0? com.airbnb.android:lottie-compose
 
-glide = "4.13.2"
-glide-transformations = "4.3.0"
+#An image loading library for Android backed by Kotlin Coroutines
+coilcompose = "2.2.1"                       #2.3.0 ? io.coil-kt:coil-compose
 
-square-okhttp = "4.10.0"
-okhttp = "4.10.0"
+#A fast and efficient image loading library for Android focused on smooth scrolling.
+bumptechGlide = "4.15.1"                        #com.github.bumptech.glide:glide
+#provides simple Transformations to Glide
+bumptechGlideTransformations = "4.3.0"          #jp.wasabeef:glide-transformations
 
-square-retrofit2 = "2.9.0"
-retrofit = "2.9.0"
+#Square’s meticulous HTTP client for Java and Kotlin.
+squareUpOkhttp = "4.11.0"                        #4.10.0    com.squareup.okhttp3:okhttp
+#A type-safe HTTP client for Android and Java.
+squareUpRetrofit2 = "2.9.0"            #May 20, 2020  #com.squareup.retrofit2:retrofit
+#A modern JSON API for Android and Java
+squareUpMoshi = "1.15.0"      #"1.3.10"       #com.squareup.moshi:moshi
+#squareUpMoshiKotlin = "1.15.0"      #"1.3.10"       #com.squareup.moshi:moshi-kotlin
 
-square-moshi = "1.3.10"
-rxjava2 = "2.2.21"
-rxjava2-android = "2.1.1"
-rxjava3 = "3.1.5"
-rxjava3-android = "3.0.0"
-gson = "2.10"
-eventbus = "3.3.1"
-mars-xlog = "1.2.6"
-karn-notify = "1.5.0"
-mmkv = "1.2.14"
-fasterxml = "2.13.4"
-xx-permissions = "16.2"
-bson = "2.13.1" # As of 2.13.0, you need to add fasterxml jackson manually. Начиная с версии 2.13.0 вам необходимо вручную добавить jackson fastxml.
-free-reflection = "3.1.0"
-flyco-tablayout = "2.2.0"
-srl = "2.0.5"
-netty = "4.1.82.Final"
-koin = "3.2.1"
-bytedeco-ffmpeg = "5.0-1.5.7"
-bytedeco-javacpp = "1.5.7"
-material-dialogs = "3.3.0"
-android-animations = "2.4"
-java-mail = "1.6.7"
-jzlib = "1.1.3"
-androidasync = "3.1.0"
-net = "3.5.1"
-subsampling-scale-image-view = "3.10.0"
-mannodermaus-android-junit5 = "1.8.2.1"
-mannodermaus-junit5 = "1.3.0"
+rxjava2 = "2.2.21"                     #io.reactivex.rxjava2:rxjava
+rxjava2Android = "2.1.1"         #Feb 16, 2019  #io.reactivex.rxjava2:rxandroid
+#Reactive Extensions for Java
+rxjava3 = "3.1.6"               #3.1.5    #io.reactivex.rxjava3:rxjava
+rxjava3Android = "3.0.2"       #3.0.0 #io.reactivex.rxjava3:rxandroid
+#Gson is a Java library that can be used to convert Java Objects into their JSON representation. It can also be used to convert a JSON string to an equivalent Java object.
+googleCodeGson = "2.10.1"                   #2.10 ??    #com.google.code.gson:gson
+#EventBus is a publish/subscribe event bus optimized for Android
+greenrobotEventbus = "3.3.1"             #Dec 08, 2021 #org.greenrobot:eventbus
 
-debuggingchucker = "3.5.2" 
+tencentMarsXlog = "1.2.6"                   #	Feb 24, 2021  #com.tencent.mars:mars-xlog
+karnNotify = "1.5.0"                       #io.karn:notify
+tencentMmkv = "1.2.14"                         #1.2.14    #com.tencent:mmkv
+#Core Jackson processing abstractions (aka Streaming API), implementation for JSON
+fasterxmlJackson = "2.15.1"                 #2.13.4           #com.fasterxml.jackson.core:jackson-core
+xxPermissions = "16.6"          #16.2           #com.github.getActivity:XXPermissions
+# As of 2.13.0, you need to add fasterxml jackson manually. Начиная с версии 2.13.0 вам необходимо вручную добавить jackson fastxml.
+#A pluggable BSON generator and parser for Jackson JSON processor.
+undercouchBsonJackson = "2.13.1"                         # de.undercouch:bson4jackson
+#A library that lets you use reflection without any restriction above Android P
+tiannFreeReflection = "3.1.0"                   #com.github.tiann:FreeReflection
+flycoTablayout = "2.2.0"     #Android TabLayout Library      #com.flyco.tablayout:FlycoTabLayout_Lib
+
+scwangSmartSrl = "2.0.5"           #com.scwang.smart:refresh-footer-classics
+#Netty/Codec/HTTP
+nettyCodec = "4.1.92.Final"        #4.1.82.Final      #io.netty:netty-codec-http
+insertKoin = "3.2.1"                      #io.insert-koin:koin-android
+bytedecoFfmpeg = "5.0-1.5.7"           #org.bytedeco:ffmpeg
+bytedecoJavaCpp = "1.5.7"              #org.bytedeco:javacpp
+
+afollestadMaterialDialogs = "3.3.0"          #com.afollestad.material-dialogs:input
+daimajiaAndroidAnimations = "2.4"              #com.daimajia.androidanimations:library
+sunJavaMail = "1.6.7"                         #com.sun.mail:android-mail
+
+jcraftJzlib = "1.1.3"         #com.jcraft:jzlib
+koushikduttaAndroidAsync = "3.1.0"          #com.koushikdutta.async:androidasync
+liangjingkanjiNet = "3.5.1"                               #com.github.liangjingkanji:Net
+davemorrisseyLabsSubsamplingScaleImageView = "3.10.0"     #com.davemorrissey.labs:subsampling-scale-image-view-androidx
+mannodermausAndroidJunit5 = "1.8.2.1"             #de.mannodermaus.android-junit5
+mannodermausJunit5 = "1.3.0"               #de.mannodermaus.junit5:android-test-core
+
+debuggingChucker = "3.5.2"                  #com.github.chuckerteam.chucker
 #================
 #===== Yandex =====
 #================
 
-yandexmobileads = "5.4.0"            #5.4.0     5.5.0
-yandexmobmetrica = "5.2.0"
+yandexmMobileads = "5.4.0"            #5.4.0     5.5.0  com.yandex.android", name = "mobileads
+yandexMobMetrica = "5.2.0"                  #com.yandex.android", name = "mobmetricalib
 
 
 #================
 #===== Test =====
 #================
-jupiter = "5.9.2" # JUnit 5
+junitJupiter = "5.9.2" # JUnit 5             #org.junit.jupiter:junit-jupiter-api
 
-androidx-test = "1.5.0"
+androidxTest = "1.5.0"                 #androidx.test:core
 
-androidx-test-ext = "1.1.5"
+androidxTestExt = "1.1.5"
 
-androidx-test-runner = "1.5.2"
+androidxTestRunner = "1.5.2"
 
-androidx-test-monitor = "1.6.1"
-androidx-test-uiautomator = "2.2.0"
+androidxTestMonitor = "1.6.1"
+androidxTestUiAutomator = "2.2.0"
 
-espresso-core = "3.5.1"
-testandroidxespressoCore = "3.5.1"	# "3.5.0"         #3.4.0
+androidxTestEspressoCore = "3.5.1"                         #androidx.test.espresso:espresso-core
+#testandroidxespressoCore = "3.5.1"	# "3.5.0"         #3.4.0
+#Fluent Assertion-Library for Kotlin
+amshoveKluent = "1.72"                     #org.amshove.kluent:kluent-android
+ioMockk = "1.13.4"                            #io.mockk:mockk
+androidxArch = "2.2.0"                          #androidx.arch.core:core-testing
 
-kluent = "1.72"
-mockk = "1.13.4"
-arch = "2.2.0"
+powermockJunit4 = "2.0.9"             #org.powermock:powermock-module-junit4
+#An alternative Android testing framework
+robolectricTest = "4.9.2"       #org.robolectric:robolectric
 
-powermock-version = "2.0.9"
-
-robolectric-version = "4.9.2"
-testrobolectric =  "4.9.2"	#"4.9"
-
-testandroidxjunit = "1.1.3" 
-testandroidxrules =  "1.4.0" 
-testandroidxuiautomator =  "2.2.0" 
-testjunit = "4.13.2" 
-testturbine = "0.12.0" 
+#testandroidxjunit = "1.1.3"
+#testandroidxrules =  "1.4.0"
+#testandroidxuiautomator =  "2.2.0"
+#JUnit is a unit testing framework to write and run repeatable automated tests on Java.
+junitTest = "4.13.2"                #junit:junit
+appCashTurbineTest = "0.12.0"              #app.cash.turbine", name = "turbine
 
 #===================#===================#===================#===================
 #===================#===================#===================#===================
@@ -271,16 +296,16 @@ google-ads = { group = "com.google.android.gms", name = "play-services-ads", ver
 #===== yandex Libraries =====
 #=========================
 
-yandex-mobileads = { group = "com.yandex.android", name = "mobileads", version.ref = "yandexmobileads" }
-yandex-mobmetrica = { group = "com.yandex.android", name = "mobmetricalib", version.ref = "yandexmobmetrica" }
+yandex-mobileads = { group = "com.yandex.android", name = "mobileads", version.ref = "yandexmMobileads" }
+yandex-mobmetrica = { group = "com.yandex.android", name = "mobmetricalib", version.ref = "yandexMobMetrica" }
 
 #=========================
 #===== debugging Libraries =====
 #=========================
 
-debugging-chucker = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "debuggingchucker" }
+debugging-chucker = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "debuggingChucker" }
 debugging-compose-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidxCompose" }
-debugging-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+debugging-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "squareUpOkhttp" }
 
 #===================
 #===== Androidx =====
@@ -377,65 +402,66 @@ androidx-compose-widget = { group = "androidx.glance", name = "glance", version.
 #=======================
 #===== Third party =====
 #=======================
-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+arturbosch-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "arturboschDetekt" }
 # https://github.com/Kotlin/dokka
-dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
-dokka-core = { module = "org.jetbrains.dokka:dokka-core", version.ref = "dokka" }
+jetbrains-dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "jetbrainsDokka" }
+jetbrains-dokka-core = { module = "org.jetbrains.dokka:dokka-core", version.ref = "jetbrainsDokka" }
 
 #Protocol Buffers
-squareup-wire-gradlePlugin = { group = "com.squareup.wire", name = "wire-gradle-plugin", version.ref = "protoWirePlugin" }
-square-moshi = { module = "com.squareup.moshi:moshi", version.ref = "square-moshi" }
-square-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "square-okhttp" }
-square-okhttp-LogInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "square-okhttp" }
-square-okhttp-mock = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "square-okhttp" }
-square-retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "square-retrofit2" }
-square-retrofit2-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "square-retrofit2" }
-square-retrofit2-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "square-retrofit2" }
-square-retrofit2-converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "square-retrofit2" }
-square-retrofit2-adapter-rxjava2 = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref = "square-retrofit2" }
-squareup-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
-squareup-retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
-squareup-retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+squareup-wire-gradlePlugin = { group = "com.squareup.wire", name = "wire-gradle-plugin", version.ref = "squareupProtoWirePlugin" }
+square-moshi = { module = "com.squareup.moshi:moshi", version.ref = "squareUpMoshi" }
+square-moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "squareUpMoshi" }
+square-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "squareUpOkhttp" }
+square-okhttp-LogInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "squareUpOkhttp" }
+square-okhttp-mock = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "squareUpOkhttp" }
+square-retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "squareUpRetrofit2" }
+square-retrofit2-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "squareUpRetrofit2" }
+square-retrofit2-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "squareUpRetrofit2" }
+square-retrofit2-converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "squareUpRetrofit2" }
+square-retrofit2-adapter-rxjava2 = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref = "squareUpRetrofit2" }
+squareup-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "squareUpOkhttp" }
+squareup-retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "squareUpRetrofit2" }
+squareup-retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "squareUpRetrofit2" }
 
-lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "composeLottie" }
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "airbnbAndroidComposeLottie" }
 
 
 rxjava2-java = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava2" }
-rxjava2-android = { module = "io.reactivex.rxjava2:rxandroid", version.ref = "rxjava2-android" }
+rxjava2-android = { module = "io.reactivex.rxjava2:rxandroid", version.ref = "rxjava2Android" }
 rxjava3-java = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava3" }
-rxjava3-android = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxjava3-android" }
+rxjava3-android = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxjava3Android" }
 
-gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+gson = { module = "com.google.code.gson:gson", version.ref = "googleCodeGson" }
 
 io-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilcompose" }
-coil = { module = "io.coil-kt:coil", version.ref = "coil" }
-coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coil" }
-coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
-coil-video = { module = "io.coil-kt:coil-video", version.ref = "coil" }
+coil = { module = "io.coil-kt:coil", version.ref = "coilcompose" }
+coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coilcompose" }
+coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coilcompose" }
+coil-video = { module = "io.coil-kt:coil-video", version.ref = "coilcompose" }
 
-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "bumptechGlide" }
 # kapt(libs.glide.compiler)
-glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
-glide-okhttp3 = { module = "com.github.bumptech.glide:okhttp3-integration", version.ref = "glide" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "bumptechGlide" }
+glide-okhttp3 = { module = "com.github.bumptech.glide:okhttp3-integration", version.ref = "bumptechGlide" }
 # https://github.com/wasabeef/glide-transformations
-glide-transformations = { module = "jp.wasabeef:glide-transformations", version.ref = "glide-transformations" }
+glide-transformations = { module = "jp.wasabeef:glide-transformations", version.ref = "bumptechGlideTransformations" }
 
-flycoTabLayout = { module = "com.flyco.tablayout:FlycoTabLayout_Lib", version.ref = "flyco-tablayout" }
+flyco-TabLayout = { module = "com.flyco.tablayout:FlycoTabLayout_Lib", version.ref = "flycoTablayout" }
 
-srl-footer = { module = "com.scwang.smart:refresh-footer-classics", version.ref = "srl" }
-srl-header = { module = "com.scwang.smart:refresh-header-classics", version.ref = "srl" }
-srl-kernel = { module = "com.scwang.smart:refresh-layout-kernel", version.ref = "srl" }
+srl-footer = { module = "com.scwang.smart:refresh-footer-classics", version.ref = "scwangSmartSrl" }
+srl-header = { module = "com.scwang.smart:refresh-header-classics", version.ref = "scwangSmartSrl" }
+srl-kernel = { module = "com.scwang.smart:refresh-layout-kernel", version.ref = "scwangSmartSrl" }
 
-jacoco = { module = "org.jacoco:org.jacoco.core", version.ref = "jacoco" }
+jacoco = { module = "org.jacoco:org.jacoco.core", version.ref = "jacocoCore" }
 
-eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
+eventbus = { module = "org.greenrobot:eventbus", version.ref = "greenrobotEventbus" }
 
-netty-codec-http = { module = "io.netty:netty-codec-http", version.ref = "netty" }
-netty-handler = { module = "io.netty:netty-handler", version.ref = "netty" }
-netty-proxy = { module = "io.netty:netty-handler-proxy", version.ref = "netty" }
-netty-all = { module = "io.netty:netty-all", version.ref = "netty" }
+netty-codec-http = { module = "io.netty:netty-codec-http", version.ref = "nettyCodec" }
+netty-handler = { module = "io.netty:netty-handler", version.ref = "nettyCodec" }
+netty-proxy = { module = "io.netty:netty-handler-proxy", version.ref = "nettyCodec" }
+netty-all = { module = "io.netty:netty-all", version.ref = "nettyCodec" }
 
-koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin = { module = "io.insert-koin:koin-android", version.ref = "insertKoin" }
 
 # https://mvnrepository.com/artifact/org.bytedeco/ffmpeg
 # In module `build.gradle.kts`
@@ -447,7 +473,7 @@ koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 #         }
 #     }
 # }
-bytedeco-ffmpeg = { module = "org.bytedeco:ffmpeg", version.ref = "bytedeco-ffmpeg" }
+bytedeco-ffmpeg = { module = "org.bytedeco:ffmpeg", version.ref = "bytedecoFfmpeg" }
 
 # https://mvnrepository.com/artifact/org.bytedeco/javacpp
 # In module `build.gradle.kts`
@@ -459,11 +485,11 @@ bytedeco-ffmpeg = { module = "org.bytedeco:ffmpeg", version.ref = "bytedeco-ffmp
 #         }
 #     }
 # }
-bytedeco-javacpp = { module = "org.bytedeco:javacpp", version.ref = "bytedeco-javacpp" }
-material-dialogs = { module = "com.afollestad.material-dialogs:input", version.ref = "material-dialogs" }
-karn-notify = { module = "io.karn:notify", version.ref = "karn-notify" }
-xx-permissions = { module = "com.github.getActivity:XXPermissions", version.ref = "xx-permissions" }
-mmkv = { module = "com.tencent:mmkv", version.ref = "mmkv" }
+bytedeco-javacpp = { module = "org.bytedeco:javacpp", version.ref = "bytedecoJavaCpp" }
+material-dialogs = { module = "com.afollestad.material-dialogs:input", version.ref = "afollestadMaterialDialogs" }
+karn-notify = { module = "io.karn:notify", version.ref = "karnNotify" }
+xx-permissions = { module = "com.github.getActivity:XXPermissions", version.ref = "xxPermissions" }
+tencent-mmkv = { module = "com.tencent:mmkv", version.ref = "tencentMmkv" }
 # In module `build.gradle.kts`
 # dependencies {
 #     implementation(libs.android.animations) {
@@ -472,10 +498,10 @@ mmkv = { module = "com.tencent:mmkv", version.ref = "mmkv" }
 #         }
 #     }
 # }
-android-animations = { module = "com.daimajia.androidanimations:library", version.ref = "android-animations" }
+android-animations = { module = "com.daimajia.androidanimations:library", version.ref = "daimajiaAndroidAnimations" }
 
-java-mail = { module = "com.sun.mail:android-mail", version.ref = "java-mail" }
-java-activation = { module = "com.sun.mail:android-activation", version.ref = "java-mail" }
+java-mail = { module = "com.sun.mail:android-mail", version.ref = "sunJavaMail" }
+java-activation = { module = "com.sun.mail:android-activation", version.ref = "sunJavaMail" }
 # By using netty,
 # no need to use this library when adding pipeline however we indeed need its library.
 # So what's the magic?
@@ -483,69 +509,69 @@ java-activation = { module = "com.sun.mail:android-activation", version.ref = "j
 ## нет необходимости использовать эту библиотеку при добавлении пайплайна, однако нам действительно нужна ее библиотека.
 # Так в чем магия?
 # https://mvnrepository.com/artifact/com.jcraft/jzlib
-jzlib = { module = "com.jcraft:jzlib", version.ref = "jzlib" }
+jzlib = { module = "com.jcraft:jzlib", version.ref = "jcraftJzlib" }
 # As of bson4jackson 2.13.0, you need add fasterxml jackson manually.
 # Начиная с bson4jackson 2.13.0, вам нужно вручную добавить fastxml jackson.
-bson = { module = "de.undercouch:bson4jackson", version.ref = "bson" }
-fasterxml-jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "fasterxml" }
-fasterxml-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "fasterxml" }
-fasterxml-jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "fasterxml" }
-free-reflection = { module = "com.github.tiann:FreeReflection", version.ref = "free-reflection" }
-androidasync = { module = "com.koushikdutta.async:androidasync", version.ref = "androidasync" }
-net = { module = "com.github.liangjingkanji:Net", version.ref = "net" }
-subsampling-scale-image-view = { module = "com.davemorrissey.labs:subsampling-scale-image-view-androidx", version.ref = "subsampling-scale-image-view" }
+bson = { module = "de.undercouch:bson4jackson", version.ref = "undercouchBsonJackson" }
+fasterxml-jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "fasterxmlJackson" }
+fasterxml-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "fasterxmlJackson" }
+fasterxml-jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "fasterxmlJackson" }
+free-reflection = { module = "com.github.tiann:FreeReflection", version.ref = "tiannFreeReflection" }
+androidasync = { module = "com.koushikdutta.async:androidasync", version.ref = "koushikduttaAndroidAsync" }
+net = { module = "com.github.liangjingkanji:Net", version.ref = "liangjingkanjiNet" }
+subsampling-scale-image-view = { module = "com.davemorrissey.labs:subsampling-scale-image-view-androidx", version.ref = "davemorrisseyLabsSubsamplingScaleImageView" }
 
 #================
 #===== Test =====
 #================
 # testImplementation
-junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jupiter" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitJupiter" }
 # testRuntimeOnly
-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "jupiter" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junitJupiter" }
 # (Optional) If you need "Parameterized Tests"
 # testImplementation
-junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "jupiter" }
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junitJupiter" }
 # testRuntimeOnly
-junit-vintage-engine = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "jupiter" }
+junit-vintage-engine = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "junitJupiter" }
 
 kotlin-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "jetbrainsKotlin" }
 #OLD ----------------------------------
 
-junit-test = { group = "junit", name = "junit", version.ref = "testjunit"}
-turbine-test = { group = "app.cash.turbine", name = "turbine", version.ref = "testturbine" }
+junit-test = { group = "junit", name = "junit", version.ref = "junitTest"}
+turbine-test = { group = "app.cash.turbine", name = "turbine", version.ref = "appCashTurbineTest" }
 #--------------
-androidx-test-espressoCore = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
-androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
-androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso-core" }
-androidx-espresso-web = { module = "androidx.test.espresso:espresso-web", version.ref = "espresso-core" }
-androidx-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso-core" }
-androidx-test-core = { module = "androidx.test:core", version.ref = "androidx-test" }
-androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidx-test" }
-androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test" }
-androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-runner" }
-androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext" }
-androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-ext" }
-androidx-test-monitor = { module = "androidx.test:monitor", version.ref = "androidx-test-monitor" }
-androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "androidx-test-uiautomator" }
+androidx-test-espressoCore = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxTestEspressoCore" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxTestEspressoCore" }
+androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "androidxTestEspressoCore" }
+androidx-espresso-web = { module = "androidx.test.espresso:espresso-web", version.ref = "androidxTestEspressoCore" }
+androidx-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "androidxTestEspressoCore" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidxTest" }
+androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidxTest" }
+androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidxTest" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidxTestRunner" }
+androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExt" }
+androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidxTestExt" }
+androidx-test-monitor = { module = "androidx.test:monitor", version.ref = "androidxTestMonitor" }
+androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "androidxTestUiAutomator" }
 
 jetbrains-test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "jetbrainsKotlinxCoroutines" }
 
-kluent-android = { module = "org.amshove.kluent:kluent-android", version.ref = "kluent" }
-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
-arch = { module = "androidx.arch.core:core-testing", version.ref = "arch" }
+kluent-android = { module = "org.amshove.kluent:kluent-android", version.ref = "amshoveKluent" }
+mockk = { module = "io.mockk:mockk", version.ref = "ioMockk" }
+arch = { module = "androidx.arch.core:core-testing", version.ref = "androidxArch" }
 compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidxCompose" }
 compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidxCompose" }
-square-okhttp-mockjunit5 = { module = "com.squareup.okhttp3:mockwebserver3-junit5", version.ref = "square-okhttp" }
-powermock-junit4 = { module = "org.powermock:powermock-module-junit4", version.ref = "powermock-version" }
-powermock-core = { module = "org.powermock:powermock-core", version.ref = "powermock-version" }
-powermock-api = { module = "org.powermock:powermock-api-mockito2", version.ref = "powermock-version" }
-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric-version" }
+square-okhttp-mockjunit5 = { module = "com.squareup.okhttp3:mockwebserver3-junit5", version.ref = "squareUpOkhttp" }
+powermock-junit4 = { module = "org.powermock:powermock-module-junit4", version.ref = "powermockJunit4" }
+powermock-core = { module = "org.powermock:powermock-core", version.ref = "powermockJunit4" }
+powermock-api = { module = "org.powermock:powermock-api-mockito2", version.ref = "powermockJunit4" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectricTest" }
 #test-robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "testrobolectric"}
-mars-xlog = { module = "com.tencent.mars:mars-xlog", version.ref = "mars-xlog" }
+mars-xlog = { module = "com.tencent.mars:mars-xlog", version.ref = "tencentMarsXlog" }
 # androidTestImplementation
-mannodermaus-junit5-core = { module = "de.mannodermaus.junit5:android-test-core", version.ref = "mannodermaus-junit5" }
+mannodermaus-junit5-core = { module = "de.mannodermaus.junit5:android-test-core", version.ref = "mannodermausJunit5" }
 # androidTestRuntimeOnly
-mannodermaus-junit5-runner = { module = "de.mannodermaus.junit5:android-test-runner", version.ref = "mannodermaus-junit5" }
+mannodermaus-junit5-runner = { module = "de.mannodermaus.junit5:android-test-runner", version.ref = "mannodermausJunit5" }
 
 #===================#===================#===================#===================
 #===================#===================#===================#===================
@@ -662,24 +688,24 @@ powermock = [
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrainsKotlin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "jetbrainsKotlin" }
-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "jetbrainsKotlin" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrainsKotlin" }
+jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "jetbrainsKotlin" }
+jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "jetbrainsKotlin" }
 
-navigation = { id = "androidx.navigation.safeargs.kotlin", version.ref = "androidxNavigation" }
+androidx-navigation = { id = "androidx.navigation.safeargs.kotlin", version.ref = "androidxNavigation" }
 
-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+arturbosch-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "arturboschDetekt" }
 
 #This plugin creates convenient tasks in your Gradle project that run ktlint checks or do code auto format.
 #Этот плагин создает удобные задачи в вашем проекте Gradle, которые запускают проверки ktlint или выполняют автоматическое форматирование кода.
-ktlint-gradle = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-gradle" }
+jlleitschuh-ktlint-gradle = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "jlleitschuhKtlintGradlePlugin" }
 
 #Плагин Gradle для обнаружения обновлений зависимостей
-benmanes-versions = { id = "com.github.ben-manes.versions", version.ref = "benmanes" }
-# vcu = { id = "nl.littlerobots.version-catalog-update", version.ref = "vcu" }
+benmanes-versions = { id = "com.github.ben-manes.versions", version.ref = "benmanesVersions" }
+# littlerobots-version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "littlerobotsVersionCatalogUpdate" }
 
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
-android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "mannodermaus-android-junit5" }
+android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "mannodermausAndroidJunit5" }
 
 # инструмент создания отчета покрытия кода JUnit тестами для Kotlin
-kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+jetbrains-kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "jetbrainsKotlinxKover" }
