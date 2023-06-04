@@ -21,27 +21,22 @@ applicationId="com.childmathematics.android.shiftschedule"
 appNameRelease="ScheduleCalendar"
 # @keep
 appNameDebug="ScheduleCalendar Debug"
-# @keep
-buildToolsVersion = "33.0.0"
 
 
 
 #===================
 #===== Compile =====
 #===================
-gradleEnterprise  = "3.13.2"
 #androidGradlePlugin
 agp = "8.0.2"                               # com.android.tools.build:gradle /  com.android.application / com.android.library
 #---???????????????????
-jetbrainsKotlin = "1.8.10"                           #1.8.21 ? org.jetbrains.kotlin",
-jetbrainsKotlinLast = "1.8.21"                           #1.8.21 ? org.jetbrains.kotlin",
+jetbrainsKotlin = "1.8.20"                           #1.8.21 ? org.jetbrains.kotlin",
 #===================
 #===== Google =====
 #===================
 googleFirebase = "32.0.0"                               #com.google.firebase:firebase-bom
 googleFirebaseCrashlytics= "2.9.5"                      #com.google.firebase:firebase-crashlytics-gradle
 googleFirebasePerformance= "1.4.2"                       #com.google.firebase:perf-plugin
-googleFirebaseAnalitics = "21.3.0"
 
 googleHilt = "2.46.1"                                   #com.google.dagger
 googleAccompanist = "0.28.0"                            #  com.google.accompanist
@@ -119,7 +114,7 @@ androidxCompose = "1.3.1"               #"1.4.3"?    androidx.compose.foundation
 #---------------
 androidxActivityCompose = "1.7.1"   #androidx.activity:activity-compose
 #--??????????????????????????
-androidxComposeCompiler = "1.4.3"       #1ю4ю3 1.4.7 Kotlin version 1.8.21 composeOptions {kotlinCompilerExtensionVersion libs.versions.androidxComposeCompiler.get()
+androidxComposeCompiler = "1.4.5"       #1.4.7 Kotlin version 1.8.21 composeOptions {kotlinCompilerExtensionVersion libs.versions.androidxComposeCompiler.get()
 #--??????????????????????????
 androidxComposeMaterial3 = "1.0.1"      #"1.1.0"  ?            #androidx.compose.material3
 #-----------------
@@ -131,7 +126,7 @@ androidxGlanceComposeWidget = "1.0.0-beta01"                 #androidx.glance:gl
 #===== Third party =====
 #=======================
 #gRPC and protocol buffers for Android, Kotlin, and Java.
-squareupProtoWirePlugin = "4.6.2"   #"4.4.1"  #com.squareup.wire:wire-gradle-plugin
+squareupProtoWirePlugin = "4.6.2"     #com.squareup.wire:wire-gradle-plugin
 #Static code analysis for Kotlin
 arturboschDetekt = "1.22.0"           #io.gitlab.arturbosch.detekt:detekt-formatting
 #Dokka is an API documentation engine for Kotlin and Java, performing the same function as Javadoc for Java
@@ -170,7 +165,6 @@ squareUpRetrofit2 = "2.9.0"            #May 20, 2020  #com.squareup.retrofit2:re
 #A modern JSON API for Android and Java
 squareUpMoshi = "1.15.0"      #"1.3.10"       #com.squareup.moshi:moshi
 #squareUpMoshiKotlin = "1.15.0"      #"1.3.10"       #com.squareup.moshi:moshi-kotlin
-squareupOkio = "3.3.0"              ##com.squareup.okio:okio
 
 rxjava2 = "2.2.21"                     #io.reactivex.rxjava2:rxjava
 rxjava2Android = "2.1.1"         #Feb 16, 2019  #io.reactivex.rxjava2:rxandroid
@@ -280,7 +274,6 @@ jetbrains-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutin
 google-firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "googleFirebaseCrashlytics" }
 google-firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "googleFirebasePerformance" }
 google-firebase = { group = "com.google.firebase", name = "firebase-bom", version.ref = "googleFirebase" }
-google-firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx", version.ref = "googleFirebaseAnalitics" }
 
 google-hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "googleHilt" }
 google-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "googleHilt" }
@@ -429,7 +422,6 @@ square-retrofit2-adapter-rxjava2 = { module = "com.squareup.retrofit2:adapter-rx
 squareup-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "squareUpOkhttp" }
 squareup-retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "squareUpRetrofit2" }
 squareup-retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "squareUpRetrofit2" }
-squareup-okio = { group = "com.squareup.okio", name = "okio-fakefilesystem", version.ref = "squareupOkio" }
 
 lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "airbnbAndroidComposeLottie" }
 
@@ -472,7 +464,7 @@ netty-all = { module = "io.netty:netty-all", version.ref = "nettyCodec" }
 koin = { module = "io.insert-koin:koin-android", version.ref = "insertKoin" }
 
 # https://mvnrepository.com/artifact/org.bytedeco/ffmpeg
-# In module `build.gradle.kts.kts`
+# In module `Old_build.gradle.kts`
 # dependencies {
 #     implementation(libs.bytedeco.ffmpeg)
 #     implementation(libs.bytedeco.ffmpeg) {
@@ -484,7 +476,7 @@ koin = { module = "io.insert-koin:koin-android", version.ref = "insertKoin" }
 bytedeco-ffmpeg = { module = "org.bytedeco:ffmpeg", version.ref = "bytedecoFfmpeg" }
 
 # https://mvnrepository.com/artifact/org.bytedeco/javacpp
-# In module `build.gradle.kts.kts`
+# In module `Old_build.gradle.kts`
 # dependencies {
 #     implementation(libs.bytedeco.javacpp)
 #     implementation(libs.bytedeco.javacpp) {
@@ -498,7 +490,7 @@ material-dialogs = { module = "com.afollestad.material-dialogs:input", version.r
 karn-notify = { module = "io.karn:notify", version.ref = "karnNotify" }
 xx-permissions = { module = "com.github.getActivity:XXPermissions", version.ref = "xxPermissions" }
 tencent-mmkv = { module = "com.tencent:mmkv", version.ref = "tencentMmkv" }
-# In module `build.gradle.kts.kts`
+# In module `Old_build.gradle.kts`
 # dependencies {
 #     implementation(libs.android.animations) {
 #         artifact {
@@ -693,15 +685,11 @@ powermock = [
 #===================#===================#===================#===================
 
 [plugins]
-#android-gradle-Plugin = { id = "com.android.tools.build", name = "gradle", version.ref = "agp" }
-android-gradle-Plugin = { id = "com.android.tools.build", version.ref = "agp" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 
-#jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrainsKotlin" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrainsKotlin" }
-#jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "jetbrainsKotlin" }
-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "jetbrainsKotlin"}
+jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "jetbrainsKotlin" }
 jetbrains-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "jetbrainsKotlin" }
 
 androidx-navigation = { id = "androidx.navigation.safeargs.kotlin", version.ref = "androidxNavigation" }
@@ -721,16 +709,3 @@ android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "mannode
 
 # инструмент создания отчета покрытия кода JUnit тестами для Kotlin
 jetbrains-kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "jetbrainsKotlinxKover" }
-
-gradle-enterprise-plugin = { id = "com.gradle.enterprise",  version.ref = "gradleEnterprise" }
-
-google-hilt-gradle-plugin = { id = "com.google.dagger.hilt.android", version.ref = "googleHilt" }
-google-services-plugin = { id = "com.google.gms.google-services", version.ref = "googleServices" }
-
-#google-firebase-crashlytics-gradle-plugin = { id = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "googleFirebaseCrashlytics" }
-google-firebase-crashlytics-gradle-plugin = { id = "com.google.firebase.crashlytics", version.ref = "googleFirebaseCrashlytics" }
-#google-firebase-performance-gradle-plugin = { id = "com.google.firebase", name = "perf-plugin", version.ref = "googleFirebasePerformance" }
-google-firebase-performance-gradle-plugin = { id = "com.google.firebase.firebase-perf", version.ref = "googleFirebasePerformance" }
-
-squareup-wire-gradle-plugin = { id = "com.squareup.wire",  version.ref = "squareupProtoWirePlugin" }
-#squareup-wire-gradle-plugin = { id = "com.squareup.wire", name = "wire-gradle-plugin", version.ref = "squareupProtoWirePlugin" }
