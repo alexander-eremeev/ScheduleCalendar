@@ -464,7 +464,7 @@ netty-all = { module = "io.netty:netty-all", version.ref = "nettyCodec" }
 koin = { module = "io.insert-koin:koin-android", version.ref = "insertKoin" }
 
 # https://mvnrepository.com/artifact/org.bytedeco/ffmpeg
-# In module `Old_build.gradle.kts`
+# In module `build.gradle.kts`
 # dependencies {
 #     implementation(libs.bytedeco.ffmpeg)
 #     implementation(libs.bytedeco.ffmpeg) {
@@ -476,7 +476,7 @@ koin = { module = "io.insert-koin:koin-android", version.ref = "insertKoin" }
 bytedeco-ffmpeg = { module = "org.bytedeco:ffmpeg", version.ref = "bytedecoFfmpeg" }
 
 # https://mvnrepository.com/artifact/org.bytedeco/javacpp
-# In module `Old_build.gradle.kts`
+# In module `build.gradle.kts`
 # dependencies {
 #     implementation(libs.bytedeco.javacpp)
 #     implementation(libs.bytedeco.javacpp) {
@@ -490,7 +490,7 @@ material-dialogs = { module = "com.afollestad.material-dialogs:input", version.r
 karn-notify = { module = "io.karn:notify", version.ref = "karnNotify" }
 xx-permissions = { module = "com.github.getActivity:XXPermissions", version.ref = "xxPermissions" }
 tencent-mmkv = { module = "com.tencent:mmkv", version.ref = "tencentMmkv" }
-# In module `Old_build.gradle.kts`
+# In module `build.gradle.kts`
 # dependencies {
 #     implementation(libs.android.animations) {
 #         artifact {

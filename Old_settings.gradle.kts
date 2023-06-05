@@ -33,7 +33,7 @@ dependencyResolutionManagement {
      * block is where you configure the repositories and dependencies used by
      * all modules in your project, such as libraries that you are using to
      * create your application. However, you should configure module-specific
-     * dependencies in each module-level Old_build.gradle.kts file. For new projects,
+     * dependencies in each module-level build.gradle.kts file. For new projects,
      * Android Studio includes Google's Maven repository and the
      * Maven Central Repository by default,
      * but it does not configure any dependencies (unless you select a
@@ -42,7 +42,7 @@ dependencyResolutionManagement {
      * Блок, где вы настраиваете репозитории и зависимости, используемые
      * все модули в вашем проекте, такие как библиотеки, которые вы используете для
      * создать свое приложение. Тем не менее, вы должны настроить для конкретного модуля
-     * зависимости в каждом файле Old_build.gradle.kts уровня модуля. Для новых проектов,
+     * зависимости в каждом файле build.gradle.kts уровня модуля. Для новых проектов,
      * Android Studio включает в себя репозиторий Google Maven и
      * Центральный репозиторий Maven по умолчанию,
      * но он не настраивает никаких зависимостей (если только вы не выберете

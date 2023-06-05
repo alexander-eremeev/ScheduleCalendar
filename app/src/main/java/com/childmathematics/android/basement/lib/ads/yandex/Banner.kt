@@ -19,7 +19,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
-import com.childmathematics.android.shiftschedule.util.bannerHightPlus
 import com.childmathematics.android.shiftschedule.util.bannerHightWithVideoMin
 import com.yandex.mobile.ads.banner.AdSize
 import com.yandex.mobile.ads.banner.BannerAdEventListener
@@ -32,7 +31,7 @@ import com.yandex.mobile.ads.common.ImpressionData
 var YANDEX_MOBILE_ADS_TAG = "Yandex Mobile Ads"
 
 //var mAdYaBannerRequest: AdRequest? = null
-private var mBannerAdView: BannerAdView? = null
+//private var mBannerAdView: BannerAdView? = null
 private var bannerWidth = 0
 ///================================
 @Composable
@@ -94,7 +93,8 @@ fun InitBannerView(
 //                      setAdSize(AdSize.flexibleSize(320, 50))
                     Log.d(YANDEX_MOBILE_ADS_TAG, "Banner: Banner INIT screenHeightDp=$screenHeightDp")
 //                    if (bannerHeight > 300) bannerHeight = 50
-                    setAdSize(AdSize.flexibleSize(bannerWidth, bannerHeight))
+//                    setAdSize(AdSize.flexibleSize(bannerWidth, bannerHeight))
+                    setAdSize(AdSize.inlineSize(bannerWidth, bannerHeight))
                     loadAd(AdRequest.Builder().build())
                    setBannerAdEventListener(mBannerAdEventListener)
 

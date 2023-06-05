@@ -20,18 +20,14 @@ import androidx.compose.ui.input.pointer.*
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-//import androidx.compose.ui.util.fastAny
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.childmathematics.android.shiftschedule.*
 import com.childmathematics.android.shiftschedule.R
-//import com.childmathematics.android.shiftschedule.RoutesSch500.currentDialog
 import com.childmathematics.android.shiftschedule.mainpage.HomePageShow
 import com.childmathematics.android.basement.lib.navigation.model.ActionItemMode
 import com.childmathematics.android.basement.lib.navigation.model.ActionItemSpec
@@ -42,7 +38,6 @@ import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoScreen
 import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoViewModel
 import com.childmathematics.android.shiftschedule.webview.WebViewMainScreen
 import com.childmathematics.android.basement.lib.webview.ui.theme.WebViewTheme
-import com.yandex.metrica.YandexMetrica
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
@@ -354,7 +349,7 @@ fun AppDrawer(
 
                 DrawerButton(
                     icon = Icons.Filled.Schedule,
-                    label = "График прерывный, односменный, 8 часовой с выходными днями суббота,воскресенье",
+                    label = "График прерывный, односменный, 8 часовой с выходными днями суббота,воскресенье (В РАЗРАБОТКЕ)",
                     isSelected = currentRoute == Routes.SCHEDULE01_ROUTE,
                     action = {
                         if (currentRoute != Routes.SCHEDULE01_ROUTE) {
@@ -584,16 +579,18 @@ fun AboutComponent(currentAboutRoute : String) {
         AdBannerNetworkApp()
         AdInterstitialNetworkApp(LocalContext.current)
     }
+    /*
     if (BuildConfig.YaAdsEnable) {
 //        initInterstitialAd()
  //       InitBannerView(mBannerAdEventListener)
  //       ShowYaInterstitial()
     }
+     */
 
 //    val versionCode = BuildConfig.VERSION_CODE
     val yearStr = BuildConfig.BUILD_TIMESTAMP
     val versionName = BuildConfig.VERSION_NAME
-        WebViewTheme {
+    WebViewTheme {
 //            WebViewMainScreen("http://www.bbc.com")
             WebViewMainScreen("file:///android_asset/about.html?Version=$versionName&Year=$yearStr")
 //            WebViewMainScreen("file:///android_asset/about.html?Version=$BuildConfig.VERSION_NAME&Year=$yearStr")
@@ -657,7 +654,7 @@ fun OverflowTopSchedule() {
         ActionItemSpec("Email", Icons.Default.Email, ActionItemMode.IF_ROOM) {},
         ActionItemSpec("Delete", Icons.Default.Delete, ActionItemMode.IF_ROOM) {},
     )
-            ActionMenu(items, defaultIconSpace = 3)
+    ActionMenu(items, defaultIconSpace = 3)
 }
 
 //==============================================
