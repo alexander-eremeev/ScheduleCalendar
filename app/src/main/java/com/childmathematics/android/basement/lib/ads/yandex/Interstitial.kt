@@ -39,66 +39,74 @@ var ya_interstitial_id:String=""
 // load the interstitial ad
 @Composable
 fun LoadYaInterstitial() {
-    Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: loadYaInterstitial.")
-    mYaInterstitialAd!!.loadAd(mAdYaIntRequest!!)
+    if (BuildConfig.YaAdsEnable) {
+        Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: loadYaInterstitial.")
+        mYaInterstitialAd!!.loadAd(mAdYaIntRequest!!)
+    }
 }
+
 
 // show the interstitial ad
 @Composable
 fun ShowYaInterstitial() {
+    if (BuildConfig.YaAdsEnable) {
         Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: ShowYaInterstitial.")
         mYaInterstitialAdOnOff = true
 
-    if (mYaInterstitialAd == null) {
-        if (BuildConfig.DEBUG) {
+        if (mYaInterstitialAd == null) {
+            if (BuildConfig.DEBUG) {
 //            ya_interstitial_id=Resources.getSystem().getString(R.string.ya_ads_demo_interstitial_id)
-            ya_interstitial_id = LocalContext.current.getString(R.string.ya_ads_demo_interstitial_id)
+                ya_interstitial_id = LocalContext.current.getString(R.string.ya_ads_demo_interstitial_id)
+            } else ya_interstitial_id = LocalContext.current.getString(R.string.ya_ads_interstitial_id)
+
+            InitInterstitialAd(ya_interstitial_id)
+
+            LoadYaInterstitial()
         }
-        else ya_interstitial_id =LocalContext.current.getString(R.string.ya_ads_interstitial_id)
 
-        InitInterstitialAd(ya_interstitial_id)
+        if (!evMotion) yaAdsInterstutialTimerOn(durationAds)  //реклама через durationAds mcек
 
-        LoadYaInterstitial()
     }
-
-    if (!evMotion) yaAdsInterstutialTimerOn(durationAds)  //реклама через durationAds mcек
-
 }
 
-fun yaAdsInterstutialTimerOn(interstutialDelay: Long){
-    Timer(t1).schedule(interstutialDelay) {
+fun yaAdsInterstutialTimerOn(interstutialDelay: Long) {
+    if (BuildConfig.YaAdsEnable) {
+
+        Timer(t1).schedule(interstutialDelay) {
             Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: yaAdsInterstutialTimerOn ON.")
             // interstutial ON              загружена                  не было нажатий экрана после показа
-            if (mYaInterstitialAdOnOff  && mYaInterstitialAd!!.isLoaded &&  !evMotion) {
+            if (mYaInterstitialAdOnOff && mYaInterstitialAd!!.isLoaded && !evMotion) {
 
                 mYaInterstitialAd!!.show()
                 evMotion = true
             }
 
-        Timer(t1).cancel()
-        Timer(t1).purge()
+            Timer(t1).cancel()
+            Timer(t1).purge()
 
+        }
     }
 }
-
-fun yaAdsInterstutialTimerOff(){
-    if(evMotion) {
-        countTap++
-        Timer(t2).cancel()
-        Timer(t2).purge()
-    }
-    if(!evMotion) {
-        evMotion = true
-    }
-    Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: yaAdsInterstutialTimerOff On.")
-    Timer(t2).schedule(durationAds) {
+fun yaAdsInterstutialTimerOff() {
+    if (BuildConfig.YaAdsEnable) {
+        if (evMotion) {
+            countTap++
+            Timer(t2).cancel()
+            Timer(t2).purge()
+        }
+        if (!evMotion) {
+            evMotion = true
+        }
+        Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: yaAdsInterstutialTimerOff On.")
+        Timer(t2).schedule(durationAds) {
             Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: yaAdsInterstutialTimerOff Off.")
-             if (evMotion && countTap ==0 ) {
-                 evMotion = false
-                 yaAdsInterstutialTimerOn(durationAds)  //реклама через 180 cек  durationNoPushTastaturAds
-             }
-        if (countTap >0) countTap--
-         }
+            if (evMotion && countTap == 0) {
+                evMotion = false
+                yaAdsInterstutialTimerOn(durationAds)  //реклама через 180 cек  durationNoPushTastaturAds
+            }
+            if (countTap > 0) countTap--
+        }
+    }
 }
 //-------------------------------
 @Composable
@@ -166,7 +174,9 @@ private class InterstitialAdYandexAdsEventListener : InterstitialAdEventListener
 
     override fun onAdClicked() {
 //        TODO("Not yet implemented")
-        Log.d(YANDEX_MOBILE_ADS_TAG,"Interstitial: onAdClicked")
+        if (BuildConfig.YaAdsEnable) {
+            Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: onAdClicked")
+        }
     }
 
 
@@ -189,7 +199,9 @@ private class InterstitialAdYandexAdsEventListener : InterstitialAdEventListener
     // Вызывается, когда зарегистрирован показ.
     override fun onImpression(p0: ImpressionData?) {
 //    TODO("Not yet implemented")
-    Log.d(YANDEX_MOBILE_ADS_TAG,"Interstitial: onImpression-зарегистрирован показ")
+        if (BuildConfig.YaAdsEnable) {
+            Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: onImpression-зарегистрирован показ")
+        }
     }
 }
 

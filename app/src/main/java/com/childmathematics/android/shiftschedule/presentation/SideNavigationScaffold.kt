@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.*
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -426,12 +427,21 @@ fun AppDrawer(
 }
 @Composable
 private fun DrawerHeader() {
+    //var thisScreenWidthDp: Int
 
-    Box(contentAlignment = Alignment.BottomStart, modifier = Modifier.background(Color.Green)) {
+    //thisScreenWidthDp = LocalConfiguration.current.screenWidthDp
+
+    Box(contentAlignment = Alignment.BottomStart, modifier = Modifier.background(Color.DarkGray)) {
         Image(
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.height(160.dp),
-            painter = painterResource(id = R.drawable.work_1280),
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier
+//                .padding(80.dp,0.dp,(thisScreenWidthDp-80).dp,50.dp)
+                .padding(80.dp,0.dp,0.dp,50.dp)
+                .height(160.dp)
+//                .padding(80.dp,0.dp,0.dp,45.dp)
+            ,
+//            painter = painterResource(id = R.drawable.work_1280),
+            painter = painterResource(id = R.drawable.powering_idea_4),
             contentDescription = null
         )
 
