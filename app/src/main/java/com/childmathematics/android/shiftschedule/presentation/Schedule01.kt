@@ -132,9 +132,7 @@ import java.time.*
 
             Spacer(modifier = Modifier.height(20.dp))
             Text(
-                text = "\tВСЕГО за месяц:\n\t"
-//                    +"\tБригада 1:"
-                        + String.format(
+                        ""+ String.format(
                     "%4d", (getShift01WorkDayMonth(
                         state.monthState.currentMonth.year,
                         state.monthState.currentMonth.monthValue
@@ -146,6 +144,8 @@ import java.time.*
                         state.monthState.currentMonth.year, state.monthState.currentMonth.monthValue
                     )).toInt()
                 )
+
+
                         + "\tчас.\n",
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
@@ -427,7 +427,7 @@ fun getShift01MonthDateDays (datecalc: LocalDate):Int {
     var dateforCalc: LocalDate= datecalc
 
     var summDays: Int
-        if (getShift01(dateforCalc)>0.0) summDays  =1 else summDays  =0
+    if (getShift01(dateforCalc)>0.0) summDays  =1 else summDays  =0
     for (i in dateforCalc.dayOfMonth-1 downTo 1 step 1) {
         if (getShift01(dateforCalc.minusDays(i.toLong())) >0.0)
             summDays  +=1

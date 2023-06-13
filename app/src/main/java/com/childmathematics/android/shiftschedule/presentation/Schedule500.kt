@@ -136,13 +136,30 @@ fun Schedule500Sample(currentDialog500: Boolean) {
             Text(
                 text = "\tВСЕГО за месяц:\n"
                         + "\tБригада 1:"
+                    + String.format(
+                    "%4d", (getShift500Month(
+                        state.monthState.currentMonth.year,
+                        state.monthState.currentMonth.monthValue,
+                        1
+                    )).toInt()
+                )
+
+/*
                         + String.format(
                     "%4d", (getShift500NightMonth(
                         state.monthState.currentMonth.year,
                         state.monthState.currentMonth.monthValue, 1
                     )).toInt()
                 )
-                        + "("
+ */
+                        + " ("
+                    + String.format(
+                    "%3d", (getShift500NightMonth(
+                        state.monthState.currentMonth.year,
+                        state.monthState.currentMonth.monthValue, 1
+                    )).toInt()
+                )
+/*
                         + String.format(
                     "%4d", (getShift500Month(
                         state.monthState.currentMonth.year,
@@ -150,19 +167,37 @@ fun Schedule500Sample(currentDialog500: Boolean) {
                         1
                     )).toInt()
                 )
+
+ */
                         + ") час",
                 fontSize = 14.sp,
             )
             Text(
                 text =
                 "\tБригада 2:"
+                    + String.format(
+                    "%4d", (getShift500Month(
+                        state.monthState.currentMonth.year,
+                        state.monthState.currentMonth.monthValue,
+                        2
+                    )).toInt()
+                )
+/*
                         + String.format(
                     "%4d", (getShift500NightMonth(
                         state.monthState.currentMonth.year,
                         state.monthState.currentMonth.monthValue, 2
                     )).toInt()
                 )
-                        + "("
+ */
+                        + " ("
+                    + String.format(
+                    "%3d", (getShift500NightMonth(
+                        state.monthState.currentMonth.year,
+                        state.monthState.currentMonth.monthValue, 2
+                    )).toInt()
+                )
+/*
                         + String.format(
                     "%4d", (getShift500Month(
                         state.monthState.currentMonth.year,
@@ -170,19 +205,36 @@ fun Schedule500Sample(currentDialog500: Boolean) {
                         2
                     )).toInt()
                 )
+ */
                         + ") час",
                 fontSize = 14.sp,
             )
             Text(
                 text =
                 "\tБригада 3:"
+                    + String.format(
+                    "%4d", (getShift500Month(
+                        state.monthState.currentMonth.year,
+                        state.monthState.currentMonth.monthValue,
+                        3
+                    )).toInt()
+                )
+/*
                         + String.format(
                     "%4d", (getShift500NightMonth(
                         state.monthState.currentMonth.year,
                         state.monthState.currentMonth.monthValue, 3
                     )).toInt()
                 )
-                        + "("
+ */
+                        + " ("
+                    + String.format(
+                    "%3d", (getShift500NightMonth(
+                        state.monthState.currentMonth.year,
+                        state.monthState.currentMonth.monthValue, 3
+                    )).toInt()
+                )
+/*
                         + String.format(
                     "%4d", (getShift500Month(
                         state.monthState.currentMonth.year,
@@ -190,19 +242,36 @@ fun Schedule500Sample(currentDialog500: Boolean) {
                         3
                     )).toInt()
                 )
+ */
                         + ") час",
                 fontSize = 14.sp,
             )
             Text(
                 text =
                 "\tБригада 4:"
+                    + String.format(
+                    "%4d", (getShift500Month(
+                        state.monthState.currentMonth.year,
+                        state.monthState.currentMonth.monthValue,
+                        4
+                    )).toInt()
+                )
+/*
                         + String.format(
                     "%4d", (getShift500NightMonth(
                         state.monthState.currentMonth.year,
                         state.monthState.currentMonth.monthValue, 4
                     )).toInt()
                 )
-                        + "("
+ */
+                        + " ("
+                    + String.format(
+                    "%3d", (getShift500NightMonth(
+                        state.monthState.currentMonth.year,
+                        state.monthState.currentMonth.monthValue, 4
+                    )).toInt()
+                )
+/*
                         + String.format(
                     "%4d", (getShift500Month(
                         state.monthState.currentMonth.year,
@@ -210,6 +279,7 @@ fun Schedule500Sample(currentDialog500: Boolean) {
                         4
                     )).toInt()
                 )
+ */
                         + ") час",
                 fontSize = 14.sp,
             )
@@ -712,7 +782,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
       Text(
         text = "Бригада 1:"
                 +String.format("%3d",getShift500 (selection[0],1).toInt())
-                +"("
+                +" ("
                 +String.format("%1d",getShift500Night (selection[0],1).toInt())
                 +") час"
 //                +"\t"
@@ -724,7 +794,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
       Text(
         text = "Бригада 2:"
                 +String.format("%3d",getShift500 (selection[0],2).toInt())
-                +"("
+                +" ("
                 +String.format("%1d",getShift500Night (selection[0],2).toInt())
                 +") час"
 //                +"\t"
@@ -737,7 +807,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
       Text(
         text = "Бригада 3:"
                 +String.format("%3d",getShift500 (selection[0],3).toInt())
-                +"("
+                +" ("
                 +String.format("%1d",getShift500Night (selection[0],3).toInt())
                 +") час"
 //                +"\t"
@@ -749,7 +819,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
         Text(
             text = "Бригада 4:"
                     +String.format("%3d",getShift500 (selection[0],4).toInt())
-                    +"("
+                    +" ("
                     +String.format("%1d",getShift500Night (selection[0],4).toInt())
                     +") час"
 //                    +"\t"
@@ -771,7 +841,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
         Text(
             text = "\tБригада 1:"
                     +String.format("%5d",getShift500MonthDate (selection[0],1).toInt())
-                    +"("
+                    +" ("
                     +String.format("%5d",getShift500MonthDateNight (selection[0],1).toInt())
                     +") час"
             ,
@@ -781,7 +851,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
         Text(
             text = "\tБригада 2:"
                     +String.format("%5d",getShift500MonthDate (selection[0],2).toInt())
-                    +"("
+                    +" ("
                     +String.format("%5d",getShift500MonthDateNight (selection[0],2).toInt())
                     +") час"
             ,
@@ -793,7 +863,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
         Text(
             text = "\tБригада 3:"
                     +String.format("%5d",getShift500MonthDate(selection[0],3).toInt())
-                    +"("
+                    +" ("
                     +String.format("%5d",getShift500MonthDateNight (selection[0],3).toInt())
                     +") час"
             ,
@@ -803,7 +873,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
         Text(                                   //getShift500MonthDate (datecalc: LocalDate,nBrig: Int):Double
             text = "\tБригада 4:"
                     +String.format("%5d",getShift500MonthDate (selection[0],4).toInt())
-                    +"("
+                    +" ("
                     +String.format("%5d",getShift500MonthDateNight (selection[0],4).toInt())
                     +") час"
             ,
@@ -840,7 +910,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
           Text(
               text = "\tБригада 1:"
                       +String.format("%5d",getShift500Date1Date2 (selection[0],selection[selection.lastIndex],1).toInt())
-                      +"("
+                      +" ("
                       +String.format("%5d",getShift500Date1Date2Night (selection[0],selection[selection.lastIndex],1).toInt())
                       +") час"
               ,
@@ -852,7 +922,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
 //                +"\t/\tРабочих:\t"
                       +String.format("%5d",getShift500Date1Date2 (selection[0],selection[selection.lastIndex],2).toInt())
 //                +"Ночных:\t"
-                      +"("
+                      +" ("
                       +String.format("%5d",getShift500Date1Date2Night (selection[0],selection[selection.lastIndex],2).toInt())
                       +") час"
               ,
@@ -863,7 +933,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
           Text(
               text = "\tБригада 3:"
                       +String.format("%5d",getShift500Date1Date2 (selection[0],selection[selection.lastIndex],3).toInt())
-                      +"("
+                      +" ("
                       +String.format("%5d",getShift500Date1Date2Night (selection[0],selection[selection.lastIndex],3).toInt())
                       +") час"
               ,
@@ -872,7 +942,7 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
           Text(                                   //getShift500MonthDate (datecalc: LocalDate,nBrig: Int):Double
               text = "\tБригада 4:"
                       +String.format("%5d",getShift500Date1Date2 (selection[0],selection[selection.lastIndex],4).toInt())
-                      +"("
+                      +" ("
                       +String.format("%5d",getShift500Date1Date2Night (selection[0],selection[selection.lastIndex],4).toInt())
                       +") час"
               ,
