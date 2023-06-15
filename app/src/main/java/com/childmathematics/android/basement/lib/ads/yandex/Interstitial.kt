@@ -139,7 +139,7 @@ fun InitInterstitialAd(Id: String) {
         * R-M-DEMO-video-interstitial
         * R-M-DEMO-interstitial
         */
-            mYaInterstitialAd!!.setAdUnitId(Id)
+        mYaInterstitialAd!!.setAdUnitId(Id)
         mAdYaIntRequest = AdRequest.Builder().build()
         mYaInterstitialAd!!.setInterstitialAdEventListener(mInterstitialAdEventListener)
         Log.d(YANDEX_MOBILE_ADS_TAG,"Interstitial: initInterstitialAd INIT")
