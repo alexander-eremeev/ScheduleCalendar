@@ -48,7 +48,7 @@ android {
 
     defaultConfig {
         minSdkVersion  24
-        targetSdkVersion 33
+        targetSdkVersion 34
         compileSdkVersion 33
         buildToolsVersion "33.0.0"
 //        appId = com.childmathematics.android.shiftschedule
@@ -57,8 +57,8 @@ android {
         versionCode = Integer.parseInt(project.properties["version_code"])
         versionName = project.properties["version_name"]
                  */
-        versionCode = 11
-        versionName = "1.1.0"
+        versionCode = 112
+        versionName = "1.1.2"
 
 /*
         minSdkVersion project.ext.minSdkVersion
@@ -257,7 +257,7 @@ dependencies {
 
     implementation libs.google.ads
     implementation libs.yandex.mobileads
-    implementation libs.yandex.mobmetrica
+   // implementation libs.yandex.mobmetrica
 
     ///////////////
     // DATA SUPPORT

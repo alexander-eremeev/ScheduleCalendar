@@ -27,7 +27,7 @@ allprojects {
 
     project.ext {
 //        minSdkVersion = rootProject.libs.versions.min.sdk.get().toInt()//21
-        minSdkVersion = 21
+        minSdkVersion = 24
         targetSdkVersion = 33
         compileSdkVersion = 33
         buildToolsVersion = "33.0.0"

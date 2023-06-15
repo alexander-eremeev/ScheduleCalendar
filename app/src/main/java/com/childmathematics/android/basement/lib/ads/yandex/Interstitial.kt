@@ -21,7 +21,7 @@ import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.interstitial.InterstitialAd
 import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener
 import java.util.*
-import kotlin.concurrent.schedule
+//import kotlin.concurrent.schedule
 
 //var YaAdsEnable = true     // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
 //var YANDEX_MOBILE_ADS_TAG = "Yandex Mobile Ads"
@@ -64,14 +64,17 @@ fun ShowYaInterstitial() {
             LoadYaInterstitial()
         }
 
-        if (!evMotion) yaAdsInterstutialTimerOn(durationAds)  //реклама через durationAds mcек
+        if (!evMotion) yaAdsInterstutialTimerOn()  //реклама через durationAds mcек
+//        if (!evMotion) yaAdsInterstutialTimerOn(durationAds)  //реклама через durationAds mcек
 
     }
 }
 
-fun yaAdsInterstutialTimerOn(interstutialDelay: Long) {
-    if (BuildConfig.YaAdsEnable) {
+fun yaAdsInterstutialTimerOn() {
+//    fun yaAdsInterstutialTimerOn(interstutialDelay: Long) {
 
+    if (BuildConfig.YaAdsEnable) {
+/*
         Timer(t1).schedule(interstutialDelay) {
             Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: yaAdsInterstutialTimerOn ON.")
             // interstutial ON              загружена                  не было нажатий экрана после показа
@@ -85,6 +88,8 @@ fun yaAdsInterstutialTimerOn(interstutialDelay: Long) {
             Timer(t1).purge()
 
         }
+
+ */
     }
 }
 fun yaAdsInterstutialTimerOff() {
@@ -98,6 +103,7 @@ fun yaAdsInterstutialTimerOff() {
             evMotion = true
         }
         Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: yaAdsInterstutialTimerOff On.")
+/*
         Timer(t2).schedule(durationAds) {
             Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: yaAdsInterstutialTimerOff Off.")
             if (evMotion && countTap == 0) {
@@ -106,6 +112,8 @@ fun yaAdsInterstutialTimerOff() {
             }
             if (countTap > 0) countTap--
         }
+
+ */
     }
 }
 //-------------------------------

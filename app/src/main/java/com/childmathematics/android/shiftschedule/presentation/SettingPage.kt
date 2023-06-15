@@ -40,12 +40,13 @@ import com.childmathematics.android.shiftschedule.util.bannerHightPlus
 import com.childmathematics.android.shiftschedule.util.bannerHightWithVideoMin
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.bottomSheet
-import com.yandex.metrica.YandexMetrica
+//import com.yandex.metrica.YandexMetrica
 
 
 @OptIn(ExperimentalMaterialNavigationApi::class)
 @Composable
-fun SettingPageShow(context: Context,currentRoute : String) {
+//fun SettingPageShow(context: Context,currentRoute : String) {
+fun SettingPageShow(currentRoute : String) {
 
 //=========================
  //   val bottomSheetNavigator = rememberBottomSheetNavigator()
@@ -123,7 +124,8 @@ fun SettingPageShow(context: Context,currentRoute : String) {
 
     }
     if (currentRoute == Routes.SETTINGAPPMETRICA_ROUTE) {
-        SettingsAppMetricaComponent(context)
+ //       SettingsAppMetricaComponent(context)
+        SettingsAppMetricaComponent()
     }
 
 }
@@ -153,7 +155,8 @@ fun SettingPageShow(context: Context,currentRoute : String) {
  */
 
 @Composable
-fun SettingsAppMetricaComponent(context: Context) {
+fun SettingsAppMetricaComponent() {
+//fun SettingsAppMetricaComponent(context: Context) {
     val changeDp: Dp
 
     changeDp = 0.dp
@@ -184,7 +187,7 @@ fun SettingsAppMetricaComponent(context: Context) {
             "Яндекс будет обрабатывать эту информацию для предоставления статистики использования вами приложения, составления для нас отчетов о работе приложения, и предоставления других услуг.\n",
         fontSize = 14.sp, fontWeight = FontWeight.Normal)
 
-    YandexMetrica.setStatisticsSending(context, true)
+//    YandexMetrica.setStatisticsSending(context, true)
 //    Toast.makeText(context, "SettingsAppMetricaComponent:YandexMetrica.setStatisticsSending(context, true) ", Toast.LENGTH_LONG).show()
 
 /*

@@ -304,7 +304,7 @@ google-ads = { group = "com.google.android.gms", name = "play-services-ads", ver
 #=========================
 
 yandex-mobileads = { group = "com.yandex.android", name = "mobileads", version.ref = "yandexmMobileads" }
-yandex-mobmetrica = { group = "com.yandex.android", name = "mobmetricalib", version.ref = "yandexMobMetrica" }
+#yandex-mobmetrica = { group = "com.yandex.android", name = "mobmetricalib", version.ref = "yandexMobMetrica" }
 
 #=========================
 #===== debugging Libraries =====

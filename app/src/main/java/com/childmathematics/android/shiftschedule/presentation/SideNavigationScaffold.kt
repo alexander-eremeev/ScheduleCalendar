@@ -225,12 +225,14 @@ private fun NavigateContent(todoViewModel: TodoViewModel) {
 //========Классическое меню Setting  3 ==в правом углу======================
             if (BuildConfig.SettingsRouteEnable) {
                 composable(Routes.SETTINGS_ROUTE) {
-                        SettingsComponent(LocalContext.current, currentRoute.value)
+//                    SettingsComponent(LocalContext.current, currentRoute.value)
+                        SettingsComponent( currentRoute.value)
                 }
             }
             if (currentRoute.value == Routes.SETTINGAPPMETRICA_ROUTE && BuildConfig.AppMetricaOn && BuildConfig.SettingsRouteEnable) {
                 composable(Routes.SETTINGAPPMETRICA_ROUTE) {
-                    SettingsComponent(LocalContext.current,currentRoute.value)
+//                    SettingsComponent(LocalContext.current,currentRoute.value)
+                    SettingsComponent(currentRoute.value)
 //                SettingsAppMetricaComponent(LocalContext.current)
                 }
             }
@@ -631,12 +633,14 @@ fun AboutComponent(currentAboutRoute : String) {
 //-----------------------------------
 //========Классическое меню 5 ==в правом углу======================
 @Composable
-fun SettingsComponent(context: Context,currentRoute : String) {
+//fun SettingsComponent(context: Context,currentRoute : String) {
+fun SettingsComponent(currentRoute : String) {
 
 
 
     if (currentRoute == Routes.SETTINGS_ROUTE)
-        SettingPageShow(context,currentRoute)
+//        SettingPageShow(context,currentRoute)
+        SettingPageShow(currentRoute)
 
 //        Toast.makeText(context, "SettingsComponent: ", Toast.LENGTH_LONG).show()
 }
