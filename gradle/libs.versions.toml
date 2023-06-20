@@ -5,16 +5,16 @@
 # @keep
 compile-sdk = "33"
 # @keep
-min-sdk = "23"
+min-sdk = "24"
 # @keep
-target-sdk = "33"
+target-sdk = "34"
 # @keep
 ndk-sdk = "25.2.9519653"  #"21.1.6352462" # 22.1.7171670     это набор инструментов, которые позволяют реализовать часть вашего приложения используя такие языки как С/С++.
 
 # @keep
-versionCode = "11"
+versionCode = "200"
 # @keep
-versionName = "1.1.0"
+versionName = "2.0.0"
 # @keep
 applicationId="com.childmathematics.android.shiftschedule"
 # @keep
@@ -22,7 +22,7 @@ appNameRelease="ScheduleCalendar"
 # @keep
 appNameDebug="ScheduleCalendar Debug"
 # @keep
-buildToolsVersion = "33.0.0"
+buildToolsVersion = "33.0.2"
 
 
 

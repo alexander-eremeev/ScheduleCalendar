@@ -57,8 +57,8 @@ android {
         versionCode = Integer.parseInt(project.properties["version_code"])
         versionName = project.properties["version_name"]
                  */
-        versionCode = 115
-        versionName = "1.1.5"
+        versionCode = 200
+        versionName = "2.0.0"
 
 /*
         minSdkVersion project.ext.minSdkVersion
