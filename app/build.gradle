@@ -1,19 +1,26 @@
 plugins {
-    id 'com.android.application'            //подключить Yandex AppMetrica SDK через плагин
-    id 'org.jetbrains.kotlin.android'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'com.squareup.wire'
-    id 'dagger.hilt.android.plugin'
+    alias (libs.plugins.android.application)
+//    id 'com.android.application'            //подключить Yandex AppMetrica SDK через плагин
+    alias(libs.plugins.jetbrains.kotlin.android)
+//    id 'org.jetbrains.kotlin.android'
+//    id 'kotlin-android'
+       alias(libs.plugins.jetbrains.kotlin.kapt)
+//    id 'kotlin-kapt'
+   alias(libs.plugins.squareup.wire.gradle.plugin)
+//    id 'com.squareup.wire'
+
+    alias(libs.plugins.google.hilt.gradle.plugin)
+//    id 'dagger.hilt.android.plugin'
 
     // Make sure that you have the Google services Gradle plugin
-    id 'com.google.gms.google-services'
+    alias(libs.plugins.google.services.plugin)
+//    id 'com.google.gms.google-services'
 
     // Add the Crashlytics Gradle plugin
-    id 'com.google.firebase.crashlytics'
+//?    id 'com.google.firebase.crashlytics'
 
     // Add the Performance Monitoring Gradle plugin
-    id 'com.google.firebase.firebase-perf'          //Per
+//?    id 'com.google.firebase.firebase-perf'          //Per
      }
 // NEW
 apply from: "$rootDir/gradle/test-report.gradle"
@@ -205,6 +212,7 @@ wire {
 
 
 
+
 //_________________________
 dependencies {
 
@@ -343,10 +351,14 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
 
     }
 }
+
 // Allow references to generated code
 kapt {
     correctErrorTypes = true
 }
+
+
+
 static String getDate() {
     Date date = new Date()
     String dates = "\""+date.format("dd.MM.yyyy", TimeZone.default)+"\""

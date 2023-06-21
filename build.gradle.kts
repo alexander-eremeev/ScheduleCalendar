@@ -1,6 +1,6 @@
 //import com.android.build.gradle.BaseExtension
-//import com.android.build.gradle.internal.dsl.BaseFlavor
-//import com.android.build.gradle.internal.dsl.DefaultConfig
+//import com.android.NoKts_build.gradle.internal.dsl.BaseFlavor
+//import com.android.NoKts_build.gradle.internal.dsl.DefaultConfig
 //import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 //import io.gitlab.arturbosch.detekt.Detekt
 //import java.util.Locale
