@@ -1,11 +1,7 @@
-//import com.android.build.gradle.BaseExtension
-//import com.android.NoKts_build.gradle.internal.dsl.BaseFlavor
-//import com.android.NoKts_build.gradle.internal.dsl.DefaultConfig
-//import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-//import io.gitlab.arturbosch.detekt.Detekt
-//import java.util.Locale
-//import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-//import org.jlleitschuh.gradle.ktlint.KtlintExtension
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import io.gitlab.arturbosch.detekt.Detekt
+import java.util.Locale
+import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
 //====================================
 buildscript {
@@ -33,20 +29,12 @@ buildscript {
 
          */
  //           classpath (libs.squareup.wire.gradlePlugin)
+ //       classpath (libs.plugins.benmanes.versions)
+        classpath("com.github.ben-manes:gradle-versions-plugin:+")
     }
 }
 
 //======================================
-
-
-
-@Suppress(
-    "DSL_SCOPE_VIOLATION",
-    "MISSING_DEPENDENCY_CLASS",
-    "UNRESOLVED_REFERENCE_WRONG_RECEIVER",
-    "FUNCTION_CALL_EXPECTED"
-)
-
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
@@ -62,9 +50,9 @@ plugins {
     alias(libs.plugins.google.firebase.crashlytics.gradle.plugin)    apply false
     alias(libs.plugins.google.firebase.performance.gradle.plugin)    apply false
 
-    alias(libs.plugins.arturbosch.detekt)   apply false
-    alias(libs.plugins.jlleitschuh.ktlint.gradle)   apply false
-    alias(libs.plugins.benmanes.versions)   apply false
+    alias(libs.plugins.arturbosch.detekt)
+    alias(libs.plugins.jlleitschuh.ktlint.gradle)
+    alias(libs.plugins.benmanes.versions)
 
 
     jacoco
@@ -75,7 +63,6 @@ allprojects {
 
 //    defaultConfig {
 //    compileSdkVersion
-    project.ext {
         /*
 //        minSdkVersion = rootProject.libs.versions.min.sdk.get().toInt()
         minSdk(rootProject.libs.versions.min.sdk.get().toInt())
@@ -106,7 +93,6 @@ allprojects {
         versionCode = Integer.parseInt(project.properties["version_code"])
         versionName = project.properties["version_name"]
 */
-    }
 
 }
 /*
@@ -117,3 +103,28 @@ task clean(type: Delete) {
 tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)
 }
+//==========================================
+// https://github.com/ben-manes/gradle-versions-plugin
+
+fun String.isNonStable(): Boolean {
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { uppercase().contains(it) }
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    val isStable = stableKeyword || regex.matches(this)
+    return isStable.not()
+}
+tasks.withType<DependencyUpdatesTask> {
+
+    // Example 2: disallow release candidates as upgradable versions from stable versions
+    rejectVersionIf {
+        candidate.version.isNonStable() && !currentVersion.isNonStable()
+    }
+
+    // optional parameters
+    checkForGradleUpdate = true
+//    outputFormatter = "json"
+    outputFormatter ="plain,json,xml,html"
+    outputDir = "build/dependencyUpdates"
+    reportfileName = "report"
+}
+
+//-------------------------------------------

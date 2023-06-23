@@ -56,10 +56,12 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 plugins {
-    id("com.gradle.enterprise") version "3.13.2"
+    id("com.gradle.enterprise") version "3.13.4"
+//    alias(libs.plugins.gradle.enterprise.plugin)
 }
 
 gradleEnterprise {
@@ -74,7 +76,7 @@ gradleEnterprise {
 //   When enabled, tasks using a shared build service without declaring the requirement via the Task.usesService method will emit a deprecation warning.
 //   Если этот параметр включен, задачи, использующие общую службу сборки без объявления требования
 //   с помощью метода Task.usesService, будут выдавать предупреждение об устаревании.
-enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
+//?   enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 //----------------------------------------------------------------------------------------------------
 // https://docs.gradle.org/7.0/release-notes.html
 // Type-safe project accessors  Типобезопасные методы доступа к проектам
