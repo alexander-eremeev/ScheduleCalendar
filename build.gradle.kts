@@ -54,7 +54,6 @@ plugins {
     alias(libs.plugins.jlleitschuh.ktlint.gradle)
     alias(libs.plugins.benmanes.versions)
 
-
     jacoco
 
  }
