@@ -39,7 +39,7 @@ jetbrainsKotlinLast = "1.8.21"                           #1.8.21 ? org.jetbrains
 #===== Google =====
 #===================
 googleFirebase = "32.0.0"                               #com.google.firebase:firebase-bom
-googleFirebaseCrashlytics= "2.9.5"                      #com.google.firebase:firebase-crashlytics-gradle
+googleFirebaseCrashlytics= "2.9.6"                      #com.google.firebase:firebase-crashlytics-gradle
 googleFirebasePerformance= "1.4.2"                       #com.google.firebase:perf-plugin
 googleFirebaseAnalitics = "21.3.0"
 
@@ -133,15 +133,15 @@ androidxGlanceComposeWidget = "1.0.0-beta01"                 #androidx.glance:gl
 #gRPC and protocol buffers for Android, Kotlin, and Java.
 squareupProtoWirePlugin = "4.6.2"   #"4.4.1"  #com.squareup.wire:wire-gradle-plugin
 #Static code analysis for Kotlin
-arturboschDetekt = "1.22.0"           #io.gitlab.arturbosch.detekt:detekt-formatting
+arturboschDetekt = "1.23.0"           #io.gitlab.arturbosch.detekt:detekt-formatting
 #Dokka is an API documentation engine for Kotlin and Java, performing the same function as Javadoc for Java
 jetbrainsDokka = "1.8.10"            #  org.jetbrains.dokka:dokka-gradle-plugin
 
 ktlint = "0.48.2"			# https://pinterest.github.io/ktlint	
-jlleitschuhKtlintGradlePlugin = "11.3.1"	# org.jlleitschuh.gradle.ktlint
+jlleitschuhKtlintGradlePlugin = "11.4.2"	# org.jlleitschuh.gradle.ktlint
 
 #this plugin provides a task to determine which dependencies have updates.
-benmanesVersions = "0.46.0"                         #com.github.ben-manes.versions
+benmanesVersions = "0.47.0"                         #com.github.ben-manes.versions
 # littlerobotsVersionCatalogUpdate = "0.6.1"                         #nl.littlerobots.version-catalog-update
 
 # EclEmma инструмент создания отчета покрытия кода JUnit тестами

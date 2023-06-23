@@ -1,11 +1,14 @@
-//import com.android.build.gradle.BaseExtension
+//import com.gradle.enterprise.android.build.gradle.BaseExtension
 //import com.android.NoKts_build.gradle.internal.dsl.BaseFlavor
 //import com.android.NoKts_build.gradle.internal.dsl.DefaultConfig
-//import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+//import com.gradle.BaseExtension
+//import com.android.build.gradle.internal.dsl.BaseFlavor
+//import com.android.build.gradle.internal.dsl.DefaultConfig
+
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 //import io.gitlab.arturbosch.detekt.Detekt
-//import java.util.Locale
-//import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-//import org.jlleitschuh.gradle.ktlint.KtlintExtension
+import java.util.Locale
+import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
 //====================================
 buildscript {
@@ -33,6 +36,9 @@ buildscript {
 
          */
  //           classpath (libs.squareup.wire.gradlePlugin)
+ //      classpath (libs.plugins.benmanes.versions)
+        classpath("com.github.ben-manes:gradle-versions-plugin:+")
+
     }
 }
 
@@ -59,12 +65,12 @@ plugins {
 //    alias(libs.plugins.google.servicesPlugin)   apply false
 //    alias(libs.plugins.squareup.wire.gradlePlugin)  apply false
 
-    alias(libs.plugins.google.firebase.crashlytics.gradle.plugin)    apply false
-    alias(libs.plugins.google.firebase.performance.gradle.plugin)    apply false
+    alias (libs.plugins.google.firebase.crashlytics.gradle.plugin)    apply false
+    alias (libs.plugins.google.firebase.performance.gradle.plugin)    apply false
 
-    alias(libs.plugins.arturbosch.detekt)   apply false
-    alias(libs.plugins.jlleitschuh.ktlint.gradle)   apply false
-    alias(libs.plugins.benmanes.versions)   apply false
+    alias (libs.plugins.arturbosch.detekt)   apply false
+    alias (libs.plugins.jlleitschuh.ktlint.gradle)   apply false
+    alias (libs.plugins.benmanes.versions)
 
 
     jacoco
@@ -107,6 +113,15 @@ allprojects {
         versionName = project.properties["version_name"]
 */
     }
+    /*
+    tasks.named("dependencyUpdates").configure {
+        // configure the task, for example wrt. resolution strategies
+        rejectVersionIf {
+            isNonStable(it.candidate.version)
+        }
+    }
+
+     */
 
 }
 /*
@@ -117,3 +132,56 @@ task clean(type: Delete) {
 tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)
 }
+//==========================================
+// https://github.com/ben-manes/gradle-versions-plugin
+/*
+tasks.withType<DependencyUpdatesTask> {
+    rejectVersionIf {
+        isNonStable(candidate.version) && !isNonStable(currentVersion)
+    }
+}
+
+fun isNonStable(version: String): Boolean {
+//    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase(Locale.getDefault()).contains(it) }
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    val isStable = stableKeyword || regex.matches(version)
+    return isStable.not()
+}
+
+ */
+
+fun String.isNonStable(): Boolean {
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { uppercase().contains(it) }
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    val isStable = stableKeyword || regex.matches(this)
+    return isStable.not()
+}
+tasks.withType<DependencyUpdatesTask> {
+
+
+    // Example 2: disallow release candidates as upgradable versions from stable versions
+    rejectVersionIf {
+        candidate.version.isNonStable() && !currentVersion.isNonStable()
+    }
+/*
+    // Example 3: using the full syntax
+    resolutionStrategy {
+        componentSelection {
+            all {
+                if (candidate.version.isNonStable() && !currentVersion.isNonStable()) {
+                    reject("Release candidate")
+                }
+            }
+        }
+    }
+*/
+    // optional parameters
+    checkForGradleUpdate = true
+//    outputFormatter = "json"
+    outputFormatter ="plain,json,xml,html"
+    outputDir = "build/dependencyUpdates"
+    reportfileName = "report"
+}
+
+//-------------------------------------------
