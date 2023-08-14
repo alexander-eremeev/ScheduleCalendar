@@ -8,13 +8,22 @@ import javax.inject.Inject
 class ThemeEnvironment @Inject constructor(
     private val preferenceManager: PreferenceManager
 ) : IThemeEnvironment {
-
     override fun getTheme(): Flow<Theme> {
-        return preferenceManager.getTheme()
+        TODO("Not yet implemented")
     }
 
+    /*
+        override fun getTheme(): Flow<Theme> {
+            return preferenceManager.getTheme()
+        }
+
+        override suspend fun setTheme(theme: Theme) {
+            preferenceManager.setTheme(theme)
+        }
+
+     */
     override suspend fun setTheme(theme: Theme) {
-        preferenceManager.setTheme(theme)
     }
+
 
 }

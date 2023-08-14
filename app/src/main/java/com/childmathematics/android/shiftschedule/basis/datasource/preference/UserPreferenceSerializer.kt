@@ -2,12 +2,14 @@ package com.childmathematics.android.shiftschedule.basis.datasource.preference
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.UserPreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.UserPreference
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-object UserPreferenceSerializer : Serializer<UserPreference> {
+//object UserPreferenceSerializer : Serializer<UserPreference> {
+object UserPreferenceSerializer  {
+    /*
 
     override val defaultValue: UserPreference = UserPreference(email = "")
 
@@ -25,4 +27,5 @@ object UserPreferenceSerializer : Serializer<UserPreference> {
         UserPreference.ADAPTER.encode(output, t)
     }
 
+     */
 }

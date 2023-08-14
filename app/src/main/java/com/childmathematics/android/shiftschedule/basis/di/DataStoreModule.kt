@@ -7,10 +7,10 @@ import com.childmathematics.android.shiftschedule.basis.datasource.preference.Cr
 import com.childmathematics.android.shiftschedule.basis.datasource.preference.LanguagePreferenceSerializer
 import com.childmathematics.android.shiftschedule.basis.datasource.preference.ThemePreferenceSerializer
 import com.childmathematics.android.shiftschedule.basis.datasource.preference.UserPreferenceSerializer
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.CredentialPreference
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.LanguagePreference
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.ThemePreference
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.UserPreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.CredentialPreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.LanguagePreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.ThemePreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.UserPreference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +22,7 @@ private const val CREDENTIAL_NAME = "credential-preference.pb"
 private const val USER_NAME = "user-preference.pb"
 private const val THEME_NAME = "theme-preference.pb"
 private const val LANGUAGE_NAME = "language-preference.pb"
-
+/*
 private val Context.credentialDataStore: DataStore<CredentialPreference> by dataStore(
     fileName = CREDENTIAL_NAME,
     serializer = CredentialPreferenceSerializer
@@ -40,10 +40,12 @@ val Context.languageDatastore: DataStore<LanguagePreference> by dataStore(
     serializer = LanguagePreferenceSerializer
 )
 
+ */
+
 @Module
 @InstallIn(SingletonComponent::class)
 object DataStoreModule {
-
+/*
     @Singleton
     @Provides
     fun provideCredentialDataStore(@ApplicationContext context: Context): DataStore<CredentialPreference> {
@@ -67,5 +69,7 @@ object DataStoreModule {
     fun provideLanguageDataStore(@ApplicationContext context: Context): DataStore<LanguagePreference> {
         return context.languageDatastore
     }
+
+ */
 
 }

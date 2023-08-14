@@ -2,14 +2,14 @@ package com.childmathematics.android.shiftschedule.basis.datasource.preference
 
 import androidx.datastore.core.DataStore
 import com.childmathematics.android.shiftschedule.basis.di.DiName
-import com.childmathematics.android.shiftschedule.basis.extension.toLanguage
-import com.childmathematics.android.shiftschedule.basis.extension.toLanguagePreference
-import com.childmathematics.android.shiftschedule.basis.extension.toTheme
+//import com.childmathematics.android.shiftschedule.basis.extension.toLanguage
+//import com.childmathematics.android.shiftschedule.basis.extension.toLanguagePreference
+//import com.childmathematics.android.shiftschedule.basis.extension.toTheme
 import com.childmathematics.android.shiftschedule.basis.extension.toThemePreference
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.CredentialPreference
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.LanguagePreference
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.ThemePreference
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.UserPreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference. model.CredentialPreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.LanguagePreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.ThemePreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.UserPreference
 import com.childmathematics.android.shiftschedule.model.Credential
 import com.childmathematics.android.shiftschedule.model.Language
 import com.childmathematics.android.shiftschedule.model.Theme
@@ -25,13 +25,17 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class PreferenceManager @Inject constructor(
-    @Named(DiName.DISPATCHER_IO) private val dispatcher: CoroutineDispatcher,
+    @Named(DiName.DISPATCHER_IO) private val dispatcher: CoroutineDispatcher
+    /*
+    ,
     private val credentialDataStore: DataStore<CredentialPreference>,
     private val userDataStore: DataStore<UserPreference>,
     private val themeDataStore: DataStore<ThemePreference>,
     private val languageDataStore: DataStore<LanguagePreference>,
-) {
 
+     */
+) {
+/*
     fun getCredential(): Flow<Credential> {
         return credentialDataStore.data
             .map { Credential(it.token) }
@@ -89,5 +93,5 @@ class PreferenceManager @Inject constructor(
             }
         }
     }
-
+*/
 }

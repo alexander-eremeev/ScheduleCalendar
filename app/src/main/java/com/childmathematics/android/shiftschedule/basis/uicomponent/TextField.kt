@@ -136,7 +136,8 @@ fun PgTextField(
         colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedBorderColor = Color.Transparent,
             unfocusedBorderColor = Color.Transparent,
-            textColor = textColor
+//            textColor = textColor
+            focusedTextColor = textColor
         ),
     )
 

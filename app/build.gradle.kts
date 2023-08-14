@@ -1,16 +1,12 @@
+import com.android.build.gradle.internal.api.ApkVariantOutputImpl
 import com.android.build.api.dsl.Packaging
 import java.util.Properties
 import java.io.FileInputStream
 import java.time.format.DateTimeFormatter
 import java.time.LocalDateTime
-
-
-@Suppress(
-    "DSL_SCOPE_VIOLATION",
-    "MISSING_DEPENDENCY_CLASS",
-    "UNRESOLVED_REFERENCE_WRONG_RECEIVER",
-    "FUNCTION_CALL_EXPECTED"
-)
+import java.io.ByteArrayOutputStream
+import java.util.*
+import org.jetbrains.kotlin.util.capitalizeDecapitalize.toLowerCaseAsciiOnly
 
 plugins {
     alias (libs.plugins.android.application)            //подключить Yandex AppMetrica SDK через плаги
@@ -36,52 +32,70 @@ plugins {
 //    id ("com.google.firebase.firebase-perf")          //Performance Monitoring)
 }
 // NEW
-//?    /*
 
+/*
 //?        apply from: "$rootDir/gradle/test-report.gradle"
 
-//?        ext.codeCoverage = [
-//?            enabled      : true,
-//?        fileBlackList: [
-//?        ],
-//?        fileWhiteList: [
-//?            // UI
-//?            '**/ui/*ViewModel*',
-//?            '**/ui/*State*',
-//?            // Data
-//?            // '**/data/*Environment*',
-//?        //                '**/foundation/datasource/local/*Read*',
-//?        //                '**/foundation/datasource/local/*Write*',
-//?            '**/basis/datasource/local/*Read*',
-//?            '**/basis/datasource/local/*Write*',
-//?            // '**/foundation/datasource/preference/PreferenceManager*',
-//?            // Core
-//?        //                '**/foundation/extension/*',
-//?            '**/basis/extension/*',
-//?        ]
-//?        ]
+          ext.codeCoverage = [
+              enabled      : true,
+          fileBlackList: [
+          ],
+          fileWhiteList: [
+              // UI
+
+ */
+//              '**/ui/*ViewModel*',
+//              '**/ui/*State*',
+              // Data
+              // '**/data/*Environment*',
+          //                '**/foundation/datasource/local/*Read*',
+          //                '**/foundation/datasource/local/*Write*',
+//              '**/basis/datasource/local/*Read*',
+//              '**/basis/datasource/local/*Write*',
+              // '**/foundation/datasource/preference/PreferenceManager*',
+              // Core
+          //                '**/foundation/extension/*',
+//              '**/basis/extension/*',
+/*
+          ]
+          ]
+
 
         //------------------------------------------------------
+*/
 
-//?    */
 
 android {
-    namespace = rootProject.libs.versions.applicationId.toString()
+    val apName = "ScheduleCalendar"
 
-//    compileSdkVersion(rootProject.libs.versions.compile.sdk.get().toInt())
-//    compileSdkVersion(rootProject.libs.versions.compile.sdk.get().toInt())
+//    namespace = rootProject.libs.versions.applicationId.get().toString()
+    namespace = rootProject.libs.versions.applicationId.get()
+
     compileSdk = rootProject.libs.versions.compile.sdk.get().toInt()
-//    buildToolsVersion(rootProject.libs.versions.buildToolsVersion.get().toString()) //buildToolsVersion = "33.0.0"
-//    buildToolsVersion(rootProject.libs.versions.buildToolsVersion.get().toString()) //buildToolsVersion = "33.0.0"
-//    buildToolsVersion.get(rootProject.libs.versions.buildToolsVersion.get().toInt())
+    buildToolsVersion = rootProject.libs.versions.buildToolsVersion.get().toString()
+
+    buildFeatures {
+        dataBinding = true
+        resValues = true
+        viewBinding = true
+
+        // Fix compose compile error
+
+        compose = true
+
+        buildConfig = true
+    }
 
     defaultConfig {
         minSdk = rootProject.libs.versions.min.sdk.get().toInt()
         targetSdk = rootProject.libs.versions.target.sdk.get().toInt()
 
-//        applicationId = rootProject.libs.versions.applicationId.get().toString()
+        applicationId = rootProject.libs.versions.applicationId.get()
         versionCode = rootProject.libs.versions.versionCode.get().toInt()
-//        versionName = rootProject.libs.versions.versionName.get().toString()
+
+        versionName = rootProject.libs.versions.versionName.get()
+
+//        appNameRelease = rootProject.libs.versions.appNameRelease.get().toString()
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -95,25 +109,18 @@ android {
         }
 
 
-        //buildConfigField("String", "BUILD_TIMESTAMP", getDate())
+       buildConfigField("String", "BUILD_TIMESTAMP", getDate())
+ //       buildConfigField("String", "BUILD_TIMESTAMP", "13.08.2023")
         //------------------------------------------------------------------
         //  Статистика и реклама
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        buildConfigField(
-            "boolean",
-            "YaAdsEnable",
-            "true"
-        ) // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        buildConfigField("boolean","YaAdsEnable","false" ) // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
         // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
-        buildConfigField(
-            "boolean",
-            "AdMobEnable",
-            "false"
-        )   // Включав не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
-        buildConfigField("boolean", "AppMetricaOn", "true")  // Включав не забудь об арр AppYandexMetricaInit.java
+        buildConfigField("boolean","AdMobEnable","false" )   // Включав не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        buildConfigField("boolean", "AppMetricaOn", "false")  // Включав не забудь об арр AppYandexMetricaInit.java
         //======================================================================
         buildConfigField("boolean", "HomeRouteEnable", "true") // Включение-отключение модуля
-        buildConfigField("boolean", "SettingsRouteEnable", "true") // Включение-отключение модуля
+        buildConfigField("boolean", "SettingsRouteEnable", "false") // Включение-отключение модуля
         buildConfigField("boolean", "ToDoRouteEnable", "false") // Включение-отключение модуля
         buildConfigField("boolean", "ScheduleRouteEnable", "false")// Включение-отключение модуля
         buildConfigField("boolean", "Schedule01RouteEnable", "true") // Включение-отключение модуля
@@ -125,11 +132,10 @@ android {
                      // defining the build date
              buildConfigField( "long", "BUILD_DATE", System.currentTimeMillis() + "L")
                */
-
     }
-
+/*
     signingConfigs {
-//        getByName("release") {
+        getByName("release") {
             /* ??????????????????????
             Properties properties = new Properties()
             properties. .load(project.rootProject.file('keystore.properties').newDataInputStream())
@@ -153,37 +159,18 @@ android {
             // Load your keystore.properties file into the keystoreProperties object.
             keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
- //       }
+        }
     }
+*/
 
-  /*   ????????????
-    applicationVariants.all { variant ->
-       var variantName = variant.getName()
-        var debug = variantName.contains("debug")
-        var applName
 
-            if (debug) {
- //               applName = rootProject.libs.versions.appNameDebug
-        //        variant.mergedFlavor.manifestPlaceholders = MutableMap<rootProject.libs.versions.appNameDebug.toString()>
-            } else {
-                applName = rootProject.libs.versions.appNameRelease
-            }
-
-        variant.mergedFlavor.manifestPlaceholders = [
-            APP_NAME   : appName,
-        ]
-    }
 //===================================
- */
+
 
 
     buildTypes {
         getByName("release") {
-            /* OLD
-                minifyEnabled = false
-                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-                 */
+//            resValue("string", "app_name", libs.versions.appNameRelease.get())
             isMinifyEnabled = true     //включение/выключение ProGuard
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -192,10 +179,11 @@ android {
         }
 
         getByName("debug") {
+//            resValue("string", "app_name", libs.versions.appNameDebug.get())
             isMinifyEnabled = false      //включение/выключение ProGuard
             isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            applicationIdSuffix = ".debug"
+//            applicationIdSuffix = ".debug"
         }
 
     }
@@ -210,9 +198,11 @@ android {
         jvmTarget = "17"
         // TODO
 //        useIR = true
-        allWarningsAsErrors = true
+//        allWarningsAsErrors = true
+        allWarningsAsErrors = false
 
     }
+    /*
     buildFeatures {
         viewBinding = true
 
@@ -220,6 +210,8 @@ android {
 
         compose = true
     }
+
+     */
     composeOptions {
         kotlinCompilerExtensionVersion = (libs.versions.androidxComposeCompiler.get())
     }
@@ -232,9 +224,28 @@ android {
 
      */
 //    packagingOptions {
+/*
     fun Packaging.() {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+*/
+    packagingOptions.resources.excludes += setOf(
+        "META-INF/**",
+        "{AL2.0,LGPL2.1}",
+        "okhttp3/**",
+        "kotlin/**",
+        "org/**",
+        "**.properties",
+        "**.bin",
+        "**/*.proto"
+    )
+    applicationVariants.configureEach {
+        outputs.configureEach {
+            (this as? ApkVariantOutputImpl)?.outputFileName =
+                "ScheduleCalendar-${versionName}-${versionCode}-${apName}.apk"
+//            "ScheduleCalendar-new.apk"
         }
     }
 
@@ -253,14 +264,14 @@ android {
         ///////////////
         // UI SUPPORT
         //////
-
+        implementation(libs.jetbrains.kotlin.coroutines)
         implementation(libs.androidx.core.ktx)
         implementation(libs.androidx.window)
         implementation(libs.androidx.appcompat)
         implementation(libs.androidx.lifecycle.runtimeCompose)
         implementation(libs.androidx.lifecycle.viewModelCompose)
         implementation(libs.androidx.activity.compose)
-        implementation(libs.androidx.navigation.compose)
+        // implementation(libs.androidx.navigation.compose)     // 2.6.0 error ?????
         implementation(libs.androidx.hilt.navigation.compose)
         implementation(libs.lottie.compose)
         implementation(libs.google.android.material)
@@ -282,14 +293,23 @@ android {
         // Not able to get rid of material lib due to we still use these component and not available yet in material3
         // androidx.compose.material.SwipeToDismiss
         // androidx.compose.material.ModalBottomSheetLayout
+ //       val composeBom = platform(libs.androidx.compose.bom)
+//        implementation(composeBom)
+//       androidTestImplementation(composeBom)
+//        platform(libs.androidx.compose.bom)
+        implementation(platform(libs.androidx.compose.bom))
+        implementation(libs.androidx.ui.tooling.preview.android)
+        androidTestImplementation(platform(libs.androidx.compose.bom))
+
+        // import Compose dependencies as usual
         implementation(libs.androidx.compose.material)
-        implementation(libs.androidx.compose.material3)
+        implementation(libs.androidx.compose.material3)   // ??????  error
         implementation(libs.androidx.compose.material.iconsCore)
         implementation(libs.androidx.compose.material.iconsExtended)
         implementation(libs.androidx.compose.foundation)
         implementation(libs.androidx.compose.ui)
         implementation(libs.androidx.compose.ui.util)
-        implementation(libs.androidx.compose.widget)
+        implementation(libs.androidx.compose.widget)     // glance --> 34 api
 
         implementation(libs.io.coil.compose)
 
@@ -299,7 +319,7 @@ android {
 
         implementation(libs.google.ads)
         implementation(libs.yandex.mobileads)
-        implementation(libs.yandex.mobmetrica)
+//        implementation(libs.yandex.mobmetrica)
 
         ///////////////
         // DATA SUPPORT
@@ -341,16 +361,13 @@ android {
     Используя Firebase Android BoM , ваше приложение всегда будет использовать
     совместимые версии библиотек Firebase Android.
      */
-        implementation(
-            platform(libs.google.firebase))
+        implementation(platform(libs.google.firebase))
                 // When using the BoM, you don't specify versions in Firebase library dependencies
-                implementation (libs.google.firebase. analytics)
-                /* ?????????????
-                                implementation ("com.google.firebase:firebase-perf-ktx")
-                                implementation ("com.google.firebase:firebase-crashlytics-ktx")
+                implementation (libs.google.firebase.analytics)
+                implementation (libs.google.firebase.perf)
+                implementation (libs.google.firebase.crashlytics)
 
 
-                 */
                 ///////////////
                 // DEBUGGING SUPPORT
                 //////
@@ -409,16 +426,17 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
 
  */
 // Allow references to generated code
-    kapt {
+kapt {
         correctErrorTypes = true
-    }
-    fun getDate(): String {
+}
+fun getDate(): String {
 //    Date date = new Date()
 //    String dates = "\""+date.format("dd.MM.yyyy", TimeZone.default)+"\""
         //=======================
         val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-        val dates = LocalDateTime.now().format(formatter)
+//        val dates = LocalDateTime.now().format(formatter)
+    val dates = "\""+LocalDateTime.now().format(formatter)+"\""
         //--------------------
         return dates
-    }
+}
 

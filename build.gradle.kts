@@ -1,19 +1,8 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-import io.gitlab.arturbosch.detekt.Detekt
-import java.util.Locale
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
 //====================================
 buildscript {
-
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-
-
-
     dependencies {
         /*
             classpath (libs.android.gradlePlugin)
@@ -30,7 +19,7 @@ buildscript {
          */
  //           classpath (libs.squareup.wire.gradlePlugin)
  //       classpath (libs.plugins.benmanes.versions)
-        classpath("com.github.ben-manes:gradle-versions-plugin:+")
+ //       classpath("com.github.ben-manes:gradle-versions-plugin:+")
     }
 }
 
@@ -39,13 +28,11 @@ buildscript {
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 plugins {
-//    alias(libs.plugins.android.gradle.Plugin)    apply false
-//    alias(libs.plugins.jetbrains.kotlin.gradlePlugin)   apply false
-//    alias(libs.plugins.google.firebase.crashlytics.gradlePlugin)    apply false
-//    alias(libs.plugins.google.firebase.performance.gradlePlugin)    apply false
-//    alias(libs.plugins.google.hilt.gradlePlugin)    apply false
-//    alias(libs.plugins.google.servicesPlugin)   apply false
-//    alias(libs.plugins.squareup.wire.gradlePlugin)  apply false
+    alias(libs.plugins.android.application)    apply false  //подключить Yandex AppMetrica SDK через плаги
+    alias(libs.plugins.android.library)    apply false
+    alias (libs.plugins.jetbrains.kotlin.android)  apply false
+
+    alias (libs.plugins.jetbrains.kotlin.kapt)  apply false     //???
 
     alias(libs.plugins.google.firebase.crashlytics.gradle.plugin)    apply false
     alias(libs.plugins.google.firebase.performance.gradle.plugin)    apply false
@@ -96,7 +83,7 @@ allprojects {
 }
 /*
 task clean(type: Delete) {
-    delete rootProject.buildDir
+   delete rootProject.buildDir
 }
 */
 tasks.register<Delete>("clean") {

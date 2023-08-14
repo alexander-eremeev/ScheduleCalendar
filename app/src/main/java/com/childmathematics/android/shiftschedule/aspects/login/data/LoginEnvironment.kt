@@ -22,8 +22,8 @@ class LoginEnvironment @Inject constructor(
 //                    serverManager.fetchUser(email, password)
         ).onEach {
             when (it) {
-                is Credential -> preferenceManager.setCredential(it)
-                is User -> preferenceManager.setUser(it)
+//                is Credential -> preferenceManager.setCredential(it)
+//                is User -> preferenceManager.setUser(it)
             }
         }
     }

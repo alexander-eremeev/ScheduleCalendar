@@ -1,10 +1,11 @@
 package com.childmathematics.android.shiftschedule.basis.extension
 
 import com.childmathematics.android.shiftschedule.aspects.theme.ui.ThemeItem
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.ThemePreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.ThemePreference
 import com.childmathematics.android.shiftschedule.model.Theme
 
 fun Theme.toThemePreference() = when (this) {
+    /*
     Theme.SYSTEM -> ThemePreference.SYSTEM
     Theme.LIGHT -> ThemePreference.LIGHT
     Theme.TWILIGHT -> ThemePreference.TWILIGHT
@@ -12,8 +13,11 @@ fun Theme.toThemePreference() = when (this) {
     Theme.SUNRISE -> ThemePreference.SUNRISE
     Theme.AURORA -> ThemePreference.AURORA
     Theme.WALLPAPER -> ThemePreference.WALLPAPER
-}
 
+     */
+    else -> {}
+}
+/*
 fun ThemePreference.toTheme() = when (this) {
     ThemePreference.SYSTEM -> Theme.SYSTEM
     ThemePreference.LIGHT -> Theme.LIGHT
@@ -23,6 +27,8 @@ fun ThemePreference.toTheme() = when (this) {
     ThemePreference.AURORA -> Theme.AURORA
     ThemePreference.WALLPAPER -> Theme.WALLPAPER
 }
+
+ */
 
 fun List<ThemeItem>.select(theme: Theme): List<ThemeItem> {
     return map {

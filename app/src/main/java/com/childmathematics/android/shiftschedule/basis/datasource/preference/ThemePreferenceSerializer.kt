@@ -2,13 +2,14 @@ package com.childmathematics.android.shiftschedule.basis.datasource.preference
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.ThemePreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.ThemePreference
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-object ThemePreferenceSerializer : Serializer<ThemePreference> {
-
+//object ThemePreferenceSerializer : Serializer<ThemePreference> {
+object ThemePreferenceSerializer {
+/*
     override val defaultValue: ThemePreference = ThemePreference.SYSTEM
 
     @Suppress("BlockingMethodInNonBlockingContext")
@@ -24,5 +25,7 @@ object ThemePreferenceSerializer : Serializer<ThemePreference> {
     override suspend fun writeTo(t: ThemePreference, output: OutputStream) {
         ThemePreference.ADAPTER.encode(output, t)
     }
+
+ */
 
 }

@@ -8,9 +8,14 @@ import javax.inject.Inject
 class SplashEnvironment @Inject constructor(
     private val preferenceManager: PreferenceManager
 ) : ISplashEnvironment {
-
+    /*
     override fun getCredential(): Flow<Credential> {
         return preferenceManager.getCredential()
+    }
+
+ */
+    override fun getCredential(): Flow<Credential> {
+        TODO("Not yet implemented")
     }
 
 }

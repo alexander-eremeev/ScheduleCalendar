@@ -8,7 +8,7 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
-import com.google.accompanist.pager.ExperimentalPagerApi
+//import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.childmathematics.android.basement.lib.composecalendar.header.MonthState
 import com.childmathematics.android.basement.lib.composecalendar.util.dec
@@ -23,11 +23,12 @@ import java.time.YearMonth
 
 private const val PageCount = 3
 
-@ExperimentalCoroutinesApi
-@OptIn(ExperimentalPagerApi::class)
+//@ExperimentalCoroutinesApi
+//@OptIn(ExperimentalPagerApi::class)
 //@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 @Stable
-internal class MonthPagerState @ExperimentalPagerApi constructor(
+internal class MonthPagerState constructor(
+//internal class MonthPagerState @ExperimentalPagerApi constructor(
     coroutineScope: CoroutineScope,
     private val monthState: MonthState,
     private val pagerState: PagerState,

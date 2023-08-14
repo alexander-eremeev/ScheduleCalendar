@@ -32,6 +32,6 @@ private fun rememberModalBottomSheetState(
 ): ModalBottomSheetState = rememberModalBottomSheetState(
     initialValue = initialValue,
     animationSpec = animationSpec,
-    skipHalfExpanded = true,
-    confirmStateChange = confirmStateChange
+    confirmValueChange = confirmStateChange,
+    skipHalfExpanded = false
 )

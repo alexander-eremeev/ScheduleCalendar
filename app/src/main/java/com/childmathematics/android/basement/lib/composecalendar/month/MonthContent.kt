@@ -14,7 +14,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import com.google.accompanist.pager.ExperimentalPagerApi
+//import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.childmathematics.android.basement.lib.composecalendar.day.DayState
@@ -22,6 +22,7 @@ import com.childmathematics.android.basement.lib.composecalendar.header.MonthSta
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionState
 import com.childmathematics.android.basement.lib.composecalendar.week.WeekContent
 import com.childmathematics.android.basement.lib.composecalendar.week.getWeeks
+import com.google.accompanist.pager.ExperimentalPagerApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -44,8 +45,9 @@ internal fun <T : SelectionState> MonthPager(
     monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit,
 ) {
 //  val pagerState = rememberPagerState(pageCount = 3, initialPage = 1, infiniteLoop = true)
-  val pagerState = rememberPagerState(1)
-  val coroutineScope = rememberCoroutineScope()
+//  val pagerState = androidx.compose.foundation.pager.rememberPagerState(initialPage = 1)
+    val pagerState = rememberPagerState(1)
+    val coroutineScope = rememberCoroutineScope()
 
   val monthPagerState = remember {
     MonthPagerState(
@@ -74,7 +76,7 @@ internal fun <T : SelectionState> MonthPager(
   }
 }
 
-@OptIn(ExperimentalPagerApi::class)
+//@OptIn(ExperimentalPagerApi::class)
 @Composable
 internal fun <T : SelectionState> MonthContent(
     showAdjacentMonths: Boolean,

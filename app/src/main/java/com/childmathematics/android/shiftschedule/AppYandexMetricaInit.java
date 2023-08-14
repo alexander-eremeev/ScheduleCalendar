@@ -9,11 +9,12 @@
 package com.childmathematics.android.shiftschedule;
 
 import android.util.Log;
-
-//import com.yandex.metrica.YandexMetrica;
-//import com.yandex.metrica.YandexMetricaConfig;
-//import com.yandex.mobile.ads.common.InitializationListener;
-//import com.yandex.mobile.ads.common.MobileAds;
+/*
+import com.yandex.metrica.YandexMetrica;
+import com.yandex.metrica.YandexMetricaConfig;
+ */
+import com.yandex.mobile.ads.common.InitializationListener;
+import com.yandex.mobile.ads.common.MobileAds;
 //import androidx.multidex.MultiDexApplication;
 
 public class AppYandexMetricaInit extends android.app.Application {
@@ -26,7 +27,7 @@ public class AppYandexMetricaInit extends android.app.Application {
         super.onCreate();
 /*
         if (BuildConfig.AppMetricaOn) {
-            // Replace API_KEY with your unique API key. Please, read official documentation how to obtain one:
+            //Replace API_KEY with your unique API key. Please, read official documentation how to obtain one:
             // https://tech.yandex.com/metrica-mobile-sdk/doc/mobile-sdk-dg/concepts/android-initialize-docpage/
 
                 // Creating an extended library configuration.
@@ -39,12 +40,15 @@ public class AppYandexMetricaInit extends android.app.Application {
                 YandexMetrica.activate(this, config);
     //        YandexMetrica.activate(getApplicationContext(), config);
                 Log.d(YANDEX_METRIC_TAG, "AppYandexMetricaInit: Yandex metrica init withStatisticsSending.----");
+
         }
+
 */
+
         //---------------------------------------------
-   /*
+
         if (BuildConfig.YaAdsEnable) {
-            /*
+
             MobileAds.initialize(this, new InitializationListener() {
 
                 @Override
@@ -57,7 +61,7 @@ public class AppYandexMetricaInit extends android.app.Application {
         }
         //===============
 
-    */
+
     }
 }
 /*

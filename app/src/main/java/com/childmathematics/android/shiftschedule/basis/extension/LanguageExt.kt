@@ -1,9 +1,9 @@
 package com.childmathematics.android.shiftschedule.basis.extension
 
 import com.childmathematics.android.shiftschedule.aspects.localized.setting.ui.LanguageItem
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.LanguagePreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.LanguagePreference
 import com.childmathematics.android.shiftschedule.model.Language
-
+/*
 fun Language.toLanguagePreference(): LanguagePreference {
     return when (this) {
         Language.ENGLISH -> LanguagePreference.ENGLISH
@@ -17,6 +17,8 @@ fun LanguagePreference.toLanguage(): Language {
         LanguagePreference.INDONESIA -> Language.INDONESIA
     }
 }
+
+ */
 
 fun List<LanguageItem>.select(language: Language): List<LanguageItem> {
     return map {

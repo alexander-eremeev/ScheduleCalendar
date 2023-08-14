@@ -52,16 +52,20 @@ dependencyResolutionManagement {
 
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
     }
 
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+/*
+ https://docs.gradle.com/enterprise/get-started/
+
+Gradle Enterprise помогает анализировать время локальной сборки и сборки CI, а также понимать промахи
+Build Cache и другие типичные узкие места производительности сборки Android.
+*/
 plugins {
-    id("com.gradle.enterprise") version "3.13.4"
-//    alias(libs.plugins.gradle.enterprise.plugin)
+    id("com.gradle.enterprise") version "3.14.1"
 }
 
 gradleEnterprise {

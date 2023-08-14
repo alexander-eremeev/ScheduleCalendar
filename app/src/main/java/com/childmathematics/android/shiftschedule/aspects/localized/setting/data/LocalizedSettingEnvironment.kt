@@ -15,14 +15,21 @@ import javax.inject.Inject
 class LocalizedSettingEnvironment @Inject constructor(
     private val preferenceManager: PreferenceManager
 ) : ILocalizedSettingEnvironment {
-
     override fun getLanguage(): Flow<Language> {
-//        override fun getLanguage(): Flow<Language> {
-        return preferenceManager.getLanguage()
+        TODO("Not yet implemented")
     }
+    /*
+        override fun getLanguage(): Flow<Language> {
+    //        override fun getLanguage(): Flow<Language> {
+            return preferenceManager.getLanguage()
+        }
+
+     */
 
     override suspend fun setLanguage(language: Language) {
-        preferenceManager.setLanguage(language)
+//        preferenceManager.setLanguage(language)
     }
+
+
 
 }

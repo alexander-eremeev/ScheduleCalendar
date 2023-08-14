@@ -2,13 +2,14 @@ package com.childmathematics.android.shiftschedule.basis.datasource.preference
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.CredentialPreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.CredentialPreference
+
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-object CredentialPreferenceSerializer : Serializer<CredentialPreference> {
-
+object CredentialPreferenceSerializer  {
+/*
     override val defaultValue: CredentialPreference = CredentialPreference(token = "")
 
     @Suppress("BlockingMethodInNonBlockingContext")
@@ -24,5 +25,7 @@ object CredentialPreferenceSerializer : Serializer<CredentialPreference> {
     override suspend fun writeTo(t: CredentialPreference, output: OutputStream) {
         CredentialPreference.ADAPTER.encode(output, t)
     }
+
+ */
 
 }

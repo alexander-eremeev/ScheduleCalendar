@@ -2,13 +2,16 @@ package com.childmathematics.android.shiftschedule.basis.datasource.preference
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
-import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.LanguagePreference
+//import com.childmathematics.android.shiftschedule.basis.datasource.preference.model.LanguagePreference
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 
-object LanguagePreferenceSerializer : Serializer<LanguagePreference> {
-
+//object LanguagePreferenceSerializer : Serializer<LanguagePreference> {
+// object LanguagePreferenceSerializer : Serializer<LanguagePreference> {
+object LanguagePreferenceSerializer
+{
+/*
     override val defaultValue: LanguagePreference = LanguagePreference.ENGLISH
 
     @Suppress("BlockingMethodInNonBlockingContext")
@@ -25,4 +28,6 @@ object LanguagePreferenceSerializer : Serializer<LanguagePreference> {
         LanguagePreference.ADAPTER.encode(output, t)
     }
 
+
+ */
 }
