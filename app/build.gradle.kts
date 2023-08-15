@@ -110,7 +110,6 @@ android {
 
 
        buildConfigField("String", "BUILD_TIMESTAMP", getDate())
- //       buildConfigField("String", "BUILD_TIMESTAMP", "13.08.2023")
         //------------------------------------------------------------------
         //  Статистика и реклама
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -133,21 +132,8 @@ android {
              buildConfigField( "long", "BUILD_DATE", System.currentTimeMillis() + "L")
                */
     }
-/*
+
     signingConfigs {
-        getByName("release") {
-            /* ??????????????????????
-            Properties properties = new Properties()
-            properties. .load(project.rootProject.file('keystore.properties').newDataInputStream())
-
-            storeFile file("${properties.getProperty('RELEASE_STORE_FILE')}")
-            storePassword "${properties.getProperty('RELEASE_STORE_PASSWORD')}"
-            keyAlias "${properties.getProperty('RELEASE_KEY_ALIAS')}"
-            keyPassword "${properties.getProperty('RELEASE_KEY_PASSWORD')}"
-
-
-             */
-
 
             // Create a variable called keystorePropertiesFile, and initialize it to your
             // keystore.properties file, in the rootProject folder.
@@ -159,14 +145,19 @@ android {
             // Load your keystore.properties file into the keystoreProperties object.
             keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
-        }
+            //-------------------------------------------
+           create("release") {
+//            create("config") {
+                keyAlias = keystoreProperties["RELEASE_KEY_ALIAS"] as String
+                keyPassword = keystoreProperties["RELEASE_KEY_PASSWORD"] as String
+                storeFile = file(keystoreProperties["RELEASE_STORE_FILE"] as String)
+                storePassword = keystoreProperties["RELEASE_STORE_PASSWORD"] as String
+           }
+
+            //----------------------------
+
     }
-*/
-
-
 //===================================
-
-
 
     buildTypes {
         getByName("release") {
@@ -174,18 +165,18 @@ android {
             isMinifyEnabled = true     //включение/выключение ProGuard
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-//???            signingConfig(signingConfigs.release)
+            signingConfig = signingConfigs.getByName("release")
 
         }
 
         getByName("debug") {
 //            resValue("string", "app_name", libs.versions.appNameDebug.get())
+            isDebuggable = true
             isMinifyEnabled = false      //включение/выключение ProGuard
             isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-//            applicationIdSuffix = ".debug"
+            applicationIdSuffix = ".debug"
         }
-
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
@@ -202,17 +193,7 @@ android {
         allWarningsAsErrors = false
 
     }
-    /*
-    buildFeatures {
-        viewBinding = true
-
-        // Fix compose compile error
-
-        compose = true
-    }
-
-     */
-    composeOptions {
+     composeOptions {
         kotlinCompilerExtensionVersion = (libs.versions.androidxComposeCompiler.get())
     }
     testOptions {
@@ -264,14 +245,14 @@ android {
         ///////////////
         // UI SUPPORT
         //////
-        implementation(libs.jetbrains.kotlin.coroutines)
+        //implementation(libs.jetbrains.kotlin.coroutines)
         implementation(libs.androidx.core.ktx)
         implementation(libs.androidx.window)
         implementation(libs.androidx.appcompat)
         implementation(libs.androidx.lifecycle.runtimeCompose)
         implementation(libs.androidx.lifecycle.viewModelCompose)
         implementation(libs.androidx.activity.compose)
-        // implementation(libs.androidx.navigation.compose)     // 2.6.0 error ?????
+        implementation(libs.androidx.navigation.compose)     // 2.6.0 error ?????
         implementation(libs.androidx.hilt.navigation.compose)
         implementation(libs.lottie.compose)
         implementation(libs.google.android.material)

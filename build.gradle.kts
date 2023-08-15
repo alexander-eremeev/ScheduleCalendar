@@ -1,29 +1,6 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
-//====================================
-buildscript {
-    dependencies {
-        /*
-            classpath (libs.android.gradlePlugin)
-            classpath (libs.jetbrains.kotlin.gradlePlugin)
-
-            // Add the dependency for the Crashlytics Gradle plugin
-            classpath (libs.google.firebase.crashlytics.gradlePlugin)
-
-            classpath (libs.google.firebase.performance.gradlePlugin)
-
-            classpath (libs.google.hilt.gradlePlugin)
-            classpath (libs.google.servicesPlugin)
-
-         */
- //           classpath (libs.squareup.wire.gradlePlugin)
- //       classpath (libs.plugins.benmanes.versions)
- //       classpath("com.github.ben-manes:gradle-versions-plugin:+")
-    }
-}
-
-//======================================
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
