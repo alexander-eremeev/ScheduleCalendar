@@ -23,7 +23,8 @@ appNameRelease="ScheduleCalendar"
 appNameDebug="ScheduleCalendar Debug"
 # @keep
 buildToolsVersion = "34.0.0"
-
+#
+keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleCalendar\\keystore.properties"
 
 
 #===================
@@ -47,7 +48,7 @@ googleHilt = "2.47"                                   #2.46.1  com.google.dagger
 googleAccompanist = "0.30.1"         #"0.28.0"                   #  com.google.accompanist
 googleProtobuf = "3.24.0"         #3.23.4  com.google.protobuf  Protocol Buffers [Lite]
 
-googleDevToolsKsp = "1.8.10-1.0.9"        #com.google.devtools.ksp.gradle.plugin
+googleDevToolsKsp = "1.9.0-1.0.13"        #1.8.10-1.0.9     com.google.devtools.ksp.gradle.plugin
 googleServices = "4.3.15"               #com.google.gms", name = "google-services
 googleAds = "22.2.0"                        #com.google.android.gms", name = "play-services-ads
 
@@ -64,17 +65,17 @@ googleAndroidMaterial = "1.9.0"                      # com.google.android.materi
 
 androidxAppcompat = "1.6.1"                                 # androidx.appcompat:appcompat
 
-androidxActivityKtx = "1.7.1"                       #  androidx.activity:activity-ktx
+androidxActivityKtx = "1.7.2"                       #"1.7.1"   androidx.activity:activity-ktx
 
-androidxFragmentKtx = "1.5.7"                      #androidx.fragment:fragment-ktx
+androidxFragmentKtx = "1.6.1"                      #"1.5.7"  androidx.fragment:fragment-ktx
 
 androidxCoreKtx = "1.10.1"                       #1.9.0 androidx.core:core-ktx"
 #Library for legacy multi-dex support
 androidxMultidex = "2.0.1"                  #androidx.multidex:multidex"
 
-androidxPreference = "1.2.0"                        #androidx.preference:preference-ktx
+androidxPreference = "1.2.1"                        #"1.2.0"   androidx.preference:preference-ktx
 
-androidxRecyclerview = "1.3.0"                  # 1.2.1 androidx.recyclerview:recyclerview
+androidxRecyclerview = "1.3.1"                  #"1.3.0"  androidx.recyclerview:recyclerview
 
 androidxConstraintlayout = "2.1.4"                      #androidx.constraintlayout:constraintlayout
 
@@ -97,7 +98,7 @@ androidxSwiperefreshlayout = "1.1.0"    #androidx.swiperefreshlayout:swiperefres
 
 androidxRoom = "2.5.2"                  #androidx.room:room-runtime
 
-androidxCamera = "1.2.2"                #androidx.camera:camera-extensions
+androidxCamera = "1.2.3"                #"1.2.2" androidx.camera:camera-extensions
 
 androidxExifinterface = "1.3.6"     ##androidx.exifinterface:exifinterface
 
@@ -246,7 +247,7 @@ androidxArch = "2.2.0"                          #androidx.arch.core:core-testing
 
 powermockJunit4 = "2.0.9"             #org.powermock:powermock-module-junit4
 #An alternative Android testing framework
-robolectricTest = "4.9.2"       #org.robolectric:robolectric
+robolectricTest = "4.10.3"       #4.9.2"    org.robolectric:robolectric
 
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
@@ -749,4 +750,4 @@ squareup-wire-gradle-plugin = { id = "com.squareup.wire",  version.ref = "square
 #squareup-wire-gradle-plugin = { id = "com.squareup.wire", name = "wire-gradle-plugin", version.ref = "squareupProtoWirePlugin" }
 google-dagger-gradle = {  id = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "googleHilt" }
 #google-ksp = {  id = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "googleDevToolsKsp" }
-google-ksp = {  id = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "googleDevToolsKsp" }
+google-ksp = {  id = "com.google.devtools.ksp", version.ref = "googleDevToolsKsp" }

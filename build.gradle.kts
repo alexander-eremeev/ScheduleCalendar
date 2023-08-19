@@ -1,5 +1,5 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-import org.jlleitschuh.gradle.ktlint.KtlintExtension
+//import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
@@ -9,7 +9,8 @@ plugins {
     alias(libs.plugins.android.library)    apply false
     alias (libs.plugins.jetbrains.kotlin.android)  apply false
 
-    alias (libs.plugins.jetbrains.kotlin.kapt)  apply false     //???
+//    alias (libs.plugins.jetbrains.kotlin.kapt)  apply false     //???
+    alias (libs.plugins.google.ksp) apply false    //google-ksp
 
     alias(libs.plugins.google.firebase.crashlytics.gradle.plugin)    apply false
     alias(libs.plugins.google.firebase.performance.gradle.plugin)    apply false
