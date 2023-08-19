@@ -658,7 +658,7 @@ fun ScheduleComponent() {
 //        InitBannerView(mBannerAdEventListener)
         ShowYaInterstitial()
     }
-    ViewModelSample()
+//    ViewModelSample()
 }
 @Composable
 fun OverflowTopSchedule() {
