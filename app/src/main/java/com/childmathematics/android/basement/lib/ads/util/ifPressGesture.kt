@@ -14,14 +14,13 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 
-class ifPressGesture {
-}
 //
 suspend fun PointerInputScope.detectTapAndPressUnconsumed(
     onPress: suspend PressGestureScope.(Offset) -> Unit = NoPressGesture,
     onTap: ((Offset) -> Unit)? = null
 ) {
     val pressScope = PressGestureScopeImpl(this)
+    //    forEachGesture {
     forEachGesture {
         coroutineScope {
             pressScope.reset()

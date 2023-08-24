@@ -22,7 +22,7 @@ import com.childmathematics.android.basement.lib.composecalendar.header.MonthSta
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionState
 import com.childmathematics.android.basement.lib.composecalendar.week.WeekContent
 import com.childmathematics.android.basement.lib.composecalendar.week.getWeeks
-import com.google.accompanist.pager.ExperimentalPagerApi
+//import com.google.accompanist.pager.ExperimentalPagerApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -31,7 +31,7 @@ import java.time.YearMonth
 internal const val DaysOfWeek = 7
 
 @ExperimentalCoroutinesApi
-@OptIn(ExperimentalPagerApi::class)
+//@OptIn(ExperimentalPagerApi::class)
 @Composable
 internal fun <T : SelectionState> MonthPager(
     showAdjacentMonths: Boolean,
