@@ -88,7 +88,6 @@ fun PgTextField(
         errorLabel = errorLabel,
         textStyle = textStyle
     )
-
 }
 
 @Composable
@@ -144,7 +143,6 @@ fun PgTextField(
     if (errorLabel != null && isError) {
         errorLabel()
     }
-
 }
 
 @Composable
@@ -300,7 +298,6 @@ fun PgToDoCreator(
                 }
             }
         )
-
     }
 }
 
@@ -342,7 +339,12 @@ fun PgToDoCreateConfirmator(
                     PgSecondaryButton(
                         modifier = Modifier.weight(1F),
                         onClick = onCancelClick,
-                    ) { Text(text = stringResource(R.string.todo_cancel), color = MaterialTheme.colorScheme.onSecondary) }
+                    ) {
+                        Text(
+                            text = stringResource(R.string.todo_cancel),
+                            color = MaterialTheme.colorScheme.onSecondary
+                        )
+                    }
 
                     Spacer(Modifier.width(16.dp))
 

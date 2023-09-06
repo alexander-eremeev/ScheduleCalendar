@@ -1,33 +1,33 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-//import org.jlleitschuh.gradle.ktlint.KtlintExtension
-
+//import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 plugins {
-    alias(libs.plugins.android.application)    apply false  //подключить Yandex AppMetrica SDK через плаги
-    alias(libs.plugins.android.library)    apply false
-    alias (libs.plugins.jetbrains.kotlin.android)  apply false
+    alias(libs.plugins.android.application) apply false // подключить Yandex AppMetrica SDK через плаги
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.jetbrains.kotlin.android) apply false
 
-//    alias (libs.plugins.jetbrains.kotlin.kapt)  apply false     //???
-    alias (libs.plugins.google.ksp) apply false    //google-ksp
+//            alias (libs.plugins.jetbrains.kotlin.kapt)  apply false     //???
+    alias(libs.plugins.google.ksp) apply false // google-ksp
 
-    alias(libs.plugins.google.firebase.crashlytics.gradle.plugin)    apply false
-    alias(libs.plugins.google.firebase.performance.gradle.plugin)    apply false
+    alias(libs.plugins.google.firebase.crashlytics.gradle.plugin) apply false
+    alias(libs.plugins.google.firebase.performance.gradle.plugin) apply false
 
-    alias(libs.plugins.arturbosch.detekt)
+//    alias(libs.plugins.arturbosch.detekt)
     alias(libs.plugins.jlleitschuh.ktlint.gradle)
     alias(libs.plugins.benmanes.versions)
+//    alias(libs.plugins.gradle.versions)
+    alias(libs.plugins.littlerobots.version.catalog.update)
+
 
     jacoco
-
- }
+}
 
 allprojects {
 
 //    defaultConfig {
 //    compileSdkVersion
-        /*
+/*
 //        minSdkVersion = rootProject.libs.versions.min.sdk.get().toInt()
         minSdk(rootProject.libs.versions.min.sdk.get().toInt())
 //        minSdkVersion = 21
@@ -57,19 +57,17 @@ allprojects {
         versionCode = Integer.parseInt(project.properties["version_code"])
         versionName = project.properties["version_name"]
 */
-
 }
 /*
-task clean(type: Delete) {
-   delete rootProject.buildDir
-}
-*/
 tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
+//    delete(rootProject.buildDir)
+//    delete(layout.buildDirectory)
+    delete(getbuildDirectory())
 }
-//==========================================
+ */
+//  ==========================================
 // https://github.com/ben-manes/gradle-versions-plugin
-
+/*
 fun String.isNonStable(): Boolean {
     val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { uppercase().contains(it) }
     val regex = "^[0-9,.v-]+(-r)?$".toRegex()
@@ -86,9 +84,12 @@ tasks.withType<DependencyUpdatesTask> {
     // optional parameters
     checkForGradleUpdate = true
 //    outputFormatter = "json"
-    outputFormatter ="plain,json,xml,html"
+    outputFormatter = "plain,json,xml,html"
     outputDir = "build/dependencyUpdates"
     reportfileName = "report"
 }
+*/
 
-//-------------------------------------------
+
+apply("${project.rootDir}/buildscripts/toml-updater-config.gradle")
+// -------------------------------------------

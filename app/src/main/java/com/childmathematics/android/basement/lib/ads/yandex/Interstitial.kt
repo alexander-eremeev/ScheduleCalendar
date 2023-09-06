@@ -41,7 +41,7 @@ var ya_interstitial_id:String=""
 fun LoadYaInterstitial() {
     if (BuildConfig.YaAdsEnable) {
         Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: loadYaInterstitial.")
-        mYaInterstitialAd!!.loadAd(mAdYaIntRequest!!)
+        mYaInterstitialAd!!. loadAd(mAdYaIntRequest!!)
     }
 }
 

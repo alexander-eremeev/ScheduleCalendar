@@ -26,4 +26,6 @@
 # Если вы сохраняете информацию о номере строки, раскомментируйте ее, чтобы
 # скрыть оригинальное имя исходного файла.
 -renamesourcefileattribute SourceFile
-
+#вывести полный отчет обо всех правилах, которые R8 применяет при сборке вашего проекта
+#// You can specify any path and filename.
+#-printconfiguration ~/tmp/full-r8-config.txt
