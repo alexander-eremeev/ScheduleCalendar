@@ -12,14 +12,16 @@ import android.content.Context
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.util.durationAds
+import com.childmathematics.android.shiftschedule.BuildConfig
+import com.yandex.mobile.ads.common.AdError
 import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.interstitial.InterstitialAd
 import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener
+import com.yandex.mobile.ads.interstitial.InterstitialAdLoader
 import java.util.*
 //import kotlin.concurrent.schedule
 
@@ -41,7 +43,8 @@ var ya_interstitial_id:String=""
 fun LoadYaInterstitial() {
     if (BuildConfig.YaAdsEnable) {
         Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: loadYaInterstitial.")
-        mYaInterstitialAd!!. loadAd(mAdYaIntRequest!!)
+//        mYaInterstitialAd!!.loadAd(mAdYaIntRequest!!)
+//??        mYaInterstitialAd?.loadAd(mAdYaIntRequest!!)
     }
 }
 
@@ -127,7 +130,7 @@ fun InitInterstitialAd(Id: String) {
         для представления UI.
          */
         applicationContext = LocalContext.current
-        mYaInterstitialAd = InterstitialAd(LocalContext.current)
+//??        mYaInterstitialAd = InterstitialAd(LocalContext.current)
 
         /*
         * Replace demo R-M-DEMO-320x480 with actual Block ID
@@ -139,9 +142,9 @@ fun InitInterstitialAd(Id: String) {
         * R-M-DEMO-video-interstitial
         * R-M-DEMO-interstitial
         */
-        mYaInterstitialAd!!.setAdUnitId(Id)
+//?        mYaInterstitialAd!!.setAdUnitId(Id)
         mAdYaIntRequest = AdRequest.Builder().build()
-        mYaInterstitialAd!!.setInterstitialAdEventListener(mInterstitialAdEventListener)
+//??        mYaInterstitialAd!!.setInterstitialAdEventListener(mInterstitialAdEventListener)
         Log.d(YANDEX_MOBILE_ADS_TAG,"Interstitial: initInterstitialAd INIT")
     }
 }
@@ -150,13 +153,13 @@ fun InitInterstitialAd(Id: String) {
 private val mInterstitialAdEventListener = InterstitialAdYandexAdsEventListener()
 private class InterstitialAdYandexAdsEventListener : InterstitialAdEventListener {
 
-    override fun onAdLoaded() {
+    fun onAdLoaded() {
         if (BuildConfig.YaAdsEnable) {
             Log.d(YANDEX_MOBILE_ADS_TAG,"Interstitial: onAdLoaded ")
         }
     }
 
-    override fun onAdFailedToLoad(adRequestError: AdRequestError) {
+    fun onAdFailedToLoad(adRequestError: AdRequestError) {
         if (BuildConfig.YaAdsEnable) {
             Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: onAdFailedToLoad:$adRequestError")
             mYaInterstitialAd = null
@@ -168,9 +171,13 @@ private class InterstitialAdYandexAdsEventListener : InterstitialAdEventListener
         if (BuildConfig.YaAdsEnable) {
             Log.d(YANDEX_MOBILE_ADS_TAG,"Interstitial: onAdShown")
 
-            mYaInterstitialAd!!.loadAd(mAdYaIntRequest!!)
+//??            mYaInterstitialAd!!.loadAd(mAdYaIntRequest!!)
             mYaInterstitialAdOnOff = false  // отмена показа до нажатия основного меню
         }
+    }
+
+    override fun onAdFailedToShow(p0: AdError) {
+        TODO("Not yet implemented")
     }
 
     override fun onAdDismissed() {
@@ -187,9 +194,12 @@ private class InterstitialAdYandexAdsEventListener : InterstitialAdEventListener
         }
     }
 
+    override fun onAdImpression(p0: ImpressionData?) {
+        TODO("Not yet implemented")
+    }
 
 
-    override fun onLeftApplication() {
+    fun onLeftApplication() {
         if (BuildConfig.YaAdsEnable) {
                 Log.d(YANDEX_MOBILE_ADS_TAG,"Interstitial: onLeftApplication")
 //            mYaInterstitialAdOnOff = false
@@ -197,7 +207,7 @@ private class InterstitialAdYandexAdsEventListener : InterstitialAdEventListener
         }
     }
 
-    override fun onReturnedToApplication() {
+    fun onReturnedToApplication() {
         if (BuildConfig.YaAdsEnable) {
                 Log.d(YANDEX_MOBILE_ADS_TAG,"Interstitial: onReturnedToApplication")
 //            mYaInterstitialAdOnOff = false
@@ -205,7 +215,7 @@ private class InterstitialAdYandexAdsEventListener : InterstitialAdEventListener
         }
     }
     // Вызывается, когда зарегистрирован показ.
-    override fun onImpression(p0: ImpressionData?) {
+    fun onImpression(p0: ImpressionData?) {
 //    TODO("Not yet implemented")
         if (BuildConfig.YaAdsEnable) {
             Log.d(YANDEX_MOBILE_ADS_TAG, "Interstitial: onImpression-зарегистрирован показ")

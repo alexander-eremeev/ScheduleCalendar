@@ -9,7 +9,7 @@ import androidx.compose.ui.input.pointer.*
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.util.fastAll
 import androidx.compose.ui.util.fastAny
-//import com.childmathematics.android.shiftschedule.navigation.detectTapAndPressUnconsumed
+// import com.childmathematics.android.shiftschedule.navigation.detectTapAndPressUnconsumed
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
@@ -25,7 +25,9 @@ suspend fun PointerInputScope.detectTapAndPressUnconsumed(
         coroutineScope {
             pressScope.reset()
             awaitPointerEventScope {
-                val down = awaitFirstDown(requireUnconsumed = false).also { if (it.pressed != it.previousPressed) it.consume() }
+                val down = awaitFirstDown(
+                    requireUnconsumed = false
+                ).also { if (it.pressed != it.previousPressed) it.consume() }
                 if (onPress !== NoPressGesture) {
                     launch { pressScope.onPress(down.position) }
                 }
@@ -47,12 +49,11 @@ suspend fun AwaitPointerEventScope.waitForUpOrCancellationInitial(): PointerInpu
 // All pointers are up
             return event.changes[0]
         }
-        if (event.changes.fastAny { it. isConsumed || it.isOutOfBounds(
 //                if (event.changes.fastAny { it.consumed.downChange || it.isOutOfBounds(
-                size,
-                extendedTouchPadding
-            )
-            }) {
+        if (event.changes.fastAny {
+                it.isConsumed || it.isOutOfBounds(size, extendedTouchPadding)
+            }
+        ) {
 //           if (event.changes.fastAny { it.consumed.downChange || it.isOutOfBounds(size) }) {
             return null // Canceled
         }
@@ -109,7 +110,8 @@ private class PressGestureScopeImpl(
         isCanceled = true
         mutex.unlock()
     }
-    /**
+
+    /*
      * Called when all pointers are up.
      */
     fun release() {
@@ -138,6 +140,5 @@ private class PressGestureScopeImpl(
         }
         return isReleased
     }
-
 }
-//--------------------------------------------------------------
+// --------------------------------------------------------------

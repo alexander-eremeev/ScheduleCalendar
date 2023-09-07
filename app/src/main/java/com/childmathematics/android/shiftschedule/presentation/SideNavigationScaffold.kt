@@ -310,7 +310,7 @@ fun AppDrawer(
             .pointerInput(Unit) {
                 detectTapAndPressUnconsumed(onTap = {
                     Log.d(YANDEX_MOBILE_ADS_TAG, "SideNavigationScaffold  Interstitial: TAP")
-                    yaAdsInterstutialTimerOff()  //реклама через 180 cек  durationNoPushTastaturAds
+//?                    yaAdsInterstutialTimerOff()  //реклама через 180 cек  durationNoPushTastaturAds
                 })
             }
         //--------------------------------------------------
@@ -782,7 +782,7 @@ fun ActionMenu(
                             .pointerInput(Unit) {
                                 detectTapAndPressUnconsumed(onTap = {
                                     Log.d(YANDEX_MOBILE_ADS_TAG, "SideNavigationScaffold ActionMenu Interstitial:select date TAP")
-                                    yaAdsInterstutialTimerOff()  //реклама через 180 cек  durationNoPushTastaturAds
+//?                                    yaAdsInterstutialTimerOff()  //реклама через 180 cек  durationNoPushTastaturAds
                                 })
                             }
                         //--------------------------------------------------
