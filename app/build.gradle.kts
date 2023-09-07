@@ -95,7 +95,7 @@ android {
         buildConfigField(
             "boolean",
             "YaAdsEnable",
-            "false"
+            "true"
         ) // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
         // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
         buildConfigField(

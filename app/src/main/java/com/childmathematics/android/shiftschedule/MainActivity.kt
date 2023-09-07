@@ -17,6 +17,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import com.childmathematics.android.basement.lib.ads.admob.addInterstitialCallbacks
 import com.childmathematics.android.basement.lib.ads.admob.loadInterstitial
 import com.childmathematics.android.shiftschedule.navigation.NavigateScreen1
+import com.childmathematics.android.shiftschedule.BuildConfig
 
 //lateinit var binding: ActivityFlexBannerAdBinding
 lateinit var appContext: Context
@@ -64,7 +65,9 @@ class MainActivity : AppCompatActivity() {
         //==================================================================
         override fun onDestroy() {
             if (BuildConfig.YaAdsEnable) {
-                mYaInterstitialAd!!.destroy()
+//                mYaInterstitialAd!!.destroy()
+                mYaInterstitialAd?.setAdEventListener(null)
+                mYaInterstitialAd = null
                 Log.d(YANDEX_MOBILE_ADS_TAG, MainActivity_TAG + " Interstutial onDestroy")
             }
             super.onDestroy()
