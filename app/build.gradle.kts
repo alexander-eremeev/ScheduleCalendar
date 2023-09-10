@@ -170,9 +170,11 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = (libs.versions.androidxComposeCompiler.get())
     }
+    /* unstable
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
+     */
     packagingOptions.resources.excludes += setOf(
         "META-INF/**",
         "{AL2.0,LGPL2.1}",
@@ -279,7 +281,6 @@ dependencies {
 
     // DI
     implementation(libs.google.hilt.android)
-//    kapt(libs.google.hilt.compiler)
     ksp(libs.google.hilt.compiler)
 
     // Date time
