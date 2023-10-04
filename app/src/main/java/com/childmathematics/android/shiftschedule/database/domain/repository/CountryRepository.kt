@@ -1,7 +1,7 @@
 package com.childmathematics.android.shiftschedule.database.domain.repository
 
-import kotlinx.coroutines.flow.Flow
 import com.childmathematics.android.shiftschedule.database.domain.model.Countries
+import kotlinx.coroutines.flow.Flow
 
 interface CountryRepository {
     fun getCountriesFromRoom(): Flow<List<Countries>>
@@ -13,7 +13,6 @@ interface CountryRepository {
     fun updateCountryInRoom(shortName: Countries)
 
     fun deleteCountryFromRoom(shortName: Countries)
-
 }
 /*
 import kotlinx.coroutines.flow.Flow

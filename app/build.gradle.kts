@@ -92,17 +92,9 @@ android {
         // ------------------------------------------------------------------
         //  Статистика и реклама
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        buildConfigField(
-            "boolean",
-            "YaAdsEnable",
-            "true"
-        ) // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        buildConfigField("boolean","YaAdsEnable","false") // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
         // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
-        buildConfigField(
-            "boolean",
-            "AdMobEnable",
-            "false"
-        ) // Включав не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        buildConfigField("boolean","AdMobEnable","false") // Включав не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
         buildConfigField("boolean", "AppMetricaOn", "false") // Включав не забудь об арр AppYandexMetricaInit.java
         // ======================================================================
         buildConfigField("boolean", "HomeRouteEnable", "true") // Включение-отключение модуля

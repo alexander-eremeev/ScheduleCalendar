@@ -3,14 +3,12 @@ package com.childmathematics.android.shiftschedule.database.presentation.countri
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 @Composable
 @ExperimentalMaterialApi
 fun CountriesScreen(
 //    viewModel: CountriesViewModel = hiltViewModel()
-)
-{
+) {
     LaunchedEffect(Unit) {
 //        viewModel.getCountries()
     }
