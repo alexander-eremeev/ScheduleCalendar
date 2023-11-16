@@ -20,20 +20,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.rememberNavController
 import com.childmathematics.android.basement.lib.ads.admob.AdBannerNetworkApp
 import com.childmathematics.android.basement.lib.ads.admob.AdInterstitialNetworkApp
-import com.childmathematics.android.basement.lib.ads.yandex.ShowYaInterstitial
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.basement.lib.ads.yandex.mYaInterstitialAdOnOff
-import com.childmathematics.android.shiftschedule.aspects.localized.setting.ui.LanguageScreen
-import com.childmathematics.android.shiftschedule.aspects.localized.setting.ui.LocalizedSettingViewModel
-import com.childmathematics.android.shiftschedule.basis.uiextension.rememberBottomSheetNavigator
 import com.childmathematics.android.shiftschedule.navigation.Routes
-import com.childmathematics.android.shiftschedule.runtime.navigation.DefaultMainBottomSheetConfig
-import com.childmathematics.android.shiftschedule.runtime.navigation.SettingFlow
-import com.childmathematics.android.shiftschedule.runtime.navigation.SettingNavHost
 //import com.childmathematics.android.shiftschedule.runtime.navigation.SettingNavHost
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
@@ -106,14 +97,16 @@ fun SettingPageShow(currentRoute : String) {
 
             //===============================
 //        bottomSheet(SettingFlow.Language.route) {
-            val viewModel = hiltViewModel<LocalizedSettingViewModel>()
+////            val viewModel = hiltViewModel<LocalizedSettingViewModel>()
 //            bottomSheetConfig.value = DefaultMainBottomSheetConfig
-
+/*
             LanguageScreen(
                 viewModel = viewModel,
                 onClickBack = {  }
 //              onClickBack = { navController.navigateUp() }
             )
+
+ */
 
 
             //       }

@@ -32,14 +32,14 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===================
 gradleEnterprise  = "3.14.1"                # https://plugins.gradle.org/plugin/com.gradle.enterprise
 #androidGradlePlugin
-agp = "8.1.2"                               #"8.1.1" com.android.tools.build:gradle /  com.android.application / com.android.library
+agp = "8.1.3"                               #"8.1.1" com.android.tools.build:gradle /  com.android.application / com.android.library
 #---???????????????????
 jetbrainsKotlin = "1.9.10"                           #1.9.10 compose? org.jetbrains.kotlin",
 jetbrainsKotlinLast = "1.9.10"                           #1.8.21 ? org.jetbrains.kotlin",
 #===================
 #===== Google =====
 #===================
-googleFirebase = "32.3.1"                             #32.2.3"  #com.google.firebase:firebase-bom
+googleFirebase = "32.5.0"                             #32.2.3"  #com.google.firebase:firebase-bom
 googleFirebaseCrashlytics= "2.9.9"                      #2.9.8 com.google.firebase:firebase-crashlytics-gradle
 googleFirebasePerformance= "1.4.2"                       #com.google.firebase:perf-plugin
 googleFirebaseAnalitics = "21.3.0"              #"21.3.0"
@@ -50,24 +50,24 @@ googleProtobuf = "3.24.2"         #3.24.1  com.google.protobuf  Protocol Buffers
 
 googleDevToolsKsp = "1.9.10-1.0.13"     #ksp-1.9.10-1.0.13 is too new for kotlin-1.9.0. Please upgrade kotlin-gradle-plugin to 1.9.10.   #1.9.0-1.0.13     com.google.devtools.ksp.gradle.plugin
 googleServices = "4.4.0"               #4.3.15" com.google.gms", name = "google-services
-googleAds = "22.4.0"                        #22.3.0 com.google.android.gms", name = "play-services-ads
+googleAds = "22.5.0"                        #22.3.0 com.google.android.gms", name = "play-services-ads
 
 
 #=================================
 #===== Android dependencies ======
 #=================================
 #This project contains a small subset of OpenJDK libraries simplified for use on older runtimes. This is not an official Google product.
-androidDesugarJdkLibs = "2.0.3"                 # com.android.tools:desugar_jdk_libs
+androidDesugarJdkLibs = "2.0.4"                 # com.android.tools:desugar_jdk_libs
 
 jetbrainsKotlinxCoroutines = "1.7.3"                #1.7.2 org.jetbrains.kotlinx:kotlinx-coroutines-android
 
-googleAndroidMaterial = "1.9.0"                      # com.google.android.material
+googleAndroidMaterial = "1.10.0"                      # com.google.android.material
 
 androidxAppcompat = "1.6.1"                                 # androidx.appcompat:appcompat
 
-androidxActivityKtx = "1.7.2"                       #"1.7.1"   androidx.activity:activity-ktx
+androidxActivityKtx = "1.8.0"                       #"1.7.1"   androidx.activity:activity-ktx
 
-androidxFragmentKtx = "1.6.1"                      #"1.5.7"  androidx.fragment:fragment-ktx
+androidxFragmentKtx = "1.6.2"                      #"1.5.7"  androidx.fragment:fragment-ktx
 
 androidxCoreKtx = "1.12.0"                       #1.9.0 androidx.core:core-ktx"
 #Library for legacy multi-dex support
@@ -75,14 +75,14 @@ androidxMultidex = "2.0.1"                  #androidx.multidex:multidex"
 
 androidxPreference = "1.2.1"                        #"1.2.0"   androidx.preference:preference-ktx
 
-androidxRecyclerview = "1.3.1"                  #"1.3.0"  androidx.recyclerview:recyclerview
+androidxRecyclerview = "1.3.2"                  #"1.3.0"  androidx.recyclerview:recyclerview
 
 androidxConstraintlayout = "2.1.4"                      #androidx.constraintlayout:constraintlayout
 
 androidxCoordinatorlayout = "1.2.0"                     #androidx.coordinatorlayout:coordinatorlayout
                                         #androidx.navigation:navigation-ui-ktx
                                         #androidx.navigation.safeargs.kotlin
-androidxNavigation = "2.7.3"           #???? 2.7.2"# androidx.navigation:navigation-fragment-ktx
+androidxNavigation = "2.7.5"           #???? 2.7.2"# androidx.navigation:navigation-fragment-ktx
                                         #androidx.navigation", name = "navigation-compose
 androidxConcurrentFuturesKtx = "1.1.0"    #androidx.concurrent:concurrent-futures-ktx
                                         #androidx.lifecycle:lifecycle-viewmodel-ktx
@@ -96,38 +96,38 @@ androidxViewpager2 = "1.0.0"            #androidx.viewpager2:viewpager2
 
 androidxSwiperefreshlayout = "1.1.0"    #androidx.swiperefreshlayout:swiperefreshlayout
 
-androidxRoom = "2.5.2"                  #androidx.room:room-runtime
+androidxRoom = "2.6.0"                  #androidx.room:room-runtime
 
-androidxCamera = "1.2.3"                #"1.2.2" androidx.camera:camera-extensions
+androidxCamera = "1.3.0"                #"1.2.2" androidx.camera:camera-extensions
 
 androidxExifinterface = "1.3.6"     ##androidx.exifinterface:exifinterface
 
 androidxDataStore = "1.0.0"         #androidx.datastore:datastore
 
-androidxMacroBenchmark = "1.1.1"    #androidx.benchmark:benchmark-macro-junit4              #
+androidxMacroBenchmark = "1.2.1"    #androidx.benchmark:benchmark-macro-junit4              #
 
 androidxProfileinstaller = "1.3.1"  #androidx.profileinstaller:profileinstaller
 
 androidxStartup = "1.1.1"   #androidx.startup:startup-runtime
 
-androidxWindow = "1.1.0"    #androidx.window:window
+androidxWindow = "1.2.0"    #androidx.window:window
 
-androidxUiToolingPreview = "1.5.2"    #
+androidxUiToolingPreview = "1.5.4"    #
 
 #===========================
 #===== Android Compose =====
 #===========================
 #--??????????????????????????
-androidxComposeBom= "2023.09.02"
+androidxComposeBom= "2023.10.01"
 androidxCompose = "1.5.0"               #"1.4.3"?    androidx.compose.foundation:foundation/androidx.compose.ui
 #---------------
-androidxActivityCompose = "1.7.2"   #androidx.activity:activity-compose
+androidxActivityCompose = "1.8.0"   #androidx.activity:activity-compose
 #--??????????????????????????
 androidxComposeCompiler = "1.5.3"       #1.5.2
 #--??????????????????????????
 androidxComposeMaterial3 = "1.1.1"      #???? "1.1.1"  ?            #androidx.compose.material3
 #-----------------
-androidxHiltNavigationCompose = "1.0.0"         #androidx.hilt:hilt-navigation-compose
+androidxHiltNavigationCompose = "1.1.0"         #androidx.hilt:hilt-navigation-compose
 
 androidxGlanceComposeWidget = "1.0.0"                 #androidx.glance:glance
 
