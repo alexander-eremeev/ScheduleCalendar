@@ -2,15 +2,14 @@ package com.childmathematics.android.basement.lib.composecalendar.month
 
 import android.annotation.SuppressLint
 import androidx.annotation.IntRange
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
-// import com.google.accompanist.pager.ExperimentalPagerApi
-//import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.PagerState
 import com.childmathematics.android.basement.lib.composecalendar.header.MonthState
 import com.childmathematics.android.basement.lib.composecalendar.util.dec
 import com.childmathematics.android.basement.lib.composecalendar.util.inc
@@ -26,14 +25,19 @@ private const val pageCount = 3
 // @ExperimentalCoroutinesApi
 // @OptIn(ExperimentalPagerApi::class)
 // @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+
+@OptIn(ExperimentalFoundationApi::class)
 @Stable
-internal class MonthPagerState constructor(
+internal class MonthPagerState
+@OptIn(ExperimentalFoundationApi::class)
+constructor(
 // internal class MonthPagerState @ExperimentalPagerApi constructor(
     coroutineScope: CoroutineScope,
     private val monthState: MonthState,
     private val pagerState: PagerState,
 ) {
 
+    @OptIn(ExperimentalFoundationApi::class)
     private var monthProvider by mutableStateOf(
         MonthProvider(
             initialMonth = monthState.currentMonth,

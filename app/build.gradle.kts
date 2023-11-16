@@ -79,7 +79,7 @@ android {
         versionName = rootProject.libs.versions.versionName.get()
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments += mapOf("room.schemaLocation" to "$projectDir/room-schemas".toString())
+                arguments += mapOf("room.schemaLocation" to "$projectDir/room-schemas")
             }
         }
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -92,9 +92,11 @@ android {
         // ------------------------------------------------------------------
         //  Статистика и реклама
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        buildConfigField("boolean","YaAdsEnable","false") // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        buildConfigField("boolean", "YaAdsEnable", "false")
         // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
-        buildConfigField("boolean","AdMobEnable","false") // Включав не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        // Включае не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
+        buildConfigField("boolean", "AdMobEnable", "false")
+        // Включав не забудь об арр AppYandexMetricaInit.java AdMob.kt, MainYainterstitial.kt
         buildConfigField("boolean", "AppMetricaOn", "false") // Включав не забудь об арр AppYandexMetricaInit.java
         // ======================================================================
         buildConfigField("boolean", "HomeRouteEnable", "true") // Включение-отключение модуля
