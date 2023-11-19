@@ -64,7 +64,7 @@ Gradle Enterprise помогает анализировать время лок�
 Build Cache и другие типичные узкие места производительности сборки Android.
 */
 plugins {
-    id("com.gradle.enterprise") version "3.14.1"
+    id("com.gradle.enterprise") version "latest.release" // 3.15.1
 }
 
 gradleEnterprise {

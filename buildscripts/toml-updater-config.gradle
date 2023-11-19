@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/*
 versionCatalogUpdate {
     sortByKey.set(true)
 
@@ -35,8 +36,8 @@ def isNonStable = { String version ->
 tasks.named("dependencyUpdates").configure {
     resolutionStrategy {
         componentSelection {
-//            all {
-            configureEach {
+            all {
+//            configureEach {
                 if (isNonStable(it.candidate.version) && !isNonStable(it.currentVersion)) {
                     reject('Release candidate')
                 }
@@ -44,3 +45,22 @@ tasks.named("dependencyUpdates").configure {
         }
     }
 }
+ */
+/*
+versionCatalogUpdate {
+    buildscript {
+        repositories {
+            maven {
+                url = uri("https://plugins.gradle.org/m2/")
+            }
+        }
+        dependencies {
+            //        classpath("nl.littlerobots.vcu:plugin:0.8.1")
+            classpath(libs.plugin)
+        }
+    }
+
+    apply(plugin = "nl.littlerobots.version-catalog-update")
+}
+
+ */

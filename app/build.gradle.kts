@@ -7,9 +7,7 @@ plugins {
     alias(libs.plugins.android.application) // подключить Yandex AppMetrica SDK через плаги
 //    application
     alias(libs.plugins.jetbrains.kotlin.android)
-//    alias(libs.plugins.jetbrains.kotlin.kapt)
     alias(libs.plugins.google.ksp) // google-ksp
-//    id("com.google.devtools.ksp")
 
 //    alias (libs.plugins.squareup.wire.gradle.plugin)
 //    id ("com.squareup.wire")
@@ -17,43 +15,8 @@ plugins {
 
 //    id ("dagger.hilt.android.plugin")
 }
-// NEW
-
-/*
-//?        apply from: "$rootDir/gradle/test-report.gradle"
-
-          ext.codeCoverage = [
-              enabled      : true,
-          fileBlackList: [
-          ],
-          fileWhiteList: [
-              // UI
-
- */
-//              '**/ui/*ViewModel*',
-//              '**/ui/*State*',
-// Data
-// '**/data/*Environment*',
-//                '**/foundation/datasource/local/*Read*',
-//                '**/foundation/datasource/local/*Write*',
-//              '**/basis/datasource/local/*Read*',
-//              '**/basis/datasource/local/*Write*',
-// '**/foundation/datasource/preference/PreferenceManager*',
-// Core
-//                '**/foundation/extension/*',
-//              '**/basis/extension/*',
-/*
-          ]
-          ]
-
-
-        //------------------------------------------------------
-*/
 
 android {
-//    val apName = "ScheduleCalendar"
-
-//    namespace = rootProject.libs.versions.applicationId.get().toString()
     namespace = rootProject.libs.versions.applicationId.get()
 
     compileSdk = rootProject.libs.versions.compile.sdk.get().toInt()
@@ -65,9 +28,7 @@ android {
         viewBinding = true
 
         // Fix compose compile error
-
         compose = true
-
         buildConfig = true
     }
 
@@ -77,11 +38,13 @@ android {
         applicationId = rootProject.libs.versions.applicationId.get()
         versionCode = rootProject.libs.versions.versionCode.get().toInt()
         versionName = rootProject.libs.versions.versionName.get()
+
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += mapOf("room.schemaLocation" to "$projectDir/room-schemas")
             }
         }
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -115,8 +78,7 @@ android {
     signingConfigs {
 
         // Create a variable called keystorePropertiesFile, and initialize it to your
-        // keystore.properties file, in the rootProject folder.
-//        val keystorePropertiesFile = rootProject.file("keystore.properties")
+        // keystore.properties file, in the  folder.
         val keystorePropertiesFile = File(rootProject.libs.versions.keystorePropertiesFile.get())
 
         // Initialize a new Properties() object called keystoreProperties.
@@ -151,15 +113,22 @@ android {
             applicationIdSuffix = ".debug"
         }
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
     kotlin {
         jvmToolchain(17)
     }
+
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
-//        allWarningsAsErrors = true
-        allWarningsAsErrors = false
+        allWarningsAsErrors = true
+//        allWarningsAsErrors = false
+        jvmTarget = "17"
     }
     composeOptions {
         kotlinCompilerExtensionVersion = (libs.versions.androidxComposeCompiler.get())
@@ -189,7 +158,6 @@ android {
 }
 // _________________________
 dependencies {
-
     // /////////////
     // UI SUPPORT
     // ////
@@ -210,8 +178,8 @@ dependencies {
 
     implementation(libs.google.accompanist.systemuicontroller)
 
-    implementation(libs.google.accompanist.pager)
-    implementation(libs.google.accompanist.insets)
+    // implementation(libs.google.accompanist.pager)
+    // implementation(libs.google.accompanist.insets)
 
     // Startup
     implementation(libs.androidx.startup)
@@ -303,10 +271,10 @@ dependencies {
 
     testImplementation(libs.androidx.test.ext.junit)
 
-    testImplementation(libs.robolectric)
-    testImplementation(libs.junit.test)
+//    testImplementation(libs.robolectric)
+//    testImplementation(libs.junit.test)
 // ??                testimplementation (libs.jetbrains.test.coroutines)
-    testImplementation(libs.turbine.test)
+//    testImplementation(libs.turbine.test)
 
     implementation(libs.debugging.okhttp.logging)
     implementation(libs.debugging.chucker)
@@ -326,6 +294,5 @@ kapt {
 
 fun getDate(): String {
     val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-    val dates = "\"" + LocalDateTime.now().format(formatter) + "\""
-    return dates
+    return "\"" + LocalDateTime.now().format(formatter) + "\""
 }

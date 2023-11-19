@@ -2,6 +2,14 @@
 <SmellBaseline>
   <ManuallySuppressedIssues>
     <ID>MatchingDeclarationName:Country.kt$Countries</ID>
+    <ID>TopLevelPropertyNaming:MonthPagerState.kt$private const val pageCount = 3</ID>
+    <ID>LongParameterList:MonthContent.kt$( showAdjacentMonths: Boolean, selectionState: T, currentMonth: YearMonth, daysOfWeek: List&lt;DayOfWeek>, today: LocalDate, modifier: Modifier = Modifier, dayContent: @Composable BoxScope.(DayState&lt;T>) -> Unit, weekHeader: @Composable BoxScope.(List&lt;DayOfWeek>) -> Unit, monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit, )</ID>
+    <ID>FunctionNaming:MonthContent.kt$@OptIn(ExperimentalFoundationApi::class) @ExperimentalCoroutinesApi @Composable internal fun &lt;T : SelectionState> MonthPager( showAdjacentMonths: Boolean, selectionState: T, monthState: MonthState, daysOfWeek: List&lt;DayOfWeek>, today: LocalDate, modifier: Modifier = Modifier, dayContent: @Composable BoxScope.(DayState&lt;T>) -> Unit, weekHeader: @Composable BoxScope.(List&lt;DayOfWeek>) -> Unit, monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit, )</ID>
+    <ID>TopLevelPropertyNaming:MonthContent.kt$internal const val DaysOfWeek = 7</ID>
+    <ID>FunctionNaming:MonthContent.kt$@OptIn(ExperimentalFoundationApi::class) @ExperimentalCoroutinesApi @Composable internal fun &lt;T : SelectionState> MonthPager( showAdjacentMonths: Boolean, selectionState: T, monthState: MonthState, daysOfWeek: List&lt;DayOfWeek>, today: LocalDate, modifier: Modifier = Modifier, dayContent: @Composable BoxScope.(DayState&lt;T>) -> Unit, weekHeader: @Composable BoxScope.(List&lt;DayOfWeek>) -> Unit, monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit )</ID>
+    <ID>LongParameterList:MonthContent.kt$( showAdjacentMonths: Boolean, selectionState: T, monthState: MonthState, daysOfWeek: List&lt;DayOfWeek>, today: LocalDate, modifier: Modifier = Modifier, dayContent: @Composable BoxScope.(DayState&lt;T>) -> Unit, weekHeader: @Composable BoxScope.(List&lt;DayOfWeek>) -> Unit, monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit )</ID>
+    <ID>MagicNumber:MonthContent.kt$3</ID>
+    <ID>FunctionNaming:MonthContent.kt$@Composable internal fun &lt;T : SelectionState> MonthContent( showAdjacentMonths: Boolean, selectionState: T, currentMonth: YearMonth, daysOfWeek: List&lt;DayOfWeek>, today: LocalDate, modifier: Modifier = Modifier, dayContent: @Composable BoxScope.(DayState&lt;T>) -> Unit, weekHeader: @Composable BoxScope.(List&lt;DayOfWeek>) -> Unit, monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit, )</ID>
   </ManuallySuppressedIssues>
   <CurrentIssues/>
 </SmellBaseline>
