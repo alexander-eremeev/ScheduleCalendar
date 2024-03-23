@@ -1,19 +1,18 @@
 package com.childmathematics.android.shiftschedule
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
 import com.childmathematics.android.basement.lib.navigation.ui.screenSlideIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenSlideOut
-import com.childmathematics.android.shiftschedule.ui.about.ABOUT_GRAPH_ROUTE
 import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
-import com.childmathematics.android.shiftschedule.ui.help.HELP_GRAPH_ROUTE
 import com.childmathematics.android.shiftschedule.ui.help.helpGraph
 import com.childmathematics.android.shiftschedule.ui.licences.licencesGraph
 import com.childmathematics.android.shiftschedule.ui.localpolices.localPolicesGraph
+import com.childmathematics.android.shiftschedule.ui.main.MAIN_GRAPH_ROUTE
+import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
 
 @Composable
 internal fun RootHost() {
@@ -22,7 +21,8 @@ internal fun RootHost() {
 
     NavHost(
         navController = rootController,
-        startDestination = ABOUT_GRAPH_ROUTE,
+        startDestination = MAIN_GRAPH_ROUTE,
+//        startDestination = ABOUT_GRAPH_ROUTE,
 //        startDestination = HELP_GRAPH_ROUTE,
         /*
         // =====================================
@@ -34,6 +34,8 @@ internal fun RootHost() {
         popEnterTransition = { screenFadeIn() },
         popExitTransition = { screenSlideOut() },
     ) {
+        // =====================================
+        mainPageGraph(navController = rootController)
         // =====================================
         aboutGraph(navController = rootController)
         // =====================================
