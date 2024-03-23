@@ -1,54 +1,33 @@
+
 import java.io.FileInputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Properties
 
 plugins {
-    alias(libs.plugins.android.application) // подключить Yandex AppMetrica SDK через плаги
-//    application
-    alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.google.ksp) // google-ksp
-
-//    alias (libs.plugins.squareup.wire.gradle.plugin)
-//    id ("com.squareup.wire")
-// ??    alias (libs.plugins.google.hilt. .gradle.plugin)
-
-//    id ("dagger.hilt.android.plugin")
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
-    namespace = rootProject.libs.versions.applicationId.get()
-
-    compileSdk = rootProject.libs.versions.compile.sdk.get().toInt()
-    buildToolsVersion = rootProject.libs.versions.buildToolsVersion.get()
-
-    buildFeatures {
-//        dataBinding = true // kapt
-        resValues = true
-        viewBinding = true
-
-        // Fix compose compile error
-        compose = true
-        buildConfig = true
-    }
+    namespace = libs.versions.applicationId.get()
+//    namespace = "com.childmathematics.android.shiftschedule.schedulecalendar"
+    compileSdk = libs.versions.compile.sdk.get().toInt()
 
     defaultConfig {
-        minSdk = rootProject.libs.versions.min.sdk.get().toInt()
-        targetSdk = rootProject.libs.versions.target.sdk.get().toInt()
-        applicationId = rootProject.libs.versions.applicationId.get()
-        versionCode = rootProject.libs.versions.versionCode.get().toInt()
-        versionName = rootProject.libs.versions.versionName.get()
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += mapOf("room.schemaLocation" to "$projectDir/room-schemas")
-            }
-        }
+        applicationId = libs.versions.applicationId.get()
+//        applicationId = "com.childmathematics.android.shiftschedule.schedulecalendar"
+        minSdk = libs.versions.min.sdk.get().toInt()
+        targetSdk = libs.versions.target.sdk.get().toInt()
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+        android.buildFeatures.buildConfig = true
 
         buildConfigField("String", "BUILD_TIMESTAMP", getDate())
         buildConfigField("String", "BUILD_Date_Rus", getDate())
@@ -73,139 +52,123 @@ android {
                      // defining the build date
              buildConfigField( "long", "BUILD_DATE", System.currentTimeMillis() + "L")
          */
-    }
 
-    signingConfigs {
+        signingConfigs {
 
-        // Create a variable called keystorePropertiesFile, and initialize it to your
-        // keystore.properties file, in the  folder.
-        val keystorePropertiesFile = File(rootProject.libs.versions.keystorePropertiesFile.get())
+            // Create a variable called keystorePropertiesFile, and initialize it to your
+            // keystore.properties file, in the  folder.
+            val keystorePropertiesFile = File(libs.versions.keystorePropertiesFile.get())
 
-        // Initialize a new Properties() object called keystoreProperties.
-        val keystoreProperties = Properties()
+            // Initialize a new Properties() object called keystoreProperties.
+            val keystoreProperties = Properties()
 
-        // Load your keystore.properties file into the keystoreProperties object.
-        keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+            // Load your keystore.properties file into the keystoreProperties object.
+            keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
-        // -------------------------------------------
-        create("release") {
-            keyAlias = keystoreProperties["RELEASE_KEY_ALIAS"] as String
-            keyPassword = keystoreProperties["RELEASE_KEY_PASSWORD"] as String
-            storeFile = file(keystoreProperties["RELEASE_STORE_FILE"] as String)
-            storePassword = keystoreProperties["RELEASE_STORE_PASSWORD"] as String
+            // -------------------------------------------
+            create("release") {
+                keyAlias = keystoreProperties["RELEASE_KEY_ALIAS"] as String
+                keyPassword = keystoreProperties["RELEASE_KEY_PASSWORD"] as String
+                storeFile = file(keystoreProperties["RELEASE_STORE_FILE"] as String)
+                storePassword = keystoreProperties["RELEASE_STORE_PASSWORD"] as String
+            }
+            // ----------------------------
         }
-        // ----------------------------
     }
-// ===================================
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = true // включение/выключение ProGuard
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("release")
         }
         getByName("debug") {
+            multiDexEnabled = true
             isDebuggable = true
             isMinifyEnabled = false // включение/выключение ProGuard
             isShrinkResources = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             applicationIdSuffix = ".debug"
         }
     }
     compileOptions {
+        /*
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
 
-    kotlin {
-        jvmToolchain(17)
-    }
-
-    compileOptions {
-        isCoreLibraryDesugaringEnabled = true
+         */
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        allWarningsAsErrors = true
-//        allWarningsAsErrors = false
-        jvmTarget = "17"
+//        jvmTarget = "17"
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = (libs.versions.androidxComposeCompiler.get())
+        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
     }
-    /* unstable
-    testOptions {
-        unitTests.isReturnDefaultValues = true
-    }
-     */
-    packagingOptions.resources.excludes += setOf(
-        "META-INF/**",
-        "{AL2.0,LGPL2.1}",
-        "okhttp3/**",
-        "kotlin/**",
-        "org/**",
-        "**.properties",
-        "**.bin",
-        "**/*.proto"
-    )
-    /*
-    wire {
-        kotlin {
-            android = true
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-     */
 }
-// _________________________
+
 dependencies {
     // /////////////
     // UI SUPPORT
     // ////
-    // implementation(libs.jetbrains.kotlin.coroutines)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.window)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.lifecycle.runtimeCompose)
-    implementation(libs.androidx.lifecycle.viewModelCompose)
+    implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.lottie.compose)
-    implementation(libs.google.android.material)
 
-    // Use for bottom sheet navigation
-    implementation(libs.google.accompanist.navigation)
+//    implementation(libs.androidx.appcompatv7)
 
+    implementation(libs.google.accompanist.swiperefresh)
     implementation(libs.google.accompanist.systemuicontroller)
 
-    // implementation(libs.google.accompanist.pager)
-    // implementation(libs.google.accompanist.insets)
-
-    // Startup
-    implementation(libs.androidx.startup)
-    implementation(libs.androidx.profileinstaller)
-
+    implementation(libs.androidx.glance)
+    implementation(libs.androidx.glance.appwidget)
+    implementation(libs.androidx.glance.material3)
+    // ---------------------------------------------------------------------
     // Compose
     // For Compose runtime by default coroutine runtime already included from ui, foundation, implicitly
     // Not able to get rid of material lib due to we still use these component and not available yet in material3
-    // androidx.compose.material.SwipeToDismiss
-    // androidx.compose.material.ModalBottomSheetLayout
-
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui.tooling.preview.android)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-
-    // import Compose dependencies as usual
-    implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.compose.material3) // ??????  error
-    implementation(libs.androidx.compose.material.iconsCore)
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material3:material3")
     implementation(libs.androidx.compose.material.iconsExtended)
-    implementation(libs.androidx.compose.foundation)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.util)
-    implementation(libs.androidx.compose.widget) // glance --> 34 api
+    implementation(libs.androidx.compose.material3)
+    implementation("androidx.compose.material3:material3-window-size-class")
 
-    implementation(libs.io.coil.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime)
+    implementation(libs.androidx.lifecycle.viewModelCompose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
+
+    // /////////////
+    // DATA SUPPORT
+    // ////
+    // Room
+    implementation(libs.androidx.room.runtime)
+    // implementation(libs.androidx.compose.material3.window.size)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.common)
 
     // /////////////
     // ADS SUPPORT
@@ -215,83 +178,15 @@ dependencies {
     implementation(libs.yandex.mobileads)
 //        implementation(libs.yandex.mobmetrica)
 
-    // /////////////
-    // DATA SUPPORT
-    // ////
+    testImplementation(libs.junit.test)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espressoCore)
 
-    // SQL
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-//    kapt(libs.androidx.room.compiler)
-    ksp(libs.androidx.room.compiler)
-    // for java based projects
-    annotationProcessor(libs.androidx.room.compiler)
-
-    // Key-value
-    implementation(libs.androidx.dataStore.core)
-    implementation(libs.google.protobuf)
-
-    // Server
-    implementation(libs.bundles.networking)
-
-    // /////////////
-    // CORE
-    // ////
-
-    // Concurrent processing
-    implementation(libs.jetbrains.kotlin.coroutines)
-
-    // DI
-    implementation(libs.google.hilt.android)
-    ksp(libs.google.hilt.compiler)
-
-    // Date time
-    coreLibraryDesugaring(libs.android.desugarJdkLibs)
-
-    // Analytics
-    // Import the BoM for the Firebase platform
-        /*
-    Используя Firebase Android BoM , ваше приложение всегда будет использовать
-    совместимые версии библиотек Firebase Android.
-         */
-    implementation(platform(libs.google.firebase))
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation(libs.google.firebase.analytics)
-    implementation(libs.google.firebase.perf)
-    implementation(libs.google.firebase.crashlytics)
-    // /////////////
-    // DEBUGGING SUPPORT
-    // ////
-
-    // ???   implementation( libs.debugging.compose.uiTooling)
-
-    // /////////////
-    // UNIT TEST SUPPORT
-    // ////
-
-    testImplementation(libs.androidx.test.ext.junit)
-
-//    testImplementation(libs.robolectric)
-//    testImplementation(libs.junit.test)
-// ??                testimplementation (libs.jetbrains.test.coroutines)
-//    testImplementation(libs.turbine.test)
-
-    implementation(libs.debugging.okhttp.logging)
-    implementation(libs.debugging.chucker)
-/*
-        //==================================
-        implementation (libs.squareup.okio)
-
- */
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
 }
-
-// Allow references to generated code
-/*
-kapt {
-    correctErrorTypes = true
-}
- */
-
 fun getDate(): String {
     val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
     return "\"" + LocalDateTime.now().format(formatter) + "\""

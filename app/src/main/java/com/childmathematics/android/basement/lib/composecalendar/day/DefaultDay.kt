@@ -5,10 +5,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.contentColorFor
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardDefaults.elevatedCardElevation
+import androidx.compose.material3.CardElevation
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.TabRowDefaults.contentColor
+import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,8 +34,8 @@ import java.time.LocalDate
 public fun <T : SelectionState> DefaultDay(
     state: DayState<T>,
     modifier: Modifier = Modifier,
-    selectionColor: Color = MaterialTheme.colors.secondary,
-    currentDayColor: Color = MaterialTheme.colors.primary,
+    selectionColor: Color = MaterialTheme.colorScheme.secondary,
+    currentDayColor: Color = MaterialTheme.colorScheme.primary,
     onClick: (LocalDate) -> Unit = {},
 ) {
   val date = state.date
@@ -42,11 +47,12 @@ public fun <T : SelectionState> DefaultDay(
     modifier = modifier
       .aspectRatio(1f)
       .padding(2.dp),
-    elevation = if (state.isFromCurrentMonth) 4.dp else 0.dp,
+    elevation = if (state.isFromCurrentMonth) elevatedCardElevation(4.dp,4.dp,4.dp,4.dp,4.dp,4.dp) else elevatedCardElevation(0.dp,0.dp,0.dp,0.dp,0.dp,0.dp),
     border = if (state.isCurrentDay) BorderStroke(1.dp, currentDayColor) else null,
-    contentColor = if (isSelected) selectionColor else contentColorFor(
-      backgroundColor = MaterialTheme.colors.surface
-    )
+//    contentColor = if (isSelected) selectionColor else contentColorFor(       //CardDefaults.cardColors()
+    colors = if (isSelected) CardDefaults.elevatedCardColors() else  CardDefaults.outlinedCardColors()
+//      backgroundColor = MaterialTheme.colorScheme.surface
+//    )
   ) {
     Box(
       modifier = Modifier.clickable {

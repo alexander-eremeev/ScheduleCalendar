@@ -9,8 +9,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults.elevatedCardElevation
+import androidx.compose.material3.CardElevation
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -31,7 +38,7 @@ fun TutorialSectionCard(
     expanded: Boolean
 ) {
     Card(
-        elevation = 1.dp,
+        elevation = elevatedCardElevation(1.dp,1.dp,1.dp,1.dp,1.dp,1.dp),
         shape = RoundedCornerShape(8.dp)
     ) {
         Box(
@@ -75,8 +82,10 @@ private fun TutorialContentComponent(
             IconButton(onClick = onExpandClicked) {
                 // Change vector drawable to expand more or less based on state of expanded
                 Icon(
-                    imageVector = if (expanded) Icons.Filled.ExpandLess
-                    else Icons.Filled.ExpandMore,
+//                    imageVector = if (expanded) Icons.Filled.ExpandLess     //keyboard_arrow_up
+//                    else Icons.Filled.ExpandMore,
+                    imageVector = if (expanded) Icons.Filled.KeyboardArrowDown
+                    else Icons.Filled.KeyboardArrowUp,
                     contentDescription = null
                 )
             }
@@ -84,9 +93,12 @@ private fun TutorialContentComponent(
 
         AnimatedVisibility(expanded) {
             // Description text
+            /*
             CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                Text(model.description, style = MaterialTheme.typography.body2)
+                Text(model.description, style = MaterialTheme.typography.bodyLarge)
             }
+
+             */
         }
         // Vertical spacing
         Spacer(Modifier.height(40.dp))

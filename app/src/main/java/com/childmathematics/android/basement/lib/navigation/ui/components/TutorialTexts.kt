@@ -2,10 +2,10 @@ package com.childmathematics.android.basement.lib.navigation.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+//import androidx.compose.material3.ContentAlpha
+//import androidx.compose.material3.LocalContentAlpha
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -93,18 +93,20 @@ fun StyleableTutorialText(text: String, modifier: Modifier = Modifier, bullets:B
 
 @Composable
 fun TutorialText2(text: String, modifier: Modifier = Modifier) {
-
+/*
     CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
 
         Text(
             text = text,
-            style = MaterialTheme.typography.body2,
+            style = MaterialTheme.typography.bodyLarge,
             color = Color.Gray,
             modifier = modifier
                 .fillMaxWidth()
                 .padding(start = 8.dp, end = 8.dp, top = 8.dp, bottom = 8.dp)
         )
     }
+
+ */
 }
 
 @Preview

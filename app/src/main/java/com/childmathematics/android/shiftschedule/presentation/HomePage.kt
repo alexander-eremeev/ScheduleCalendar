@@ -1,11 +1,19 @@
-package com.childmathematics.android.shiftschedule.mainpage
+package com.childmathematics.android.shiftschedule.presentation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+//import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.End
@@ -15,7 +23,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.childmathematics.android.shiftschedule.BuildConfig
@@ -32,6 +39,7 @@ class HomePage {
 }
 
  */
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HomePageShow() {
     var changeHightDp: Int
@@ -50,7 +58,7 @@ fun HomePageShow() {
     Box(contentAlignment = Alignment.TopStart,
             modifier = Modifier
                 .background(Color.LightGray)
-                .padding(0.dp, 0.dp, 0.dp, 0.dp)
+//1                .padding(0.dp, 0.dp, 0.dp, 0.dp)
 //                .size(300.dp, 250.dp)               //(LocalConfiguration.current.screenHeightDp-50).dp
  //               .size((LocalConfiguration.current.screenWidthDp).dp, (LocalConfiguration.current.screenHeightDp-70).dp)
                 .size((LocalConfiguration.current.screenWidthDp).dp, changeHightDp.dp)
@@ -118,6 +126,7 @@ fun HomePageShow() {
   }
 
 }
+@RequiresApi(Build.VERSION_CODES.O)
 fun getDayMonthTodayText ():String
 {
     val day: Int =LocalDate.now().dayOfWeek.value

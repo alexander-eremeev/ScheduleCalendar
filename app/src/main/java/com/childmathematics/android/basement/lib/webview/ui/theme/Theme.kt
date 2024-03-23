@@ -1,17 +1,17 @@
 package com.childmathematics.android.basement.lib.webview.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-private val DarkColorPalette = darkColors(
+private val DarkColorPalette = darkColorScheme(
     primary = Blue,
-    primaryVariant = BlueVariant,
+    primaryContainer = BlueVariant,
     secondary = Silver,
-    secondaryVariant = SilverVariant,
+    secondaryContainer = SilverVariant,
     background = BlueBackground,
     surface = Gray,
     onPrimary = Color.Black,
@@ -21,11 +21,11 @@ private val DarkColorPalette = darkColors(
     onError = Color.White
 )
 
-private val LightColorPalette = lightColors(
+private val LightColorPalette = lightColorScheme(
     primary = Red,
-    primaryVariant = RedVariant,
+    primaryContainer = RedVariant,
     secondary = Silver,
-    secondaryVariant = SilverVariant,
+    secondaryContainer = SilverVariant,
     background = RedBackground,
     surface = Color.White,
     onPrimary = Color.Black,
@@ -44,7 +44,7 @@ fun WebViewTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composabl
     }
 
     MaterialTheme(
-        colors = colors,
+        colorScheme = colors,
         typography = Typography,
         shapes = Shapes,
         content = content

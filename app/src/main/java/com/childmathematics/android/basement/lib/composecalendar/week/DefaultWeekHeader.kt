@@ -2,8 +2,8 @@ package com.childmathematics.android.basement.lib.composecalendar.week
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -21,7 +21,8 @@ public fun DefaultWeekHeader(
   Row(modifier = modifier) {
     daysOfWeek.forEach { dayOfWeek ->
       Text(
-        style = MaterialTheme.typography.h6,
+//        style = MaterialTheme.typography.h6,    //headlineSmall
+        style = MaterialTheme.typography.headlineSmall,    //headlineSmall
         textAlign = TextAlign.Center,
 //        text = dayOfWeek.value ,
 //        text = dayOfWeek.getDisplayName(SHORT, Locale.ROOT),

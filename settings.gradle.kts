@@ -1,61 +1,19 @@
-rootProject.name = "ScheduleCalendar"
-
 pluginManagement {
-
-    /**
-     * The pluginManagement {repositories {...}} block configures the
-     * repositories Gradle uses to search or download the Gradle plugins and
-     * their transitive dependencies. Gradle pre-configures support for remote
-     * repositories such as JCenter, Maven Central, and Ivy. You can also use
-     * local repositories or define your own remote repositories. The code below
-     * defines the Gradle Plugin Portal, Google's Maven repository,
-     * and the Maven Central Repository as the repositories Gradle should use to look for its dependencies.
-     * Блок pluginManagement {repositories {...}} настраивает
-     * репозитории, которые Gradle использует для поиска или загрузки плагинов Gradle и
-     * их транзитивные зависимости. Gradle предварительно настраивает поддержку удаленного доступа.
-     * репозитории, такие как JCenter, Maven Central и Ivy. Вы также можете использовать
-     * локальные репозитории или определите свои собственные удаленные репозитории. Код ниже
-     * определяет портал плагинов Gradle, репозиторий Google Maven,
-     * и центральный репозиторий Maven в качестве репозиториев, которые Gradle должен использовать
-     * для поиска своих зависимостей.
-     */
-
     repositories {
+        google()
+        mavenCentral()
         gradlePluginPortal()
-        google()
-        mavenCentral()
     }
 }
-
 dependencyResolutionManagement {
-    /**
-     * The dependencyResolutionManagement {repositories {...}}
-     * block is where you configure the repositories and dependencies used by
-     * all modules in your project, such as libraries that you are using to
-     * create your application. However, you should configure module-specific
-     * dependencies in each module-level NoKts_build.gradle.kts file. For new projects,
-     * Android Studio includes Google's Maven repository and the
-     * Maven Central Repository by default,
-     * but it does not configure any dependencies (unless you select a
-     *
-     * ЗависимостьResolutionManagement {репозитории {...}}
-     * Блок, где вы настраиваете репозитории и зависимости, используемые
-     * все модули в вашем проекте, такие как библиотеки, которые вы используете для
-     * создать свое приложение. Тем не менее, вы должны настроить для конкретного модуля
-     * зависимости в каждом файле NoKts_build.gradle.kts уровня модуля. Для новых проектов,
-     * Android Studio включает в себя репозиторий Google Maven и
-     * Центральный репозиторий Maven по умолчанию,
-     * но он не настраивает никаких зависимостей (если только вы не выберете
-     * шаблон, который требует некоторых).
-     *
-     */
-
-//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
     }
 }
+
+rootProject.name = "ScheduleCalendar"
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 /*
  https://docs.gradle.com/enterprise/get-started/
@@ -64,7 +22,7 @@ Gradle Enterprise помогает анализировать время лок�
 Build Cache и другие типичные узкие места производительности сборки Android.
 */
 plugins {
-    id("com.gradle.enterprise") version "latest.release" // 3.15.1
+    id("com.gradle.enterprise") version "latest.release"
 }
 
 gradleEnterprise {

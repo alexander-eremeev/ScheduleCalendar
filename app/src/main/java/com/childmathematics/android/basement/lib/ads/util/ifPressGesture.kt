@@ -7,8 +7,8 @@ import androidx.compose.foundation.gestures.forEachGesture
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.pointer.*
 import androidx.compose.ui.unit.Density
-import androidx.compose.ui.util.fastAll
-import androidx.compose.ui.util.fastAny
+//import androidx.compose.ui.util.fastAll
+//import androidx.compose.ui.util.fastAny
 // import com.childmathematics.android.shiftschedule.navigation.detectTapAndPressUnconsumed
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
@@ -44,6 +44,7 @@ suspend fun PointerInputScope.detectTapAndPressUnconsumed(
 }
 suspend fun AwaitPointerEventScope.waitForUpOrCancellationInitial(): PointerInputChange? {
     while (true) {
+        /*
         val event = awaitPointerEvent(PointerEventPass.Initial)
         if (event.changes.fastAll { it.changedToUp() }) {
 // All pointers are up
@@ -63,6 +64,9 @@ suspend fun AwaitPointerEventScope.waitForUpOrCancellationInitial(): PointerInpu
         if (consumeCheck.changes.fastAny { it.isConsumed }) {
             return null
         }
+
+         */
+
     }
 }
 private val NoPressGesture: suspend PressGestureScope.(Offset) -> Unit = { }

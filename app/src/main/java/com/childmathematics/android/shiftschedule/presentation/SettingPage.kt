@@ -5,7 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,17 +24,17 @@ import com.childmathematics.android.basement.lib.ads.admob.AdBannerNetworkApp
 import com.childmathematics.android.basement.lib.ads.admob.AdInterstitialNetworkApp
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.basement.lib.ads.yandex.mYaInterstitialAdOnOff
-import com.childmathematics.android.shiftschedule.navigation.Routes
+//import com.childmathematics.android.shiftschedule.navigation.Routes
 //import com.childmathematics.android.shiftschedule.runtime.navigation.SettingNavHost
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
 import com.childmathematics.android.shiftschedule.util.bannerHightWithVideoMin
-import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
-import com.google.accompanist.navigation.material.bottomSheet
+//import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
+//import com.google.accompanist.navigation.material.bottomSheet
 //import com.yandex.metrica.YandexMetrica
 
 
-@OptIn(ExperimentalMaterialNavigationApi::class)
+
 @Composable
 //fun SettingPageShow(context: Context,currentRoute : String) {
 fun SettingPageShow(currentRoute : String) {
@@ -116,10 +116,13 @@ fun SettingPageShow(currentRoute : String) {
         }
 
     }
+    /*
     if (currentRoute == Routes.SETTINGAPPMETRICA_ROUTE) {
  //       SettingsAppMetricaComponent(context)
         SettingsAppMetricaComponent()
     }
+
+     */
 
 }
 

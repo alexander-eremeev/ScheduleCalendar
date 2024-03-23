@@ -1,4 +1,3 @@
-import java.time.Year
 /*
  * Copyright 2022 The Android Open Source Project
  *
@@ -93,9 +92,9 @@ allprojects {
 
         javascript {
             target ("src/**/*.js") // you have to set the target manually
-            prettier() // has its own section below
+//            prettier() // has its own section below
 //            eslint()   // has its own section below
-            rome()     // has its own section below
+//            rome()     // has its own section below
 //            licenseHeader ("/* (C) $YEAR */", "REGEX_TO_DEFINE_TOP_OF_FILE") // or licenseHeaderFile
 //            licenseHeader ("/* (C) $YEAR */") // or licenseHeaderFile
 //            licenseHeaderFile(rootProject.file("spotless/copyright.js"))
@@ -104,7 +103,7 @@ allprojects {
 
         json {
             target ("src/**/*.json")
-            simple()
+//            simple()
             // optional: specify the number of spaces to use
 //            simple().indentWithSpaces(6)
         }

@@ -1,11 +1,9 @@
 package com.childmathematics.android.shiftschedule.database.presentation.countries
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 
 @Composable
-@ExperimentalMaterialApi
 fun CountriesScreen(
 //    viewModel: CountriesViewModel = hiltViewModel()
 ) {

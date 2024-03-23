@@ -1,13 +1,41 @@
-package com.childmathematics.android.shiftschedule
+package com.childmathematics.android.shiftschedule.presentation
 
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.rememberScrollState
+//import androidx.compose.foundation.*
+//import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.verticalScroll
+//import androidx.compose.material.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardElevation
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+//import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -24,7 +52,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.ViewModel
-import com.childmathematics.android.basement.lib.ads.util.detectTapAndPressUnconsumed
+//import com.childmathematics.android.basement.lib.ads.util.detectTapAndPressUnconsumed
 import com.childmathematics.android.basement.lib.ads.yandex.YANDEX_MOBILE_ADS_TAG
 import com.childmathematics.android.basement.lib.ads.yandex.mYaInterstitialAdOnOff
 import com.childmathematics.android.basement.lib.ads.yandex.yaAdsInterstutialTimerOff
@@ -34,6 +62,7 @@ import com.childmathematics.android.basement.lib.composecalendar.rememberSelecta
 import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode.Period
+import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.util.DialogButtonOK
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
@@ -50,6 +79,7 @@ import java.time.*
  */
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @ExperimentalCoroutinesApi
 @Composable
 //fun Schedule500Sample() {
@@ -105,7 +135,7 @@ import java.time.*
                 modifier = Modifier
                     .align(CenterHorizontally),
 
-                style = MaterialTheme.typography.body1,
+                style = MaterialTheme.typography.bodyLarge,
 //      color = MaterialTheme.colors.secondary,
                 softWrap = true,
                 fontStyle = Italic,
@@ -198,6 +228,7 @@ import java.time.*
  * Пользовательская реализация DayContent,
  * которая показывает точку, если на этот день запланирован рецепт.
  */
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Sch01RecipeDay(
     state: DayState<DynamicSelectionState>,
@@ -213,29 +244,39 @@ fun Sch01RecipeDay(
     modifier = modifier
       .aspectRatio(1f)
       .padding(2.dp),
-    elevation = if (state.isFromCurrentMonth) 4.dp else 0.dp,
-    border = if (state.isCurrentDay){ BorderStroke(1.dp, MaterialTheme.colors.primary)
+//1      elevation = if (state.isFromCurrentMonth) CardElevation(4.dp,4.dp,4.dp,4.dp,4.dp,4.dp)
+//              elevation = if (state.isFromCurrentMonth) CardElevation(4.Dp,4.Dp,4.Dp,4.Dp,4.Dp,4.Dp)
+//2                    else CardElevation(0.dp,0.dp,0.dp,0.dp,0.dp,0.dp),
+//      elevation = if (state.isFromCurrentMonth) 4.dp else 0.dp,
+    border = if (state.isCurrentDay){ BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
 //      if (state.isCurrentDay){ BorderStroke(2.dp, MaterialTheme.colors.primary)
                 } else if (state.isCurrentDay && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
-                    BorderStroke(2.dp, MaterialTheme.colors.error)
+                    BorderStroke(2.dp, MaterialTheme.colorScheme.error)
                 else if (state.isFromCurrentMonth && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
-                    BorderStroke(1.dp, MaterialTheme.colors.error)
+//                    BorderStroke(1.dp, MaterialTheme.colors.error)
+                            BorderStroke(1.dp, MaterialTheme.colorScheme.error)
 //        else if (date.dayOfWeek.value==6 || date.dayOfWeek.value==7) BorderStroke(1.dp,
 //      if (state.isCurrentDay){ BorderStroke(2.dp, MaterialTheme.colors.primary)
         else null,
+      /*
     contentColor = if (isSelected) MaterialTheme.colors.secondary else contentColorFor(
       backgroundColor = MaterialTheme.colors.surface
     )
+
+       */
   ) {
     Column(
       modifier = Modifier
           //====================================================
           // фиксация нажатия экрана для сдвига паказа рекламы
           .pointerInput(Unit) {
+              /*
               detectTapAndPressUnconsumed(onTap = {
                   Log.d(YANDEX_MOBILE_ADS_TAG, "Schedule01 Interstitial:select date TAP")
                   yaAdsInterstutialTimerOff()  //реклама через 180 cек  durationNoPushTastaturAds
               })
+
+               */
           }
           //--------------------------------------------------
 
@@ -243,7 +284,7 @@ fun Sch01RecipeDay(
                         selectionState.onDateSelected(date)
       }
         ,
-      horizontalAlignment = Alignment.CenterHorizontally,
+      horizontalAlignment = CenterHorizontally,
     ) {
             Text(
 //                modifier = Modifier.background(androidx.compose.ui.graphics.Color.Red, CircleShape),
@@ -278,7 +319,7 @@ fun Sch01RecipeDay(
 //                  +" / "+
                 String.format("%2d", (getShift01(date)).toInt()),
 //          fontSize = 9.sp,
-                style = MaterialTheme.typography.body2,
+                style = MaterialTheme.typography.bodyMedium,
             )
         }
     }
@@ -297,7 +338,7 @@ private fun SelectionControls(
   }
   Text(
     text = "Calendar Selection Mode",
-    style = MaterialTheme.typography.h6,
+    style = MaterialTheme.typography.headlineSmall,
   )
   SelectionMode.values().forEach { selectionMode ->
     Row(modifier = Modifier.fillMaxWidth()) {
@@ -356,6 +397,7 @@ fun onSelectionChanged(selection: List<LocalDate>) {
 //====================================================================
 // расчет основного рабочего времени по дате по номеру бригады
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01 (dateforCalc: LocalDate):Double
 {
   val shift : Int
@@ -375,6 +417,7 @@ fun getShift01 (dateforCalc: LocalDate):Double
 //====================================================================
 // расчет основного времени до выбранной даты
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01Select (selection: List<LocalDate>):Double {
   var summ: Double =getShift01(selection[selection.lastIndex] )
   for (i in selection.lastIndex downTo 0 step 1) {
@@ -385,7 +428,8 @@ fun getShift01Select (selection: List<LocalDate>):Double {
 //====================================================================
 // расчет рабочих дней до конца месяца
 //==============================================
-fun getShift01WorkDayMonth (year: Int,month: Int):Int {
+@RequiresApi(Build.VERSION_CODES.O)
+fun getShift01WorkDayMonth (year: Int, month: Int):Int {
   var monthW: Int=month+1
   var yearW: Int=year
   if (monthW >12) {
@@ -403,7 +447,8 @@ fun getShift01WorkDayMonth (year: Int,month: Int):Int {
 //====================================================================
 // расчет основного времени до выбранной даты
 //==============================================
-fun getShift01Month (year: Int,month: Int):Double {
+@RequiresApi(Build.VERSION_CODES.O)
+fun getShift01Month (year: Int, month: Int):Double {
     var monthW: Int=month+1
     var yearW: Int=year
     if (monthW >12) {
@@ -422,6 +467,7 @@ fun getShift01Month (year: Int,month: Int):Double {
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады с начала месяца
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01MonthDateDays (datecalc: LocalDate):Int {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= datecalc
@@ -440,6 +486,7 @@ fun getShift01MonthDateDays (datecalc: LocalDate):Int {
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады с начала месяца
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01MonthDate (datecalc: LocalDate):Double {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= datecalc
@@ -453,7 +500,8 @@ fun getShift01MonthDate (datecalc: LocalDate):Double {
 //====================================================================
 // расчет основного времени между выбранной даты по номеру бригады с начала месяца
 //==============================================
-fun getShift01Date1Date2 (date1: LocalDate,date2: LocalDate):Double {
+@RequiresApi(Build.VERSION_CODES.O)
+fun getShift01Date1Date2 (date1: LocalDate, date2: LocalDate):Double {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= date2
 
@@ -466,7 +514,8 @@ fun getShift01Date1Date2 (date1: LocalDate,date2: LocalDate):Double {
 //====================================================================
 // расчет основного времени между выбранной даты по номеру бригады с начала месяца
 //==============================================
-fun getShift01Date1Date2Days (date1: LocalDate,date2: LocalDate):Int {
+@RequiresApi(Build.VERSION_CODES.O)
+fun getShift01Date1Date2Days (date1: LocalDate, date2: LocalDate):Int {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= date2
 
@@ -480,6 +529,7 @@ fun getShift01Date1Date2Days (date1: LocalDate,date2: LocalDate):Int {
     }
     return summDays
 }//====================================================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DialogSchedule01(selection: List<LocalDate>,onDismiss: () -> Unit) {
 
@@ -488,16 +538,19 @@ fun DialogSchedule01(selection: List<LocalDate>,onDismiss: () -> Unit) {
     onDismissRequest = onDismiss,
     properties = DialogProperties()
   ) {
-    Surface(elevation = 8.dp, shape = RoundedCornerShape(12.dp)) {
+    Surface(tonalElevation = 8.dp, shape = RoundedCornerShape(12.dp)) {
       Column(
         modifier = Modifier
             //====================================================
             // фиксация нажатия экрана для сдвига паказа рекламы
             .pointerInput(Unit) {
+                /*
                 detectTapAndPressUnconsumed(onTap = {
                     Log.d(YANDEX_MOBILE_ADS_TAG, "DialogSchedule01 Interstitial:select date TAP")
                     yaAdsInterstutialTimerOff()  //реклама через 180 cек  durationNoPushTastaturAds
                 })
+
+                 */
             }
             //--------------------------------------------------
 

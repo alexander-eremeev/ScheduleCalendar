@@ -1,6 +1,6 @@
 package com.childmathematics.android.basement.lib.webview.ui.theme
 
-import androidx.compose.material.Typography
+import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -17,21 +17,25 @@ val FiraSans = FontFamily(
 )
 
 val Typography = Typography(
-    h1 = TextStyle(
+    headlineLarge = TextStyle(
         fontFamily = FiraSans,
         fontWeight = FontWeight.Light,
         fontSize = 28.sp
     ),
+    /*
     h2 = TextStyle(
         fontFamily = FiraSans,
         fontWeight = FontWeight.Light,
         fontSize = 26.sp
     ),
-    h3 = TextStyle(
+
+     */
+    headlineMedium = TextStyle(
         fontFamily = FiraSans,
         fontWeight = FontWeight.Normal,
         fontSize = 24.sp
     ),
+    /*
     h4 = TextStyle(
         fontFamily = FiraSans,
         fontWeight = FontWeight.Normal,
@@ -42,30 +46,33 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 20.sp
     ),
-    h6 = TextStyle(
+
+     */
+    headlineSmall = TextStyle(
         fontFamily = FiraSans,
         fontWeight = FontWeight.Medium,
         fontSize = 18.sp
     ),
-    subtitle1 = TextStyle(
+    titleLarge = TextStyle(
         fontFamily = FiraSans,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),
-    subtitle2 = TextStyle(
+    titleMedium = TextStyle(
         fontFamily = FiraSans,
         fontWeight = FontWeight.Medium,
         fontSize = 15.sp
     ),
-    body1 = TextStyle(
+    bodyLarge = TextStyle(
         fontFamily = FiraSans,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),
-    body2 = TextStyle(
+    bodyMedium = TextStyle(
         fontFamily = FiraSans,
         fontWeight = FontWeight.Medium,
         fontSize = 15.sp
+        /*
     ),
     button = TextStyle(
         fontFamily = FiraSans,
@@ -81,6 +88,8 @@ val Typography = Typography(
         fontFamily = FiraSans,
         fontWeight = FontWeight.Normal,
         fontSize = 1.sp
+
+         */
     )
 
 )

@@ -46,4 +46,6 @@
     <color name="aurora_on">#D0E0CF</color>
 
     <color name="error">#B00020</color>
+
+    <color name="black30">#4D000000</color>
 </resources>

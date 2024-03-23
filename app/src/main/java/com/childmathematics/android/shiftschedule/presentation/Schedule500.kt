@@ -1,12 +1,19 @@
-package com.childmathematics.android.shiftschedule
+package com.childmathematics.android.shiftschedule.presentation
 
 
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -26,7 +33,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.ViewModel
 import com.childmathematics.android.basement.lib.ads.yandex.YANDEX_MOBILE_ADS_TAG
-import com.childmathematics.android.basement.lib.ads.util.detectTapAndPressUnconsumed
+//import com.childmathematics.android.basement.lib.ads.util.detectTapAndPressUnconsumed
 import com.childmathematics.android.basement.lib.ads.yandex.mYaInterstitialAdOnOff
 import com.childmathematics.android.basement.lib.ads.yandex.yaAdsInterstutialTimerOff
 import com.childmathematics.android.basement.lib.composecalendar.SelectableCalendar
@@ -34,6 +41,7 @@ import com.childmathematics.android.basement.lib.composecalendar.day.DayState
 import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
 import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode.Period
+import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.util.DialogButtonOK
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
@@ -48,6 +56,7 @@ import java.time.*
  * which can display planned recipes along with their prices
  */
 
+@RequiresApi(Build.VERSION_CODES.O)
 @ExperimentalCoroutinesApi
 @Composable
 fun Schedule500Sample(currentDialog500: Boolean) {
@@ -105,7 +114,7 @@ fun Schedule500Sample(currentDialog500: Boolean) {
             Text(
                 textAlign = TextAlign.Center,
                 text = "График непрерывный 12 часовой 4-х бригадный 2-х сменный ",
-                style = MaterialTheme.typography.body1,
+                style = MaterialTheme.typography.bodyLarge ,
 //      color = MaterialTheme.colors.secondary,
                 softWrap = true,
                 fontStyle = Italic,
@@ -338,6 +347,7 @@ fun Schedule500Sample(currentDialog500: Boolean) {
  * Пользовательская реализация DayContent,
  * которая показывает точку, если на этот день запланирован рецепт.
  */
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Sch500RecipeDay(
     state: DayState<DynamicSelectionState>,
@@ -353,21 +363,27 @@ fun Sch500RecipeDay(
     modifier = modifier
       .aspectRatio(1f)
       .padding(2.dp),
-    elevation = if (state.isFromCurrentMonth) 4.dp else 0.dp,
-    border = if (state.isCurrentDay) BorderStroke(1.dp, MaterialTheme.colors.primary) else null,
-    contentColor = if (isSelected) MaterialTheme.colors.secondary else contentColorFor(
-      backgroundColor = MaterialTheme.colors.surface
-    )
+//    elevation = if (state.isFromCurrentMonth) 4.dp else 0.dp,
+    border = if (state.isCurrentDay) BorderStroke(1.dp, MaterialTheme.colorScheme.primary) else null,
+    /*
+      colors = if (isSelected) MaterialTheme.colorScheme.secondary
+            else contentColorFor( backgroundColor = MaterialTheme.colorScheme.surface
+            )
+
+     */
   ) {
     Column(
       modifier = Modifier
           //====================================================
           // фиксация нажатия экрана для сдвига паказа рекламы
           .pointerInput(Unit) {
+              /*
               detectTapAndPressUnconsumed(onTap = {
                   Log.d(YANDEX_MOBILE_ADS_TAG, "Schedule500  Interstitial: TAP3")
                   yaAdsInterstutialTimerOff()  //реклама через 180 cек  durationNoPushTastaturAds
               })
+
+               */
           }
           //--------------------------------------------------
           .clickable {
@@ -465,6 +481,7 @@ fun Schedule500SamplePreview( ) {
 //====================================================================
 // расчет основного рабочего времени по дате по номеру бригады
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500 (dateforCalc: LocalDate,nBrig: Int):Double
 {
@@ -515,6 +532,7 @@ fun getShift500 (dateforCalc: LocalDate,nBrig: Int):Double
 //====================================================================
 // расчет ночных по дате по номеру бригады
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500Night (dateforCalc: LocalDate,nBrig: Int):Double
 {
@@ -565,6 +583,7 @@ fun getShift500Night (dateforCalc: LocalDate,nBrig: Int):Double
 //====================================================================
 // расчет основного рабочего времени по дате по номеру бригады
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500Text (dateforCalc: LocalDate,nBrig: Int):String
 {
@@ -615,6 +634,7 @@ fun getShift500Text (dateforCalc: LocalDate,nBrig: Int):String
 //====================================================================
 // расчет ночных до выбранной даты по номеру бригады
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500NightSelect(selection: List<LocalDate>,nBrig: Int):Double {
   var summ: Double =getShift500Night(selection[selection.lastIndex] ,nBrig)
@@ -626,6 +646,7 @@ return summ
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500Select (selection: List<LocalDate>,nBrig: Int):Double {
   var summ: Double =getShift500(selection[selection.lastIndex] ,nBrig)
@@ -637,6 +658,7 @@ fun getShift500Select (selection: List<LocalDate>,nBrig: Int):Double {
 //====================================================================
 // расчет ночных до выбранной даты по номеру бригады
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500NightMonth (year: Int,month: Int,nBrig: Int):Double {
   var monthW: Int=month+1
@@ -656,6 +678,7 @@ fun getShift500NightMonth (year: Int,month: Int,nBrig: Int):Double {
 // расчет основного времени до выбранной даты по номеру бригады
 //==============================================
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500Month (year: Int,month: Int,nBrig: Int):Double {
     var monthW: Int=month+1
@@ -676,6 +699,7 @@ fun getShift500Month (year: Int,month: Int,nBrig: Int):Double {
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады с начала месяца
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500MonthDate (datecalc: LocalDate,nBrig: Int):Double {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
@@ -690,6 +714,7 @@ fun getShift500MonthDate (datecalc: LocalDate,nBrig: Int):Double {
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады с начала месяца
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500MonthDateNight (datecalc: LocalDate,nBrig: Int):Double {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
@@ -704,6 +729,7 @@ fun getShift500MonthDateNight (datecalc: LocalDate,nBrig: Int):Double {
 //====================================================================
 // расчет основного времени между выбранной даты по номеру бригады с начала месяца
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500Date1Date2 (date1: LocalDate,date2: LocalDate,nBrig: Int):Double {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
@@ -718,6 +744,7 @@ fun getShift500Date1Date2 (date1: LocalDate,date2: LocalDate,nBrig: Int):Double 
 //====================================================================
 // расчет основного времени между выбранной даты по номеру бригады с начала месяца
 //==============================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500Date1Date2Night (date1: LocalDate,date2: LocalDate,nBrig: Int):Double {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
@@ -730,6 +757,7 @@ fun getShift500Date1Date2Night (date1: LocalDate,date2: LocalDate,nBrig: Int):Do
     return summ
 }
 //====================================================================
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
 
@@ -738,16 +766,19 @@ fun DialogSchedule500(selection: List<LocalDate>,onDismiss: () -> Unit) {
     onDismissRequest = onDismiss,
     properties = DialogProperties()
   ) {
-    Surface(elevation = 8.dp, shape = RoundedCornerShape(12.dp)) {
+    Surface(tonalElevation = 8.dp, shape = RoundedCornerShape(12.dp)) {
       Column(
         modifier = Modifier
             //====================================================
             // фиксация нажатия экрана для сдвига паказа рекламы
             .pointerInput(Unit) {
+                /*
                 detectTapAndPressUnconsumed(onTap = {
                     Log.d(YANDEX_MOBILE_ADS_TAG, "DialogSchedule500 Interstitial: TAP")
                     yaAdsInterstutialTimerOff()  //реклама через 180 cек  durationNoPushTastaturAds
                 })
+
+                 */
             }
             //--------------------------------------------------
 

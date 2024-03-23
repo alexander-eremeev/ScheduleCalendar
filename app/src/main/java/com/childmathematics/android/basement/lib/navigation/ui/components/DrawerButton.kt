@@ -2,10 +2,10 @@ package com.childmathematics.android.basement.lib.navigation.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,7 +26,7 @@ fun DrawerButton(
     action: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val colors = MaterialTheme.colors
+    val colors = MaterialTheme.colorScheme
     val imageAlpha = if (isSelected) {
         1f
     } else {
@@ -70,7 +70,7 @@ fun DrawerButton(
                 Text(
                     fontWeight = FontWeight.Bold,
                     text = label,
-                    style = MaterialTheme.typography.body2,
+                    style = MaterialTheme.typography.bodyLarge,
                     color = textIconColor
                 )
             }

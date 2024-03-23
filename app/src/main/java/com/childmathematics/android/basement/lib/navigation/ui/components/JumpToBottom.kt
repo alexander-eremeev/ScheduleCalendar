@@ -6,11 +6,12 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.FloatingActionButtonDefaults
-import androidx.compose.material.Icon
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowUpward
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -51,9 +52,9 @@ fun JumpToBottom(
                 defaultElevation = 4.dp,
                 pressedElevation = 8.dp
             ),
-            backgroundColor = Color(0xffF06292),
+//            backgroundColor = Color(0xffF06292),
 //                    backgroundColor = MaterialTheme.colors.surface,
-//                    contentColor = MaterialTheme.colors.onSurface,
+                    contentColor = MaterialTheme.colorScheme.onSurface,
             modifier = modifier
                 .padding(end = 10.dp)
                 .size(48.dp)
@@ -62,7 +63,8 @@ fun JumpToBottom(
             onClick = onClicked
         ) {
             Icon(
-                imageVector = Icons.Filled.ArrowUpward,
+                imageVector = Icons.Filled.KeyboardArrowUp,
+//                imageVector = Icons.Filled.ArrowUpward,
                 contentDescription = null,
                 tint = Color.White
             )

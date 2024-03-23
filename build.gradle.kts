@@ -1,23 +1,15 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
+/*
+buildscript {
+}
+ */
 plugins {
-    alias(libs.plugins.android.application) apply false // подключить Yandex AppMetrica SDK через плаги
-    alias(libs.plugins.android.library) apply false
-    alias(libs.plugins.jetbrains.kotlin.android) apply false
+    id("com.android.application") version libs.versions.agp apply false
+    id("com.android.library") version libs.versions.agp apply false
 
-//            alias (libs.plugins.jetbrains.kotlin.kapt)  apply false     //???
-    alias(libs.plugins.google.ksp) apply false // google-ksp
+    id("org.jetbrains.kotlin.android") version libs.versions.jetbrainsKotlin apply false
 
-    alias(libs.plugins.google.firebase.crashlytics.gradle.plugin) apply false
-    alias(libs.plugins.google.firebase.performance.gradle.plugin) apply false
-
-//    alias(libs.plugins.arturbosch.detekt)
-    alias(libs.plugins.jlleitschuh.ktlint.gradle)
-// 1    alias(libs.plugins.benmanes.versions)
-//    alias(libs.plugins.gradle.versions)
-// 2    alias(libs.plugins.littlerobots.version.catalog.update)
-
-    // jacoco
+    id("com.google.devtools.ksp") version libs.versions.googleDevToolsKsp apply false
 }
 tasks.register("clean", Delete::class) {
     delete(rootProject.layout.buildDirectory)

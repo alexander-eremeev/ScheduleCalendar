@@ -17,20 +17,20 @@
 package com.childmathematics.android.shiftschedule.shifttodo.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
-private val DarkColorPalette = darkColors(
+private val DarkColorPalette = darkColorScheme(
     primary = purple200,
-    primaryVariant = purple700,
+    primaryContainer = purple700,
     secondary = teal200
 )
 
-private val LightColorPalette = lightColors(
+private val LightColorPalette = lightColorScheme(
     primary = purple500,
-    primaryVariant = purple700,
+    primaryContainer = purple700,
     secondary = teal200
 )
 
@@ -46,7 +46,7 @@ fun StateCodelabTheme(
     }
 
     MaterialTheme(
-        colors = colors,
+        colorScheme = colors,
         typography = typography,
         shapes = shapes,
         content = content

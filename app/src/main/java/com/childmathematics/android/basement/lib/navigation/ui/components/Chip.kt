@@ -11,6 +11,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardDefaults.elevatedCardElevation
+import androidx.compose.material3.CardElevation
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.Dp
 import com.childmathematics.android.shiftschedule.R
 
 import com.childmathematics.android.basement.lib.navigation.model.SuggestionModel
@@ -26,9 +37,10 @@ import com.childmathematics.android.basement.lib.navigation.model.SuggestionMode
 @Composable
 fun TutorialChip(modifier: Modifier = Modifier, text: String, color:Color = Color(0xff00BCD4)) {
     Card(
-        elevation = 0.dp,
+        elevation = elevatedCardElevation(0.dp,0.dp,0.dp,0.dp,0.dp,0.dp),
         modifier = modifier,
-        backgroundColor = Color(0xFFE0E0E0),
+        colors = CardDefaults.cardColors(),
+//        backgroundColor = Color(0xFFE0E0E0),
         shape = RoundedCornerShape(16.dp)
     ) {
         Row(
@@ -56,7 +68,7 @@ fun Chip(
 ) {
 
     Surface(
-        elevation = 0.dp,
+        tonalElevation = 0.dp,
         modifier = modifier,
         color = Color(0xFFE0E0E0),
         shape = RoundedCornerShape(16.dp)
@@ -74,7 +86,7 @@ fun Chip(
             }
             Text(
                 text = text,
-                style = MaterialTheme.typography.body2,
+                style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(end = 8.dp)
             )
 
@@ -95,7 +107,7 @@ fun CancelableChip(
 ) {
 
     Surface(
-        elevation = 0.dp,
+        tonalElevation = 0.dp,
         modifier = modifier,
         color = Color(0xFFE0E0E0),
         shape = RoundedCornerShape(16.dp)
@@ -124,7 +136,7 @@ fun CancelableChip(
 
             Text(
                 text = suggestion.tag,
-                style = MaterialTheme.typography.body2,
+                style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(end = 8.dp)
             )
 
@@ -159,7 +171,7 @@ fun OutlinedChip(
     closable: Boolean = false
 ) {
     Surface(
-        elevation = 0.dp,
+        tonalElevation = 0.dp,
         modifier = modifier,
         border = BorderStroke(width = 1.dp, Color(0xFFE0E0E0)),
         shape = RoundedCornerShape(16.dp)
@@ -177,7 +189,7 @@ fun OutlinedChip(
             }
             Text(
                 text = text,
-                style = MaterialTheme.typography.body2,
+                style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(end = 8.dp)
             )
 

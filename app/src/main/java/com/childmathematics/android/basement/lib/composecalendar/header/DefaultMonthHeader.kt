@@ -6,10 +6,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.runtime.Composable
@@ -43,9 +45,9 @@ public fun DefaultMonthHeader(
 //      painter = painterResource(id = R.drawable.ic_shiftschedule),
 
       Image(
-        imageVector = Icons.Default.KeyboardArrowLeft,
+        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
 //        imageVector = R.drawable.ic_icons8_left_arrow_48,
-        colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface),
+        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
         contentDescription = "Previous",
       )
     }
@@ -63,7 +65,8 @@ public fun DefaultMonthHeader(
     Spacer(modifier = Modifier.width(8.dp))
     //   Text(text = monthState.currentMonth.year.toString(), style = MaterialTheme.typography.h4)
     Text(text = NameMonthRus(monthState.currentMonth.month.value) + "  "+
-            monthState.currentMonth.year.toString(), style = MaterialTheme.typography.h5)
+//            monthState.currentMonth.year.toString(), style = MaterialTheme.typography.h5)       //headlineSmall
+        monthState.currentMonth.year.toString(), style = MaterialTheme.typography.headlineSmall)  //headlineSmall
 /* --------------------------------------------------------------------------
 *     Обработка кнопки + месяц NameMonthRus(monthState.currentMonth.year)
 */
@@ -73,8 +76,8 @@ public fun DefaultMonthHeader(
       onClick = { monthState.currentMonth = monthState.currentMonth.plusMonths(1) }
     ) {
       Image(
-        imageVector = Icons.Default.KeyboardArrowRight,
-        colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface),
+        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
         contentDescription = "Next",
       )
     }

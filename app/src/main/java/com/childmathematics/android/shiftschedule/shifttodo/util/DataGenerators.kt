@@ -15,7 +15,7 @@
  */
 
 package com.childmathematics.android.shiftschedule.shifttodo.util
-
+/*
 import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoIcon
 import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoItem
 
@@ -34,3 +34,5 @@ fun generateRandomTodoItem(): TodoItem {
     val icon = TodoIcon.values().random()
     return TodoItem(message, icon)
 }
+
+ */

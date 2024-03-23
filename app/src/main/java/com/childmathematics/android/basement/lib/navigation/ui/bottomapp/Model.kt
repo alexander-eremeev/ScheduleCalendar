@@ -19,7 +19,7 @@ object BottomMenu {
     }
     fun getMenuListschedule500() : List<MenuItem> {
         val menuItems = mutableListOf<MenuItem>()
-        menuItems.add(MenuItem("Расчет для выделенных дат", Icons.Filled.Summarize))
+        menuItems.add(MenuItem("Расчет для выделенных дат", Icons.Filled.Info)) // Summarize
         return menuItems
     }
 

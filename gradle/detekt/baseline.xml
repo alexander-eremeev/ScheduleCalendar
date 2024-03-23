@@ -10,6 +10,7 @@
     <ID>LongParameterList:MonthContent.kt$( showAdjacentMonths: Boolean, selectionState: T, monthState: MonthState, daysOfWeek: List&lt;DayOfWeek>, today: LocalDate, modifier: Modifier = Modifier, dayContent: @Composable BoxScope.(DayState&lt;T>) -> Unit, weekHeader: @Composable BoxScope.(List&lt;DayOfWeek>) -> Unit, monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit )</ID>
     <ID>MagicNumber:MonthContent.kt$3</ID>
     <ID>FunctionNaming:MonthContent.kt$@Composable internal fun &lt;T : SelectionState> MonthContent( showAdjacentMonths: Boolean, selectionState: T, currentMonth: YearMonth, daysOfWeek: List&lt;DayOfWeek>, today: LocalDate, modifier: Modifier = Modifier, dayContent: @Composable BoxScope.(DayState&lt;T>) -> Unit, weekHeader: @Composable BoxScope.(List&lt;DayOfWeek>) -> Unit, monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit, )</ID>
+    <ID>TooManyFunctions:LocalDateTimeExt.kt$com.childmathematics.android.basement.core.datetime.LocalDateTimeExt.kt</ID>
   </ManuallySuppressedIssues>
   <CurrentIssues/>
 </SmellBaseline>

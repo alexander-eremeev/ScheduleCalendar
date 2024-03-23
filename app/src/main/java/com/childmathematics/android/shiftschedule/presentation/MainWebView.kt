@@ -1,4 +1,4 @@
-package com.childmathematics.android.shiftschedule.webview
+package com.childmathematics.android.shiftschedule.presentation
 
 import android.view.ViewGroup
 import android.webkit.WebSettings
@@ -8,8 +8,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -43,9 +43,9 @@ fun WebViewMainScreen(siteName:  String) {
 
 //----------------------------------
     Box(modifier = Modifier
-        .padding(0.dp,0.dp,0.dp,0.dp)          // для баннера
+//        .padding(0.dp,0.dp,0.dp,0.dp)          // для баннера
 //        .fillMaxSize()
-        .background(MaterialTheme.colors.background)
+//        .background(MaterialTheme.colors.background)
         .size(
             (LocalConfiguration.current.screenWidthDp).dp,
             changeHightDp.dp
@@ -57,15 +57,13 @@ fun WebViewMainScreen(siteName:  String) {
         Surface(
             modifier = Modifier
 //                .fillMaxSize()
-                .background(MaterialTheme.colors.surface)
+//                .background(MaterialTheme.colors.surface)
 
         )
         {
             WebViewScreen(siteName = siteName)
-//                    WebViewScreen(siteName = siteName)
         }
     }
-//    WebViewScreen(siteName = siteName)
 }
 
     @Composable
@@ -74,13 +72,14 @@ fun WebViewMainScreen(siteName:  String) {
         AndroidView(factory = { context->
             WebView(context).apply {
                 layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+//                            ViewGroup.LayoutParams.MATCH_PARENT,
+//                    ViewGroup.LayoutParams.MATCH_PARENT
                 )
                 webViewClient = WebViewClient()
 //                loadUrl("http://www.${siteName}.com")
                 loadUrl("${siteName}")
-//                loadUrl("file:///android_asset/about.html")
             }
         }, update = { webView->
             val webSettings: WebSettings = webView.getSettings()

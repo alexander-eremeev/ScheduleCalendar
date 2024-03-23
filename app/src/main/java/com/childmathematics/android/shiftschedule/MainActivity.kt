@@ -1,74 +1,56 @@
 package com.childmathematics.android.shiftschedule
 
-import android.content.Context
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.platform.LocalContext
-import com.childmathematics.android.basement.lib.ads.admob.addInterstitialCallbacks
-import com.childmathematics.android.basement.lib.ads.admob.loadInterstitial
-import com.childmathematics.android.basement.lib.ads.yandex.InitBannerView
-import com.childmathematics.android.basement.lib.ads.yandex.mBannerAdEventListener
-import com.childmathematics.android.basement.lib.ads.yandex.mYaInterstitialAd
-import com.childmathematics.android.shiftschedule.navigation.NavigateScreen1
-import com.childmathematics.android.shiftschedule.shifttodo.todo.TodoViewModel
-import com.google.android.gms.ads.MobileAds
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+import androidx.compose.ui.Modifier
+import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
+import com.childmathematics.android.shiftschedule.ui.navigation.DrawerApp
 
-// lateinit var binding: ActivityFlexBannerAdBinding
-lateinit var appContext: Context
-
-@ExperimentalCoroutinesApi
-class MainActivity : AppCompatActivity() {
-    val todoViewModel by viewModels<TodoViewModel>()
-    private val yandexMobileAdsTag = "Yandex Mobile Ads"
-    private val yandexMetricTag = "Yandex Metric"
-    val mainActivityTag = "MainActivity"
-    var yaBannerId: String = ""
-
+class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
+        // -----------------------------------------------
+        // сделать так, чтобы ваше приложение отображалось от края до края, используя всю ширину
+        // и высоту экрана, рисуя за системными панелями.
+        enableEdgeToEdge()
+        // ==============================================
+
         super.onCreate(savedInstanceState)
+        // ------------------------------------------------------------------
 
-        // ==============================================================
+//        val appContainer = (application as MainApplication).container
         setContent {
-            appContext = LocalContext.current
-            // меню навигации
-            NavigateScreen1(todoViewModel)
+            val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
+//            DrawerApp(appContainer, widthSizeClass)
+//            DrawerApp( widthSizeClass)
+            RootHost()
+        }
 
-            if (BuildConfig.YaAdsEnable) {
-                if (BuildConfig.DEBUG) {
-                    yaBannerId = getString(R.string.ya_ads_demo_banner_id)
-                } else {
-                    yaBannerId = getString(R.string.ya_ads_banner_id)
+        // ==================================================================
+
+// 1---------------------------------------------------
+/*
+        setContent {
+            ScheduleCalendarTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    MainApp()
                 }
-
-                InitBannerView(mBannerAdEventListener, yaBannerId)
             }
         }
-        if (BuildConfig.AdMobEnable) {
-            // initialize the Mobile Ads SDK
-            MobileAds.initialize(this) { }
-
-            // load the interstitial ad
-            loadInterstitial(this)
-
-            // add the interstitial ad callbacks
-            addInterstitialCallbacks(this)
-        }
-        if (BuildConfig.YaAdsEnable) {
-        }
-    }
-
-    // ==================================================================
-    override fun onDestroy() {
-        if (BuildConfig.YaAdsEnable) {
-//                mYaInterstitialAd!!.destroy()
-            mYaInterstitialAd?.setAdEventListener(null)
-            mYaInterstitialAd = null
-            Log.d(yandexMobileAdsTag, mainActivityTag + " Interstutial onDestroy")
-        }
-        super.onDestroy()
+ */
+// 1========================================================
     }
 }
