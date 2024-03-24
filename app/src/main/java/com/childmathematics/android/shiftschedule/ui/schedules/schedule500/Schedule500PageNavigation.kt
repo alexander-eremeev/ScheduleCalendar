@@ -1,4 +1,4 @@
-package com.childmathematics.android.shiftschedule.ui.main
+package com.childmathematics.android.shiftschedule.ui.schedules.schedule500
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
@@ -6,19 +6,19 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 
 
-internal const val MAIN_PAGE_ROUTE = "mainPage"
-internal fun NavGraphBuilder.mainPageScreen(
+internal const val SCHEDULE500_PAGE_ROUTE = "schedule500Page"
+internal fun NavGraphBuilder.schedule500PageScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier,
     /*
-    navigateToHelpschedule500Page: () -> Unit,
+    navigateToHelpSchedule500Page: () -> Unit,
     navigateToHelpGraphicsPage: () -> Unit,
     navigateToHelpAboutPage: () -> Unit
 
      */
   ) {
-    composable(route = MAIN_PAGE_ROUTE) {
-        MainPageScreen(
+    composable(route = SCHEDULE500_PAGE_ROUTE) {
+        Schedule500PageScreen(
             modifier,
             onBackClick = { navController.popBackStack()},
             /*
