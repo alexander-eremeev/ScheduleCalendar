@@ -48,7 +48,7 @@ internal fun MainPageScreen(
     navigateToHelpGraphicsPage: () -> Unit,
     navigateToHelpAboutPage: () -> Unit
      */
-//    viewModel: MainPageViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    viewModel: MainPageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     ScheduleCalendarTheme {
         /*
@@ -56,7 +56,7 @@ internal fun MainPageScreen(
  используется в качестве начального значения. Каждый раз, когда в StateFlow будет отправляться новое значение,
  возвращаемое состояние будет обновляться, вызывая рекомпозицию каждого использования State.value.
   */
-//        val mainPageUiState by viewModel.mainPageUiState.collectAsState()
+        val mainPageUiState by viewModel.mainPageUiState.collectAsState()
         /*
         Возвращает TopAppBarScrollBehavior. Верхняя панель приложения, настроенная с помощью этого
         TopAppBarScrollBehavior, немедленно свернется при извлечении содержимого и сразу же появится при перемещении

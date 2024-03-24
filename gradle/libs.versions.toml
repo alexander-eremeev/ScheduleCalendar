@@ -23,7 +23,7 @@ appNameRelease = "ScheduleCalendar"
 # @keep
 appNameDebug = "ScheduleCalendar Debug"
 # @keep
-buildToolsVersion = "35.0.0-rc1"
+buildToolsVersion = "35.0.0-rc2"
 # @keep
 keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleCalendar\\keystore.properties"
 #===================

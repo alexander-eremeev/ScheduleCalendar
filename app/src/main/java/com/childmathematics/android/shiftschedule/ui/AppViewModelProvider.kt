@@ -31,6 +31,7 @@ import com.childmathematics.android.shiftschedule.ui.item.ItemEditViewModel
 import com.childmathematics.android.shiftschedule.ui.item.ItemEntryViewModel
 import com.childmathematics.android.shiftschedule.ui.schedule01.Schedule01ViewModel
 import com.childmathematics.android.shiftschedule.ui.schedule500.Schedule500ViewModel
+import com.childmathematics.android.shiftschedule.ui.main.MainPageViewModel
 
 
 /**
@@ -77,6 +78,9 @@ object AppViewModelProvider {
         }
         initializer {
             AboutViewModel(mainApplication().container.itemsRepository)
+        }
+        initializer {
+            MainPageViewModel(mainApplication().container.itemsRepository)
         }
 
     }
