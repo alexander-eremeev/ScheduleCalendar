@@ -2,18 +2,15 @@ package com.childmathematics.android.shiftschedule.ui.schedules.schedule500
 
 
 import android.os.Build
-import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -32,10 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.ViewModel
-import com.childmathematics.android.basement.lib.ads.yandex.YANDEX_MOBILE_ADS_TAG
 //import com.childmathematics.android.basement.lib.ads.util.detectTapAndPressUnconsumed
-import com.childmathematics.android.basement.lib.ads.yandex.mYaInterstitialAdOnOff
-import com.childmathematics.android.basement.lib.ads.yandex.yaAdsInterstutialTimerOff
 import com.childmathematics.android.basement.lib.composecalendar.SelectableCalendar
 import com.childmathematics.android.basement.lib.composecalendar.day.DayState
 import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
@@ -103,28 +97,32 @@ fun Schedule500Page(currentDialog500: Boolean) {
 //------------------------------------------------
 
 //-------------------------------------------------
-        Spacer(
-            modifier = Modifier.height(20.dp)
+        /*
+                Spacer(
+                    modifier = Modifier.height(20.dp)
+                )
 
-        )
-        Column(
-            Modifier
-                .padding(0.dp, changeDp, 0.dp, 0.dp)        // добавлен для баннера
-        ) {
-            Text(
-                textAlign = TextAlign.Center,
-                text = "График непрерывный 12 часовой 4-х бригадный 2-х сменный ",
-                style = MaterialTheme.typography.bodyLarge ,
-//      color = MaterialTheme.colors.secondary,
-                softWrap = true,
-                fontStyle = Italic,
-                maxLines = 2,
-                textDecoration = TextDecoration.Underline,
-//      modifier = Modifier
-//           .align(CenterHorizontally),
-            )
-        }
-        Spacer(modifier = Modifier.height(20.dp))  //====================================================
+                Column(
+                    Modifier
+                        .padding(0.dp, changeDp, 0.dp, 0.dp)        // добавлен для баннера
+                ) {
+                    Text(
+                        textAlign = TextAlign.Center,
+                        text = "График непрерывный 12 часовой 4-х бригадный 2-х сменный ",
+                        style = MaterialTheme.typography.bodyLarge ,
+        //      color = MaterialTheme.colors.secondary,
+                        softWrap = true,
+                        fontStyle = Italic,
+                        maxLines = 2,
+                        textDecoration = TextDecoration.Underline,
+        //      modifier = Modifier
+        //           .align(CenterHorizontally),
+                    )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+
+         */
+        //====================================================
         Column(
             Modifier
                 .padding(0.dp, changeDp + 50.dp, 0.dp, 0.dp)        // добавлен для баннера
