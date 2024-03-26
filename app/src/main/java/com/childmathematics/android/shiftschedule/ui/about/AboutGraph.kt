@@ -31,6 +31,12 @@ fun NavGraphBuilder.aboutGraph(
     modifier: Modifier = Modifier,
     ) {
     // =====================================
+    helpGraph(navController  = navController)
+    localPolicesGraph(navController  = navController)
+    licencesGraph(navController  = navController)
+    // =====================================
+
+    // =====================================
     navigation(startDestination = ABOUT_PAGE_ROUTE,
         route = ABOUT_GRAPH_ROUTE,
         deepLinks = listOf(

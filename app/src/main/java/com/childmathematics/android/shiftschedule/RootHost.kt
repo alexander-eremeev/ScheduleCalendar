@@ -14,6 +14,8 @@ import com.childmathematics.android.shiftschedule.ui.licences.licencesGraph
 import com.childmathematics.android.shiftschedule.ui.localpolices.localPolicesGraph
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_GRAPH_ROUTE
 import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
+import com.childmathematics.android.shiftschedule.ui.navigationdrawer.NAVDRAWER_GRAPH_ROUTE
+import com.childmathematics.android.shiftschedule.ui.navigationdrawer.navDrawerGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_GRAPH_ROUTE
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_GRAPH_ROUTE
@@ -26,8 +28,10 @@ internal fun RootHost() {
 
     NavHost(
         navController = rootController,
+        startDestination = NAVDRAWER_GRAPH_ROUTE,
+
 //        startDestination = SCHEDULE500_GRAPH_ROUTE,
-        startDestination = SCHEDULE01_GRAPH_ROUTE,
+//        startDestination = SCHEDULE01_GRAPH_ROUTE,
 
 //        startDestination = MAIN_GRAPH_ROUTE,
 //        startDestination = ABOUT_GRAPH_ROUTE,
@@ -43,17 +47,19 @@ internal fun RootHost() {
         popExitTransition = { screenSlideOut() },
     ) {
         // =====================================
-        mainPageGraph(navController = rootController)
+        navDrawerGraph(navController = rootController)
         // =====================================
-        schedule500PageGraph(navController = rootController)
+ //       mainPageGraph(navController = rootController)
         // =====================================
-        schedule01PageGraph(navController = rootController)
+//        schedule500PageGraph(navController = rootController)
         // =====================================
-        aboutGraph(navController = rootController)
+//        schedule01PageGraph(navController = rootController)
         // =====================================
-        helpGraph(navController  = rootController)
-        localPolicesGraph(navController  = rootController)
-        licencesGraph(navController  = rootController)
+//        aboutGraph(navController = rootController)
+        // =====================================
+//        helpGraph(navController  = rootController)
+//        localPolicesGraph(navController  = rootController)
+//        licencesGraph(navController  = rootController)
         // =====================================
 
 //        helpGraph(navController = rootController, onBackClick = {rootController.popBackStack()})
