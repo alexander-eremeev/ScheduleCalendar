@@ -46,7 +46,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
+import com.childmathematics.android.shiftschedule.ui.about.ABOUT_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.navigation.DrawerDestinations
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -81,7 +85,7 @@ fun NavigationDrawer(
             label = { Text(stringResource(id = R.string.homepage_title)) },
             icon = { Icon(painterResource(R.drawable.home_24px), null) },
 //            icon = { Icon(Icons.Filled.Home, null) },
-            selected = currentRoute == DrawerDestinations.HOMEPAGE_ROUTE,
+            selected = currentRoute == MAIN_PAGE_ROUTE,
             onClick = {
                 navigateToMainPage()
                 closeDrawer()
@@ -93,7 +97,7 @@ fun NavigationDrawer(
             label = { Text(stringResource(id = R.string.schedule01_title)) },
             icon = { Icon(painterResource(R.drawable.shift_8), null) },
 //            icon = { Icon(Icons.Filled.ListAlt, null) },
-            selected = currentRoute == DrawerDestinations.SCHEDULE01_ROUTE,
+            selected = currentRoute == SCHEDULE01_PAGE_ROUTE,
             onClick = {
                 navigateToSchedule01()
                 closeDrawer()
@@ -106,7 +110,7 @@ fun NavigationDrawer(
             label = { Text(stringResource(id = R.string.schedule500_title)) },
             icon = { Icon(painterResource(R.drawable.shift_12), null) },
 //            icon = { Icon(Icons.Filled.ListAlt, null) },
-            selected = currentRoute == DrawerDestinations.SCHEDULE500_ROUTE,
+            selected = currentRoute == SCHEDULE500_PAGE_ROUTE,
             onClick = {
                 navigateToSchedule500()
                 closeDrawer()
@@ -119,7 +123,7 @@ fun NavigationDrawer(
             label = { Text(stringResource(id = R.string.about_title)) },
             icon = { Icon(painterResource(R.drawable.info_outl_24px), null) },
 //            icon = { Icon(Icons.Filled.ListAlt, null) },
-            selected = currentRoute == DrawerDestinations.ABOUT_ROUTE,
+            selected = currentRoute == ABOUT_PAGE_ROUTE,
             onClick = {
                 navigateToAbout()
                 closeDrawer()
@@ -164,7 +168,7 @@ private fun DrawerHeader(modifier: Modifier = Modifier) {
 fun PreviewAppDrawer() {
     ScheduleCalendarTheme {
         NavigationDrawer(
-            currentRoute = DrawerDestinations.HOMEPAGE_ROUTE,
+            currentRoute = MAIN_PAGE_ROUTE,
             navigateToMainPage = {},
             navigateToSchedule01 = {},
             navigateToSchedule500 = {},

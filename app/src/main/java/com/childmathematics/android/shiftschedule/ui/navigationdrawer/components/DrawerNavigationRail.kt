@@ -34,8 +34,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
+import com.childmathematics.android.shiftschedule.ui.about.ABOUT_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
 //import com.childmathematics.android.shiftschedule.jetnews.ui.theme.JetnewsTheme
 import com.childmathematics.android.shiftschedule.ui.navigation.DrawerDestinations
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
 
 @Composable
 fun DrawerNavigationRail(
@@ -79,7 +83,7 @@ fun DrawerNavigationRail(
             .weight(1f)
         )
         NavigationRailItem(
-            selected = currentRoute == DrawerDestinations.HOMEPAGE_ROUTE,
+            selected = currentRoute == MAIN_PAGE_ROUTE,
             onClick = navigateToHomePage,
             icon = { Icon(painterResource(R.drawable.home_24px), stringResource(R.string.homepage_title)) },
 //            icon = { Icon(Icons.Filled.Home, stringResource(R.string.homepage_title)) },
@@ -87,7 +91,7 @@ fun DrawerNavigationRail(
             alwaysShowLabel = false
         )
         NavigationRailItem(
-            selected = currentRoute == DrawerDestinations.SCHEDULE01_ROUTE,
+            selected = currentRoute == SCHEDULE01_PAGE_ROUTE,
             onClick = navigateToSchedule01,
             icon = { Icon(painterResource(R.drawable.shift_8), stringResource(R.string.schedule01_titleshort)) },
 //              icon = { Icon(painterResource(R.drawable.sharp_counter_8_24), stringResource(R.string.schedule01_titleshort)) },
@@ -96,7 +100,7 @@ fun DrawerNavigationRail(
             alwaysShowLabel = false
         )
         NavigationRailItem(
-            selected = currentRoute == DrawerDestinations.SCHEDULE500_ROUTE,
+            selected = currentRoute == SCHEDULE500_PAGE_ROUTE,
             onClick = navigateToSchedule500,
             icon = { Icon(painterResource(R.drawable.shift_12), stringResource(R.string.schedule500_titleshort)) },
 //              icon = { Icon(painterResource(R.drawable.sharp_counter_8_24), stringResource(R.string.schedule01_titleshort)) },
@@ -105,7 +109,7 @@ fun DrawerNavigationRail(
             alwaysShowLabel = false
         )
         NavigationRailItem(
-            selected = currentRoute == DrawerDestinations.ABOUT_ROUTE,
+            selected = currentRoute == ABOUT_PAGE_ROUTE,
             onClick = navigateToAbout,
             icon = { Icon(painterResource(R.drawable.info_outl_24px), stringResource(R.string.about_title)) },
 //              icon = { Icon(painterResource(R.drawable.sharp_counter_8_24), stringResource(R.string.schedule01_titleshort)) },

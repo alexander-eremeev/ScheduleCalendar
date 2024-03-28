@@ -18,6 +18,7 @@ import com.childmathematics.android.shiftschedule.ui.help.helpGraph
 import com.childmathematics.android.shiftschedule.ui.help.mainpage.navigateToHelpMainPageGraph
 import com.childmathematics.android.shiftschedule.ui.licences.licencesGraph
 import com.childmathematics.android.shiftschedule.ui.localpolices.localPolicesGraph
+import com.childmathematics.android.shiftschedule.ui.main.MAIN_GRAPH_ROUTE
 import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
 import com.childmathematics.android.shiftschedule.ui.main.navigateToMainPageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
@@ -57,7 +58,9 @@ fun NavGraphBuilder.navDrawerGraph(
 //    licencesGraph(navController  = navController)
     // =====================================
 
-    navigation(startDestination = NAVDRAWER_ROUTE,
+    navigation(
+//        startDestination = MAIN_GRAPH_ROUTE,
+        startDestination = NAVDRAWER_ROUTE,
         route = NAVDRAWER_GRAPH_ROUTE,
         deepLinks = listOf(
             navDeepLink { uriPattern = NAVDRAWER_DEEPLINK }
