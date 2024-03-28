@@ -1,5 +1,6 @@
 package com.childmathematics.android.shiftschedule
 
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
@@ -22,9 +23,10 @@ import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHED
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageGraph
 
 @Composable
-internal fun RootHost() {
+internal fun RootHost(widthSizeClass: WindowWidthSizeClass,) {
     val rootController = rememberNavController()
     val navigationBarController = rememberNavController()
+
 
     NavHost(
         navController = rootController,
@@ -47,7 +49,7 @@ internal fun RootHost() {
         popExitTransition = { screenSlideOut() },
     ) {
         // =====================================
-        navDrawerGraph(navController = rootController)
+        navDrawerGraph(widthSizeClass,navController = rootController)
         // =====================================
  //       mainPageGraph(navController = rootController)
         // =====================================

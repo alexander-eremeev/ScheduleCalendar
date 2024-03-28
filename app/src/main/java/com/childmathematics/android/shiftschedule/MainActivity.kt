@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
             val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
 //            DrawerApp(appContainer, widthSizeClass)
 //            DrawerApp( widthSizeClass)
-            RootHost()
+            RootHost(widthSizeClass)
         }
 
         // ==================================================================
