@@ -1,3 +1,5 @@
+//pluginManager.apply (org.gradle.api.Action)
+
 pluginManagement {
     repositories {
         google()
@@ -24,6 +26,7 @@ Build Cache и другие типичные узкие места произв�
 plugins {
 //    id("com.gradle.enterprise") version "latest.release"
     id("com.gradle.develocity") version "latest.release"
+//    id("com.gradle.velocity") version "latest.release"
 }
 
 //gradleEnterprise {
