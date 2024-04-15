@@ -11,14 +11,22 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
+import com.childmathematics.android.shiftschedule.ui.about.ABOUT_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.navigation.MainNavigationActions
 import com.childmathematics.android.shiftschedule.ui.navigationdraver.components.DrawerNavigationRail
 import com.childmathematics.android.shiftschedule.ui.navigationdraver.components.NavigationDrawer
+import com.childmathematics.android.shiftschedule.ui.navigationdrawer.components.DrawerNavigationActions
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3WindowSizeClassApi::class)
@@ -26,6 +34,8 @@ import kotlinx.coroutines.launch
 internal fun NavDrawerScreen(
     widthSizeClass: WindowWidthSizeClass,
     modifier: Modifier = Modifier,
+    navController: NavHostController,
+
     onBackClick: () -> Unit,
     navigateToMainPage: () -> Unit,
     navigateToSchedule01Page: () -> Unit,
@@ -36,10 +46,13 @@ internal fun NavDrawerScreen(
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
         val navController = rememberNavController()
         val coroutineScope = rememberCoroutineScope()
+        val navigationActions = remember(navController) {
+            DrawerNavigationActions(navController)
+        }
 
         val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute =
-            navBackStackEntry?.destination?.route ?: MAIN_PAGE_ROUTE
+        val currentRoute = navBackStackEntry?.destination?.route ?: MAIN_PAGE_ROUTE
+//        val currentRoute =  MAIN_PAGE_ROUTE
 
         val isExpandedScreen = widthSizeClass == WindowWidthSizeClass.Expanded
 
@@ -66,8 +79,10 @@ They are elevated above most of the app’s UI and don’t affect the screen’s
                     navigateToSchedule01Page ,
                     navigateToSchedule500Page,
                     navigateToAboutPage,
-                    closeDrawer = { coroutineScope.launch { sizeAwareDrawerState.close() } }
-                )
+                    closeDrawer = { coroutineScope.launch { sizeAwareDrawerState.close() } },
+                    openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } },
+
+                    )
             },
             drawerState = sizeAwareDrawerState,
             // Only enable opening the drawer via gestures if the screen is not expanded
@@ -83,6 +98,22 @@ They are elevated above most of the app’s UI and don’t affect the screen’s
                         navigateToAboutPage ,
                     )
                 }
+                /*
+                if (currentRoute == MAIN_PAGE_ROUTE) navigateToMainPage()
+                else if (currentRoute == SCHEDULE01_PAGE_ROUTE) navigateToSchedule01Page()
+                else if (currentRoute == SCHEDULE500_PAGE_ROUTE) navigateToSchedule500Page()
+                else if (currentRoute == _ABOUTPAGE_ROUTE) navigateToAboutPage()
+
+                 */
+                    /*
+                                    DrawerNavGraph(
+ //                   appContainer = appContainer,
+ //                   isExpandedScreen = isExpandedScreen,
+                    navController = navController,
+                    openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } },
+                )
+
+                     */
             }
         }
     }
@@ -112,5 +143,75 @@ private fun rememberSizeAwareDrawerState(isExpandedScreen: Boolean): DrawerState
         DrawerState(DrawerValue.Closed)
     }
 }
+/*
+@Composable
+fun DrawerApp(
+//    appContainer: com.childmathematics.android.shiftschedule.data.AppContainer,
+    widthSizeClass: WindowWidthSizeClass,
+) {
+    ScheduleCalendarTheme {
+        val navController = rememberNavController()
+        val navigationActions = remember(navController) {
+            MainNavigationActions(navController)
+        }
 
+        val coroutineScope = rememberCoroutineScope()
+
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute =
+            navBackStackEntry?.destination?.route ?: MainDestinations.HOMEPAGE_ROUTE
+
+        val isExpandedScreen = widthSizeClass == WindowWidthSizeClass.Expanded
+
+        val sizeAwareDrawerState = rememberSizeAwareDrawerState(isExpandedScreen)
+        /*
+            modifier: Modifier = Modifier,
+        drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
+
+        Material Design navigation drawer.
+        Navigation drawers provide ergonomic access to destinations in an app.
+        Modal navigation drawers block interaction with the rest of an app’s content with a scrim.
+        They are elevated above most of the app’s UI and don’t affect the screen’s layout grid.
+        Навигационный ящик Material Design.
+        Навигационные ящики обеспечивают эргономичный доступ к пунктам назначения в приложении.
+        Модальные панели навигации блокируют взаимодействие с остальным содержимым приложения
+        с помощью сетки. Они возвышаются над большей частью пользовательского интерфейса приложения
+        и не влияют на сетку макета экрана.
+         */
+        ModalNavigationDrawer(
+            drawerContent = {
+                AppDrawer(
+                    currentRoute = currentRoute,
+                    navigateToHomePage = navigationActions.navigateToHomePage,
+                    navigateToSchedule01 = navigationActions.navigateToSchedule01,
+                    navigateToSchedule500 = navigationActions.navigateToSchedule500,
+                    navigateToAbout = navigationActions.navigateToAbout,
+                    closeDrawer = { coroutineScope.launch { sizeAwareDrawerState.close() } }
+                )
+            },
+            drawerState = sizeAwareDrawerState,
+            // Only enable opening the drawer via gestures if the screen is not expanded
+            gesturesEnabled = !isExpandedScreen
+        ) {
+            Row {
+                if (isExpandedScreen) {
+                    DrawerAppNavRail(
+                        currentRoute = currentRoute,
+                        navigateToHomePage = navigationActions.navigateToHomePage,
+                        navigateToSchedule01 = navigationActions.navigateToSchedule01,
+                        navigateToSchedule500 = navigationActions.navigateToSchedule500,
+                        navigateToAbout = navigationActions.navigateToAbout,
+                    )
+                }
+                DrawerNavGraph(
+ //                   appContainer = appContainer,
+ //                   isExpandedScreen = isExpandedScreen,
+                    navController = navController,
+                    openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } },
+                )
+            }
+        }
+    }
+}
+ */
 

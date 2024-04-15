@@ -9,6 +9,7 @@ import androidx.navigation.navDeepLink
 import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
+import kotlinx.coroutines.launch
 
 const val MAIN_GRAPH_ROUTE = "main_graph"
 private const val MAIN_DEEPLINK ="$ROOT_DEEPLINK/main.html"
@@ -27,6 +28,7 @@ fun NavController.navigateToMainPageGraph() {
 fun NavGraphBuilder.mainPageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
+    openDrawer: ()-> Unit,
 ) {
     /*
     // =====================================
@@ -49,9 +51,12 @@ fun NavGraphBuilder.mainPageGraph(
     popExitTransition = { screenFadeOut() },
 
     ){
+
         mainPageScreen(
             navController,
             modifier,
+            onOpenDrawer = true,
+            openDrawer,
             /*
             navigateToHelpMainPage = { navController.navigateToHelpMainPageGraph() },
             navigateToHelpGraphicsPage = { navController.navigateToHelpGraphicsGraph() },

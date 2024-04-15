@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.AppRegistration
+import androidx.compose.material.icons.filled.BackHand
 import androidx.compose.material.icons.filled.LocalPolice
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
@@ -22,6 +23,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -43,6 +45,9 @@ import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
 internal fun MainPageScreen(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit,
+    onOpenDrawer: Boolean,
+    openDrawer: () -> Unit,
+
     /*
     navigateToHelpMainPage: () -> Unit,
     navigateToHelpGraphicsPage: () -> Unit,
@@ -73,14 +78,16 @@ internal fun MainPageScreen(
             flingAnimationSpec — необязательный DecayAnimationSpec, определяющий, как отображать верхнюю
                 панель приложения, когда пользователь перемещает саму панель приложения или содержимое под ней.
          */
+        val topAppBarState = rememberTopAppBarState()
+        val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState, { true },)
 
-        val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+//        val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
         Scaffold(
             modifier = modifier
                 .nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
-                MainPageTopAppBar(
-                    onBackClick,scrollBehavior,
+                MainPageTopAppBar(onOpenDrawer,
+                    openDrawer,onBackClick,scrollBehavior,
                     /*
                     navigateToHelpMainPage,
                     navigateToHelpGraphicsPage,
@@ -104,6 +111,8 @@ internal fun MainPageScreen(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun MainPageTopAppBar(
+                            onOpenDrawer: Boolean,
+                          openDrawer: () -> Unit,
                           onBackClick: () -> Unit,
                           scrollBehavior: TopAppBarScrollBehavior,
                           /*
@@ -118,9 +127,17 @@ private fun MainPageTopAppBar(
             Text(text = stringResource(R.string.main_page))
         },
         navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(Icons.Filled.Menu, stringResource(id = R.string.back_button))
-                    }
+            //openDrawer: () -> Unit,  -------------------------1
+            if(onOpenDrawer) {
+                IconButton(onClick = openDrawer) {
+                    Icon(Icons.Filled.Menu, stringResource(id = R.string.back_button))
+                }
+            }
+            else {
+               IconButton(onClick = onBackClick) {
+                   Icon(Icons.Filled.Menu, stringResource(id = R.string.back_button))
+               }
+            }
         },
         scrollBehavior = scrollBehavior,
         /*

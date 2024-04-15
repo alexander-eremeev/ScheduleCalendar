@@ -43,9 +43,9 @@ fun NavGraphBuilder.navDrawerGraph(
     widthSizeClass: WindowWidthSizeClass,
     navController: NavHostController,
     modifier: Modifier = Modifier,
-) {
+    ) {
     // =====================================
-    mainPageGraph(navController = navController)
+    mainPageGraph(navController = navController,openDrawer ={})
     // =====================================
     schedule500PageGraph(navController = navController)
     // =====================================
@@ -59,12 +59,8 @@ fun NavGraphBuilder.navDrawerGraph(
     // =====================================
 
     navigation(
-//        startDestination = MAIN_GRAPH_ROUTE,
         startDestination = NAVDRAWER_ROUTE,
         route = NAVDRAWER_GRAPH_ROUTE,
-        deepLinks = listOf(
-            navDeepLink { uriPattern = NAVDRAWER_DEEPLINK }
-        ),
 
         enterTransition = { screenFadeIn() },
         exitTransition = { screenFadeOut() },

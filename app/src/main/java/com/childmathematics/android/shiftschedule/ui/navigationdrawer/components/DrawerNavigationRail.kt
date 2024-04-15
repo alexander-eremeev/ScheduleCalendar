@@ -44,7 +44,7 @@ import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHED
 @Composable
 fun DrawerNavigationRail(
     currentRoute: String,
-    navigateToHomePage: () -> Unit,
+    navigateToMainPage: () -> Unit,
     navigateToSchedule01 : () -> Unit,
     navigateToSchedule500: () -> Unit,
     navigateToAbout: () -> Unit,
@@ -84,7 +84,7 @@ fun DrawerNavigationRail(
         )
         NavigationRailItem(
             selected = currentRoute == MAIN_PAGE_ROUTE,
-            onClick = navigateToHomePage,
+            onClick = navigateToMainPage,
             icon = { Icon(painterResource(R.drawable.home_24px), stringResource(R.string.homepage_title)) },
 //            icon = { Icon(Icons.Filled.Home, stringResource(R.string.homepage_title)) },
             label = { Text(stringResource(R.string.homepage_title)) },
@@ -128,7 +128,7 @@ fun PreviewAppNavRail() {
     ScheduleCalendarTheme {
         DrawerNavigationRail(
             currentRoute = "",
-            navigateToHomePage = { /*TODO*/ },
+            navigateToMainPage = { /*TODO*/ },
             navigateToSchedule01 = { /*TODO*/ },
             navigateToSchedule500 = { /*TODO*/ },
             navigateToAbout = { /*TODO*/ })

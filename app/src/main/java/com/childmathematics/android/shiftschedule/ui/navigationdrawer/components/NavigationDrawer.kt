@@ -62,6 +62,7 @@ fun NavigationDrawer(
     navigateToSchedule500: () -> Unit,
     navigateToAbout: () -> Unit,
     closeDrawer: () -> Unit,
+    openDrawer: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     // Content inside of a modal navigation drawer.
@@ -173,7 +174,8 @@ fun PreviewAppDrawer() {
             navigateToSchedule01 = {},
             navigateToSchedule500 = {},
             navigateToAbout = {},
-            closeDrawer = { }
+            closeDrawer = { },
+            openDrawer = { },
         )
     }
 }

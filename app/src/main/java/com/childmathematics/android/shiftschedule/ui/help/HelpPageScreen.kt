@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.AppRegistration
+import androidx.compose.material.icons.filled.BackHand
 import androidx.compose.material.icons.filled.LocalPolice
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
@@ -87,7 +88,7 @@ private fun HelpTopAppBar(
         },
         navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.Filled.Menu, stringResource(id = R.string.back_button))
+                        Icon(Icons.Filled.BackHand, stringResource(id = R.string.back_button))
                     }
         },
         scrollBehavior = scrollBehavior,

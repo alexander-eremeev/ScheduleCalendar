@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.BackHand
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -61,7 +62,7 @@ private fun HelpGraphicsTopAppBar(
         },
         navigationIcon = {
             IconButton(onClick = onBackClick) {
-                Icon(Icons.Filled.Menu, stringResource(id = R.string.back_button))
+                Icon(Icons.Filled.BackHand, stringResource(id = R.string.back_button))
             }
         },
         scrollBehavior = scrollBehavior,

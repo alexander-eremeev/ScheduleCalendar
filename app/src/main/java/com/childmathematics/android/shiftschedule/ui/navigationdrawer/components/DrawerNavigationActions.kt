@@ -1,27 +1,32 @@
-package com.childmathematics.android.shiftschedule.ui.navigationdrawer
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.ui.Modifier
+package com.childmathematics.android.shiftschedule.ui.navigationdrawer.components
+
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
 import com.childmathematics.android.shiftschedule.ui.about.ABOUT_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.about.navigateToAboutGraph
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.main.navigateToMainPageGraph
-import com.childmathematics.android.shiftschedule.ui.navigation.DrawerDestinations
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.navigateToSchedule01PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.navigateToSchedule500PageGraph
 
-internal const val NAVDRAWER_ROUTE = "navDrawer"
-internal fun NavGraphBuilder.navDrawerScreen(
-    widthSizeClass: WindowWidthSizeClass,
-    navController: NavHostController,
-    modifier: Modifier = Modifier,
-) {
+/**
+ * Models the navigation actions in the app.
+ */
+class DrawerNavigationActions(navController: NavHostController) {
     val navigateToMainPage: () -> Unit = {
 
         navController.navigate(MAIN_PAGE_ROUTE) {
@@ -78,25 +83,5 @@ internal fun NavGraphBuilder.navDrawerScreen(
         }
     }
 
-    composable(route = NAVDRAWER_ROUTE) {
-        NavDrawerScreen(
-            widthSizeClass,
-            modifier,
-            navController,
-            onBackClick = { navController.popBackStack()},
 
-//            navigateToMainPage = { navController.navigateToMainPageGraph() },
-            navigateToMainPage = { navigateToMainPage() },
-            /*
-            navigateToSchedule01Page = { navController.navigateToSchedule01PageGraph() },
-            navigateToSchedule500Page = { navController.navigateToSchedule500PageGraph() },
-            navigateToAboutPage = { navController.navigateToAboutGraph()  }
-
-             */
-            navigateToSchedule01Page = { navigateToSchedule01() },
-            navigateToSchedule500Page = { navigateToSchedule500() },
-            navigateToAboutPage = { navigateToAbout()  }
-
-        )
-    }
-}
+ }

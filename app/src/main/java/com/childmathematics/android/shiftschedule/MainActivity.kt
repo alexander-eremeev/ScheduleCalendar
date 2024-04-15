@@ -14,6 +14,7 @@ import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.ui.Modifier
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.navigation.DrawerApp
+import com.childmathematics.android.shiftschedule.ui.navigationdrawer.drawer.DrawerNewApp
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
@@ -32,7 +33,10 @@ class MainActivity : ComponentActivity() {
             val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
 //            DrawerApp(appContainer, widthSizeClass)
 //            DrawerApp( widthSizeClass)
-            RootHost(widthSizeClass)
+
+
+            DrawerNewApp( widthSizeClass)
+//            RootHost(widthSizeClass)
         }
 
         // ==================================================================
