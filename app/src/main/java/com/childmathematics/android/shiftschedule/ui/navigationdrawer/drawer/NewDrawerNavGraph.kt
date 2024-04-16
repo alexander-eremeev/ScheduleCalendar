@@ -23,32 +23,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.presentation.Schedule01Sample
 import com.childmathematics.android.shiftschedule.presentation.Schedule500Sample
-import com.childmathematics.android.shiftschedule.presentation.WebViewMainScreen
-import com.childmathematics.android.shiftschedule.ui.about.ABOUT_GRAPH_ROUTE
+import com.childmathematics.android.shiftschedule.ui.about.AboutPageScreen
 import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
-import com.childmathematics.android.shiftschedule.ui.about.navigateToAboutGraph
+import com.childmathematics.android.shiftschedule.ui.about.aboutPageScreen
 
-import com.childmathematics.android.shiftschedule.ui.help.HELP_GRAPH_ROUTE
-import com.childmathematics.android.shiftschedule.ui.help.helpGraph
-
-import com.childmathematics.android.shiftschedule.ui.homepage.HomePageScreen
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.main.MainPageScreen
 import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
-import com.childmathematics.android.shiftschedule.ui.main.mainPageScreen
-import com.childmathematics.android.shiftschedule.ui.navigation.components.AppDrawer
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.navigationdrawer.components.DrawerNavDestinations
+import com.childmathematics.android.shiftschedule.ui.navigationdrawer.components.DrawerNavigationActions
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageScreen
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.Schedule500PageScreen
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageGraph
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
@@ -58,22 +51,26 @@ import kotlinx.coroutines.launch
 fun NewDrawerNavGraph(
  //   appContainer: com.childmathematics.android.shiftschedule.data.AppContainer,
  //   isExpandedScreen: Boolean,
+    currentRoute: String.Companion = String,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     openDrawer: () -> Unit = {},
     startDestination: String = MAIN_PAGE_ROUTE,
-   coroutineScope: CoroutineScope = rememberCoroutineScope(),
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
- //   navActions: MainNavigationActions = remember(navController) {
- //       MainNavigationActions(navController)}
+    navActions: DrawerNavigationActions = remember(navController) {
+        DrawerNavigationActions(navController)}
 ) {
-    NavHost(
+        NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier
     ) {
-        aboutGraph(navController,modifier)
+
         mainPageGraph(navController,modifier,openDrawer)
+        schedule01PageGraph(navController,modifier)
+        schedule500PageGraph(navController,modifier)
+        aboutGraph(navController,modifier)
 //        menuAbout(navController)
         /*
         aboutGraph(openDrawer,navController,modifier)
@@ -91,7 +88,7 @@ fun NewDrawerNavGraph(
          */
 
         composable(
-            route = MAIN_PAGE_ROUTE,
+            route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
 //            route = DrawerDestinations.HOMEPAGE_ROUTE,
             /*
             deepLinks = listOf(
@@ -145,14 +142,15 @@ fun NewDrawerNavGraph(
 
  */
 //            HomePageScreen(openDrawer = openDrawer)
-//            MainPageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
-            mainPageScreen(navController,modifier,onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
+            MainPageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
+//            mainPageScreen(navController,modifier,onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
 //            HomePageScreen(openDrawer = { coroutineScope.launch { drawerState.open() } })
  //           }
  //           }
         }
 
-        composable(SCHEDULE01_PAGE_ROUTE) {
+        composable(
+            route = DrawerNavDestinations.D_SCHEDULE01_PAGE_ROUTE,) {
         /*
             val interestsViewModel: InterestsViewModel = viewModel(
                 factory = InterestsViewModel.provideFactory(appContainer.itemsRepository)
@@ -165,9 +163,13 @@ fun NewDrawerNavGraph(
                 openDrawer = openDrawer
             )
          */
-            Schedule01Sample(true)
+//            Schedule01Sample(true)
+//            Schedule01PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
+            Schedule01PageScreen(modifier,onBackClick={})
+//
         }
-        composable(SCHEDULE500_PAGE_ROUTE) {
+        composable(
+            route = DrawerNavDestinations.D_SCHEDULE500_PAGE_ROUTE) {
             /*
                 val interestsViewModel: InterestsViewModel = viewModel(
                     factory = InterestsViewModel.provideFactory(appContainer.itemsRepository)
@@ -178,12 +180,17 @@ fun NewDrawerNavGraph(
                     openDrawer = openDrawer
                 )
              */
-            Schedule500Sample(true)
+            //Schedule500Sample(true)
+            Schedule500PageScreen(modifier,onBackClick={})
         }
-        composable(ABOUT_GRAPH_ROUTE) {//ABOUT_GRAPH_ROUTE
+        composable(
+            route = DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {//ABOUT_GRAPH_ROUTE
  //           composable(MainDestinations.ABOUT_ROUTE) {//ABOUT_GRAPH_ROUTE
 
-            navController.navigateToAboutGraph()
+//            navController.navigateToAboutGraph()
+       //     aboutPageScreen(modifier,)
+//            AboutPageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
+             AboutPageScreen(onBackClick={},modifier,navigateToHelp={},navigateToLicences={},navigateToLocalPolices={},)
 
         }
     }

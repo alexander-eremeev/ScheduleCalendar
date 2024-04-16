@@ -4,13 +4,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.navDeepLink
 import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
-import com.childmathematics.android.shiftschedule.ui.help.HELP_GRAPH_ROUTE
 import com.childmathematics.android.shiftschedule.ui.help.helpGraph
 import com.childmathematics.android.shiftschedule.ui.help.navigateToHelpGraph
 import com.childmathematics.android.shiftschedule.ui.licences.licencesGraph
@@ -51,8 +49,7 @@ fun NavGraphBuilder.aboutGraph(
                 navController,
                 modifier,
                 navigateToHelp = {navController.navigateToHelpGraph()},
-                navigateToLicences = {navController.navigateToLicencesGraph()},
-                navigateToLocalPolices ={navController.navigateToLocalPolicesGraph()}
-            )
-        }
+                navigateToLicences = {navController.navigateToLicencesGraph()}
+            ) { navController.navigateToLocalPolicesGraph() }
+    }
 }

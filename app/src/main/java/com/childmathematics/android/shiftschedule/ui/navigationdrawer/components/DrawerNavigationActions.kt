@@ -23,13 +23,21 @@ import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
 
+object DrawerNavDestinations {
+    const val D_MAIN_PAGE_ROUTE = MAIN_PAGE_ROUTE
+
+    //        const val HOMEPAGE_ROUTE = "$HOMEPAGE_SCREEN?$HOMEPAGE_ARG={$USER_MESSAGE_ARG}"
+    const val D_SCHEDULE01_PAGE_ROUTE = SCHEDULE01_PAGE_ROUTE
+    const val D_SCHEDULE500_PAGE_ROUTE = SCHEDULE500_PAGE_ROUTE
+    const val D_ABOUT_PAGE_ROUTE = ABOUT_PAGE_ROUTE
+}
 /**
  * Models the navigation actions in the app.
  */
 class DrawerNavigationActions(navController: NavHostController) {
     val navigateToMainPage: () -> Unit = {
 
-        navController.navigate(MAIN_PAGE_ROUTE) {
+        navController.navigate(DrawerNavDestinations.D_MAIN_PAGE_ROUTE) {
             // Pop up to the start destination of the graph to
             // avoid building up a large stack of destinations
             // on the back stack as users select items
@@ -53,7 +61,7 @@ class DrawerNavigationActions(navController: NavHostController) {
     }
     val navigateToSchedule01: () -> Unit = {
 
-        navController.navigate(SCHEDULE01_PAGE_ROUTE) {
+        navController.navigate(DrawerNavDestinations.D_SCHEDULE01_PAGE_ROUTE) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }
@@ -63,7 +71,7 @@ class DrawerNavigationActions(navController: NavHostController) {
     }
     val navigateToSchedule500: () -> Unit = {
 
-        navController.navigate(SCHEDULE500_PAGE_ROUTE) {
+        navController.navigate(DrawerNavDestinations.D_SCHEDULE500_PAGE_ROUTE) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }
@@ -74,7 +82,7 @@ class DrawerNavigationActions(navController: NavHostController) {
 
     val navigateToAbout: () -> Unit = {
 
-        navController.navigate(ABOUT_PAGE_ROUTE) {  //ABOUT_GRAPH_ROUTE
+        navController.navigate(DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {  //ABOUT_GRAPH_ROUTE
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }
@@ -82,6 +90,4 @@ class DrawerNavigationActions(navController: NavHostController) {
             restoreState = true
         }
     }
-
-
- }
+}

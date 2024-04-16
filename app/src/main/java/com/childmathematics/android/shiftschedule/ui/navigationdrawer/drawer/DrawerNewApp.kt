@@ -32,6 +32,7 @@ import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.navigation.components.DrawerAppNavRail
 import com.childmathematics.android.shiftschedule.ui.navigationdraver.components.DrawerNavigationRail
+import com.childmathematics.android.shiftschedule.ui.navigationdrawer.components.DrawerNavDestinations
 import com.childmathematics.android.shiftschedule.ui.navigationdrawer.components.DrawerNavigationActions
 import kotlinx.coroutines.launch
 
@@ -50,7 +51,7 @@ fun DrawerNewApp(
 
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute =
-            navBackStackEntry?.destination?.route ?: MAIN_PAGE_ROUTE
+            navBackStackEntry?.destination?.route ?: DrawerNavDestinations.D_MAIN_PAGE_ROUTE
 
         val isExpandedScreen = widthSizeClass == WindowWidthSizeClass.Expanded
 
@@ -74,6 +75,7 @@ fun DrawerNewApp(
                 NavigationNewDrawer(
                     currentRoute = currentRoute,
                     navigateToMainPage = navigationActions.navigateToMainPage,
+//                    navigateToMainPage = navigationActions.navigateToMainPage,
                     navigateToSchedule01 = navigationActions.navigateToSchedule01,
                     navigateToSchedule500 = navigationActions.navigateToSchedule500,
                     navigateToAbout = navigationActions.navigateToAbout,
@@ -97,6 +99,7 @@ fun DrawerNewApp(
                 NewDrawerNavGraph(
  //                   appContainer = appContainer,
  //                   isExpandedScreen = isExpandedScreen,
+//                    currentRoute = currentRoute,
                     navController = navController,
                     openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } },
                 )
