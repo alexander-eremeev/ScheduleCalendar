@@ -21,6 +21,8 @@ internal fun NavGraphBuilder.schedule500PageScreen(
         Schedule500PageScreen(
             modifier,
             onBackClick = { navController.popBackStack()},
+            onOpenDrawer = false,openDrawer ={},
+
             /*
             navigateToHelpMainPage ,
             navigateToHelpGraphicsPage,

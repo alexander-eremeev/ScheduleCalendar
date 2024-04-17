@@ -43,6 +43,9 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 internal fun Schedule01PageScreen(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit,
+    onOpenDrawer: Boolean,
+    openDrawer: () -> Unit,
+
     /*
     navigateToHelpSchedule01Page: () -> Unit,
     navigateToHelpGraphicsPage: () -> Unit,
@@ -80,6 +83,8 @@ internal fun Schedule01PageScreen(
                 .nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
                 Schedule01PageTopAppBar(
+                    onOpenDrawer,
+                    openDrawer,
                     onBackClick,scrollBehavior,
                     /*
                     navigateToHelpSchedule01Page,
@@ -104,23 +109,32 @@ internal fun Schedule01PageScreen(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun Schedule01PageTopAppBar(
-                          onBackClick: () -> Unit,
-                          scrollBehavior: TopAppBarScrollBehavior,
-                          /*
-                          navigateToHelpSchedule01Page: () -> Unit,
-                          navigateToHelpGraphicsPage: () -> Unit,
-                          navigateToHelpAboutPage: () -> Unit
+    onOpenDrawer: Boolean,
+    openDrawer: () -> Unit,
+      onBackClick: () -> Unit,
+      scrollBehavior: TopAppBarScrollBehavior,
+      /*
+      navigateToHelpSchedule01Page: () -> Unit,
+      navigateToHelpGraphicsPage: () -> Unit,
+      navigateToHelpAboutPage: () -> Unit
 
-                           */
+       */
 ) {
     CenterAlignedTopAppBar(
         title = {
             Text(text = stringResource(R.string.schedule01_titlemidle))
         },
         navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(Icons.Filled.Menu, stringResource(id = R.string.back_button))
-                    }
+            if(onOpenDrawer) {
+                IconButton(onClick = openDrawer) {
+                    Icon(Icons.Filled.Menu, stringResource(id = R.string.back_button))
+                }
+            }
+            else {
+                IconButton(onClick = onBackClick) {
+                    Icon(Icons.Filled.Menu, stringResource(id = R.string.back_button))
+                }
+            }
         },
         scrollBehavior = scrollBehavior,
         /*

@@ -49,7 +49,8 @@ fun NavGraphBuilder.aboutGraph(
                 navController,
                 modifier,
                 navigateToHelp = {navController.navigateToHelpGraph()},
-                navigateToLicences = {navController.navigateToLicencesGraph()}
-            ) { navController.navigateToLocalPolicesGraph() }
+                navigateToLicences = {navController.navigateToLicencesGraph()},
+                navigateToLocalPolices={ navController.navigateToLocalPolicesGraph() }
+            )
     }
 }

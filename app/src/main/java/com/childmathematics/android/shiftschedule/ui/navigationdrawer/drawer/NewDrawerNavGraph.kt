@@ -90,18 +90,6 @@ fun NewDrawerNavGraph(
 
         composable(
             route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
-//            route = DrawerDestinations.HOMEPAGE_ROUTE,
-            /*
-            deepLinks = listOf(
-                navDeepLink {
-
-                    uriPattern =
-                        "$JETNEWS_APP_URI/${DrawerDestinations.HOMEPAGE_ROUTE}?$POST_ID={$POST_ID}"
-
-
-                }
-            )
-             */
 
         ) {
             /*
@@ -142,13 +130,7 @@ fun NewDrawerNavGraph(
 
 
  */
-//            HomePageScreen(openDrawer = openDrawer)
             MainPageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = openDrawer)
-//            MainPageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
-//            mainPageScreen(navController,modifier,onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
-//            HomePageScreen(openDrawer = { coroutineScope.launch { drawerState.open() } })
- //           }
- //           }
         }
 
         composable(
@@ -167,7 +149,7 @@ fun NewDrawerNavGraph(
          */
 //            Schedule01Sample(true)
 //            Schedule01PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
-            Schedule01PageScreen(modifier,onBackClick={})
+            Schedule01PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = openDrawer)
 //
         }
         composable(
@@ -183,7 +165,7 @@ fun NewDrawerNavGraph(
                 )
              */
             //Schedule500Sample(true)
-            Schedule500PageScreen(modifier,onBackClick={})
+            Schedule500PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = openDrawer)
         }
         composable(
             route = DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {//ABOUT_GRAPH_ROUTE
@@ -192,7 +174,7 @@ fun NewDrawerNavGraph(
 //            navController.navigateToAboutGraph()
        //     aboutPageScreen(modifier,)
 //            AboutPageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
-             AboutPageScreen(onBackClick={},modifier,navigateToHelp={},navigateToLicences={},navigateToLocalPolices={},)
+             AboutPageScreen(onBackClick={},modifier,onOpenDrawer = true,openDrawer = openDrawer,navigateToHelp={},navigateToLicences={},navigateToLocalPolices={},)
 
         }
     }

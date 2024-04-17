@@ -18,6 +18,7 @@ package com.childmathematics.android.shiftschedule.ui.about
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
@@ -35,6 +36,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -56,19 +58,33 @@ import com.childmathematics.android.shiftschedule.ui.navigation.MainNavigationAc
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutTopAppBar(onBackClick: () -> Unit,
-                   navigateToHelp: () -> Unit,
-                   navigateToLicences: () -> Unit,
-                   navigateToLocalPolices: () -> Unit,
+fun AboutTopAppBar(
+    onOpenDrawer: Boolean,
+    openDrawer: () -> Unit,
+    onBackClick: () -> Unit,
+    scrollBehavior: TopAppBarScrollBehavior,
+
+    navigateToHelp: () -> Unit,
+    navigateToLicences: () -> Unit,
+    navigateToLocalPolices: () -> Unit,
  ) {
 //fun HomePageTopAppBar(openDrawer: () -> Unit,closeDrawer: () -> Unit) {
     TopAppBar(
         title = { Text(text = stringResource(id = R.string.about_title)) },
         navigationIcon = {
-            IconButton(onClick = onBackClick) {
-                Icon(Icons.Filled.Menu, stringResource(id = R.string.back_button))
+            //openDrawer: () -> Unit,  -------------------------1
+            if(onOpenDrawer) {
+                IconButton(onClick = openDrawer) {
+                    Icon(Icons.Filled.Menu, stringResource(id = R.string.back_button))
+                }
+            }
+            else {
+                IconButton(onClick = onBackClick) {
+                    Icon(Icons.Filled.Menu, stringResource(id = R.string.back_button))
+                }
             }
         },
+        scrollBehavior = scrollBehavior,
         actions = {
            AboutMenu( navigateToHelp,
                     navigateToLicences,
@@ -76,6 +92,7 @@ fun AboutTopAppBar(onBackClick: () -> Unit,
             )
          },
         modifier = Modifier.fillMaxWidth()
+//            .fillMaxHeight()
     )
 //    closeDraver = closeDraver
 }
