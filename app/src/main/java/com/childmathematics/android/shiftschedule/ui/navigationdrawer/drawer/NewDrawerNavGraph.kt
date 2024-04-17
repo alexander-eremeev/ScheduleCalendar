@@ -36,6 +36,7 @@ import com.childmathematics.android.shiftschedule.ui.about.aboutPageScreen
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.main.MainPageScreen
 import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
+import com.childmathematics.android.shiftschedule.ui.main.mainPageScreen
 import com.childmathematics.android.shiftschedule.ui.navigationdrawer.components.DrawerNavDestinations
 import com.childmathematics.android.shiftschedule.ui.navigationdrawer.components.DrawerNavigationActions
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageScreen
@@ -142,7 +143,8 @@ fun NewDrawerNavGraph(
 
  */
 //            HomePageScreen(openDrawer = openDrawer)
-            MainPageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
+            MainPageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = openDrawer)
+//            MainPageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
 //            mainPageScreen(navController,modifier,onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
 //            HomePageScreen(openDrawer = { coroutineScope.launch { drawerState.open() } })
  //           }
