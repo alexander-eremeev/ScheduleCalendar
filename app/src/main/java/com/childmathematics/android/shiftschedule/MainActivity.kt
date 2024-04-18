@@ -24,37 +24,14 @@ class MainActivity : ComponentActivity() {
         // и высоту экрана, рисуя за системными панелями.
         enableEdgeToEdge()
         // ==============================================
-
         super.onCreate(savedInstanceState)
         // ------------------------------------------------------------------
-
 //        val appContainer = (application as MainApplication).container
         setContent {
             val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
-//            DrawerApp(appContainer, widthSizeClass)
-//            DrawerApp( widthSizeClass)
-
-
+// ???           JetnewsApp(appContainer, widthSizeClass)
             DrawerNewApp( widthSizeClass)
 //            RootHost(widthSizeClass)
         }
-
-        // ==================================================================
-
-// 1---------------------------------------------------
-/*
-        setContent {
-            ScheduleCalendarTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    MainApp()
-                }
-            }
-        }
- */
-// 1========================================================
     }
 }

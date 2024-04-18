@@ -51,18 +51,14 @@ import kotlinx.coroutines.launch
 @Composable
 fun NewDrawerNavGraph(
  //   appContainer: com.childmathematics.android.shiftschedule.data.AppContainer,
- //   isExpandedScreen: Boolean,
-    currentRoute: String.Companion = String,
+//    appContainer: AppContainer,
+    isExpandedScreen: Boolean,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     openDrawer: () -> Unit = {},
-    startDestination: String = MAIN_PAGE_ROUTE,
-    coroutineScope: CoroutineScope = rememberCoroutineScope(),
-    drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
-    navActions: DrawerNavigationActions = remember(navController) {
-        DrawerNavigationActions(navController)}
+    startDestination: String = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
 ) {
-        NavHost(
+    NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier
@@ -72,25 +68,17 @@ fun NewDrawerNavGraph(
         schedule01PageGraph(navController,modifier)
         schedule500PageGraph(navController,modifier)
         aboutGraph(navController,modifier)
-//        menuAbout(navController)
-        /*
-        aboutGraph(openDrawer,navController,modifier)
-        helpGraph(navController,modifier)
-//        helpGraph(navController,modifier,onBackClick)
-
-         */
-
-        /*
-           openDrawer: () -> Unit,
-    navController: NavHostController,
-    modifier: Modifier = Modifier,
-    onBackClick: () -> Unit,
-
-         */
 
         composable(
             route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
-
+            /*
+            deepLinks = listOf(
+                navDeepLink {
+                    uriPattern =
+                        "$JETNEWS_APP_URI/${JetnewsDestinations.HOME_ROUTE}?$POST_ID={$POST_ID}"
+                }
+            )
+             */
         ) {
             /*
             navBackStackEntry ->
@@ -101,9 +89,6 @@ fun NewDrawerNavGraph(
                     preSelectedPostId = navBackStackEntry.arguments?.getString(POST_ID)
                 )
             )
-
-
-
             HomeRoute(
 //                homeViewModel = homeViewModel,
                 homeViewModel = homeViewModel,
@@ -130,7 +115,8 @@ fun NewDrawerNavGraph(
 
 
  */
-            MainPageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = openDrawer)
+            MainPageScreen(modifier,onBackClick={},
+                onOpenDrawer = true,openDrawer = openDrawer)
         }
 
         composable(
@@ -165,17 +151,14 @@ fun NewDrawerNavGraph(
                 )
              */
             //Schedule500Sample(true)
-            Schedule500PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = openDrawer)
+                Schedule500PageScreen(modifier,onBackClick={},
+                    onOpenDrawer = true,openDrawer = openDrawer)
         }
         composable(
-            route = DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {//ABOUT_GRAPH_ROUTE
- //           composable(MainDestinations.ABOUT_ROUTE) {//ABOUT_GRAPH_ROUTE
-
-//            navController.navigateToAboutGraph()
-       //     aboutPageScreen(modifier,)
-//            AboutPageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
-             AboutPageScreen(onBackClick={},modifier,onOpenDrawer = true,openDrawer = openDrawer,navigateToHelp={},navigateToLicences={},navigateToLocalPolices={},)
-
+            route = DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {
+                AboutPageScreen(onBackClick={},modifier,onOpenDrawer = true,
+                    openDrawer = openDrawer,navigateToHelp={},
+                    navigateToLicences={},navigateToLocalPolices={},)
         }
     }
 }

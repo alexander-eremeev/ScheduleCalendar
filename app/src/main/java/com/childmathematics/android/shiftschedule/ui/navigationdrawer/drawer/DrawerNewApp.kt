@@ -39,6 +39,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun DrawerNewApp(
 //    appContainer: com.childmathematics.android.shiftschedule.data.AppContainer,
+//    appContainer: AppContainer,
     widthSizeClass: WindowWidthSizeClass,
 ) {
     ScheduleCalendarTheme {
@@ -56,10 +57,7 @@ fun DrawerNewApp(
         val isExpandedScreen = widthSizeClass == WindowWidthSizeClass.Expanded
 
         val sizeAwareDrawerState = rememberSizeAwareDrawerState(isExpandedScreen)
-        /*
-            modifier: Modifier = Modifier,
-        drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
-
+         /*
         Material Design navigation drawer.
         Navigation drawers provide ergonomic access to destinations in an app.
         Modal navigation drawers block interaction with the rest of an app’s content with a scrim.
@@ -70,7 +68,7 @@ fun DrawerNewApp(
         с помощью сетки. Они возвышаются над большей частью пользовательского интерфейса приложения
         и не влияют на сетку макета экрана.
          */
-        ModalNavigationDrawer(
+         ModalNavigationDrawer(
             drawerContent = {
                 NavigationNewDrawer(
                     currentRoute = currentRoute,
@@ -97,7 +95,7 @@ fun DrawerNewApp(
                 }
                 NewDrawerNavGraph(
  //                   appContainer = appContainer,
- //                   isExpandedScreen = isExpandedScreen,
+                    isExpandedScreen = isExpandedScreen,
 //                    currentRoute = currentRoute,
                     navController = navController,
                     openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } },

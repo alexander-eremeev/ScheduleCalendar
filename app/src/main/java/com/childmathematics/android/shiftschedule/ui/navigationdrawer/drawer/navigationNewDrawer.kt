@@ -49,6 +49,7 @@ import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.navigation.DrawerDestinations
+import com.childmathematics.android.shiftschedule.ui.navigationdrawer.components.DrawerNavDestinations
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -82,11 +83,9 @@ fun NavigationNewDrawer(
         NavigationDrawerItem(
             label = { Text(stringResource(id = R.string.homepage_title)) },
             icon = { Icon(painterResource(R.drawable.home_24px), null) },
-//            icon = { Icon(Icons.Filled.Home, null) },
-            selected = currentRoute == DrawerDestinations.HOMEPAGE_ROUTE,
+            selected = currentRoute == DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
             onClick = {
-                navigateToMainPage()
-                closeDrawer()
+                navigateToMainPage(); closeDrawer()
             },
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
         )
@@ -94,11 +93,9 @@ fun NavigationNewDrawer(
         NavigationDrawerItem(
             label = { Text(stringResource(id = R.string.schedule01_title)) },
             icon = { Icon(painterResource(R.drawable.shift_8), null) },
-//            icon = { Icon(Icons.Filled.ListAlt, null) },
-            selected = currentRoute == DrawerDestinations.SCHEDULE01_ROUTE,
+            selected = currentRoute == DrawerNavDestinations.D_SCHEDULE01_PAGE_ROUTE,
             onClick = {
-                navigateToSchedule01()
-                closeDrawer()
+                navigateToSchedule01(); closeDrawer()
             },
             modifier = Modifier
                 .padding(NavigationDrawerItemDefaults.ItemPadding)
@@ -108,11 +105,9 @@ fun NavigationNewDrawer(
         NavigationDrawerItem(
             label = { Text(stringResource(id = R.string.schedule500_title)) },
             icon = { Icon(painterResource(R.drawable.shift_12), null) },
-//            icon = { Icon(Icons.Filled.ListAlt, null) },
-            selected = currentRoute == DrawerDestinations.SCHEDULE500_ROUTE,
+            selected = currentRoute == DrawerNavDestinations.D_SCHEDULE500_PAGE_ROUTE,
             onClick = {
-                navigateToSchedule500()
-                closeDrawer()
+                navigateToSchedule500();  closeDrawer()
             },
             modifier = Modifier
                 .padding(NavigationDrawerItemDefaults.ItemPadding)
@@ -122,11 +117,9 @@ fun NavigationNewDrawer(
         NavigationDrawerItem(
             label = { Text(stringResource(id = R.string.about_title)) },
             icon = { Icon(painterResource(R.drawable.info_outl_24px), null) },
-//            icon = { Icon(Icons.Filled.ListAlt, null) },
-            selected = currentRoute == DrawerDestinations.ABOUT_ROUTE,
+            selected = currentRoute == DrawerNavDestinations.D_ABOUT_PAGE_ROUTE,
             onClick = {
-                navigateToAbout()
-                closeDrawer()
+                navigateToAbout(); closeDrawer()
             },
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
         )
