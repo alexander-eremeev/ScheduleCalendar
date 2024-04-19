@@ -55,7 +55,8 @@ fun NewDrawerNavGraph(
     isExpandedScreen: Boolean,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    openDrawer: () -> Unit = {},
+//    openDrawer: () -> Unit = {},
+    openDrawer: () -> Unit ,
     startDestination: String = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
 ) {
     NavHost(
@@ -67,7 +68,7 @@ fun NewDrawerNavGraph(
         mainPageGraph(navController,modifier,openDrawer)
         schedule01PageGraph(navController,modifier)
         schedule500PageGraph(navController,modifier)
-        aboutGraph(navController,modifier)
+        aboutGraph(navController,modifier,openDrawer)
 
         composable(
             route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,

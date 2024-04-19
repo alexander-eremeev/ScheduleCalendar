@@ -10,6 +10,7 @@ internal const val ABOUT_PAGE_ROUTE = "aboutPage"
 internal fun NavGraphBuilder.aboutPageScreen(
     navController: NavController,
     modifier: Modifier = Modifier,
+    openDrawer: () -> Unit ,
     navigateToHelp: () -> Unit,
     navigateToLicences: () -> Unit,
     navigateToLocalPolices: () -> Unit,
@@ -18,7 +19,7 @@ internal fun NavGraphBuilder.aboutPageScreen(
     composable(route = ABOUT_PAGE_ROUTE) {
         AboutPageScreen(
             onBackClick = { navController.popBackStack()},
-            onOpenDrawer = false,openDrawer ={},
+            onOpenDrawer = true,openDrawer = openDrawer,
             modifier = modifier,
             navigateToHelp = navigateToHelp,
             navigateToLicences = navigateToLicences,

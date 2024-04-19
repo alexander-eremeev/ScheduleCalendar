@@ -27,6 +27,7 @@ fun NavController.navigateToAboutGraph() {
 fun NavGraphBuilder.aboutGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
+    openDrawer: () -> Unit ,
     ) {
     // =====================================
     helpGraph(navController  = navController)
@@ -48,6 +49,7 @@ fun NavGraphBuilder.aboutGraph(
             aboutPageScreen(
                 navController,
                 modifier,
+                openDrawer,
                 navigateToHelp = {navController.navigateToHelpGraph()},
                 navigateToLicences = {navController.navigateToLicencesGraph()},
                 navigateToLocalPolices={ navController.navigateToLocalPolicesGraph() }

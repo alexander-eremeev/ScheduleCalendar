@@ -51,7 +51,7 @@ fun NavGraphBuilder.navDrawerGraph(
     // =====================================
     schedule01PageGraph(navController = navController)
     // =====================================
-    aboutGraph(navController = navController)
+    aboutGraph(navController = navController,openDrawer ={})
     // =====================================
 //    helpGraph(navController  = navController)
 //    localPolicesGraph(navController  = navController)
