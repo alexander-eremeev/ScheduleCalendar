@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.childmathematics.android.shiftschedule.ui.navigation.drawer.drawer
+package com.childmathematics.android.shiftschedule.ui.navigation.drawer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
