@@ -27,7 +27,9 @@ fun NavController.navigateToSchedule01PageGraph() {
 fun NavGraphBuilder.schedule01PageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-) {
+    openDrawer: () -> Unit ,
+    onOpenDrawer: Boolean ,
+    ) {
      navigation(startDestination = SCHEDULE01_PAGE_ROUTE,
         route = SCHEDULE01_GRAPH_ROUTE,
         deepLinks = listOf(
@@ -43,6 +45,7 @@ fun NavGraphBuilder.schedule01PageGraph(
         schedule01PageScreen(
             navController,
             modifier,
+            onOpenDrawer = onOpenDrawer,openDrawer =openDrawer,
             /*
             navigateToHelpSchedule01Page = { navController.navigateToHelpSchedule01PageGraph() },
             navigateToHelpGraphicsPage = { navController.navigateToHelpGraphicsGraph() },

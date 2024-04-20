@@ -24,25 +24,29 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.childmathematics.android.shiftschedule.ui.about.AboutPageScreen
 import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
+import com.childmathematics.android.shiftschedule.ui.about.aboutPageScreen
 
 import com.childmathematics.android.shiftschedule.ui.main.MainPageScreen
 import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
+import com.childmathematics.android.shiftschedule.ui.main.mainPageScreen
 import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.Schedule500PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageGraph
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
-fun NewDrawerNavGraph(
+fun DrawerNavigationGraph(
  //   appContainer: com.childmathematics.android.shiftschedule.data.AppContainer,
-//    appContainer: AppContainer,
+///    appContainer: AppContainer,
     isExpandedScreen: Boolean,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-//    openDrawer: () -> Unit = {},
+    onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
     startDestination: String = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
 ) {
@@ -52,10 +56,10 @@ fun NewDrawerNavGraph(
         modifier = modifier
     ) {
 
-        mainPageGraph(navController,modifier,openDrawer)
-        schedule01PageGraph(navController,modifier)
-        schedule500PageGraph(navController,modifier)
-        aboutGraph(navController,modifier,openDrawer,onOpenDrawer = true)
+        mainPageGraph(navController,modifier,openDrawer ,onOpenDrawer = onOpenDrawer )
+        schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer )
+        schedule500PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer)
+        aboutGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer )
 
         composable(
             route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
@@ -100,11 +104,14 @@ fun NewDrawerNavGraph(
             closeDrawer,
             modifier
             ) {
-
-
  */
             MainPageScreen(modifier,onBackClick={},
-                onOpenDrawer = true,openDrawer = openDrawer)
+                onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
+            /*
+            mainPageScreen(navController,modifier,
+                onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
+
+             */
         }
 
         composable(
@@ -123,7 +130,11 @@ fun NewDrawerNavGraph(
          */
 //            Schedule01Sample(true)
 //            Schedule01PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
-            Schedule01PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = openDrawer)
+            Schedule01PageScreen(modifier,onBackClick={},
+                onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
+/*            schedule01PageScreen(navController,modifier,
+                onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
+ */
 //
         }
         composable(
@@ -138,15 +149,27 @@ fun NewDrawerNavGraph(
                     openDrawer = openDrawer
                 )
              */
-            //Schedule500Sample(true)
+
                 Schedule500PageScreen(modifier,onBackClick={},
-                    onOpenDrawer = true,openDrawer = openDrawer)
+                    onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
+
+            /*
+            schedule500PageScreen(navController,modifier,
+                onOpenDrawer = true,openDrawer = openDrawer)
+
+             */
         }
         composable(
             route = DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {
                 AboutPageScreen(onBackClick={},modifier,onOpenDrawer = true,
                     openDrawer = openDrawer,navigateToHelp={},
                     navigateToLicences={},navigateToLocalPolices={},)
+            /*
+            aboutPageScreen(navController,modifier,onOpenDrawer = onOpenDrawer,
+                openDrawer = openDrawer,navigateToHelp={},
+                navigateToLicences={},navigateToLocalPolices={},)
+
+             */
         }
     }
 }

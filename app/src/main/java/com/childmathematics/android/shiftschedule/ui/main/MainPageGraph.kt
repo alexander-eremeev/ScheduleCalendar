@@ -29,15 +29,8 @@ fun NavGraphBuilder.mainPageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
     openDrawer: ()-> Unit,
+    onOpenDrawer: Boolean,
 ) {
-    /*
-    // =====================================
-    helpMainPageGraph(navController)
-    helpGraphicsGraph(navController)
-    helpAboutGraph(navController)
-    // =====================================
-
-     */
 
     navigation(startDestination = MAIN_PAGE_ROUTE,
         route = MAIN_GRAPH_ROUTE,
@@ -55,7 +48,7 @@ fun NavGraphBuilder.mainPageGraph(
         mainPageScreen(
             navController,
             modifier,
-            onOpenDrawer = true,
+            onOpenDrawer,
             openDrawer,
             /*
             navigateToHelpMainPage = { navController.navigateToHelpMainPageGraph() },

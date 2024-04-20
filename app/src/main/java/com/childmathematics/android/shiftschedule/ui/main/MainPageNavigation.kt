@@ -24,7 +24,8 @@ internal fun NavGraphBuilder.mainPageScreen(
         MainPageScreen(
             modifier,
             onBackClick = { navController.popBackStack()},
-            onOpenDrawer = false,openDrawer ={},
+            onOpenDrawer = onOpenDrawer,
+            openDrawer =openDrawer,
         )
     }
 }

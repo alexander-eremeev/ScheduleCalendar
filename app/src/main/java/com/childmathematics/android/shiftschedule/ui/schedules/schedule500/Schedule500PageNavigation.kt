@@ -10,6 +10,9 @@ internal const val SCHEDULE500_PAGE_ROUTE = "schedule500Page"
 internal fun NavGraphBuilder.schedule500PageScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier,
+    openDrawer: () -> Unit ,
+    onOpenDrawer: Boolean ,
+
     /*
     navigateToHelpSchedule500Page: () -> Unit,
     navigateToHelpGraphicsPage: () -> Unit,
@@ -21,7 +24,7 @@ internal fun NavGraphBuilder.schedule500PageScreen(
         Schedule500PageScreen(
             modifier,
             onBackClick = { navController.popBackStack()},
-            onOpenDrawer = false,openDrawer ={},
+            onOpenDrawer = onOpenDrawer,openDrawer =openDrawer,
 
             /*
             navigateToHelpMainPage ,

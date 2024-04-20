@@ -47,7 +47,6 @@ internal fun MainPageScreen(
     onBackClick: () -> Unit,
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
-
     /*
     navigateToHelpMainPage: () -> Unit,
     navigateToHelpGraphicsPage: () -> Unit,
@@ -81,13 +80,14 @@ internal fun MainPageScreen(
         val topAppBarState = rememberTopAppBarState()
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState, { true },)
 
-//        val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
         Scaffold(
             modifier = modifier
                 .nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
-                MainPageTopAppBar(onOpenDrawer,
-                    openDrawer,onBackClick,scrollBehavior,
+                MainPageTopAppBar(
+                    onOpenDrawer= onOpenDrawer,
+                    openDrawer = openDrawer,
+                    onBackClick,scrollBehavior,
                     /*
                     navigateToHelpMainPage,
                     navigateToHelpGraphicsPage,

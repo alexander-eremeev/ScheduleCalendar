@@ -35,7 +35,7 @@ import com.childmathematics.android.shiftschedule.ui.navigation.drawer.component
 import kotlinx.coroutines.launch
 
 @Composable
-fun DrawerNewApp(
+fun DrawerApp(
 //    appContainer: com.childmathematics.android.shiftschedule.data.AppContainer,
 //    appContainer: AppContainer,
     widthSizeClass: WindowWidthSizeClass,
@@ -91,11 +91,12 @@ fun DrawerNewApp(
                         navigateToAbout = navigationActions.navigateToAbout,
                     )
                 }
-                NewDrawerNavGraph(
+                DrawerNavigationGraph(
  //                   appContainer = appContainer,
                     isExpandedScreen = isExpandedScreen,
 //                    currentRoute = currentRoute,
                     navController = navController,
+                    onOpenDrawer = true,
                     openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } },
                 )
             }

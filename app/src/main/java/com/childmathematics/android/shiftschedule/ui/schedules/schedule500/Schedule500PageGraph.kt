@@ -27,7 +27,9 @@ fun NavController.navigateToSchedule500PageGraph() {
 fun NavGraphBuilder.schedule500PageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-) {
+    openDrawer: () -> Unit ,
+    onOpenDrawer: Boolean ,
+    ) {
      navigation(startDestination = SCHEDULE500_PAGE_ROUTE,
         route = SCHEDULE500_GRAPH_ROUTE,
         deepLinks = listOf(
@@ -43,6 +45,8 @@ fun NavGraphBuilder.schedule500PageGraph(
         schedule500PageScreen(
             navController,
             modifier,
+            onOpenDrawer = onOpenDrawer,openDrawer =openDrawer,
+
             /*
             navigateToHelpSchedule500Page = { navController.navigateToHelpSchedule500PageGraph() },
             navigateToHelpGraphicsPage = { navController.navigateToHelpGraphicsGraph() },
