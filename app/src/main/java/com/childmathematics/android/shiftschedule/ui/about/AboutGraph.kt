@@ -28,6 +28,7 @@ fun NavGraphBuilder.aboutGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
     openDrawer: () -> Unit ,
+    onOpenDrawer: Boolean,
     ) {
     // =====================================
     helpGraph(navController  = navController)
@@ -50,6 +51,7 @@ fun NavGraphBuilder.aboutGraph(
                 navController,
                 modifier,
                 openDrawer,
+                onOpenDrawer,
                 navigateToHelp = {navController.navigateToHelpGraph()},
                 navigateToLicences = {navController.navigateToLicencesGraph()},
                 navigateToLocalPolices={ navController.navigateToLocalPolicesGraph() }

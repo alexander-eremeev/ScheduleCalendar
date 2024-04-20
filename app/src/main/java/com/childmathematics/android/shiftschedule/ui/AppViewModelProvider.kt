@@ -24,13 +24,9 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.childmathematics.android.shiftschedule.MainApplication
 import com.childmathematics.android.shiftschedule.ui.about.AboutViewModel
-import com.childmathematics.android.shiftschedule.ui.home.HomeViewModel
-import com.childmathematics.android.shiftschedule.ui.homepage.HomePageViewModel
 import com.childmathematics.android.shiftschedule.ui.item.ItemDetailsViewModel
 import com.childmathematics.android.shiftschedule.ui.item.ItemEditViewModel
 import com.childmathematics.android.shiftschedule.ui.item.ItemEntryViewModel
-import com.childmathematics.android.shiftschedule.ui.schedule01.Schedule01ViewModel
-import com.childmathematics.android.shiftschedule.ui.schedule500.Schedule500ViewModel
 import com.childmathematics.android.shiftschedule.ui.main.MainPageViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.Schedule500PageViewModel
@@ -62,22 +58,6 @@ object AppViewModelProvider {
             )
         }
 
-        // Initializer for HomeViewModel
-        initializer {
-            HomeViewModel(mainApplication().container.itemsRepository)
-        }
-        // Initializer for HomePageViewModel
-        initializer {
-            HomePageViewModel(mainApplication().container.itemsRepository)
-        }
-        // Initializer for Schedule01ViewModel
-        initializer {
-            Schedule01ViewModel(mainApplication().container.itemsRepository)
-        }
-        // Initializer for Schedule500ViewModel
-        initializer {
-            Schedule500ViewModel(mainApplication().container.itemsRepository)
-        }
         initializer {
             AboutViewModel(mainApplication().container.itemsRepository)
         }

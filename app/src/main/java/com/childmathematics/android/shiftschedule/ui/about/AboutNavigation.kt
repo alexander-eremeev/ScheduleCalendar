@@ -11,6 +11,7 @@ internal fun NavGraphBuilder.aboutPageScreen(
     navController: NavController,
     modifier: Modifier = Modifier,
     openDrawer: () -> Unit ,
+    onOpenDrawer: Boolean ,
     navigateToHelp: () -> Unit,
     navigateToLicences: () -> Unit,
     navigateToLocalPolices: () -> Unit,
@@ -19,7 +20,8 @@ internal fun NavGraphBuilder.aboutPageScreen(
     composable(route = ABOUT_PAGE_ROUTE) {
         AboutPageScreen(
             onBackClick = { navController.popBackStack()},
-            onOpenDrawer = true,openDrawer = openDrawer,
+//            onOpenDrawer = true,openDrawer = openDrawer,
+            onOpenDrawer = onOpenDrawer ,openDrawer = openDrawer,
             modifier = modifier,
             navigateToHelp = navigateToHelp,
             navigateToLicences = navigateToLicences,

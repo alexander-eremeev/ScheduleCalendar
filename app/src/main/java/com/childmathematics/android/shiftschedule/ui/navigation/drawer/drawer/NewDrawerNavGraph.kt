@@ -14,89 +14,59 @@
  * limitations under the License.
  */
 
-package com.childmathematics.android.shiftschedule.ui.navigation
+package com.childmathematics.android.shiftschedule.ui.navigation.drawer.drawer
 
-import androidx.compose.material3.DrawerState
-import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import com.childmathematics.android.shiftschedule.BuildConfig
-import com.childmathematics.android.shiftschedule.presentation.Schedule01Sample
-import com.childmathematics.android.shiftschedule.presentation.Schedule500Sample
-import com.childmathematics.android.shiftschedule.presentation.WebViewMainScreen
-import com.childmathematics.android.shiftschedule.ui.about.ABOUT_GRAPH_ROUTE
+import com.childmathematics.android.shiftschedule.ui.about.AboutPageScreen
 import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
-import com.childmathematics.android.shiftschedule.ui.about.navigateToAboutGraph
 
-import com.childmathematics.android.shiftschedule.ui.help.HELP_GRAPH_ROUTE
-import com.childmathematics.android.shiftschedule.ui.help.helpGraph
-
-import com.childmathematics.android.shiftschedule.ui.homepage.HomePageScreen
-import com.childmathematics.android.shiftschedule.ui.navigation.components.AppDrawer
-import kotlinx.coroutines.CoroutineScope
+import com.childmathematics.android.shiftschedule.ui.main.MainPageScreen
+import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
+import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageScreen
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.Schedule500PageScreen
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageGraph
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
-fun DrawerNavGraph(
+fun NewDrawerNavGraph(
  //   appContainer: com.childmathematics.android.shiftschedule.data.AppContainer,
- //   isExpandedScreen: Boolean,
+//    appContainer: AppContainer,
+    isExpandedScreen: Boolean,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    openDrawer: () -> Unit = {},
-    startDestination: String = MainDestinations.HOMEPAGE_ROUTE,
- //   coroutineScope: CoroutineScope = rememberCoroutineScope(),
- //   drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
- //   navActions: MainNavigationActions = remember(navController) {
- //       MainNavigationActions(navController)}
+//    openDrawer: () -> Unit = {},
+    openDrawer: () -> Unit,
+    startDestination: String = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier
     ) {
-//        menuAbout(navController)
-        /*
-        aboutGraph(openDrawer,navController,modifier)
-        helpGraph(navController,modifier)
-//        helpGraph(navController,modifier,onBackClick)
 
-         */
-
-        /*
-           openDrawer: () -> Unit,
-    navController: NavHostController,
-    modifier: Modifier = Modifier,
-    onBackClick: () -> Unit,
-
-         */
+        mainPageGraph(navController,modifier,openDrawer)
+        schedule01PageGraph(navController,modifier)
+        schedule500PageGraph(navController,modifier)
+        aboutGraph(navController,modifier,openDrawer,onOpenDrawer = true)
 
         composable(
-            route = MainDestinations.HOMEPAGE_ROUTE,
-//            route = DrawerDestinations.HOMEPAGE_ROUTE,
+            route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
             /*
             deepLinks = listOf(
                 navDeepLink {
-
                     uriPattern =
-                        "$JETNEWS_APP_URI/${DrawerDestinations.HOMEPAGE_ROUTE}?$POST_ID={$POST_ID}"
-
-
+                        "$JETNEWS_APP_URI/${JetnewsDestinations.HOME_ROUTE}?$POST_ID={$POST_ID}"
                 }
             )
              */
-
         ) {
             /*
             navBackStackEntry ->
@@ -107,9 +77,6 @@ fun DrawerNavGraph(
                     preSelectedPostId = navBackStackEntry.arguments?.getString(POST_ID)
                 )
             )
-
-
-
             HomeRoute(
 //                homeViewModel = homeViewModel,
                 homeViewModel = homeViewModel,
@@ -136,13 +103,12 @@ fun DrawerNavGraph(
 
 
  */
-            HomePageScreen(openDrawer = openDrawer)
-//            HomePageScreen(openDrawer = { coroutineScope.launch { drawerState.open() } })
- //           }
- //           }
+            MainPageScreen(modifier,onBackClick={},
+                onOpenDrawer = true,openDrawer = openDrawer)
         }
 
-        composable(MainDestinations.SCHEDULE01_ROUTE) {
+        composable(
+            route = DrawerNavDestinations.D_SCHEDULE01_PAGE_ROUTE,) {
         /*
             val interestsViewModel: InterestsViewModel = viewModel(
                 factory = InterestsViewModel.provideFactory(appContainer.itemsRepository)
@@ -155,9 +121,13 @@ fun DrawerNavGraph(
                 openDrawer = openDrawer
             )
          */
-            Schedule01Sample(true)
+//            Schedule01Sample(true)
+//            Schedule01PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
+            Schedule01PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = openDrawer)
+//
         }
-        composable(MainDestinations.SCHEDULE500_ROUTE) {
+        composable(
+            route = DrawerNavDestinations.D_SCHEDULE500_PAGE_ROUTE) {
             /*
                 val interestsViewModel: InterestsViewModel = viewModel(
                     factory = InterestsViewModel.provideFactory(appContainer.itemsRepository)
@@ -168,13 +138,15 @@ fun DrawerNavGraph(
                     openDrawer = openDrawer
                 )
              */
-            Schedule500Sample(true)
+            //Schedule500Sample(true)
+                Schedule500PageScreen(modifier,onBackClick={},
+                    onOpenDrawer = true,openDrawer = openDrawer)
         }
-        composable(ABOUT_GRAPH_ROUTE) {//ABOUT_GRAPH_ROUTE
- //           composable(MainDestinations.ABOUT_ROUTE) {//ABOUT_GRAPH_ROUTE
-
-            navController.navigateToAboutGraph()
-
+        composable(
+            route = DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {
+                AboutPageScreen(onBackClick={},modifier,onOpenDrawer = true,
+                    openDrawer = openDrawer,navigateToHelp={},
+                    navigateToLicences={},navigateToLocalPolices={},)
         }
     }
 }

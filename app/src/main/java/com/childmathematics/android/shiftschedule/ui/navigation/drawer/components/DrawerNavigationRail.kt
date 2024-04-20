@@ -16,6 +16,7 @@
 
 package com.childmathematics.android.shiftschedule.ui.navigationdraver.components
 
+//import com.childmathematics.android.shiftschedule.jetnews.ui.theme.JetnewsTheme
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -36,8 +37,6 @@ import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.about.ABOUT_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
-//import com.childmathematics.android.shiftschedule.jetnews.ui.theme.JetnewsTheme
-import com.childmathematics.android.shiftschedule.ui.navigation.DrawerDestinations
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
 

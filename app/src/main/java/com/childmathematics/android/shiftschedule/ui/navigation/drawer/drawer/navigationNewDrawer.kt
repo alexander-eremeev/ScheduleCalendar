@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.childmathematics.android.shiftschedule.ui.navigationdraver.components
+package com.childmathematics.android.shiftschedule.ui.navigation.drawer.drawer
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.BorderStroke
@@ -46,23 +46,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
-import com.childmathematics.android.shiftschedule.ui.about.ABOUT_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.navigation.DrawerDestinations
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NavigationDrawer(
+fun NavigationNewDrawer(
     currentRoute: String,
     navigateToMainPage: () -> Unit,
     navigateToSchedule01: () -> Unit,
     navigateToSchedule500: () -> Unit,
     navigateToAbout: () -> Unit,
     closeDrawer: () -> Unit,
-    openDrawer: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     // Content inside of a modal navigation drawer.
@@ -85,11 +81,9 @@ fun NavigationDrawer(
         NavigationDrawerItem(
             label = { Text(stringResource(id = R.string.homepage_title)) },
             icon = { Icon(painterResource(R.drawable.home_24px), null) },
-//            icon = { Icon(Icons.Filled.Home, null) },
-            selected = currentRoute == MAIN_PAGE_ROUTE,
+            selected = currentRoute == DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
             onClick = {
-                navigateToMainPage()
-                closeDrawer()
+                navigateToMainPage(); closeDrawer()
             },
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
         )
@@ -97,37 +91,33 @@ fun NavigationDrawer(
         NavigationDrawerItem(
             label = { Text(stringResource(id = R.string.schedule01_title)) },
             icon = { Icon(painterResource(R.drawable.shift_8), null) },
-//            icon = { Icon(Icons.Filled.ListAlt, null) },
-            selected = currentRoute == SCHEDULE01_PAGE_ROUTE,
+            selected = currentRoute == DrawerNavDestinations.D_SCHEDULE01_PAGE_ROUTE,
             onClick = {
-                navigateToSchedule01()
-                closeDrawer()
+                navigateToSchedule01(); closeDrawer()
             },
-            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+            modifier = Modifier
+                .padding(NavigationDrawerItemDefaults.ItemPadding)
                 .height(96.dp)
         )
         HorizontalDivider()
         NavigationDrawerItem(
             label = { Text(stringResource(id = R.string.schedule500_title)) },
             icon = { Icon(painterResource(R.drawable.shift_12), null) },
-//            icon = { Icon(Icons.Filled.ListAlt, null) },
-            selected = currentRoute == SCHEDULE500_PAGE_ROUTE,
+            selected = currentRoute == DrawerNavDestinations.D_SCHEDULE500_PAGE_ROUTE,
             onClick = {
-                navigateToSchedule500()
-                closeDrawer()
+                navigateToSchedule500();  closeDrawer()
             },
-            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+            modifier = Modifier
+                .padding(NavigationDrawerItemDefaults.ItemPadding)
                 .height(96.dp)
         )
         HorizontalDivider()
         NavigationDrawerItem(
             label = { Text(stringResource(id = R.string.about_title)) },
             icon = { Icon(painterResource(R.drawable.info_outl_24px), null) },
-//            icon = { Icon(Icons.Filled.ListAlt, null) },
-            selected = currentRoute == ABOUT_PAGE_ROUTE,
+            selected = currentRoute == DrawerNavDestinations.D_ABOUT_PAGE_ROUTE,
             onClick = {
-                navigateToAbout()
-                closeDrawer()
+                navigateToAbout(); closeDrawer()
             },
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
         )
@@ -168,14 +158,13 @@ private fun DrawerHeader(modifier: Modifier = Modifier) {
 @Composable
 fun PreviewAppDrawer() {
     ScheduleCalendarTheme {
-        NavigationDrawer(
+        NavigationNewDrawer(
             currentRoute = MAIN_PAGE_ROUTE,
             navigateToMainPage = {},
             navigateToSchedule01 = {},
             navigateToSchedule500 = {},
             navigateToAbout = {},
-            closeDrawer = { },
-            openDrawer = { },
+            closeDrawer = { }
         )
     }
 }

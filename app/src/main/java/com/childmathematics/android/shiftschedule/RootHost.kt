@@ -10,17 +10,6 @@ import com.childmathematics.android.basement.lib.navigation.ui.screenSlideIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenSlideOut
 import com.childmathematics.android.shiftschedule.ui.about.ABOUT_GRAPH_ROUTE
 import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
-import com.childmathematics.android.shiftschedule.ui.help.helpGraph
-import com.childmathematics.android.shiftschedule.ui.licences.licencesGraph
-import com.childmathematics.android.shiftschedule.ui.localpolices.localPolicesGraph
-import com.childmathematics.android.shiftschedule.ui.main.MAIN_GRAPH_ROUTE
-import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
-import com.childmathematics.android.shiftschedule.ui.navigationdrawer.NAVDRAWER_GRAPH_ROUTE
-import com.childmathematics.android.shiftschedule.ui.navigationdrawer.navDrawerGraph
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_GRAPH_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_GRAPH_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageGraph
 
 @Composable
 internal fun RootHost(widthSizeClass: WindowWidthSizeClass,) {
@@ -30,13 +19,12 @@ internal fun RootHost(widthSizeClass: WindowWidthSizeClass,) {
 
     NavHost(
         navController = rootController,
-        startDestination = NAVDRAWER_GRAPH_ROUTE,
 
 //        startDestination = SCHEDULE500_GRAPH_ROUTE,
 //        startDestination = SCHEDULE01_GRAPH_ROUTE,
 
 //        startDestination = MAIN_GRAPH_ROUTE,
-//        startDestination = ABOUT_GRAPH_ROUTE,
+        startDestination = ABOUT_GRAPH_ROUTE,
 //        startDestination = HELP_GRAPH_ROUTE,
         /*
         // =====================================
@@ -49,15 +37,13 @@ internal fun RootHost(widthSizeClass: WindowWidthSizeClass,) {
         popExitTransition = { screenSlideOut() },
     ) {
         // =====================================
-        navDrawerGraph(widthSizeClass,navController = rootController)
-        // =====================================
  //       mainPageGraph(navController = rootController)
         // =====================================
 //        schedule500PageGraph(navController = rootController)
         // =====================================
 //        schedule01PageGraph(navController = rootController)
         // =====================================
-//        aboutGraph(navController = rootController)
+        aboutGraph(navController = rootController,openDrawer ={},onOpenDrawer = false)
         // =====================================
 //        helpGraph(navController  = rootController)
 //        localPolicesGraph(navController  = rootController)

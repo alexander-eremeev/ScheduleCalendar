@@ -14,28 +14,30 @@
  * limitations under the License.
  */
 
-package com.childmathematics.android.shiftschedule.ui.navigation
+package com.childmathematics.android.shiftschedule.ui.navigation.drawer.components
 
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.childmathematics.android.shiftschedule.ui.about.ABOUT_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
 
-/**
- * Destinations used in the [DrawerApp].
- */
-object DrawerDestinations {
-    const val HOMEPAGE_ROUTE = "homepage"
-    const val SCHEDULE01_ROUTE = "schedule01"
-    const val SCHEDULE500_ROUTE = "schedule500"
-    const val ABOUT_ROUTE = "about"
+object DrawerNavDestinations {
+    const val D_MAIN_PAGE_ROUTE = MAIN_PAGE_ROUTE
+
+    //        const val HOMEPAGE_ROUTE = "$HOMEPAGE_SCREEN?$HOMEPAGE_ARG={$USER_MESSAGE_ARG}"
+    const val D_SCHEDULE01_PAGE_ROUTE = SCHEDULE01_PAGE_ROUTE
+    const val D_SCHEDULE500_PAGE_ROUTE = SCHEDULE500_PAGE_ROUTE
+    const val D_ABOUT_PAGE_ROUTE = ABOUT_PAGE_ROUTE
 }
-
 /**
  * Models the navigation actions in the app.
  */
 class DrawerNavigationActions(navController: NavHostController) {
-    val navigateToHomePage: () -> Unit = {
+    val navigateToMainPage: () -> Unit = {
 
-        navController.navigate(DrawerDestinations.HOMEPAGE_ROUTE) {
+        navController.navigate(DrawerNavDestinations.D_MAIN_PAGE_ROUTE) {
             // Pop up to the start destination of the graph to
             // avoid building up a large stack of destinations
             // on the back stack as users select items
@@ -59,7 +61,7 @@ class DrawerNavigationActions(navController: NavHostController) {
     }
     val navigateToSchedule01: () -> Unit = {
 
-        navController.navigate(DrawerDestinations.SCHEDULE01_ROUTE) {
+        navController.navigate(DrawerNavDestinations.D_SCHEDULE01_PAGE_ROUTE) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }
@@ -69,7 +71,7 @@ class DrawerNavigationActions(navController: NavHostController) {
     }
     val navigateToSchedule500: () -> Unit = {
 
-        navController.navigate(DrawerDestinations.SCHEDULE500_ROUTE) {
+        navController.navigate(DrawerNavDestinations.D_SCHEDULE500_PAGE_ROUTE) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }
@@ -77,9 +79,10 @@ class DrawerNavigationActions(navController: NavHostController) {
             restoreState = true
         }
     }
+
     val navigateToAbout: () -> Unit = {
 
-        navController.navigate(DrawerDestinations.ABOUT_ROUTE) {
+        navController.navigate(DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {  //ABOUT_GRAPH_ROUTE
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }

@@ -18,13 +18,11 @@ package com.childmathematics.android.shiftschedule.ui.about
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.AppRegistration
-import androidx.compose.material.icons.filled.Help
 import androidx.compose.material.icons.filled.LocalPolice
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
@@ -33,7 +31,6 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -44,17 +41,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.compose.composable
 import com.childmathematics.android.shiftschedule.R
-import com.childmathematics.android.shiftschedule.presentation.WebViewMainScreen
-import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
-import com.childmathematics.android.shiftschedule.ui.navigation.MainDestinations
-import com.childmathematics.android.shiftschedule.ui.navigation.MainNavigationActions
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

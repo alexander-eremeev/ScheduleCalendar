@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.childmathematics.android.shiftschedule.ui.navigationdrawer.drawer
+package com.childmathematics.android.shiftschedule.ui.navigation.drawer.drawer
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.DrawerState
@@ -29,11 +29,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
-import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.navigation.components.DrawerAppNavRail
 import com.childmathematics.android.shiftschedule.ui.navigationdraver.components.DrawerNavigationRail
-import com.childmathematics.android.shiftschedule.ui.navigationdrawer.components.DrawerNavDestinations
-import com.childmathematics.android.shiftschedule.ui.navigationdrawer.components.DrawerNavigationActions
+import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
+import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavigationActions
 import kotlinx.coroutines.launch
 
 @Composable

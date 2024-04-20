@@ -67,7 +67,7 @@ internal fun AboutPageScreen(
             topBar =
             {
                 AboutTopAppBar(
-                    onOpenDrawer  = true,
+                    onOpenDrawer  = onOpenDrawer,
                     openDrawer = openDrawer,
                     onBackClick,
                     scrollBehavior,
