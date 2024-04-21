@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 //import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -58,28 +59,23 @@ fun MainPageShow() {
     Box(contentAlignment = Alignment.TopStart,
             modifier = Modifier
                 .background(Color.LightGray)
+                .verticalScroll(rememberScrollState())
 //1                .padding(0.dp, 0.dp, 0.dp, 0.dp)
 //                .size(300.dp, 250.dp)               //(LocalConfiguration.current.screenHeightDp-50).dp
- //               .size((LocalConfiguration.current.screenWidthDp).dp, (LocalConfiguration.current.screenHeightDp-70).dp)
                 .size((LocalConfiguration.current.screenWidthDp).dp, changeHightDp.dp)
     ) {
         Image(
             contentScale = ContentScale.Crop,
-//            modifier = Modifier.height(160.dp),
-            modifier = Modifier.fillMaxHeight(),
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                ,
             painter = painterResource(id = R.drawable.carpenterworks_1280),
             contentDescription = null
         )
 
         Column(
             modifier = Modifier
-                .verticalScroll(rememberScrollState())
                 .fillMaxWidth()
-//                .padding(0.dp, changeDp, 0.dp, 0.dp)
-//          .width(400.dp)
-
-//                .wrapContentHeight()
-//                .background(Color.White)
                .padding(0.dp)
         ) {
 
@@ -87,16 +83,13 @@ fun MainPageShow() {
                 text =String.format("%4d",LocalDate.now().year),
                 fontWeight = FontWeight.Bold,
                 fontSize = 50.sp,
-//          modifier = Modifier.padding(8.dp)
                 modifier = Modifier
                     .align(End),
-//                    .align(CenterHorizontally),
             )
             Text(
                 text = NameMonthRus(LocalDate.now().monthValue),
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp,
-//          modifier = Modifier.padding(8.dp)
                 modifier = Modifier
                     .align(End),
             )
@@ -105,9 +98,7 @@ fun MainPageShow() {
                 text = String.format("%2d",LocalDate.now().dayOfMonth),
                 fontWeight = FontWeight.Bold,
                 fontSize = 200.sp,
-//          modifier = Modifier.padding(8.dp)
                 modifier = Modifier
-//                    .align(CenterHorizontally),
                 .align(End),
             )
 
@@ -115,13 +106,9 @@ fun MainPageShow() {
                 text = getDayMonthTodayText (),
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp,
-//          modifier = Modifier.padding(8.dp)
                 modifier = Modifier
                     .align(End),
-//                    .align(CenterHorizontally),
             )
-
-
         }
   }
 
