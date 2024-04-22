@@ -131,8 +131,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.activity.compose)
-
-//    implementation(libs.androidx.appcompatv7)
+    // Webkit
+    implementation(libs.androidx.webkit.webkit)
 
     implementation(libs.google.accompanist.swiperefresh)
     implementation(libs.google.accompanist.systemuicontroller)
