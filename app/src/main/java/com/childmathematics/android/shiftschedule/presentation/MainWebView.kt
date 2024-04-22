@@ -70,7 +70,7 @@ fun WebViewMainScreen(siteName:  String) {
 //        .fillMaxSize()
 //        .background(MaterialTheme.colors.background)
 //            .pullRefresh(pullRefreshState)
-        .verticalScroll(rememberScrollState())
+//        .verticalScroll(rememberScrollState())
         .size(
             (LocalConfiguration.current.screenWidthDp).dp,
             changeHightDp.dp
@@ -86,7 +86,7 @@ fun WebViewMainScreen(siteName:  String) {
         )
         {
             // ------OLD Realese
-            // WebViewScreen(siteName = siteName)
+             //WebViewScreen(siteName = siteName)
             //-----------------------------new  WebView
             WebViewer(isRefreshing = isRefreshing,
                 setRefreshed = { isRefreshing = false },
@@ -167,6 +167,7 @@ private fun WebViewer(
 ) {
     var webView: WebView? = null
     var isBackEnabled by rememberSaveable { mutableStateOf(false) }
+//    var isBackEnabled by rememberSaveable { mutableStateOf(false) }
 
     // Override back navigation to load WebView's previous webpage
     BackHandler(enabled = isBackEnabled) {
@@ -175,8 +176,16 @@ private fun WebViewer(
 
     AndroidView(modifier = modifier.fillMaxSize(), factory = { context ->
         WebView(context).apply {
-            webViewClient = object : WebViewClient() {
 
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+
+            webViewClient = object : WebViewClient() {
+/*
                 // Open external links in web browser
                 override fun shouldOverrideUrlLoading(
                     view: WebView?, request: WebResourceRequest?
@@ -190,6 +199,8 @@ private fun WebViewer(
                     return true
                 }
 
+ */
+
                 // Enable BackHandler if WebView can go back
                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                     super.onPageStarted(view, url, favicon)
@@ -197,6 +208,7 @@ private fun WebViewer(
                 }
 
             }
+
             webChromeClient = object : WebChromeClient() {
 
                 // Pass up current loading progress to be used by ProgressIndicator function
@@ -206,6 +218,7 @@ private fun WebViewer(
                 }
 
             }
+
             // Configure WebView client
             with(this.settings) {
                 domStorageEnabled = true
