@@ -34,6 +34,7 @@ import java.util.Locale
 
 /**
  * State of the calendar composable
+ * Состояние календаря, составного
  *
  * @property monthState currently showed month
  * @property selectionState handler for the calendar's selection

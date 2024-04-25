@@ -77,7 +77,6 @@ import java.time.*
 @RequiresApi(Build.VERSION_CODES.O)
 @ExperimentalCoroutinesApi
 @Composable
-//fun Schedule500Sample() {
   fun Schedule01Page(currentDialog: Boolean) {
 //===========================================================================
     val viewModel = remember { Sch01RecipeViewModel() }
