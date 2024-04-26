@@ -24,6 +24,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 //import androidx.compose.material.*
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
@@ -35,6 +37,8 @@ import androidx.compose.runtime.remember
 //import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
@@ -113,7 +117,6 @@ import java.time.*
                 changeHightDp.dp)
             .verticalScroll(rememberScrollState(changeHightDp))
 //            .horizontalScroll(rememberScrollState())
-
     ) {
 
 //------------------------------------------------
@@ -160,7 +163,6 @@ import java.time.*
                     )
                 }
             )
-
             Spacer(modifier = Modifier.height(20.dp))
             Text(
                         ""+ String.format(
@@ -175,8 +177,6 @@ import java.time.*
                         state.monthState.currentMonth.year, state.monthState.currentMonth.monthValue
                     )).toInt()
                 )
-
-
                         + "\tчас.\n",
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
@@ -243,9 +243,11 @@ fun Sch01RecipeDay(
 
   Card(
     modifier = modifier
-      .aspectRatio(1f)
+        .aspectRatio(1f)
       .padding(2.dp),
-//1      elevation = if (state.isFromCurrentMonth) CardElevation(4.dp,4.dp,4.dp,4.dp,4.dp,4.dp)
+//    elevation = if (state.isFromCurrentMonth) CardElevation(4.dp) else CardElevation(0.dp),
+      elevation =    CardDefaults.cardElevation(4.dp),
+
 //              elevation = if (state.isFromCurrentMonth) CardElevation(4.Dp,4.Dp,4.Dp,4.Dp,4.Dp,4.Dp)
 //2                    else CardElevation(0.dp,0.dp,0.dp,0.dp,0.dp,0.dp),
 //      elevation = if (state.isFromCurrentMonth) 4.dp else 0.dp,
@@ -268,6 +270,7 @@ fun Sch01RecipeDay(
   ) {
     Column(
       modifier = Modifier
+          .align(CenterHorizontally)
           //====================================================
           // фиксация нажатия экрана для сдвига паказа рекламы
           .pointerInput(Unit) {
@@ -289,11 +292,11 @@ fun Sch01RecipeDay(
     ) {
             Text(
 //                modifier = Modifier.background(androidx.compose.ui.graphics.Color.Red, CircleShape),
-                fontSize = 15.sp,
+                fontSize = 25.sp,       //15.sp
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 text = date.dayOfMonth.toString(),
-//          style = MaterialTheme.typography.h6,
+          style = MaterialTheme.typography.bodyLarge,
 
             )
         if (date.dayOfWeek.value==6 || date.dayOfWeek.value==7) {
@@ -319,7 +322,7 @@ fun Sch01RecipeDay(
                 text = //String.format("%2d",(getShift01(date)).toInt())
 //                  +" / "+
                 String.format("%2d", (getShift01(date)).toInt()),
-//          fontSize = 9.sp,
+                fontSize = 20.sp,
                 style = MaterialTheme.typography.bodyMedium,
             )
         }

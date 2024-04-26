@@ -360,7 +360,7 @@ fun Sch500RecipeDay(
 
   Card(
     modifier = modifier
-      .aspectRatio(1f)
+      .aspectRatio(0.7f)
       .padding(2.dp),
 //    elevation = if (state.isFromCurrentMonth) 4.dp else 0.dp,
     border = if (state.isCurrentDay) BorderStroke(1.dp, MaterialTheme.colorScheme.primary) else null,
@@ -373,6 +373,7 @@ fun Sch500RecipeDay(
   ) {
     Column(
       modifier = Modifier
+          .align(CenterHorizontally)
           //====================================================
           // фиксация нажатия экрана для сдвига паказа рекламы
           .pointerInput(Unit) {
@@ -391,7 +392,7 @@ fun Sch500RecipeDay(
       horizontalAlignment = Alignment.CenterHorizontally,
     ) {
       Text(
-        fontSize = 10.sp,
+        fontSize = 25.sp,
         fontWeight= FontWeight.Bold,
 //        Style= MaterialTheme.typography.subtitle2   ,
 
@@ -400,6 +401,7 @@ fun Sch500RecipeDay(
 //        style = MaterialTheme.typography.h6,
         textAlign = TextAlign.Center,
         text = date.dayOfMonth.toString(),
+        style = MaterialTheme.typography.bodyLarge,
 
         )
         Text(
@@ -407,15 +409,18 @@ fun Sch500RecipeDay(
           text = String.format("%2d",(getShift500(date,1)).toInt())
                   +" / "
                   +String.format("%2d",(getShift500(date,2)).toInt()),
-          fontSize = 9.sp,
-//          style = MaterialTheme.typography.body2,
+          fontSize = 17.sp,
+//            fontWeight= FontWeight.Bold,
+          style = MaterialTheme.typography.bodyMedium,
         )
         Text(
 //          text = plannedRecipe.price.toString(),
           text = String.format("%2d",(getShift500(date,3)).toInt())
                   +" / "
                   +String.format("%2d",(getShift500(date,4)).toInt()),
-          fontSize = 9.sp,
+          fontSize = 17.sp,
+//            fontWeight= FontWeight.Bold,
+            style = MaterialTheme.typography.bodyMedium,
         )
     }
   }
