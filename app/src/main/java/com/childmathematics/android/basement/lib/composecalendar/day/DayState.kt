@@ -11,6 +11,6 @@ public typealias NonSelectableDayState = DayState<EmptySelectionState>
  */
 @Stable
 public data class DayState<T : SelectionState>(
-    private val day: Day,
-    val selectionState: T,
+  private val day: Day,
+  val selectionState: T,
 ) : Day by day

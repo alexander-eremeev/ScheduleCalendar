@@ -83,7 +83,9 @@ import java.time.*
     var showDialog by rememberSaveable { mutableStateOf(false) }
     var changeDp: Dp
     val state = rememberSelectableCalendarState(
-        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
+//.        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
+//        confirmSelectionChange = viewModel::onSelectionChanged, //SelectionMode
+
         initialSelectionMode = Period,
     )
     //------------------------
@@ -144,7 +146,8 @@ import java.time.*
         //====================================================
         Column(
             Modifier
-                .padding(0.dp, changeDp + 50.dp, 0.dp, 0.dp)        // добавлен для баннера
+                .padding(0.dp, changeDp + 0.dp, 0.dp, 0.dp)        // добавлен для баннера
+//                .padding(0.dp, changeDp + 50.dp, 0.dp, 0.dp)        // добавлен для баннера
 //                .verticalScroll(rememberScrollState())
 
         ) {

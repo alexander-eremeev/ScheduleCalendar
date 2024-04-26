@@ -1,5 +1,6 @@
 package com.childmathematics.android.shiftschedule.presentation
 
+//import androidx.compose.foundation.layout.*
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-//import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -25,10 +25,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.childmathematics.android.basement.lib.ads.yandex.mYaInterstitialAdOnOff
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
-import com.childmathematics.android.basement.lib.ads.yandex.mYaInterstitialAdOnOff
-import com.childmathematics.android.basement.lib.composecalendar.header.NameMonthRus
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
 import com.childmathematics.android.shiftschedule.util.bannerHightWithVideoMin
@@ -93,7 +92,8 @@ fun HomePageShow() {
 //                    .align(CenterHorizontally),
             )
             Text(
-                text = NameMonthRus(LocalDate.now().monthValue),
+                text = "Month",
+//                text = NameMonthRus(LocalDate.now().monthValue),
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp,
 //          modifier = Modifier.padding(8.dp)

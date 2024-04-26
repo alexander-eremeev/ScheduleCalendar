@@ -60,7 +60,7 @@ fun Schedule500Page(currentDialog500: Boolean) {
 
     var changeDp: Dp
     val state = rememberSelectableCalendarState(
-        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
+//        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
         initialSelectionMode = Period,
     )
 //------------------
@@ -125,7 +125,8 @@ fun Schedule500Page(currentDialog500: Boolean) {
         //====================================================
         Column(
             Modifier
-                .padding(0.dp, changeDp + 50.dp, 0.dp, 0.dp)        // добавлен для баннера
+                .padding(0.dp, changeDp + 0.dp, 0.dp, 0.dp)        // добавлен для баннера
+//                .padding(0.dp, changeDp + 50.dp, 0.dp, 0.dp)        // добавлен для баннера
  //               .verticalScroll(rememberScrollState())
 
         ) {

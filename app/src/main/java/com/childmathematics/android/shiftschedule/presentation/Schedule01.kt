@@ -89,7 +89,7 @@ import java.time.*
     var showDialog by rememberSaveable { mutableStateOf(false) }
     var changeDp: Dp
     val state = rememberSelectableCalendarState(
-        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
+//??        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
         initialSelectionMode = Period,
     )
     //------------------------

@@ -12,9 +12,9 @@ import java.time.LocalDate
  */
 public object DynamicSelectionHandler {
   public fun calculateNewSelection(
-      date: LocalDate,
-      selection: List<LocalDate>,
-      selectionMode: SelectionMode,
+    date: LocalDate,
+    selection: List<LocalDate>,
+    selectionMode: SelectionMode,
   ): List<LocalDate> = when (selectionMode) {
     SelectionMode.None -> emptyList()
     SelectionMode.Single -> if (date == selection.firstOrNull()) {

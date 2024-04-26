@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.childmathematics.android.basement.lib.ads.yandex.mYaInterstitialAdOnOff
-import com.childmathematics.android.basement.lib.composecalendar.header.NameMonthRus
+//import com.childmathematics.android.basement.lib.composecalendar.header.NameMonthRus
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
@@ -77,7 +77,8 @@ fun MainPageShow() {
                     .align(End),
             )
             Text(
-                text = NameMonthRus(LocalDate.now().monthValue),
+                text = LocalDate.now().monthValue.toString(),
+//                text = NameMonthRus(LocalDate.now().monthValue),
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp,
                 modifier = Modifier

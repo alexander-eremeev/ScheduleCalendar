@@ -66,7 +66,7 @@ fun Schedule500Sample(currentDialog500: Boolean) {
 
     var changeDp: Dp
     val state = rememberSelectableCalendarState(
-        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
+//???        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
         initialSelectionMode = Period,
     )
 //------------------

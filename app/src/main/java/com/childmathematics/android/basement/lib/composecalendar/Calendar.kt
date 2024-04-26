@@ -1,4 +1,4 @@
-@file:Suppress("MatchingDeclarationName", "LongParameterList")
+@file:Suppress("MatchingDeclarationName")
 
 package com.childmathematics.android.basement.lib.composecalendar
 
@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
@@ -16,16 +17,15 @@ import com.childmathematics.android.basement.lib.composecalendar.day.DayState
 import com.childmathematics.android.basement.lib.composecalendar.day.DefaultDay
 import com.childmathematics.android.basement.lib.composecalendar.header.DefaultMonthHeader
 import com.childmathematics.android.basement.lib.composecalendar.header.MonthState
-import com.childmathematics.android.basement.lib.composecalendar.month.DaysOfWeek
 import com.childmathematics.android.basement.lib.composecalendar.month.MonthContent
 import com.childmathematics.android.basement.lib.composecalendar.month.MonthPager
 import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.basement.lib.composecalendar.selection.EmptySelectionState
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionState
-import com.childmathematics.android.basement.lib.composecalendar.week.DefaultWeekHeader
+import com.childmathematics.android.basement.lib.composecalendar.week.DaysInAWeek
+import com.childmathematics.android.basement.lib.composecalendar.week.DefaultDaysOfWeekHeader
 import com.childmathematics.android.basement.lib.composecalendar.week.rotateRight
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -34,15 +34,14 @@ import java.util.Locale
 
 /**
  * State of the calendar composable
- * Состояние календаря, составного
  *
  * @property monthState currently showed month
  * @property selectionState handler for the calendar's selection
  */
 @Stable
 public class CalendarState<T : SelectionState>(
-    public val monthState: MonthState,
-    public val selectionState: T,
+  public val monthState: MonthState,
+  public val selectionState: T,
 )
 
 /**
@@ -61,25 +60,26 @@ public class CalendarState<T : SelectionState>(
  * @param today current day, defaults to [LocalDate.now]
  * @param showAdjacentMonths whenever to show or hide the days from adjacent months
  * @param horizontalSwipeEnabled whenever user is able to change the month by horizontal swipe
+ * @param weekDaysScrollEnabled if the week days should be scrollable
  * @param calendarState state of the composable
  * @param dayContent composable rendering the current day
  * @param monthHeader header for showing the current month and controls for changing it
- * @param weekHeader header for showing captions for each day of week
+ * @param daysOfWeekHeader header for showing captions for each day of week
  * @param monthContainer container composable for all the days in current month
  */
-@ExperimentalCoroutinesApi
 @Composable
 public fun SelectableCalendar(
-    modifier: Modifier = Modifier,
-    firstDayOfWeek: DayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek,
-    today: LocalDate = LocalDate.now(),
-    showAdjacentMonths: Boolean = true,
-    horizontalSwipeEnabled: Boolean = true,
-    calendarState: CalendarState<DynamicSelectionState> = rememberSelectableCalendarState(),
-    dayContent: @Composable BoxScope.(DayState<DynamicSelectionState>) -> Unit = { DefaultDay(it) },
-    monthHeader: @Composable ColumnScope.(MonthState) -> Unit = { DefaultMonthHeader(it) },
-    weekHeader: @Composable BoxScope.(List<DayOfWeek>) -> Unit = { DefaultWeekHeader(it) },
-    monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit = { content ->
+  modifier: Modifier = Modifier,
+  firstDayOfWeek: DayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek,
+  today: LocalDate = LocalDate.now(),
+  showAdjacentMonths: Boolean = true,
+  horizontalSwipeEnabled: Boolean = true,
+  weekDaysScrollEnabled: Boolean = true,
+  calendarState: CalendarState<DynamicSelectionState> = rememberSelectableCalendarState(),
+  dayContent: @Composable BoxScope.(DayState<DynamicSelectionState>) -> Unit = { DefaultDay(it) },
+  monthHeader: @Composable ColumnScope.(MonthState) -> Unit = { DefaultMonthHeader(it) },
+  daysOfWeekHeader: @Composable BoxScope.(List<DayOfWeek>) -> Unit = { DefaultDaysOfWeekHeader(it) },
+  monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit = { content ->
     Box { content(PaddingValues()) }
   },
 ) {
@@ -89,10 +89,11 @@ public fun SelectableCalendar(
     today = today,
     showAdjacentMonths = showAdjacentMonths,
     horizontalSwipeEnabled = horizontalSwipeEnabled,
+    weekDaysScrollEnabled = weekDaysScrollEnabled,
     calendarState = calendarState,
     dayContent = dayContent,
     monthHeader = monthHeader,
-    weekHeader = weekHeader,
+    daysOfWeekHeader = daysOfWeekHeader,
     monthContainer = monthContainer
   )
 }
@@ -113,25 +114,26 @@ public fun SelectableCalendar(
  * @param today current day, defaults to [LocalDate.now]
  * @param showAdjacentMonths whenever to show or hide the days from adjacent months
  * @param horizontalSwipeEnabled whenever user is able to change the month by horizontal swipe
+ * @param weekDaysScrollEnabled if the week days should be scrollable
  * @param calendarState state of the composable
  * @param dayContent composable rendering the current day
  * @param monthHeader header for showing the current month and controls for changing it
- * @param weekHeader header for showing captions for each day of week
+ * @param daysOfWeekHeader header for showing captions for each day of week
  * @param monthContainer container composable for all the days in current month
  */
-@ExperimentalCoroutinesApi
 @Composable
 public fun StaticCalendar(
-    modifier: Modifier = Modifier,
-    firstDayOfWeek: DayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek,
-    today: LocalDate = LocalDate.now(),
-    showAdjacentMonths: Boolean = true,
-    horizontalSwipeEnabled: Boolean = true,
-    calendarState: CalendarState<EmptySelectionState> = rememberCalendarState(),
-    dayContent: @Composable BoxScope.(DayState<EmptySelectionState>) -> Unit = { DefaultDay(it) },
-    monthHeader: @Composable ColumnScope.(MonthState) -> Unit = { DefaultMonthHeader(it) },
-    weekHeader: @Composable BoxScope.(List<DayOfWeek>) -> Unit = { DefaultWeekHeader(it) },
-    monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit = { content ->
+  modifier: Modifier = Modifier,
+  firstDayOfWeek: DayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek,
+  today: LocalDate = LocalDate.now(),
+  showAdjacentMonths: Boolean = true,
+  horizontalSwipeEnabled: Boolean = true,
+  weekDaysScrollEnabled: Boolean = true,
+  calendarState: CalendarState<EmptySelectionState> = rememberCalendarState(),
+  dayContent: @Composable BoxScope.(DayState<EmptySelectionState>) -> Unit = { DefaultDay(it) },
+  monthHeader: @Composable ColumnScope.(MonthState) -> Unit = { DefaultMonthHeader(it) },
+  daysOfWeekHeader: @Composable BoxScope.(List<DayOfWeek>) -> Unit = { DefaultDaysOfWeekHeader(it) },
+  monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit = { content ->
     Box { content(PaddingValues()) }
   },
 ) {
@@ -141,10 +143,11 @@ public fun StaticCalendar(
     today = today,
     showAdjacentMonths = showAdjacentMonths,
     horizontalSwipeEnabled = horizontalSwipeEnabled,
+    weekDaysScrollEnabled = weekDaysScrollEnabled,
     calendarState = calendarState,
     dayContent = dayContent,
     monthHeader = monthHeader,
-    weekHeader = weekHeader,
+    daysOfWeekHeader = daysOfWeekHeader,
     monthContainer = monthContainer
   )
 }
@@ -163,28 +166,28 @@ public fun StaticCalendar(
  * @param calendarState state of the composable
  * @param dayContent composable rendering the current day
  * @param monthHeader header for showing the current month and controls for changing it
- * @param weekHeader header for showing captions for each day of week
+ * @param daysOfWeekHeader header for showing captions for each day of week
  * @param monthContainer container composable for all the days in current month
  */
-@ExperimentalCoroutinesApi
 @Composable
 public fun <T : SelectionState> Calendar(
-    calendarState: CalendarState<T>,
-    modifier: Modifier = Modifier,
-    firstDayOfWeek: DayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek,
-    today: LocalDate = LocalDate.now(),
-    showAdjacentMonths: Boolean = true,
-    horizontalSwipeEnabled: Boolean = true,
-    dayContent: @Composable BoxScope.(DayState<T>) -> Unit = { DefaultDay(it) },
-    monthHeader: @Composable ColumnScope.(MonthState) -> Unit = { DefaultMonthHeader(it) },
-    weekHeader: @Composable BoxScope.(List<DayOfWeek>) -> Unit = { DefaultWeekHeader(it) },
-    monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit = { content ->
+  calendarState: CalendarState<T>,
+  modifier: Modifier = Modifier,
+  firstDayOfWeek: DayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek,
+  today: LocalDate = LocalDate.now(),
+  showAdjacentMonths: Boolean = true,
+  horizontalSwipeEnabled: Boolean = true,
+  weekDaysScrollEnabled: Boolean = true,
+  dayContent: @Composable BoxScope.(DayState<T>) -> Unit = { DefaultDay(it) },
+  monthHeader: @Composable ColumnScope.(MonthState) -> Unit = { DefaultMonthHeader(it) },
+  daysOfWeekHeader: @Composable BoxScope.(List<DayOfWeek>) -> Unit = { DefaultDaysOfWeekHeader(it) },
+  monthContainer: @Composable (content: @Composable (PaddingValues) -> Unit) -> Unit = { content ->
     Box { content(PaddingValues()) }
   },
 ) {
-
+  val initialMonth = remember { calendarState.monthState.currentMonth }
   val daysOfWeek = remember(firstDayOfWeek) {
-    DayOfWeek.values().rotateRight(DaysOfWeek - firstDayOfWeek.ordinal)
+    DayOfWeek.values().rotateRight(DaysInAWeek - firstDayOfWeek.ordinal)
   }
 
   Column(
@@ -193,24 +196,28 @@ public fun <T : SelectionState> Calendar(
     monthHeader(calendarState.monthState)
     if (horizontalSwipeEnabled) {
       MonthPager(
+        initialMonth = initialMonth,
         showAdjacentMonths = showAdjacentMonths,
         monthState = calendarState.monthState,
         selectionState = calendarState.selectionState,
         today = today,
+        weekDaysScrollEnabled = weekDaysScrollEnabled,
         daysOfWeek = daysOfWeek,
         dayContent = dayContent,
-        weekHeader = weekHeader,
+        weekHeader = daysOfWeekHeader,
         monthContainer = monthContainer,
       )
     } else {
       MonthContent(
+        modifier = Modifier.fillMaxWidth(),
         currentMonth = calendarState.monthState.currentMonth,
         showAdjacentMonths = showAdjacentMonths,
         selectionState = calendarState.selectionState,
         today = today,
+        weekDaysScrollEnabled = weekDaysScrollEnabled,
         daysOfWeek = daysOfWeek,
         dayContent = dayContent,
-        weekHeader = weekHeader,
+        weekHeader = daysOfWeekHeader,
         monthContainer = monthContainer,
       )
     }
@@ -223,23 +230,29 @@ public fun <T : SelectionState> Calendar(
  * @param initialMonth initially rendered month
  * @param initialSelection initial selection of the composable
  * @param initialSelectionMode initial mode of the selection
- * @param onSelectionChanged callback for side effects triggered when the selection state changes
+ * @param confirmSelectionChange callback for optional side-effects handling and vetoing the state change
+ * @param minMonth first month that can be shown
+ * @param maxMonth last month that can be shown
  */
 @Composable
 public fun rememberSelectableCalendarState(
-    initialMonth: YearMonth = YearMonth.now(),
-    initialSelection: List<LocalDate> = emptyList(),
-    initialSelectionMode: SelectionMode = SelectionMode.Single,
-    onSelectionChanged: (List<LocalDate>) -> Unit = {},
-    monthState: MonthState = rememberSaveable(saver = MonthState.Saver()) {
-    MonthState(initialMonth = initialMonth)
-  },
-    selectionState: DynamicSelectionState = rememberSaveable(
-    saver = DynamicSelectionState.Saver(
-      onSelectionChanged
+  initialMonth: YearMonth = YearMonth.now(),
+  minMonth: YearMonth = initialMonth.minusMonths(DefaultCalendarPagerRange),
+  maxMonth: YearMonth = initialMonth.plusMonths(DefaultCalendarPagerRange),
+  initialSelection: List<LocalDate> = emptyList(),
+  initialSelectionMode: SelectionMode = SelectionMode.Single,
+  confirmSelectionChange: (newValue: List<LocalDate>) -> Boolean = { true },
+  monthState: MonthState = rememberSaveable(saver = MonthState.Saver()) {
+    MonthState(
+      initialMonth = initialMonth,
+      minMonth = minMonth,
+      maxMonth = maxMonth
     )
+  },
+  selectionState: DynamicSelectionState = rememberSaveable(
+    saver = DynamicSelectionState.Saver(confirmSelectionChange),
   ) {
-    DynamicSelectionState(onSelectionChanged, initialSelection, initialSelectionMode)
+    DynamicSelectionState(confirmSelectionChange, initialSelection, initialSelectionMode)
   },
 ): CalendarState<DynamicSelectionState> = remember { CalendarState(monthState, selectionState) }
 
@@ -247,11 +260,21 @@ public fun rememberSelectableCalendarState(
  * Helper function for providing a [CalendarState] implementation without a selection mechanism.
  *
  * @param initialMonth initially rendered month
+ * @param minMonth first month that can be shown
+ * @param maxMonth last month that can be shown
  */
 @Composable
 public fun rememberCalendarState(
   initialMonth: YearMonth = YearMonth.now(),
+  minMonth: YearMonth = initialMonth.minusMonths(DefaultCalendarPagerRange),
+  maxMonth: YearMonth = initialMonth.plusMonths(DefaultCalendarPagerRange),
   monthState: MonthState = rememberSaveable(saver = MonthState.Saver()) {
-    MonthState(initialMonth = initialMonth)
+    MonthState(
+      initialMonth = initialMonth,
+      minMonth = minMonth,
+      maxMonth = maxMonth
+    )
   },
 ): CalendarState<EmptySelectionState> = remember { CalendarState(monthState, EmptySelectionState) }
+
+internal const val DefaultCalendarPagerRange = 10_000L

@@ -122,9 +122,17 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+//-------------------------------------------------------------
+// The feature "context receivers" is experimental and should be enabled explicitly
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            freeCompilerArgs = freeCompilerArgs + "-Xcontext-receivers"
+        }
+    }
+//-------------------------------------------------------------
 }
-
 dependencies {
+    implementation( libs.dev.chrisbanes.snapper.snapper)    //??????
     // /////////////
     // UI SUPPORT
     // ////
