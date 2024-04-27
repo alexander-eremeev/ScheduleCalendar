@@ -360,10 +360,10 @@ fun Sch500RecipeDay(
 
   Card(
     modifier = modifier
-      .aspectRatio(0.7f)
+      .aspectRatio(0.6f)
       .padding(2.dp),
 //    elevation = if (state.isFromCurrentMonth) 4.dp else 0.dp,
-    border = if (state.isCurrentDay) BorderStroke(1.dp, MaterialTheme.colorScheme.primary) else null,
+    border = if (state.isCurrentDay) BorderStroke(3.dp, MaterialTheme.colorScheme.primary) else null,
     /*
       colors = if (isSelected) MaterialTheme.colorScheme.secondary
             else contentColorFor( backgroundColor = MaterialTheme.colorScheme.surface
@@ -392,7 +392,7 @@ fun Sch500RecipeDay(
       horizontalAlignment = Alignment.CenterHorizontally,
     ) {
       Text(
-        fontSize = 25.sp,
+        fontSize = 20.sp,
         fontWeight= FontWeight.Bold,
 //        Style= MaterialTheme.typography.subtitle2   ,
 
@@ -409,7 +409,7 @@ fun Sch500RecipeDay(
           text = String.format("%2d",(getShift500(date,1)).toInt())
                   +" / "
                   +String.format("%2d",(getShift500(date,2)).toInt()),
-          fontSize = 17.sp,
+          fontSize = 12.sp,
 //            fontWeight= FontWeight.Bold,
           style = MaterialTheme.typography.bodyMedium,
         )
@@ -418,7 +418,7 @@ fun Sch500RecipeDay(
           text = String.format("%2d",(getShift500(date,3)).toInt())
                   +" / "
                   +String.format("%2d",(getShift500(date,4)).toInt()),
-          fontSize = 17.sp,
+          fontSize = 12.sp,
 //            fontWeight= FontWeight.Bold,
             style = MaterialTheme.typography.bodyMedium,
         )

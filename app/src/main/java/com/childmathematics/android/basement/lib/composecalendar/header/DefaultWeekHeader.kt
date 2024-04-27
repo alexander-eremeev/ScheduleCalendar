@@ -10,6 +10,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.runtime.Composable
@@ -68,7 +70,7 @@ private fun DecrementButton(
     onClick = { weekState.currentWeek = weekState.currentWeek.dec() }
   ) {
     Image(
-      imageVector = Icons.Default.KeyboardArrowLeft,
+      imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
       colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
       contentDescription = "Previous",
     )
@@ -85,7 +87,7 @@ private fun IncrementButton(
     onClick = { monthState.currentWeek = monthState.currentWeek.inc() }
   ) {
     Image(
-      imageVector = Icons.Default.KeyboardArrowRight,
+      imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
       colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
       contentDescription = "Next",
     )

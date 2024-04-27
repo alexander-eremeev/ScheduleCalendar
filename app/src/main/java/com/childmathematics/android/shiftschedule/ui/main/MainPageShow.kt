@@ -1,6 +1,7 @@
 package com.childmathematics.android.shiftschedule.ui.main
 
 //import androidx.compose.foundation.layout.*
+//import com.childmathematics.android.basement.lib.composecalendar.header.NameMonthRus
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
@@ -25,13 +26,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.childmathematics.android.basement.lib.ads.yandex.mYaInterstitialAdOnOff
-//import com.childmathematics.android.basement.lib.composecalendar.header.NameMonthRus
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
 import com.childmathematics.android.shiftschedule.util.bannerHightWithVideoMin
 import java.time.LocalDate
+import java.time.format.TextStyle
+import java.util.Locale
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -47,8 +49,6 @@ fun MainPageShow() {
             changeHightDp = screenHeightDp-bannerHightWithVideoMin-bannerHightPlus
         else changeHightDp = screenHeightDp-bannerHightMin-bannerHightPlus
     }
-//    Surface(elevation = 8.dp, shape = RoundedCornerShape(12.dp)) {
-//    Box(contentAlignment = Alignment.BottomStart, modifier = Modifier
     Box(contentAlignment = Alignment.TopStart,
             modifier = Modifier
                 .background(Color.LightGray)
@@ -56,14 +56,13 @@ fun MainPageShow() {
                 .size((LocalConfiguration.current.screenWidthDp).dp, changeHightDp.dp)
     ) {
         Image(
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.FillWidth,
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 ,
-            painter = painterResource(id = R.drawable.carpenterworks_1280),
+            painter =  painterResource(id = R.drawable.carpenterworks_1280),
             contentDescription = null
         )
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -76,15 +75,17 @@ fun MainPageShow() {
                 modifier = Modifier
                     .align(End),
             )
-            Text(
-                text = LocalDate.now().monthValue.toString(),
-//                text = NameMonthRus(LocalDate.now().monthValue),
-                fontWeight = FontWeight.Bold,
-                fontSize = 30.sp,
-                modifier = Modifier
-                    .align(End),
-            )
-            //NameMonthRus(monthNumber: Int)
+            LocalDate.now().month
+                .getDisplayName(TextStyle.FULL_STANDALONE, Locale.getDefault())?.let {
+                    Text(
+                        text = it
+                            .lowercase(),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 50.sp,
+                        modifier = Modifier
+                            .align(End),
+                    )
+                }
             Text(
                 text = String.format("%2d",LocalDate.now().dayOfMonth),
                 fontWeight = FontWeight.Bold,
@@ -92,29 +93,18 @@ fun MainPageShow() {
                 modifier = Modifier
                 .align(End),
             )
-            Text(
-                text = getDayMonthTodayText (),
-                fontWeight = FontWeight.Bold,
-                fontSize = 30.sp,
-                modifier = Modifier
-                    .align(End),
-            )
+            LocalDate.now().dayOfWeek
+                .getDisplayName(TextStyle.FULL_STANDALONE, Locale.getDefault())?.let {
+                    Text(
+                        text = it
+                            .lowercase(),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 50.sp,
+                        modifier = Modifier
+                            .align(End),
+                    )
+                }
         }
   }
 }
-@RequiresApi(Build.VERSION_CODES.O)
-fun getDayMonthTodayText ():String
-{
-    val day: Int =LocalDate.now().dayOfWeek.value
-    when (day) {
-        1 -> return "понедельник"
-        2 -> return "вторник"
-        3 -> return "среда"
-        4 -> return "четверг"
-        5 -> return "пятница"
-        6 -> return "суббота"
-        7 -> return "воскресенье"
-    }
-    if (day > 7 || day<1) {return "Error"}
-    return "Error"
-}
+

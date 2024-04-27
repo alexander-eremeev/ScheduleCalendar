@@ -28,7 +28,7 @@
 name="schedule01_title">График прерывный, односменный, 8 часовой с выходными днями суббота,воскресенье (В РАЗРАБОТКЕ)
     -->
     <string name="schedule01_title">График односменный, 8 часовой с выходными днями СБ и ВС</string>
-    <string name="schedule01_titlemidle">График односменный, 8 час. с выходными днями СБ и ВС</string>
+    <string name="schedule01_titlemidle">График односменный,8 час. с выходн. СБ и ВС</string>
     <string name="schedule01_titleshort">5x2(сб,вс)</string>
     <string name="schedule500_title">График 12 часовой,4-х бригадный,2-х сменный</string>
     <string name="schedule500_titleshort">12х4x2</string>

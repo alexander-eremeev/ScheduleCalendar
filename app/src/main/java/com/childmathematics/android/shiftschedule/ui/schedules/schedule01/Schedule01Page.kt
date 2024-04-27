@@ -41,6 +41,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -245,22 +247,21 @@ fun Sch01RecipeDay(
     modifier = modifier
         .aspectRatio(1f)
       .padding(2.dp),
-//    elevation = if (state.isFromCurrentMonth) CardElevation(4.dp) else CardElevation(0.dp),
-      elevation =    CardDefaults.cardElevation(4.dp),
-
-//              elevation = if (state.isFromCurrentMonth) CardElevation(4.Dp,4.Dp,4.Dp,4.Dp,4.Dp,4.Dp)
-//2                    else CardElevation(0.dp,0.dp,0.dp,0.dp,0.dp,0.dp),
-//      elevation = if (state.isFromCurrentMonth) 4.dp else 0.dp,
-    border = if (state.isCurrentDay){ BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
-//      if (state.isCurrentDay){ BorderStroke(2.dp, MaterialTheme.colors.primary)
-                } else if (state.isCurrentDay && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
-                    BorderStroke(2.dp, MaterialTheme.colorScheme.error)
-                else if (state.isFromCurrentMonth && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
-//                    BorderStroke(1.dp, MaterialTheme.colors.error)
+    border = if (state.isCurrentDay && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
+                        BorderStroke(3.dp, MaterialTheme.colorScheme.error)
+            else if(state.isCurrentDay){ BorderStroke(3.dp, MaterialTheme.colorScheme.primary)}
+            else if (state.isFromCurrentMonth && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
                             BorderStroke(1.dp, MaterialTheme.colorScheme.error)
-//        else if (date.dayOfWeek.value==6 || date.dayOfWeek.value==7) BorderStroke(1.dp,
-//      if (state.isCurrentDay){ BorderStroke(2.dp, MaterialTheme.colors.primary)
-        else null,
+            else null,
+//      colors = if (state.isCurrentDay) CardColors.Blue,
+      /*
+      colors = CardDefaults.cardColors(
+          containerColor = Color.Blue, //Card background color
+//          contentColor = Color.White  //Card content color,e.g.text
+      ),
+
+       */
+
       /*
     contentColor = if (isSelected) MaterialTheme.colors.secondary else contentColorFor(
       backgroundColor = MaterialTheme.colors.surface
@@ -292,7 +293,7 @@ fun Sch01RecipeDay(
     ) {
             Text(
 //                modifier = Modifier.background(androidx.compose.ui.graphics.Color.Red, CircleShape),
-                fontSize = 25.sp,       //15.sp
+                fontSize = 20.sp,       //15.sp
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 text = date.dayOfMonth.toString(),
@@ -322,7 +323,7 @@ fun Sch01RecipeDay(
                 text = //String.format("%2d",(getShift01(date)).toInt())
 //                  +" / "+
                 String.format("%2d", (getShift01(date)).toInt()),
-                fontSize = 20.sp,
+                fontSize = 15.sp,
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
