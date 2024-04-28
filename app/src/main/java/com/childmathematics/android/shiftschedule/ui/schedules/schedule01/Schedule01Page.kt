@@ -1,6 +1,7 @@
 package com.childmathematics.android.shiftschedule.ui.schedules.schedule01
 
 import android.os.Build
+import android.provider.Settings.System.getString
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -24,6 +25,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 //import androidx.compose.material.*
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
 import androidx.compose.material3.MaterialTheme
@@ -46,6 +48,7 @@ import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -64,6 +67,7 @@ import com.childmathematics.android.basement.lib.composecalendar.selection.Dynam
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode.Period
 import com.childmathematics.android.shiftschedule.BuildConfig
+import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.util.DialogButtonOK
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
@@ -86,6 +90,7 @@ import java.time.*
   fun Schedule01Page(currentDialog: Boolean) {
 //===========================================================================
     val viewModel = remember { Sch01RecipeViewModel() }
+
     var showDialog by rememberSaveable { mutableStateOf(false) }
     var changeDp: Dp
     val state = rememberSelectableCalendarState(
@@ -108,6 +113,7 @@ import java.time.*
 //----------------------------------
     changeDp = 0.dp
 //=========================
+
     Box(
 //        contentAlignment = Alignment.TopStart,
         modifier = Modifier
@@ -173,13 +179,15 @@ import java.time.*
                         state.monthState.currentMonth.monthValue
                     ))
                 )
-                        + "\tраб.дн.\t"
+//                        + "\tраб.дн.\t" //schedule01_MonthWorkDays
+                        + stringResource(R.string.schedule01_MonthWorkDays)
                         + String.format(
                     "%4d", (getShift01Month(
                         state.monthState.currentMonth.year, state.monthState.currentMonth.monthValue
                     )).toInt()
                 )
-                        + "\tчас.\n",
+//                        + "\tчас.\n",  //schedule01_MonthWorkHours
+                          + stringResource(R.string.schedule01_MonthWorkHours),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
 
@@ -214,7 +222,8 @@ import java.time.*
             if (state.selectionState.selection.size == 0) {
                 Toast.makeText(
                     LocalContext.current,
-                    "Нет выделенных дат для расчета!! ",
+                     stringResource(R.string.schedule01_NoSelectedDays),
+//                    "Нет выделенных дат для расчета!! ", //schedule01_NoSelectedDays
                     Toast.LENGTH_LONG
                 ).show()
                 showDialog = !showDialog
@@ -240,10 +249,18 @@ fun Sch01RecipeDay(
 ) {
   val date = state.date
   val selectionState = state.selectionState
+    val  colorsCard : CardColors
 
   val isSelected = selectionState.isDateSelected(date)
 
-  Card(
+  if (state.isCurrentDay)
+        colorsCard = CardDefaults.cardColors(
+            containerColor = Color.Green, //Card background color
+            contentColor = Color.White  //Card content color,e.g.text
+        )
+    else colorsCard = CardDefaults.cardColors()
+
+      Card(
     modifier = modifier
         .aspectRatio(1f)
       .padding(2.dp),
@@ -253,22 +270,8 @@ fun Sch01RecipeDay(
             else if (state.isFromCurrentMonth && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
                             BorderStroke(1.dp, MaterialTheme.colorScheme.error)
             else null,
-//      colors = if (state.isCurrentDay) CardColors.Blue,
-      /*
-      colors = CardDefaults.cardColors(
-          containerColor = Color.Blue, //Card background color
-//          contentColor = Color.White  //Card content color,e.g.text
-      ),
-
-       */
-
-      /*
-    contentColor = if (isSelected) MaterialTheme.colors.secondary else contentColorFor(
-      backgroundColor = MaterialTheme.colors.surface
-    )
-
-       */
-  ) {
+      colors = colorsCard
+   ) {
     Column(
       modifier = Modifier
           .align(CenterHorizontally)
