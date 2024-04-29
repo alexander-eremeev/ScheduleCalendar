@@ -248,11 +248,11 @@ fun Sch01RecipeDay(
 ) {
   val date = state.date
   val selectionState = state.selectionState
-    var colorsCard : CardColors
+  var colorsCard : CardColors
 
   val isSelected = selectionState.isDateSelected(date)
 
-    colorsCard = CardDefaults.cardColors()
+  colorsCard = CardDefaults.cardColors()
   if (state.isCurrentDay)
         colorsCard = CardDefaults.cardColors(
             containerColor = Color.Green, //Card background color
@@ -261,9 +261,7 @@ fun Sch01RecipeDay(
     if (isSelected)
         colorsCard = CardDefaults.cardColors(
             containerColor = Color.Cyan, //Card background color
-//            contentColor = Color.White  //Card content color,e.g.text
         )
-  //  else colorsCard = CardDefaults.cardColors()
 
       Card(
           onClick = {selectionState.onDateSelected(date)},
@@ -282,7 +280,6 @@ fun Sch01RecipeDay(
     Column(
       modifier = Modifier
           .align(CenterHorizontally)
-          /*
           //====================================================
           // фиксация нажатия экрана для сдвига паказа рекламы
           .pointerInput(Unit) {
@@ -295,9 +292,6 @@ fun Sch01RecipeDay(
                */
           }
           //--------------------------------------------------
-
-           */
-
           .clickable (true){
                         selectionState.onDateSelected(date)
       }
@@ -314,18 +308,6 @@ fun Sch01RecipeDay(
 
             )
         if (date.dayOfWeek.value==6 || date.dayOfWeek.value==7) {
-/*
-            Box(
-                modifier = Modifier
-                    .padding(3.dp)
-                    .size(10.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colors.error)   //
-//            .background(MaterialTheme.colors.secondary)   // blue
-//            .background(MaterialTheme.colors.error)     // red
-//            .background(Resources.Theme.ShiftCalendar.colors.)     // red
-            )
-*/
             Text(
                 text = "",
             )
