@@ -173,8 +173,7 @@ import java.time.*
             )
             Spacer(modifier = Modifier.height(20.dp))
             Text(
-                        ""+ String.format(
-                    "%4d", (getShift01WorkDayMonth(
+                        ""+ String.format("%4d", (getShift01WorkDayMonth(
                         state.monthState.currentMonth.year,
                         state.monthState.currentMonth.monthValue
                     ))
@@ -214,7 +213,7 @@ import java.time.*
 */
         if (currentDialog != showDialog) {
 
-            if (!state.selectionState.selection.isEmpty()) {
+            if (state.selectionState.selection.isNotEmpty()) {
                 DialogSchedule01(state.selectionState.selection) {
                     showDialog = !showDialog
                 }
@@ -223,7 +222,7 @@ import java.time.*
                 Toast.makeText(
                     LocalContext.current,
                      stringResource(R.string.schedule01_NoSelectedDays),
-//                    "Нет выделенных дат для расчета!! ", //schedule01_NoSelectedDays
+//                    "Нет выделенных дат для расчета!! ",
                     Toast.LENGTH_LONG
                 ).show()
                 showDialog = !showDialog
@@ -249,21 +248,29 @@ fun Sch01RecipeDay(
 ) {
   val date = state.date
   val selectionState = state.selectionState
-    val  colorsCard : CardColors
+    var colorsCard : CardColors
 
   val isSelected = selectionState.isDateSelected(date)
 
+    colorsCard = CardDefaults.cardColors()
   if (state.isCurrentDay)
         colorsCard = CardDefaults.cardColors(
             containerColor = Color.Green, //Card background color
             contentColor = Color.White  //Card content color,e.g.text
         )
-    else colorsCard = CardDefaults.cardColors()
+    if (isSelected)
+        colorsCard = CardDefaults.cardColors(
+            containerColor = Color.Cyan, //Card background color
+//            contentColor = Color.White  //Card content color,e.g.text
+        )
+  //  else colorsCard = CardDefaults.cardColors()
 
       Card(
+          onClick = {selectionState.onDateSelected(date)},
     modifier = modifier
         .aspectRatio(1f)
       .padding(2.dp),
+          enabled = true,
     border = if (state.isCurrentDay && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
                         BorderStroke(3.dp, MaterialTheme.colorScheme.error)
             else if(state.isCurrentDay){ BorderStroke(3.dp, MaterialTheme.colorScheme.primary)}
@@ -275,6 +282,7 @@ fun Sch01RecipeDay(
     Column(
       modifier = Modifier
           .align(CenterHorizontally)
+          /*
           //====================================================
           // фиксация нажатия экрана для сдвига паказа рекламы
           .pointerInput(Unit) {
@@ -288,7 +296,9 @@ fun Sch01RecipeDay(
           }
           //--------------------------------------------------
 
-          .clickable {
+           */
+
+          .clickable (true){
                         selectionState.onDateSelected(date)
       }
         ,
