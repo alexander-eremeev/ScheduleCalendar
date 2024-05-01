@@ -32,7 +32,7 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "8.3.2"
+agp = "8.4.0"
 #---???????????????????
 jetbrainsKotlin = "1.9.23"                  #agp
 googleAccompanist = "0.32.0"
