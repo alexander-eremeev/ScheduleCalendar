@@ -6,9 +6,15 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigation
 import androidx.navigation.navDeepLink
+import com.childmathematics.android.basement.lib.composecalendar.CalendarState
+import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
+import com.childmathematics.android.shiftschedule.ui.help.aboutpage.helpAboutGraph
+import com.childmathematics.android.shiftschedule.ui.help.graphicspage.helpGraphicsGraph
+import com.childmathematics.android.shiftschedule.ui.help.mainpage.helpMainPageGraph
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.schedule01SummingPageGraph
 
 const val SCHEDULE01_GRAPH_ROUTE = "schedule01_graph"
 private const val SCHEDULE01_DEEPLINK ="$ROOT_DEEPLINK/schedule01.html"
@@ -30,7 +36,13 @@ fun NavGraphBuilder.schedule01PageGraph(
     openDrawer: () -> Unit ,
     onOpenDrawer: Boolean ,
     ) {
-     navigation(startDestination = SCHEDULE01_PAGE_ROUTE,
+    // =====================================
+    val staten: CalendarState<DynamicSelectionState>
+
+    schedule01SummingPageGraph(navController)
+    // =====================================
+
+    navigation(startDestination = SCHEDULE01_PAGE_ROUTE,
         route = SCHEDULE01_GRAPH_ROUTE,
         deepLinks = listOf(
             navDeepLink { uriPattern = SCHEDULE01_DEEPLINK }
@@ -42,6 +54,7 @@ fun NavGraphBuilder.schedule01PageGraph(
     popExitTransition = { screenFadeOut() },
 
     ){
+
         schedule01PageScreen(
             navController,
             modifier,

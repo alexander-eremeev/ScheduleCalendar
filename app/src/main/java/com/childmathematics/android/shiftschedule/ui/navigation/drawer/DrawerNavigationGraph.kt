@@ -22,6 +22,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
+import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.ui.about.AboutPageScreen
 import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
 import com.childmathematics.android.shiftschedule.ui.about.aboutPageScreen
@@ -33,6 +35,7 @@ import com.childmathematics.android.shiftschedule.ui.navigation.drawer.component
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageScreen
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.navigateToSchedule01SummingPageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.Schedule500PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageScreen
@@ -130,8 +133,17 @@ fun DrawerNavigationGraph(
          */
 //            Schedule01Sample(true)
 //            Schedule01PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
-            Schedule01PageScreen(modifier,onBackClick={},
-                onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
+            val state = rememberSelectableCalendarState(
+//.        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
+//        confirmSelectionChange = viewModel::onSelectionChanged, //SelectionMode
+
+                initialSelectionMode = SelectionMode.Period,
+            )
+            Schedule01PageScreen(modifier,onBackClick={navController.popBackStack()},
+                onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
+                navigateToSchedule01SummingPage = {navController.navigateToSchedule01SummingPageGraph()},
+                state
+            )
 /*            schedule01PageScreen(navController,modifier,
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
  */

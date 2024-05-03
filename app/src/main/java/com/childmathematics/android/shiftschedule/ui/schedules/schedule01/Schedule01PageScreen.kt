@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
+import androidx.compose.material.icons.automirrored.filled.ViewList
 import androidx.compose.material.icons.filled.AppRegistration
 import androidx.compose.material.icons.filled.LocalPolice
 import androidx.compose.material.icons.filled.Menu
@@ -30,9 +31,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.childmathematics.android.basement.lib.composecalendar.CalendarState
+import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
+import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
+import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
@@ -45,6 +52,8 @@ internal fun Schedule01PageScreen(
     onBackClick: () -> Unit,
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
+    navigateToSchedule01SummingPage: () -> Unit,
+    state: CalendarState<DynamicSelectionState>,
 
     /*
     navigateToHelpSchedule01Page: () -> Unit,
@@ -53,6 +62,16 @@ internal fun Schedule01PageScreen(
      */
     viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
+    /*
+    val state = rememberSelectableCalendarState(
+//.        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
+//        confirmSelectionChange = viewModel::onSelectionChanged, //SelectionMode
+
+        initialSelectionMode = SelectionMode.Period,
+    )
+
+     */
+
     ScheduleCalendarTheme {
         /*
  Собирает значения из этого StateFlow и представляет его последнее значение через State. StateFlow.value
@@ -86,6 +105,8 @@ internal fun Schedule01PageScreen(
                     onOpenDrawer,
                     openDrawer,
                     onBackClick,scrollBehavior,
+                    navigateToSchedule01SummingPage = navigateToSchedule01SummingPage,
+
                     /*
                     navigateToHelpSchedule01Page,
                     navigateToHelpGraphicsPage,
@@ -99,7 +120,7 @@ internal fun Schedule01PageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
-                    Schedule01Page(true)
+                    Schedule01Page(true,state)
                   }
             },
         )
@@ -113,12 +134,14 @@ private fun Schedule01PageTopAppBar(
     openDrawer: () -> Unit,
       onBackClick: () -> Unit,
       scrollBehavior: TopAppBarScrollBehavior,
-      /*
-      navigateToHelpSchedule01Page: () -> Unit,
-      navigateToHelpGraphicsPage: () -> Unit,
-      navigateToHelpAboutPage: () -> Unit
+    navigateToSchedule01SummingPage: () -> Unit,
 
-       */
+    /*
+    navigateToHelpSchedule01Page: () -> Unit,
+    navigateToHelpGraphicsPage: () -> Unit,
+    navigateToHelpAboutPage: () -> Unit
+
+     */
 ) {
     CenterAlignedTopAppBar(
         title = {
@@ -137,33 +160,32 @@ private fun Schedule01PageTopAppBar(
             }
         },
         scrollBehavior = scrollBehavior,
-        /*
+
         actions = {
-            HelpMenu( navigateToHelpSchedule01Page,
-                navigateToHelpGraphicsPage,
-                navigateToHelpAboutPage,
+            Schedule01PageMenu(
+                navigateToSchedule01SummingPage = navigateToSchedule01SummingPage,
             )
         },
 
-         */
+
         modifier = Modifier.fillMaxWidth()
     )
 }
 //-------------------------
 @Composable
 private fun Schedule01PageMenu(
+    navigateToSchedule01SummingPage: () -> Unit,
     /*
-    navigateToHelpSchedule01Page: () -> Unit,
-    navigateToHelpGraphicsPage: () -> Unit,
-    navigateToHelpAboutPage: () -> Unit,
+navigateToHelpGraphicsPage: () -> Unit,
+navigateToHelpAboutPage: () -> Unit,
 
-     */
+ */
 ) {
     Schedule01PageTopAppBarDropdownMenu(
         iconContent = {
             Icon(
                 Icons.Default.MoreVert,
-                stringResource(id = R.string.help_menu)
+                stringResource(id = R.string.schedule01_SummingSelectedDays)
             )
         }
     )
@@ -171,15 +193,16 @@ private fun Schedule01PageMenu(
     { closeMenu ->
 
         DropdownMenuItem(
-            leadingIcon = {Icon(imageVector = Icons.AutoMirrored.Filled.Help, contentDescription = null)}
+//            leadingIcon = {Icon(imageVector = Icons.AutoMirrored.Filled.ViewList, contentDescription = null)}
+            leadingIcon = { Icon(painter = painterResource(R.drawable.functions_24px) , contentDescription =null )}
             ,
             onClick = {
-//                navigateToHelpSchedule01Page()
-                //            WebViewSchedule01Screen("file:///android_asset/help.html");
+                navigateToSchedule01SummingPage()
                 closeMenu()
             },
-            text = { Text(text = stringResource(id = R.string.help_mainPage)) }
+            text = { Text(text = stringResource(id = R.string.schedule01_SummingSelectedDays)) }
         )
+        /*
         DropdownMenuItem(
             leadingIcon = {Icon(imageVector = Icons.Filled.AppRegistration, contentDescription = null)}
             ,
@@ -189,15 +212,7 @@ private fun Schedule01PageMenu(
             },
             text = { Text(text = stringResource(id = R.string.help_Graphics)) }
         )
-        DropdownMenuItem(
-            leadingIcon = {Icon(imageVector = Icons.Filled.LocalPolice, contentDescription = null)}
-            ,
-            onClick = {
-//                navigateToHelpAboutPage()
-                closeMenu()
-            },
-            text = { Text(text = stringResource(id = R.string.help_About)) }
-        )
+         */
     }
 
 

@@ -1,10 +1,12 @@
 package com.childmathematics.android.shiftschedule.ui.schedules.schedule01
 
-import android.os.Build
-import android.provider.Settings.System.getString
+//import androidx.compose.foundation.*
+//import androidx.compose.foundation.layout.*
+//import androidx.compose.material.*
+//import androidx.compose.runtime.*
+//import com.childmathematics.android.basement.lib.ads.util.detectTapAndPressUnconsumed
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,15 +21,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
-//import androidx.compose.foundation.*
-//import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-//import androidx.compose.material.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
@@ -36,30 +34,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-//import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.ViewModel
-//import com.childmathematics.android.basement.lib.ads.util.detectTapAndPressUnconsumed
+import com.childmathematics.android.basement.lib.composecalendar.CalendarState
 import com.childmathematics.android.basement.lib.composecalendar.SelectableCalendar
 import com.childmathematics.android.basement.lib.composecalendar.day.DayState
 import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
@@ -74,7 +66,7 @@ import com.childmathematics.android.shiftschedule.util.bannerHightPlus
 import com.childmathematics.android.shiftschedule.util.bannerHightWithVideoMin
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
-import java.time.*
+import java.time.LocalDate
 
 
 /**
@@ -84,21 +76,22 @@ import java.time.*
  */
 
 
-@RequiresApi(Build.VERSION_CODES.O)
 @ExperimentalCoroutinesApi
 @Composable
-  fun Schedule01Page(currentDialog: Boolean) {
+  fun Schedule01Page(currentDialog: Boolean,  state: CalendarState<DynamicSelectionState>)
+{
 //===========================================================================
     val viewModel = remember { Sch01RecipeViewModel() }
 
     var showDialog by rememberSaveable { mutableStateOf(false) }
     var changeDp: Dp
-    val state = rememberSelectableCalendarState(
+/*  val state = rememberSelectableCalendarState(
 //.        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
 //        confirmSelectionChange = viewModel::onSelectionChanged, //SelectionMode
 
         initialSelectionMode = Period,
     )
+ */
     //------------------------
     var changeHightDp: Int
     var screenHeightDp: Int
@@ -211,6 +204,7 @@ import java.time.*
        )
    }
 */
+        /*
         if (currentDialog != showDialog) {
 
             if (state.selectionState.selection.isNotEmpty()) {
@@ -229,6 +223,9 @@ import java.time.*
             }
 
         }
+
+         */
+
     }
 //--------------------------
 }
@@ -239,7 +236,6 @@ import java.time.*
  * Пользовательская реализация DayContent,
  * которая показывает точку, если на этот день запланирован рецепт.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Sch01RecipeDay(
     state: DayState<DynamicSelectionState>,
@@ -253,12 +249,13 @@ fun Sch01RecipeDay(
   val isSelected = selectionState.isDateSelected(date)
 
   colorsCard = CardDefaults.cardColors()
-  if (state.isCurrentDay)
-        colorsCard = CardDefaults.cardColors(
+
+if (state.isCurrentDay)
+      colorsCard = CardDefaults.cardColors(
             containerColor = Color.Green, //Card background color
             contentColor = Color.White  //Card content color,e.g.text
         )
-    if (isSelected)
+if (isSelected)
         colorsCard = CardDefaults.cardColors(
             containerColor = Color.Cyan, //Card background color
         )
@@ -351,18 +348,14 @@ private fun SelectionControls(
     }
   }
 }
-
 data class Sch01PlannedRecipe(
   val date: LocalDate,
   val price: Double,
 )
-
 /**
  * ViewModel exposing list of our recipes
  */
 class Sch01RecipeViewModel : ViewModel() {
-
-
   private val selectionFlow = MutableStateFlow(emptyList<LocalDate>())
 /*
   val recipesFlow = MutableStateFlow(
@@ -388,16 +381,12 @@ fun onSelectionChanged(selection: List<LocalDate>) {
 //      )
     }
   }
-
-
 //============================
-
   }
 }
 //====================================================================
 // расчет основного рабочего времени по дате по номеру бригады
 //==============================================
-@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01 (dateforCalc: LocalDate):Double
 {
   val shift : Int
@@ -417,7 +406,6 @@ fun getShift01 (dateforCalc: LocalDate):Double
 //====================================================================
 // расчет основного времени до выбранной даты
 //==============================================
-@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01Select (selection: List<LocalDate>):Double {
   var summ: Double =getShift01(selection[selection.lastIndex] )
   for (i in selection.lastIndex downTo 0 step 1) {
@@ -428,7 +416,6 @@ fun getShift01Select (selection: List<LocalDate>):Double {
 //====================================================================
 // расчет рабочих дней до конца месяца
 //==============================================
-@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01WorkDayMonth (year: Int, month: Int):Int {
   var monthW: Int=month+1
   var yearW: Int=year
@@ -447,7 +434,6 @@ fun getShift01WorkDayMonth (year: Int, month: Int):Int {
 //====================================================================
 // расчет основного времени до выбранной даты
 //==============================================
-@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01Month (year: Int, month: Int):Double {
     var monthW: Int=month+1
     var yearW: Int=year
@@ -467,7 +453,6 @@ fun getShift01Month (year: Int, month: Int):Double {
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады с начала месяца
 //==============================================
-@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01MonthDateDays (datecalc: LocalDate):Int {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= datecalc
@@ -477,16 +462,12 @@ fun getShift01MonthDateDays (datecalc: LocalDate):Int {
     for (i in dateforCalc.dayOfMonth-1 downTo 1 step 1) {
         if (getShift01(dateforCalc.minusDays(i.toLong())) >0.0)
             summDays  +=1
-
     }
     return summDays
 }
-
-
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады с начала месяца
 //==============================================
-@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01MonthDate (datecalc: LocalDate):Double {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= datecalc
@@ -500,7 +481,6 @@ fun getShift01MonthDate (datecalc: LocalDate):Double {
 //====================================================================
 // расчет основного времени между выбранной даты по номеру бригады с начала месяца
 //==============================================
-@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01Date1Date2 (date1: LocalDate, date2: LocalDate):Double {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= date2
@@ -514,7 +494,6 @@ fun getShift01Date1Date2 (date1: LocalDate, date2: LocalDate):Double {
 //====================================================================
 // расчет основного времени между выбранной даты по номеру бригады с начала месяца
 //==============================================
-@RequiresApi(Build.VERSION_CODES.O)
 fun getShift01Date1Date2Days (date1: LocalDate, date2: LocalDate):Int {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= date2
@@ -529,15 +508,17 @@ fun getShift01Date1Date2Days (date1: LocalDate, date2: LocalDate):Int {
     }
     return summDays
 }//====================================================================
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun DialogSchedule01(selection: List<LocalDate>,onDismiss: () -> Unit) {
+fun DialogSchedule01(selection: List<LocalDate>, onDismiss: Boolean) {
 
-
+/*
   Dialog(
     onDismissRequest = onDismiss,
     properties = DialogProperties()
   ) {
+
+ */
+
     Surface(tonalElevation = 8.dp, shape = RoundedCornerShape(12.dp)) {
       Column(
         modifier = Modifier
@@ -582,7 +563,7 @@ fun DialogSchedule01(selection: List<LocalDate>,onDismiss: () -> Unit) {
         modifier = Modifier.align(CenterHorizontally) ,
         fontSize = 20.sp,    )
 
-//------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
 
         Text(
             text = "\nС начала месяца:\n\t"
@@ -618,13 +599,15 @@ fun DialogSchedule01(selection: List<LocalDate>,onDismiss: () -> Unit) {
           modifier = Modifier.align(CenterHorizontally) ,
 //          textAlign= Center,
           fontSize = 20.sp,    )
-        //--------------------------------------------getShift01Date1Date2 (date1: LocalDate,date2: LocalDate------------------
+        //-------------------------getShift01Date1Date2 (date1: LocalDate,date2: LocalDate------------------
           Text(
               text = "\tОтработано:\n\t"
-                      +String.format("%4d",(getShift01Date1Date2Days(selection[0],selection[selection.lastIndex])))
+                      +String.format("%4d",(getShift01Date1Date2Days(selection[0],
+                                        selection[selection.lastIndex])))
                       +"\tраб.дн.\t"
 //                      + String.format("%4d",(getShift01MonthDate (selection[0],selection[selection.lastIndex]))
-                      +String.format("%5d",getShift01Date1Date2 (selection[0],selection[selection.lastIndex]).toInt())
+                      +String.format("%5d",getShift01Date1Date2 (selection[0],
+                                    selection[selection.lastIndex]).toInt())
                       +"\tчас."
               ,
               fontSize = 15.sp,    )
@@ -639,8 +622,8 @@ fun DialogSchedule01(selection: List<LocalDate>,onDismiss: () -> Unit) {
 
       }
         Spacer(modifier = Modifier.height(4.dp))
-        DialogButtonOK(onDismiss)
+ //     DialogButtonOK(onDismiss)
       }
     }
-  }
+//  }
 }

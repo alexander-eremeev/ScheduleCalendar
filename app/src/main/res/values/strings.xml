@@ -33,6 +33,7 @@ name="schedule01_title">График прерывный, односменный,
     <string name="schedule01_MonthWorkDays">\tраб.дн.\t</string>
     <string name="schedule01_MonthWorkHours">\tчас.\n</string>
     <string name="schedule01_NoSelectedDays">Нет выделенных дат для расчета!!</string>
+    <string name="schedule01_SummingSelectedDays">Расчет рабочих часов для выделенных дат</string>
 
     <string name="schedule500_title">График 12 часовой,4-х бригадный,2-х сменный</string>
     <string name="schedule500_titleshort">12х4x2</string>
