@@ -26,6 +26,7 @@ internal fun NavGraphBuilder.schedule01PageScreen(
      */
   ) {
     composable(route = SCHEDULE01_PAGE_ROUTE) {
+        /*
         val state = rememberSelectableCalendarState(
 //.        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
 //        confirmSelectionChange = viewModel::onSelectionChanged, //SelectionMode
@@ -33,12 +34,15 @@ internal fun NavGraphBuilder.schedule01PageScreen(
             initialSelectionMode = SelectionMode.Period,
         )
 
+         */
+
+
         Schedule01PageScreen(
             modifier,
             onBackClick = { navController.popBackStack()},
             onOpenDrawer = onOpenDrawer,openDrawer =openDrawer,
             navigateToSchedule01SummingPage = { navController.navigateToSchedule01SummingPageGraph()},
-            state,
+//            state,
 
             /*
             navigateToHelpMainPage ,

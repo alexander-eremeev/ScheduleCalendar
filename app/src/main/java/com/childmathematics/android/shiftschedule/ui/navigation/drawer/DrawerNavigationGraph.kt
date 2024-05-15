@@ -133,21 +133,12 @@ fun DrawerNavigationGraph(
          */
 //            Schedule01Sample(true)
 //            Schedule01PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
-            val state = rememberSelectableCalendarState(
-//.        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
-//        confirmSelectionChange = viewModel::onSelectionChanged, //SelectionMode
 
-                initialSelectionMode = SelectionMode.Period,
-            )
             Schedule01PageScreen(modifier,onBackClick={navController.popBackStack()},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                 navigateToSchedule01SummingPage = {navController.navigateToSchedule01SummingPageGraph()},
-                state
+//                state
             )
-/*            schedule01PageScreen(navController,modifier,
-                onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
- */
-//
         }
         composable(
             route = DrawerNavDestinations.D_SCHEDULE500_PAGE_ROUTE) {

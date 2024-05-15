@@ -7,10 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Help
-import androidx.compose.material.icons.automirrored.filled.ViewList
-import androidx.compose.material.icons.filled.AppRegistration
-import androidx.compose.material.icons.filled.LocalPolice
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -31,14 +27,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.childmathematics.android.basement.lib.composecalendar.CalendarState
 import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
-import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
@@ -53,7 +46,7 @@ internal fun Schedule01PageScreen(
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
     navigateToSchedule01SummingPage: () -> Unit,
-    state: CalendarState<DynamicSelectionState>,
+//    state: CalendarState<DynamicSelectionState>,
 
     /*
     navigateToHelpSchedule01Page: () -> Unit,
@@ -120,7 +113,18 @@ internal fun Schedule01PageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
+
+    //            schedule01PageUiState.state = rememberSelectableCalendarState(
+                    var state = rememberSelectableCalendarState(
+                       initialSelectionMode = SelectionMode.Period,
+                     )
+
+
+
                     Schedule01Page(true,state)
+//                    schedule01PageUiState.vmselection= state.selectionState.selection
+
+                    //Schedule01Page(true,schedule01PageUiState.state)
                   }
             },
         )

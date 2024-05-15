@@ -21,7 +21,6 @@ class MainActivity : ComponentActivity() {
 //        val appContainer = (application as MainApplication).container
         setContent {
             val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
-// ???           JetnewsApp(appContainer, widthSizeClass)
             DrawerApp( widthSizeClass)
 //            RootHost(widthSizeClass) //
         }
