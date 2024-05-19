@@ -55,12 +55,14 @@ internal fun Schedule01SummingPageScreen(
         modifier: Modifier = Modifier,
         onBackClick: () -> Unit,
  //       state: CalendarState<DynamicSelectionState>
-        viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
+        schedule01PageViewModel: Schedule01PageViewModel = viewModel()
+//                viewModel: Schedule01PageViewModel = viewModel()
+//        viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 
 ) {
     ScheduleCalendarTheme {
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-        val schedule01PageUiState by viewModel.schedule01PageUiState.collectAsState()
+        val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
         Scaffold(
             modifier = modifier
                 .nestedScroll(scrollBehavior.nestedScrollConnection),

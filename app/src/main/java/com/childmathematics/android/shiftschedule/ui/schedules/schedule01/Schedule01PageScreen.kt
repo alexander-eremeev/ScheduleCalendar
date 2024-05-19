@@ -53,7 +53,8 @@ internal fun Schedule01PageScreen(
     navigateToHelpGraphicsPage: () -> Unit,
     navigateToHelpAboutPage: () -> Unit
      */
-    viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    schedule01PageViewModel: Schedule01PageViewModel = viewModel()
+ //           viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     /*
     val state = rememberSelectableCalendarState(
@@ -71,7 +72,7 @@ internal fun Schedule01PageScreen(
  используется в качестве начального значения. Каждый раз, когда в StateFlow будет отправляться новое значение,
  возвращаемое состояние будет обновляться, вызывая рекомпозицию каждого использования State.value.
   */
-        val schedule01PageUiState by viewModel.schedule01PageUiState.collectAsState()
+  //      val schedule01PageUiState by viewModel.schedule01PageUiState.collectAsState()
         /*
         Возвращает TopAppBarScrollBehavior. Верхняя панель приложения, настроенная с помощью этого
         TopAppBarScrollBehavior, немедленно свернется при извлечении содержимого и сразу же появится при перемещении

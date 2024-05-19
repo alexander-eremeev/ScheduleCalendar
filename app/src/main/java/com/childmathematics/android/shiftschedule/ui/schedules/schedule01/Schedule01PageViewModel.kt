@@ -34,7 +34,9 @@ internal class HelpViewModel @Inject constructor(
  * ViewModel to retrieve all items in the Room database.
  * ViewModel для получения всех элементов в базе данных Room.
  */
-class Schedule01PageViewModel(itemsRepository: ItemsRepository) : ViewModel() {
+class Schedule01PageViewModel : ViewModel() {
+//class Schedule01PageViewModel(itemsRepository: ItemsRepository) : ViewModel() {
+
 
     /**
      * Holds home ui state. The list of items are retrieved from [ItemsRepository] and mapped to
@@ -55,13 +57,44 @@ class Schedule01PageViewModel(itemsRepository: ItemsRepository) : ViewModel() {
     private val _schedule01PageUiState = MutableStateFlow(Schedule01PageUiState())
     val schedule01PageUiState: StateFlow<Schedule01PageUiState> = _schedule01PageUiState.asStateFlow()
 
+
+/*
     companion object {
         private const val TIMEOUT_MILLIS = 5_000L
     }
-    fun updateSelection(selection:List<LocalDate> ){
-        Schedule01PageUiState.vmselection= selection.toList()
 
+ */
+//    var vmselection: List<LocalDate> = emptyList<LocalDate>()
+
+    /*
+        companion object {
+            var vmselection: List<LocalDate>
+                get() {
+                    TODO()
+                }
+        }
+
+     */
+
+    fun updateSelection(selection:List<LocalDate> ){
+        _schedule01PageUiState.value.vmselection= selection.toList()
+        if (BuildConfig.DEBUG) {
+            Log.d(
+                "Schedule01", "+++updateSelectionVM: lastIndex= " + _schedule01PageUiState.value.vmselection.lastIndex +
+                        " + selection.lastIndex=" + selection.lastIndex
+            )
+            //-------------------------
+            for (i in _schedule01PageUiState.value.vmselection.lastIndex downTo 0 step 1) {
+                Log.d(
+                    "Schedule01", "+++++VM: " + _schedule01PageUiState.value.vmselection[i].dayOfMonth + "/"
+                            + _schedule01PageUiState.value.vmselection[i].monthValue + "/" + _schedule01PageUiState.value.vmselection[i].year
+                )
+            }
+
+        }
     }
+
+
 //?    val vmstate: CalendarState<DynamicSelectionState> = CalendarState(
 // monthState,
     /*
@@ -84,26 +117,18 @@ class Schedule01PageViewModel(itemsRepository: ItemsRepository) : ViewModel() {
  * Состояние пользовательского интерфейса для HomeScreen
  */
 //data class Schedule01PageUiState(val itemList: List<Item> = listOf())
-
-data class Schedule01PageUiState(
-var vmselection: List<LocalDate> = listOf()
-//    var vmstate: DynamicSelectionState = SelectionState
 /*
-        CalendarState(
-
-        MonthState(
-            now(), now().minusMonths(
-                DefaultCalendarPagerRange
-            ), now().plusMonths(DefaultCalendarPagerRange)
-        ), SelectionState
-    )
-
- */
+data class Schedule01PageUiState(
+val vmselection: List<LocalDate> = listOf()
 
 ) {
     fun updateSelection(selection: List<LocalDate>) {
         Schedule01PageUiState.vmselection = selection.toList()
         if (BuildConfig.DEBUG) {
+            Log.d(
+                "Schedule01", "+++updateSelectionVM: lastIndex= " + vmselection.lastIndex +
+                        " + selection.lastIndex=" + selection.lastIndex
+            )
             //-------------------------
             for (i in vmselection.lastIndex downTo 0 step 1) {
                 Log.d(
@@ -114,9 +139,18 @@ var vmselection: List<LocalDate> = listOf()
 
         }
     }
-    companion object {
-        lateinit var vmselection: List<LocalDate>
-    }
+
+
+        val vmselection: List<LocalDate> = emptyList<LocalDate>()
+
+
+
 }
+
+ */
+data class Schedule01PageUiState(
+    var vmselection: List<LocalDate> = emptyList<LocalDate>()
+
+)
 
 

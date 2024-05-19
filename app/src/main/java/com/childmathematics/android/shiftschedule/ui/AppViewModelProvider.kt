@@ -67,9 +67,12 @@ object AppViewModelProvider {
         initializer {
             Schedule500PageViewModel(mainApplication().container.itemsRepository)
         }
+        /*
         initializer {
             Schedule01PageViewModel(mainApplication().container.itemsRepository)
         }
+
+         */
 
     }
 }

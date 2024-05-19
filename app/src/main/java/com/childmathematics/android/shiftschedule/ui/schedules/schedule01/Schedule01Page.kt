@@ -74,17 +74,18 @@ import java.time.LocalDate
 @ExperimentalCoroutinesApi
 @Composable
 fun Schedule01Page(currentDialog: Boolean, state: CalendarState<DynamicSelectionState>,
-                   viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
-
+                   schedule01PageViewModel: Schedule01PageViewModel = viewModel()
+//                           viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
+                           //gameViewModel: GameViewModel = viewModel()
 )
 //fun Schedule01Page(currentDialog: Boolean)
 {
 //===========================================================================
 //    val Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
-    val schedule01PageUiState by viewModel.schedule01PageUiState.collectAsState()
+    val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
     //===========================================================================
 
-    val viewModel = remember { Sch01RecipeViewModel() }
+//    val viewModel = remember { Sch01RecipeViewModel() }
 
     var showDialog by rememberSaveable { mutableStateOf(false) }
     var changeDp: Dp
@@ -184,7 +185,8 @@ fun Schedule01Page(currentDialog: Boolean, state: CalendarState<DynamicSelection
 */
 
             if (state.selectionState.selection.isNotEmpty()) {
-                schedule01PageUiState.updateSelection(state.selectionState.selection )
+//                schedule01PageUiState.updateSelection(state.selectionState.selection )
+                schedule01PageViewModel.updateSelection(state.selectionState.selection )
                 if (BuildConfig.DEBUG) {
                     //-------------------------
                     for (i in  state.selectionState.selection.lastIndex downTo 0 step 1) {
@@ -343,6 +345,7 @@ data class Sch01PlannedRecipe(
 /**
  * ViewModel exposing list of our recipes
  */
+/*
 class Sch01RecipeViewModel : ViewModel() {
   private val selectionFlow = MutableStateFlow(emptyList<LocalDate>())
 /*
@@ -372,6 +375,8 @@ fun onSelectionChanged(selection: List<LocalDate>) {
 //============================
   }
 }
+
+ */
 //====================================================================
 // расчет основного рабочего времени по дате по номеру бригады
 //==============================================
