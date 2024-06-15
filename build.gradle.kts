@@ -8,6 +8,8 @@ plugins {
     id("com.android.library") version libs.versions.agp apply false
 
     id("org.jetbrains.kotlin.android") version libs.versions.jetbrainsKotlin apply false
+    alias(libs.plugins.compose.compiler) apply false
+
 
     id("com.google.devtools.ksp") version libs.versions.googleDevToolsKsp apply false
 }

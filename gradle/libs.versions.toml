@@ -31,11 +31,11 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "8.5.0"                               #8.3.2"
 #---???????????????????
-jetbrainsKotlin = "1.9.23"                  #agp
+jetbrainsKotlin = "2.0.0"                  #agp
 googleAccompanist = "0.34.0"
-googleDevToolsKsp = "1.9.23-1.0.19"         #agp
+googleDevToolsKsp = "2.0.0-1.0.22"         #agp
 googleAds = "23.1.0"                        #
-jetbrainsKotlinxCoroutines = "1.8.0"
+jetbrainsKotlinxCoroutines = "1.8.1"        #
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.0"
 androidxActivityKtx = "1.9.0"               #
@@ -60,7 +60,7 @@ androidx-webkit = "1.11.0"                   #
 androidxComposeBom = "2024.06.00"            #
 #---------------
 androidxActivityCompose = "1.9.0"              #
-androidxComposeCompiler = "1.5.13"            #agp
+androidxComposeCompiler = "1.5.14"            #agp
 #this plugin provides a task to determine which dependencies have updates.
 benmanesVersions = "0.51.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
@@ -268,8 +268,14 @@ android-test = [
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrainsKotlin" }
 #Плагин Gradle для обнаружения обновлений зависимостей
 benmanes-versions = { id = "com.github.ben-manes.versions", version.ref = "benmanesVersions" }
 littlerobots-version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "littlerobotsVersionCatalogUpdate" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "googleDevToolsKsp" }
+#------Migrating a Compose Multiplatform project
+#jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+#kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "jetbrainsKotlin" }
+#compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "jetbrainsKotlin" }
+#-----Migrating a Jetpack Compose project
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrainsKotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "jetbrainsKotlin" }

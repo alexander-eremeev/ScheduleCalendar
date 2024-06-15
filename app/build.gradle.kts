@@ -7,6 +7,7 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.compose.compiler)
     id("com.google.devtools.ksp")
 }
 
@@ -123,8 +124,8 @@ android {
 //-------------------------------------------------------------
 // The feature "context receivers" is experimental and should be enabled explicitly
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        kotlinOptions {
-            freeCompilerArgs = freeCompilerArgs + "-Xcontext-receivers"
+         compilerOptions {
+            freeCompilerArgs.add("-Xcontext-receivers")
         }
     }
 //-------------------------------------------------------------
