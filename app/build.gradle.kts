@@ -12,12 +12,10 @@ plugins {
 
 android {
     namespace = libs.versions.applicationId.get()
-//    namespace = "com.childmathematics.android.shiftschedule.schedulecalendar"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
     defaultConfig {
         applicationId = libs.versions.applicationId.get()
-//        applicationId = "com.childmathematics.android.shiftschedule.schedulecalendar"
         minSdk = libs.versions.min.sdk.get().toInt()
         targetSdk = libs.versions.target.sdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()
@@ -188,7 +186,7 @@ dependencies {
 
     testImplementation(libs.junit.test)
     androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.androidx.test.espressoCore)
+    androidTestImplementation(libs.androidx.espresso.core)
 
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")

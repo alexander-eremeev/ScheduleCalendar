@@ -54,7 +54,7 @@ import java.time.LocalDate
 internal fun Schedule01SummingPageScreen(
         modifier: Modifier = Modifier,
         onBackClick: () -> Unit,
- //       state: CalendarState<DynamicSelectionState>
+//        state: CalendarState<DynamicSelectionState>,
         schedule01PageViewModel: Schedule01PageViewModel = viewModel()
 //                viewModel: Schedule01PageViewModel = viewModel()
 //        viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
@@ -76,6 +76,14 @@ internal fun Schedule01SummingPageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
+                    if (BuildConfig.DEBUG) {
+                        Log.d(
+                            "Schedule01",
+                            "+++Schedule01SummingPageScreen: selection.lastIndex =" +
+//                                    state.selectionState.selection.lastIndex
+                                   schedule01PageUiState.vmselection.lastIndex
+                        )
+                    }
                     if (schedule01PageUiState.vmselection.isNotEmpty()) {
                         if (BuildConfig.DEBUG) {
                             //-------------------------

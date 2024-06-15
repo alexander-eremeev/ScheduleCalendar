@@ -29,28 +29,3 @@ private val LightColorPalette = lightColorScheme(
     onSurface = Color.Black,
 )
 
-@Composable
-fun ComposeTutorialsTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
-
-    val sysUiController = rememberSystemUiController()
-    SideEffect {
-        sysUiController.setSystemBarsColor(
-            color = colors.surface.copy(.5f)
-        )
-    }
-
-    MaterialTheme(
-        colorScheme = colors,
-        typography = typography,
-        shapes = shapes,
-        content = content
-    )
-}

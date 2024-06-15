@@ -2,10 +2,13 @@ package com.childmathematics.android.shiftschedule.ui.schedules.schedule01
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.childmathematics.android.basement.lib.composecalendar.CalendarState
 import com.childmathematics.android.basement.lib.composecalendar.DefaultCalendarPagerRange
 import com.childmathematics.android.basement.lib.composecalendar.header.MonthState
 import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
+import com.childmathematics.android.basement.lib.composecalendar.selection.EmptySelectionState
+import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionState
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.data.Item
@@ -15,6 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.YearMonth.now
@@ -77,7 +81,10 @@ class Schedule01PageViewModel : ViewModel() {
      */
 
     fun updateSelection(selection:List<LocalDate> ){
-        _schedule01PageUiState.value.vmselection= selection.toList()
+        /*
+        viewModelScope.launch {
+            _schedule01PageUiState.value.vmselection = selection.toList()
+        }
         if (BuildConfig.DEBUG) {
             Log.d(
                 "Schedule01", "+++updateSelectionVM: lastIndex= " + _schedule01PageUiState.value.vmselection.lastIndex +
@@ -92,6 +99,8 @@ class Schedule01PageViewModel : ViewModel() {
             }
 
         }
+
+         */
     }
 
 
@@ -148,9 +157,13 @@ val vmselection: List<LocalDate> = listOf()
 }
 
  */
+//val calendarState = CalendarState
 data class Schedule01PageUiState(
+
     var vmselection: List<LocalDate> = emptyList<LocalDate>()
 
 )
+
+
 
 
