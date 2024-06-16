@@ -24,21 +24,15 @@ Gradle Enterprise помогает анализировать время лок�
 Build Cache и другие типичные узкие места производительности сборки Android.
 */
 plugins {
-//    id("com.gradle.enterprise") version "latest.release"
     id("com.gradle.develocity") version "latest.release"
-//    id("com.gradle.velocity") version "latest.release"
 }
 
 //gradleEnterprise {
 develocity {
     // configuration
     buildScan {
-//        termsOfServiceUrl = "https://gradle.com/terms-of-service"
         termsOfUseUrl = "https://gradle.com/terms-of-service"
-//        termsOfServiceAgree = "yes"
         termsOfUseAgree = "yes"
-//        publishAlways()
-//        publishing()
     }
 }
 // ----------------------------------------------------------------------------------------------------
