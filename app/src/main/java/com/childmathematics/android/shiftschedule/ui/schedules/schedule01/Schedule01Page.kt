@@ -82,7 +82,7 @@ fun Schedule01Page(currentDialog: Boolean, state: CalendarState<DynamicSelection
 {
 //===========================================================================
 //    val Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
-    val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
+//    val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
     //===========================================================================
 
 //    val viewModel = remember { Sch01RecipeViewModel() }

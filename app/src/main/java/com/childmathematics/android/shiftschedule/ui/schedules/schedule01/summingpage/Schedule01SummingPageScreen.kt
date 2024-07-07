@@ -51,7 +51,7 @@ import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun Schedule01SummingPageScreen(
+fun Schedule01SummingPageScreen(
         modifier: Modifier = Modifier,
         onBackClick: () -> Unit,
 //        state: CalendarState<DynamicSelectionState>,
@@ -60,10 +60,20 @@ internal fun Schedule01SummingPageScreen(
 //        viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 
 ) {
+    if (BuildConfig.DEBUG) {
+        Log.d(
+            "Schedule01",
+            "+++Schedule01SummingPageScreen: selection.lastIndex =" +
+//                                    state.selectionState.selection.lastIndex
+                    schedule01PageViewModel.vmselection.lastIndex
+        )
+    }
+
+/*
     ScheduleCalendarTheme {
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-        val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
-        Scaffold(
+//        val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
+         Scaffold(
             modifier = modifier
                 .nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
@@ -81,32 +91,32 @@ internal fun Schedule01SummingPageScreen(
                             "Schedule01",
                             "+++Schedule01SummingPageScreen: selection.lastIndex =" +
 //                                    state.selectionState.selection.lastIndex
-                                   schedule01PageUiState.vmselection.lastIndex
+                                    schedule01PageViewModel.vmselection.lastIndex
                         )
                     }
-                    if (schedule01PageUiState.vmselection.isNotEmpty()) {
+                    if (schedule01PageViewModel.vmselection.isNotEmpty()) {
                         if (BuildConfig.DEBUG) {
                             //-------------------------
                             Log.d(
                                 "Schedule01", "+++Schedule01SummingPageScreen: vmselection.lastIndex =" +
-                                        schedule01PageUiState.vmselection.lastIndex
+                                        schedule01PageViewModel.vmselection.lastIndex
                             )
-                            for (i in  schedule01PageUiState.vmselection.lastIndex downTo 0 step 1) {
+                            for (i in  schedule01PageViewModel.vmselection.lastIndex downTo 0 step 1) {
                                 Log.d(
                                     "Schedule01", "+++Schedule01SummingPageScreen: selected " +
-                                            schedule01PageUiState.vmselection[i].dayOfMonth + "/"
-                                            +  schedule01PageUiState.vmselection[i].monthValue + "/" +
-                                            schedule01PageUiState.vmselection[i].year
+                                            schedule01PageViewModel.vmselection[i].dayOfMonth + "/"
+                                            +  schedule01PageViewModel.vmselection[i].monthValue + "/" +
+                                            schedule01PageViewModel.vmselection[i].year
                                 )
                             }
                         }
                     }
 
-                    if (schedule01PageUiState.vmselection.size == 0) {
+                    if (schedule01PageViewModel.vmselection.size == 0) {
                         if (BuildConfig.DEBUG) {
                             Log.d(
                                 "Schedule01", "+++Schedule01SummingPageScreen: vmselection.lastIndex =" +
-                                        schedule01PageUiState.vmselection.lastIndex
+                                        schedule01PageViewModel.vmselection.lastIndex
                             )
                             Log.d(
                                 "Schedule01", "+++++Schedule01SummingPage: "+
@@ -115,11 +125,12 @@ internal fun Schedule01SummingPageScreen(
                         }
                     }
 
-                    DialogSchedule01(schedule01PageUiState.vmselection, onDismiss =true)
+                    DialogSchedule01(schedule01PageViewModel.vmselection, onDismiss =true)
                 }
             },
         )
     }
+    */
 }
 //=================================
 @Composable

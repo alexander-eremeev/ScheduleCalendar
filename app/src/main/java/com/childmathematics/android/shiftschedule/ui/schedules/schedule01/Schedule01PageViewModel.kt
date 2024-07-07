@@ -1,6 +1,9 @@
 package com.childmathematics.android.shiftschedule.ui.schedules.schedule01
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.childmathematics.android.basement.lib.composecalendar.CalendarState
@@ -57,17 +60,22 @@ class Schedule01PageViewModel : ViewModel() {
                 initialValue = Schedule01PageUiState()
             )
      */
-
+/*
     private val _schedule01PageUiState = MutableStateFlow(Schedule01PageUiState())
     val schedule01PageUiState: StateFlow<Schedule01PageUiState> = _schedule01PageUiState.asStateFlow()
 
-
-/*
-    companion object {
-        private const val TIMEOUT_MILLIS = 5_000L
-    }
-
  */
+
+//    var vmselection: List<LocalDate> = emptyList<LocalDate>()
+//    var vmselection: List<LocalDate> = emptyList()
+    var vmselection: List<LocalDate> by mutableStateOf(emptyList())
+
+    /*
+        companion object {
+            private const val TIMEOUT_MILLIS = 5_000L
+        }
+
+     */
 //    var vmselection: List<LocalDate> = emptyList<LocalDate>()
 
     /*
@@ -85,12 +93,28 @@ class Schedule01PageViewModel : ViewModel() {
         viewModelScope.launch {
             _schedule01PageUiState.value.vmselection = selection.toList()
         }
+        */
+//        vmselection = selection.toList()
+        vmselection = selection
+
         if (BuildConfig.DEBUG) {
             Log.d(
-                "Schedule01", "+++updateSelectionVM: lastIndex= " + _schedule01PageUiState.value.vmselection.lastIndex +
+                "Schedule01", "+++updateSelectionVM: "+vmselection.lastIndex
+            )
+            for (i in vmselection.lastIndex downTo 0 step 1) {
+                Log.d(
+                    "Schedule01", "+++++VM: " + vmselection[i].dayOfMonth + "/"
+                            + vmselection[i].monthValue + "/" + vmselection[i].year
+                )
+            }
+
+            /*
+            Log.d(
+                "Schedule01", "+++updateSelectionVM: lastIndex= " +vmselection.lastIndex +
                         " + selection.lastIndex=" + selection.lastIndex
             )
             //-------------------------
+
             for (i in _schedule01PageUiState.value.vmselection.lastIndex downTo 0 step 1) {
                 Log.d(
                     "Schedule01", "+++++VM: " + _schedule01PageUiState.value.vmselection[i].dayOfMonth + "/"
@@ -98,25 +122,15 @@ class Schedule01PageViewModel : ViewModel() {
                 )
             }
 
+            for (i in vmselection.lastIndex downTo 0 step 1) {
+                Log.d(
+                    "Schedule01", "+++++VM: " + vmselection[i].dayOfMonth + "/"
+                            + vmselection[i].monthValue + "/" + vmselection[i].year
+                )
+            }
+            */
         }
-
-         */
     }
-
-
-//?    val vmstate: CalendarState<DynamicSelectionState> = CalendarState(
-// monthState,
-    /*
-    MonthState(YearMonth.now(),
-    YearMonth.now().minusMonths(DefaultCalendarPagerRange),
-        YearMonth.now().plusMonths(DefaultCalendarPagerRange),
-        ),
-     */
-// selectionState)
-    /*
-        DynamicSelectionState)
-
-     */
 
 
 }
@@ -158,11 +172,14 @@ val vmselection: List<LocalDate> = listOf()
 
  */
 //val calendarState = CalendarState
+/*
 data class Schedule01PageUiState(
 
     var vmselection: List<LocalDate> = emptyList<LocalDate>()
 
 )
+
+ */
 
 
 

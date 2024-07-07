@@ -172,6 +172,7 @@ dependencies {
     // ////
     // Room
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.tools.core)
     // implementation(libs.androidx.compose.material3.window.size)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
