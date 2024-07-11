@@ -99,6 +99,7 @@ internal fun Schedule01PageScreen(
                     onOpenDrawer,
                     openDrawer,
                     onBackClick,scrollBehavior,
+//                    navigateToSchedule01SummingPage ,
                     navigateToSchedule01SummingPage = navigateToSchedule01SummingPage,
 
                     /*
@@ -167,9 +168,14 @@ private fun Schedule01PageTopAppBar(
         scrollBehavior = scrollBehavior,
 
         actions = {
+/*
             Schedule01PageMenu(
                 navigateToSchedule01SummingPage = navigateToSchedule01SummingPage,
             )
+
+ */
+
+
         },
 
 

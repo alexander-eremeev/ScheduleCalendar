@@ -23,6 +23,7 @@ import android.app.Application
 import com.childmathematics.android.shiftschedule.data.AppContainer
 import com.childmathematics.android.shiftschedule.data.AppDataContainer
 
+//public class MainApplication extends Application {
 
 class MainApplication : Application() {
 //public class InventoryApplication  extends Application {

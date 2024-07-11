@@ -4,8 +4,8 @@
 #===================
 # @keep
 min-sdk = "26"
-target-sdk = "35"
-compile-sdk = "35"
+target-sdk = "34"
+compile-sdk = "34"
 # @keep
 plugin = "0.8.1"
 # @keep

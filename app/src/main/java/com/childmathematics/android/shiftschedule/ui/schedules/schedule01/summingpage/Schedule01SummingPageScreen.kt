@@ -69,7 +69,7 @@ fun Schedule01SummingPageScreen(
         )
     }
 
-/*
+
     ScheduleCalendarTheme {
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 //        val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
@@ -130,7 +130,7 @@ fun Schedule01SummingPageScreen(
             },
         )
     }
-    */
+
 }
 //=================================
 @Composable
