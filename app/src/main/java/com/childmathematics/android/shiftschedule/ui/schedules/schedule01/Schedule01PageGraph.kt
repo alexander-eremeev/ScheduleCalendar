@@ -1,6 +1,7 @@
 package com.childmathematics.android.shiftschedule.ui.schedules.schedule01
 
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -39,11 +40,13 @@ fun NavGraphBuilder.schedule01PageGraph(
     modifier: Modifier = Modifier,
     openDrawer: () -> Unit ,
     onOpenDrawer: Boolean ,
+    schedule01PageViewModel: Schedule01PageViewModel,
     ) {
-    // =====================================
-        schedule01SummingPageGraph(navController)
+        // =====================================
+//        schedule01SummingPageGraph(navController)
+    schedule01SummingPageGraph(navController,schedule01PageViewModel = schedule01PageViewModel)
 
-    // =====================================
+        // =====================================
 
     navigation(startDestination = SCHEDULE01_PAGE_ROUTE,
         route = SCHEDULE01_GRAPH_ROUTE,
@@ -64,12 +67,16 @@ fun NavGraphBuilder.schedule01PageGraph(
             )
 
                */
+  //            val schedule01PageViewModel : Schedule01PageViewModel = viewModel()
+              // =====================================
 
+              // =====================================
             schedule01PageScreen(
                 navController,
                 modifier,
                 onOpenDrawer = onOpenDrawer, openDrawer = openDrawer,
 //                state = state,
+                schedule01PageViewModel = schedule01PageViewModel
              )
         }
     }

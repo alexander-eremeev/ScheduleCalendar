@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
@@ -40,7 +41,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalCoroutinesApi::class)
 @Composable
-internal fun Schedule01PageScreen(
+fun Schedule01PageScreen(
+//internal fun Schedule01PageScreen(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit,
     onOpenDrawer: Boolean,
@@ -73,6 +75,13 @@ internal fun Schedule01PageScreen(
  возвращаемое состояние будет обновляться, вызывая рекомпозицию каждого использования State.value.
   */
   //      val schedule01PageUiState by viewModel.schedule01PageUiState.collectAsState()
+//        val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsStateWithLifecycle()
+        val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
+
+        var state = rememberSelectableCalendarState(
+            initialSelectionMode = SelectionMode.Period,
+        )
+
         /*
         Возвращает TopAppBarScrollBehavior. Верхняя панель приложения, настроенная с помощью этого
         TopAppBarScrollBehavior, немедленно свернется при извлечении содержимого и сразу же появится при перемещении
@@ -99,7 +108,6 @@ internal fun Schedule01PageScreen(
                     onOpenDrawer,
                     openDrawer,
                     onBackClick,scrollBehavior,
-//                    navigateToSchedule01SummingPage ,
                     navigateToSchedule01SummingPage = navigateToSchedule01SummingPage,
 
                     /*
@@ -117,13 +125,10 @@ internal fun Schedule01PageScreen(
                 ) {
 
     //            schedule01PageUiState.state = rememberSelectableCalendarState(
-                    var state = rememberSelectableCalendarState(
-                       initialSelectionMode = SelectionMode.Period,
-                     )
 
 
 
-                    Schedule01Page(true,state)
+                    Schedule01Page(true,state,schedule01PageViewModel)
 //                    schedule01PageUiState.vmselection= state.selectionState.selection
 
                     //Schedule01Page(true,schedule01PageUiState.state)
@@ -168,14 +173,10 @@ private fun Schedule01PageTopAppBar(
         scrollBehavior = scrollBehavior,
 
         actions = {
-/*
+
             Schedule01PageMenu(
                 navigateToSchedule01SummingPage = navigateToSchedule01SummingPage,
             )
-
- */
-
-
         },
 
 

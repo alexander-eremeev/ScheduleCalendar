@@ -17,6 +17,7 @@
 package com.childmathematics.android.shiftschedule.data
 
 import kotlinx.coroutines.flow.Flow
+import java.time.LocalDate
 
 /**
  * Repository that provides insert, update, delete, and retrieve of [Item] from a given data source.
@@ -53,4 +54,8 @@ interface ItemsRepository {
      * Обновить элемент в источнике данных
      */
     suspend fun updateItem(item: Item)
+
+    //==================================
+//    val destinations: List<ExploreModel> = destinationsLocalDataSource.craneDestinations
+    //val svmselection: List<LocalDate>
 }

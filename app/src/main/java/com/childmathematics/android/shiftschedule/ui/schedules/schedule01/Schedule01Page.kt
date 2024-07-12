@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.basement.lib.composecalendar.CalendarState
 import com.childmathematics.android.basement.lib.composecalendar.SelectableCalendar
@@ -82,7 +83,8 @@ fun Schedule01Page(currentDialog: Boolean, state: CalendarState<DynamicSelection
 {
 //===========================================================================
 //    val Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
-//    val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
+    val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
+//    val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsStateWithLifecycle()
     //===========================================================================
 
 //    val viewModel = remember { Sch01RecipeViewModel() }

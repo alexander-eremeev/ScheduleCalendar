@@ -1,6 +1,7 @@
 package com.childmathematics.android.shiftschedule.ui.schedules.schedule01
 
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -17,6 +18,8 @@ internal fun NavGraphBuilder.schedule01PageScreen(
     modifier: Modifier = Modifier,
     openDrawer: () -> Unit ,
     onOpenDrawer: Boolean ,
+    schedule01PageViewModel : Schedule01PageViewModel ,
+    // =====================================
 //    state: CalendarState<DynamicSelectionState>,
     /*
     navigateToHelpSchedule01Page: () -> Unit,
@@ -42,14 +45,7 @@ internal fun NavGraphBuilder.schedule01PageScreen(
             onBackClick = { navController.popBackStack()},
             onOpenDrawer = onOpenDrawer,openDrawer =openDrawer,
             navigateToSchedule01SummingPage = { navController.navigateToSchedule01SummingPageGraph()},
-//            state,
-
-            /*
-            navigateToHelpMainPage ,
-            navigateToHelpGraphicsPage,
-            navigateToHelpAboutPage
-
-             */
+            schedule01PageViewModel,
         )
     }
 }

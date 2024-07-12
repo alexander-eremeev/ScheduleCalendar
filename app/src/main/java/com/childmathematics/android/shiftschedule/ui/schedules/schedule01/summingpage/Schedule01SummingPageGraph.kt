@@ -1,6 +1,8 @@
 package com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage
 
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -11,6 +13,7 @@ import com.childmathematics.android.basement.lib.composecalendar.selection.Dynam
 import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageViewModel
 
 
 const val SCHEDULE01_SUMMINGPAGE_GRAPH_ROUTE = "schedule01_SummingPage_graph"
@@ -19,6 +22,7 @@ private const val SCHEDULE01_SUMMINGPAGE_DEEPLINK ="$ROOT_DEEPLINK/schedule01_Su
 Один из них является расширением NavController.
 Это позволяет нам перейти к данному экрану.
  */
+
 fun NavController.navigateToSchedule01SummingPageGraph() {
     navigate(SCHEDULE01_SUMMINGPAGE_GRAPH_ROUTE)
 }
@@ -27,11 +31,15 @@ fun NavController.navigateToSchedule01SummingPageGraph() {
 Второй расширяет NavGraphBuilder. Мы используем его, чтобы включить
 выбранный экран в качестве пункта назначения в NavHost.
  */
+
 fun NavGraphBuilder.schedule01SummingPageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 //    state: CalendarState<DynamicSelectionState>
-) {
+//    schedule01PageViewModel:,
+    schedule01PageViewModel: Schedule01PageViewModel,
+
+    ) {
     navigation(startDestination = SCHEDULE01_SUMMINGPAGE_ROUTE,
         route = SCHEDULE01_SUMMINGPAGE_GRAPH_ROUTE,
         deepLinks = listOf(
@@ -47,7 +55,7 @@ fun NavGraphBuilder.schedule01SummingPageGraph(
         schedule01SummingPageScreen(
             navController,
             modifier,
-//            state
+            schedule01PageViewModel = schedule01PageViewModel
         )
     }
 }

@@ -18,6 +18,7 @@ package com.childmathematics.android.shiftschedule.ui.navigation.drawer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -33,6 +34,7 @@ import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
 import com.childmathematics.android.shiftschedule.ui.main.mainPageScreen
 import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageScreen
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.navigateToSchedule01SummingPageGraph
@@ -52,6 +54,7 @@ fun DrawerNavigationGraph(
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
     startDestination: String = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
+    schedule01PageViewModel: Schedule01PageViewModel = viewModel()
 ) {
     NavHost(
         navController = navController,
@@ -60,7 +63,7 @@ fun DrawerNavigationGraph(
     ) {
 
         mainPageGraph(navController,modifier,openDrawer ,onOpenDrawer = onOpenDrawer )
-        schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer )
+        schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,schedule01PageViewModel = schedule01PageViewModel)
         schedule500PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer)
         aboutGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer )
 
@@ -137,7 +140,7 @@ fun DrawerNavigationGraph(
             Schedule01PageScreen(modifier,onBackClick={navController.popBackStack()},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                 navigateToSchedule01SummingPage = {navController.navigateToSchedule01SummingPageGraph()},
-//                state
+                schedule01PageViewModel = schedule01PageViewModel
             )
         }
         composable(
