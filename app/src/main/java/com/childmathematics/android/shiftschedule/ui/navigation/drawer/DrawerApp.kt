@@ -26,14 +26,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.navigationdraver.components.DrawerNavigationRail
 import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
 import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavigationActions
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageViewModel
 import kotlinx.coroutines.launch
 
 @Composable

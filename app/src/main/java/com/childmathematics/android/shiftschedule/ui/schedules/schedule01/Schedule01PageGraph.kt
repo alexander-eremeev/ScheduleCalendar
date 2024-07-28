@@ -1,24 +1,16 @@
 package com.childmathematics.android.shiftschedule.ui.schedules.schedule01
 
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.navDeepLink
-import com.childmathematics.android.basement.lib.composecalendar.CalendarState
-import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
-import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
-import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
-import com.childmathematics.android.shiftschedule.ui.help.aboutpage.helpAboutGraph
-import com.childmathematics.android.shiftschedule.ui.help.graphicspage.helpGraphicsGraph
-import com.childmathematics.android.shiftschedule.ui.help.mainpage.helpMainPageGraph
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.SCHEDULE01_SUMMINGPAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.schedule01SummingPageGraph
 
 const val SCHEDULE01_GRAPH_ROUTE = "schedule01_graph"
@@ -38,13 +30,13 @@ fun NavController.navigateToSchedule01PageGraph() {
 fun NavGraphBuilder.schedule01PageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    openDrawer: () -> Unit ,
-    onOpenDrawer: Boolean ,
-    schedule01PageViewModel: Schedule01PageViewModel,
+    openDrawer: () -> Unit,
+    onOpenDrawer: Boolean,
+    scheduleViewModel: ScheduleViewModel,
     ) {
         // =====================================
 //        schedule01SummingPageGraph(navController)
-    schedule01SummingPageGraph(navController,schedule01PageViewModel = schedule01PageViewModel)
+    schedule01SummingPageGraph(navController,scheduleViewModel = scheduleViewModel)
 
         // =====================================
 
@@ -76,7 +68,7 @@ fun NavGraphBuilder.schedule01PageGraph(
                 modifier,
                 onOpenDrawer = onOpenDrawer, openDrawer = openDrawer,
 //                state = state,
-                schedule01PageViewModel = schedule01PageViewModel
+                scheduleViewModel = scheduleViewModel
              )
         }
     }

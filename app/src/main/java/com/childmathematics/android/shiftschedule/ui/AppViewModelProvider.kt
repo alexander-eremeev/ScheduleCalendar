@@ -28,7 +28,6 @@ import com.childmathematics.android.shiftschedule.ui.item.ItemDetailsViewModel
 import com.childmathematics.android.shiftschedule.ui.item.ItemEditViewModel
 import com.childmathematics.android.shiftschedule.ui.item.ItemEntryViewModel
 import com.childmathematics.android.shiftschedule.ui.main.MainPageViewModel
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.Schedule500PageViewModel
 
 

@@ -24,7 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,17 +37,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.childmathematics.android.basement.lib.composecalendar.CalendarState
-import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
-import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageViewModel
+import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.getShift01
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.getShift01MonthDate
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.getShift01MonthDateDays
-import kotlinx.coroutines.flow.stateIn
 import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,7 +52,7 @@ fun Schedule01SummingPageScreen(
         modifier: Modifier = Modifier,
         onBackClick: () -> Unit,
 //        state: CalendarState<DynamicSelectionState>,
-        schedule01PageViewModel: Schedule01PageViewModel = viewModel()
+        scheduleViewModel: ScheduleViewModel = viewModel()
 //                viewModel: Schedule01PageViewModel = viewModel()
 //        viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 
@@ -78,7 +73,7 @@ fun Schedule01SummingPageScreen(
     ScheduleCalendarTheme {
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 // val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
-        val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsStateWithLifecycle()
+        val scheduleUiState by scheduleViewModel.scheduleUiState.collectAsStateWithLifecycle()
          Scaffold(
             modifier = modifier
                 .nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -97,32 +92,32 @@ fun Schedule01SummingPageScreen(
                             "Schedule01",
                             "+++Schedule01SummingPageScreen: selection.lastIndex =" +
 //                                    state.selectionState.selection.lastIndex
-                                    schedule01PageUiState.lastIndex
+                                    scheduleUiState.lastIndex
                         )
                     }
-                    if (schedule01PageUiState.isNotEmpty()) {
+                    if (scheduleUiState.isNotEmpty()) {
                         if (BuildConfig.DEBUG) {
                             //-------------------------
                             Log.d(
-                                "Schedule01", "+++Schedule01SummingPageScreen: schedule01PageUiState.lastIndex =" +
-                                        schedule01PageUiState.lastIndex
+                                "Schedule01", "+++Schedule01SummingPageScreen: scheduleUiState.lastIndex =" +
+                                        scheduleUiState.lastIndex
                             )
-                            for (i in  schedule01PageUiState.lastIndex downTo 0 step 1) {
+                            for (i in  scheduleUiState.lastIndex downTo 0 step 1) {
                                 Log.d(
                                     "Schedule01", "+++Schedule01SummingPageScreen: selected " +
-                                            schedule01PageUiState[i].dayOfMonth + "/"
-                                            +  schedule01PageUiState[i].monthValue + "/" +
-                                            schedule01PageUiState[i].year
+                                            scheduleUiState[i].dayOfMonth + "/"
+                                            +  scheduleUiState[i].monthValue + "/" +
+                                            scheduleUiState[i].year
                                 )
                             }
                         }
                     }
 
-                    if (schedule01PageUiState.size == 0) {
+                    if (scheduleUiState.size == 0) {
                         if (BuildConfig.DEBUG) {
                             Log.d(
-                                "Schedule01", "+++Schedule01SummingPageScreen: schedule01PageUiState.lastIndex =" +
-                                        schedule01PageUiState.lastIndex
+                                "Schedule01", "+++Schedule01SummingPageScreen: scheduleUiState.lastIndex =" +
+                                        scheduleUiState.lastIndex
                             )
                             Log.d(
                                 "Schedule01", "+++++Schedule01SummingPage: "+
@@ -131,7 +126,7 @@ fun Schedule01SummingPageScreen(
                         }
                     }
 
-                    DialogSchedule01(schedule01PageUiState, onDismiss =true)
+                    DialogSchedule01(scheduleUiState, onDismiss =true)
                 }
             },
         )

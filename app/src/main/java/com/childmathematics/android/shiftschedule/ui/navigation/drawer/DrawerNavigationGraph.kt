@@ -23,24 +23,18 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
-import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.ui.about.AboutPageScreen
 import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
-import com.childmathematics.android.shiftschedule.ui.about.aboutPageScreen
 
 import com.childmathematics.android.shiftschedule.ui.main.MainPageScreen
 import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
-import com.childmathematics.android.shiftschedule.ui.main.mainPageScreen
 import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageScreen
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageViewModel
+import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.navigateToSchedule01SummingPageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.Schedule500PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageGraph
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -54,7 +48,7 @@ fun DrawerNavigationGraph(
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
     startDestination: String = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
-    schedule01PageViewModel: Schedule01PageViewModel = viewModel()
+    scheduleViewModel: ScheduleViewModel = viewModel()
 ) {
     NavHost(
         navController = navController,
@@ -63,84 +57,24 @@ fun DrawerNavigationGraph(
     ) {
 
         mainPageGraph(navController,modifier,openDrawer ,onOpenDrawer = onOpenDrawer )
-        schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,schedule01PageViewModel = schedule01PageViewModel)
+        schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,scheduleViewModel = scheduleViewModel)
         schedule500PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer)
         aboutGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer )
 
         composable(
             route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
-            /*
-            deepLinks = listOf(
-                navDeepLink {
-                    uriPattern =
-                        "$JETNEWS_APP_URI/${JetnewsDestinations.HOME_ROUTE}?$POST_ID={$POST_ID}"
-                }
-            )
-             */
-        ) {
-            /*
-            navBackStackEntry ->
-
-            val homePageViewModel: HomePageViewModel = viewModel(
-                factory = HomeViewModel.provideFactory(
-                    postsRepository = appContainer.itemsRepository,
-                    preSelectedPostId = navBackStackEntry.arguments?.getString(POST_ID)
-                )
-            )
-            HomeRoute(
-//                homeViewModel = homeViewModel,
-                homeViewModel = homeViewModel,
-                isExpandedScreen = isExpandedScreen,
-                openDrawer = openDrawer,
-            )
-
-             */
-            /*
-            isExpandedScreen = isExpandedScreen
-            openDrawer = openDrawer
-            AppModalDrawer(drawerState, currentRoute, navActions) {
-
-             */
-/*
-            AppDrawer(    MainDestinations.HOMEPAGE_ROUTE,
-                navigateToHomePage,
-            navigateToSchedule0,
-            navigateToSchedule500,
-            navigateToAbout,
-            closeDrawer,
-            modifier
             ) {
- */
-            MainPageScreen(modifier,onBackClick={},
+                MainPageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
-            /*
-            mainPageScreen(navController,modifier,
-                onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
-
-             */
-        }
+            }
 
         composable(
             route = DrawerNavDestinations.D_SCHEDULE01_PAGE_ROUTE,) {
-        /*
-            val interestsViewModel: InterestsViewModel = viewModel(
-                factory = InterestsViewModel.provideFactory(appContainer.itemsRepository)
-            )
-
-
-            InterestsRoute(
-                interestsViewModel = interestsViewModel,
-                isExpandedScreen = isExpandedScreen,
-                openDrawer = openDrawer
-            )
-         */
-//            Schedule01Sample(true)
-//            Schedule01PageScreen(modifier,onBackClick={},onOpenDrawer = true,openDrawer = { coroutineScope.launch { drawerState.open() } })
 
             Schedule01PageScreen(modifier,onBackClick={navController.popBackStack()},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                 navigateToSchedule01SummingPage = {navController.navigateToSchedule01SummingPageGraph()},
-                schedule01PageViewModel = schedule01PageViewModel
+                scheduleViewModel = scheduleViewModel
             )
         }
         composable(
@@ -159,24 +93,12 @@ fun DrawerNavigationGraph(
                 Schedule500PageScreen(modifier,onBackClick={},
                     onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
 
-            /*
-            schedule500PageScreen(navController,modifier,
-                onOpenDrawer = true,openDrawer = openDrawer)
-
-             */
         }
         composable(
             route = DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {
                 AboutPageScreen(onBackClick={},modifier,onOpenDrawer = true,
                     openDrawer = openDrawer,navigateToHelp={},
                     navigateToLicences={},navigateToLocalPolices={},)
-            /*
-            aboutPageScreen(navController,modifier,onOpenDrawer = onOpenDrawer,
-                openDrawer = openDrawer,navigateToHelp={},
-                navigateToLicences={},navigateToLocalPolices={},)
-
-             */
         }
     }
 }
-//====================

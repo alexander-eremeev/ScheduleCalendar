@@ -30,13 +30,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
-import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
+import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalCoroutinesApi::class)
@@ -55,7 +54,7 @@ fun Schedule01PageScreen(
     navigateToHelpGraphicsPage: () -> Unit,
     navigateToHelpAboutPage: () -> Unit
      */
-    schedule01PageViewModel: Schedule01PageViewModel = viewModel()
+    scheduleViewModel: ScheduleViewModel = viewModel()
  //           viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     /*
@@ -76,7 +75,7 @@ fun Schedule01PageScreen(
   */
   //      val schedule01PageUiState by viewModel.schedule01PageUiState.collectAsState()
 //        val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsStateWithLifecycle()
-        val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
+        val scheduleUiState by scheduleViewModel.scheduleUiState.collectAsState()
 
         var state = rememberSelectableCalendarState(
             initialSelectionMode = SelectionMode.Period,
@@ -128,7 +127,7 @@ fun Schedule01PageScreen(
 
 
 
-                    Schedule01Page(true,state,schedule01PageViewModel)
+                    Schedule01Page(true,state,scheduleViewModel)
 //                    schedule01PageUiState.vmselection= state.selectionState.selection
 
                     //Schedule01Page(true,schedule01PageUiState.state)

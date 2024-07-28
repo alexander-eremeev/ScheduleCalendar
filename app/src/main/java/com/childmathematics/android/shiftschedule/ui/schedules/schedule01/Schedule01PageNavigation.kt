@@ -1,14 +1,10 @@
 package com.childmathematics.android.shiftschedule.ui.schedules.schedule01
 
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.childmathematics.android.basement.lib.composecalendar.CalendarState
-import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
-import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
-import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
+import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.navigateToSchedule01SummingPageGraph
 
 
@@ -16,9 +12,9 @@ internal const val SCHEDULE01_PAGE_ROUTE = "schedule01Page"
 internal fun NavGraphBuilder.schedule01PageScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    openDrawer: () -> Unit ,
-    onOpenDrawer: Boolean ,
-    schedule01PageViewModel : Schedule01PageViewModel ,
+    openDrawer: () -> Unit,
+    onOpenDrawer: Boolean,
+    scheduleViewModel : ScheduleViewModel,
     // =====================================
 //    state: CalendarState<DynamicSelectionState>,
     /*
@@ -45,7 +41,7 @@ internal fun NavGraphBuilder.schedule01PageScreen(
             onBackClick = { navController.popBackStack()},
             onOpenDrawer = onOpenDrawer,openDrawer =openDrawer,
             navigateToSchedule01SummingPage = { navController.navigateToSchedule01SummingPageGraph()},
-            schedule01PageViewModel,
+            scheduleViewModel,
         )
     }
 }

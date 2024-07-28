@@ -6,7 +6,6 @@ package com.childmathematics.android.shiftschedule.ui.schedules.schedule01
 //import androidx.compose.runtime.*
 //import com.childmathematics.android.basement.lib.ads.util.detectTapAndPressUnconsumed
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -30,7 +29,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -38,30 +36,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.basement.lib.composecalendar.CalendarState
 import com.childmathematics.android.basement.lib.composecalendar.SelectableCalendar
 import com.childmathematics.android.basement.lib.composecalendar.day.DayState
 import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
-import com.childmathematics.android.basement.lib.composecalendar.selection.EmptySelectionState
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
-import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
+import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
 import com.childmathematics.android.shiftschedule.util.bannerHightWithVideoMin
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
 import java.time.LocalDate
 
 
@@ -75,7 +68,7 @@ import java.time.LocalDate
 @ExperimentalCoroutinesApi
 @Composable
 fun Schedule01Page(currentDialog: Boolean, state: CalendarState<DynamicSelectionState>,
-                   schedule01PageViewModel: Schedule01PageViewModel = viewModel()
+                   scheduleViewModel: ScheduleViewModel = viewModel()
 //                           viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
                            //gameViewModel: GameViewModel = viewModel()
 )
@@ -83,7 +76,7 @@ fun Schedule01Page(currentDialog: Boolean, state: CalendarState<DynamicSelection
 {
 //===========================================================================
 //    val Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
-    val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
+    val scheduleUiState by scheduleViewModel.scheduleUiState.collectAsState()
 //    val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsStateWithLifecycle()
     //===========================================================================
 
@@ -188,7 +181,7 @@ fun Schedule01Page(currentDialog: Boolean, state: CalendarState<DynamicSelection
 
             if (state.selectionState.selection.isNotEmpty()) {
 //                schedule01PageUiState.updateSelection(state.selectionState.selection )
-                schedule01PageViewModel.updateSelection(state.selectionState.selection )
+                scheduleViewModel.updateSelection(state.selectionState.selection )
                 if (BuildConfig.DEBUG) {
                     //-------------------------
                     for (i in  state.selectionState.selection.lastIndex downTo 0 step 1) {
