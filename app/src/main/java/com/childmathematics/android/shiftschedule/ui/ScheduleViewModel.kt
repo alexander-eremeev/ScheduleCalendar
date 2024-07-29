@@ -49,31 +49,21 @@ class ScheduleViewModel : ViewModel() {
 
     private val _scheduleUiState = MutableStateFlow<List<LocalDate>>(emptyList())
     val scheduleUiState: StateFlow<List<LocalDate>> = _scheduleUiState.asStateFlow()
-    val svmselection: List<LocalDate> by mutableStateOf(emptyList())
     init {
-        _scheduleUiState.value = svmselection
-//        _schedule01PageUiState.value = Schedule01PageUiState.suvmselection
-
+        _scheduleUiState.value = ScheduleUiState.suvmselection
     }
 
     fun updateSelection(selection:List<LocalDate> ){
-        /*
-        viewModelScope.launch {
-            _schedule01PageUiState.value.vmselection = selection.toList()
-        }
-        */
-//        vmselection = selection.toList()
-//        svmselection  = selection
-        _scheduleUiState.value = selection
+         _scheduleUiState.value = selection
 
         if (BuildConfig.DEBUG) {
             Log.d(
 //                "Schedule01", "+++updateSelectionVM: "+svmselection.lastIndex
-                "Schedule01", "+++updateSelectionVM: "+_scheduleUiState.value.lastIndex
+                "ScheduleViewModel", "+++updateSelectionVM: "+_scheduleUiState.value.lastIndex
             )
             for (i in _scheduleUiState.value.lastIndex downTo 0 step 1) {
                 Log.d(
-                    "Schedule01", "+++++VM: " + _scheduleUiState.value[i].dayOfMonth + "/"
+                    "ScheduleViewModel", "+++++VM: " + _scheduleUiState.value[i].dayOfMonth + "/"
                             + _scheduleUiState.value[i].monthValue + "/" + _scheduleUiState.value[i].year
                 )
             }
@@ -85,49 +75,13 @@ class ScheduleViewModel : ViewModel() {
  * Ui State for HomeScreen
  * Состояние пользовательского интерфейса для HomeScreen
  */
-//data class Schedule01PageUiState(val itemList: List<Item> = listOf())
-
-data class Schedule01PageUiState(
+data class ScheduleUiState(
 val suvmselection: List<LocalDate> = listOf()
-
 ) {
-    fun updateSelection(selection: List<LocalDate>) {
-        Companion.suvmselection = selection
-        if (BuildConfig.DEBUG) {
-            Log.d(
-                "Schedule01", "+++updateSelectionVM: lastIndex= " + suvmselection.lastIndex +
-                        " + selection.lastIndex=" + selection.lastIndex
-            )
-            //-------------------------
-            for (i in suvmselection.lastIndex downTo 0 step 1) {
-                Log.d(
-                    "Schedule01", "+++++VM: " + suvmselection[i].dayOfMonth + "/"
-                            + suvmselection[i].monthValue + "/" + suvmselection[i].year
-                )
-            }
-
-        }
-    }
-
-
-
     companion object {
         var suvmselection: List<LocalDate> by mutableStateOf(emptyList())
     }
-
-
 }
-
-
-//val calendarState = CalendarState
-/*
-data class Schedule01PageUiState(
-
-    var vmselection: List<LocalDate> = emptyList<LocalDate>()
-
-)
-
- */
 
 
 
