@@ -9,7 +9,8 @@ import androidx.navigation.navDeepLink
 import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
-
+import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.summingpage.schedule500SummingPageGraph
 const val SCHEDULE500_GRAPH_ROUTE = "schedule500_graph"
 private const val SCHEDULE500_DEEPLINK ="$ROOT_DEEPLINK/schedule500.html"
 /*
@@ -27,10 +28,15 @@ fun NavController.navigateToSchedule500PageGraph() {
 fun NavGraphBuilder.schedule500PageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    openDrawer: () -> Unit ,
-    onOpenDrawer: Boolean ,
+    openDrawer: () -> Unit,
+    onOpenDrawer: Boolean,
+    scheduleViewModel: ScheduleViewModel,
     ) {
-     navigation(startDestination = SCHEDULE500_PAGE_ROUTE,
+    // =====================================
+    schedule500SummingPageGraph(navController,scheduleViewModel = scheduleViewModel)
+    // =====================================
+
+    navigation(startDestination = SCHEDULE500_PAGE_ROUTE,
         route = SCHEDULE500_GRAPH_ROUTE,
         deepLinks = listOf(
             navDeepLink { uriPattern = SCHEDULE500_DEEPLINK }
@@ -46,13 +52,7 @@ fun NavGraphBuilder.schedule500PageGraph(
             navController,
             modifier,
             onOpenDrawer = onOpenDrawer,openDrawer =openDrawer,
-
-            /*
-            navigateToHelpSchedule500Page = { navController.navigateToHelpSchedule500PageGraph() },
-            navigateToHelpGraphicsPage = { navController.navigateToHelpGraphicsGraph() },
-            navigateToHelpAboutPage = { navController.navigateToHelpAboutGraph()  }
-
-             */
+            scheduleViewModel = scheduleViewModel
         )
     }
 }

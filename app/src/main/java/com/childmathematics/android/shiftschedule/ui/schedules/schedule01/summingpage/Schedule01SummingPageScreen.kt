@@ -111,22 +111,17 @@ fun Schedule01SummingPageScreen(
                                 )
                             }
                         }
+                        DialogSchedule01(scheduleUiState)
                     }
 
-                    if (scheduleUiState.size == 0) {
-                        if (BuildConfig.DEBUG) {
-                            Log.d(
-                                "Schedule01", "+++Schedule01SummingPageScreen: scheduleUiState.lastIndex =" +
-                                        scheduleUiState.lastIndex
-                            )
-                            Log.d(
-                                "Schedule01", "+++++Schedule01SummingPage: "+
-                                        stringResource(R.string.schedule01_NoSelectedDays)
-                            )
-                        }
-                    }
+                     if (scheduleUiState.isEmpty()) {
+                         Toast.makeText(
 
-                    DialogSchedule01(scheduleUiState, onDismiss =true)
+                             LocalContext.current,
+                             stringResource(R.string.schedule01_NoSelectedDays),
+                             Toast.LENGTH_LONG
+                         ).show()
+                     }
                 }
             },
         )
@@ -155,32 +150,7 @@ private fun Schedule01SummingPageTopAppBar(
 }
 //====================================================================
 @Composable
-fun DialogSchedule01(selection: List<LocalDate>, onDismiss: Boolean) {
-
-    /*
-      Dialog(
-        onDismissRequest = onDismiss,
-        properties = DialogProperties()
-      ) {
-
-     */
-    if (selection.isNotEmpty()) {
-        Toast.makeText(
-            LocalContext.current,
-            "Dialog Есть выделенные даты для расчета!! ",
-            Toast.LENGTH_LONG
-        ).show()
-
-    }
-
-    if (selection.size == 0) {
-        Toast.makeText(
-            LocalContext.current,
-//            stringResource(R.string.schedule01_NoSelectedDays),
-                    "Dialog Нет выделенных дат для расчета!! ",
-            Toast.LENGTH_LONG
-        ).show()
-    }
+fun DialogSchedule01(selection: List<LocalDate>) {
 
     Surface(tonalElevation = 8.dp, shape = RoundedCornerShape(12.dp)) {
         Column(
@@ -227,7 +197,18 @@ fun DialogSchedule01(selection: List<LocalDate>, onDismiss: Boolean) {
                     fontSize = 20.sp,    )
 
 //----------------------------------------------------------------------------------------------
-
+                Text(
+                    text = "\tОтработано:\n\t"
+                            +String.format("%4d",(getShift01Date1Date2Days(selection[0],
+                        selection[selection.lastIndex])))
+                            +"\tраб.дн.\t"
+//                      + String.format("%4d",(getShift01MonthDate (selection[0],selection[selection.lastIndex]))
+                            +String.format("%5d", getShift01Date1Date2 (selection[0],
+                        selection[selection.lastIndex]).toInt())
+                            +"\tчас."
+                    ,
+                    fontSize = 15.sp,    )
+//---------------------------------------------------------------------------------------------
                 Text(
                     text = "\nС начала месяца:\n\t"
                             +String.format("%4d",(getShift01MonthDateDays(selection[0])))

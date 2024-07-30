@@ -52,15 +52,20 @@ class ScheduleViewModel : ViewModel() {
     init {
         _scheduleUiState.value = ScheduleUiState.suvmselection
     }
-
+    fun emptySelection() {
+        _scheduleUiState.value = emptyList()
+    }
     fun updateSelection(selection:List<LocalDate> ){
          _scheduleUiState.value = selection
 
         if (BuildConfig.DEBUG) {
+            /*
             Log.d(
 //                "Schedule01", "+++updateSelectionVM: "+svmselection.lastIndex
                 "ScheduleViewModel", "+++updateSelectionVM: "+_scheduleUiState.value.lastIndex
             )
+
+             */
             for (i in _scheduleUiState.value.lastIndex downTo 0 step 1) {
                 Log.d(
                     "ScheduleViewModel", "+++++VM: " + _scheduleUiState.value[i].dayOfMonth + "/"

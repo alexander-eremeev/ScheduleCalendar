@@ -47,6 +47,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.basement.lib.composecalendar.CalendarState
 import com.childmathematics.android.basement.lib.composecalendar.SelectableCalendar
 import com.childmathematics.android.basement.lib.composecalendar.day.DayState
+import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
 import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
 import com.childmathematics.android.shiftschedule.BuildConfig
@@ -68,32 +69,16 @@ import java.time.LocalDate
 
 @ExperimentalCoroutinesApi
 @Composable
-fun Schedule01Page(currentDialog: Boolean, state: CalendarState<DynamicSelectionState>,
+fun Schedule01Page(
                    scheduleViewModel: ScheduleViewModel = viewModel()
 //                           viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
-                           //gameViewModel: GameViewModel = viewModel()
 )
-//fun Schedule01Page(currentDialog: Boolean)
 {
-//===========================================================================
-//    val Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
-    val scheduleUiState by scheduleViewModel.scheduleUiState.collectAsState()
-//    val scheduleUiState by scheduleViewModel.scheduleUiState.collectAsStateWithLifecycle()
-    //===========================================================================
-
-//    val viewModel = remember { Sch01RecipeViewModel() }
-
-    var showDialog by rememberSaveable { mutableStateOf(false) }
-    var changeDp: Dp
-    /*
-    schedule01PageUiState.state = rememberSelectableCalendarState(
-//.        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
-//        confirmSelectionChange = viewModel::onSelectionChanged, //SelectionMode
-
-        initialSelectionMode = Period,
+    var state = rememberSelectableCalendarState(
+        initialSelectionMode = SelectionMode.Period,
     )
 
-     */
+    var changeDp: Dp
 
     //------------------------
     var changeHightDp: Int
@@ -109,7 +94,8 @@ fun Schedule01Page(currentDialog: Boolean, state: CalendarState<DynamicSelection
 //----------------------------------
     changeDp = 0.dp
 //=========================
-
+    scheduleViewModel.emptySelection()
+//=========================
     Box(
 //        contentAlignment = Alignment.TopStart,
         modifier = Modifier
@@ -164,21 +150,6 @@ fun Schedule01Page(currentDialog: Boolean, state: CalendarState<DynamicSelection
             //--------------------------------------
 
         }
-//        schedule01PageUiState.vmselection= state.selectionState.selection
-/*
-   if (BuildConfig.DEBUG) {
-     //-------------------------
-     for (i in  state.selectionState.selection.lastIndex downTo 0 step 1) {
-         Log.d(
-           "Schedule500", "+++++SCHEDULE500SELSINGLE: " +  state.selectionState.selection[i].dayOfMonth + "/"
-                   +  state.selectionState.selection[i].monthValue + "/" +  state.selectionState.selection[i].year
-         )
-     }
-       Log.d(
-         "Schedule500", "+++++SCHEDULE500SELSINGLE:======="
-       )
-   }
-*/
 
             if (state.selectionState.selection.isNotEmpty()) {
 //                scheduleUiState.updateSelection(state.selectionState.selection )
@@ -192,26 +163,7 @@ fun Schedule01Page(currentDialog: Boolean, state: CalendarState<DynamicSelection
                         )
                     }
                 }
-/*
-                Toast.makeText(
-
-                    LocalContext.current,
-                    "Есть выделенные даты для расчета!! ",
-                    Toast.LENGTH_LONG
-                ).show()
-
- */
-
             }
-
-            if (state.selectionState.selection.size == 0) {
-                if (BuildConfig.DEBUG) {
-                        Log.d(
-                    "Schedule01", "+++Schedule01Page: "+stringResource(R.string.schedule01_NoSelectedDays))
-                    }
-
-            }
-
      }
 //--------------------------
 }

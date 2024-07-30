@@ -8,7 +8,7 @@ import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
 
 
 internal const val SCHEDULE500_SUMMINGPAGE_ROUTE = "schedule500SummingPage"
-internal fun NavGraphBuilder.schedule01SummingPageScreen(
+internal fun NavGraphBuilder.schedule500SummingPageScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 //                state: CalendarState<DynamicSelectionState>

@@ -35,6 +35,7 @@ import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedu
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.navigateToSchedule01SummingPageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.Schedule500PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageGraph
+import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.summingpage.navigateToSchedule500SummingPageGraph
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -58,7 +59,7 @@ fun DrawerNavigationGraph(
 
         mainPageGraph(navController,modifier,openDrawer ,onOpenDrawer = onOpenDrawer )
         schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,scheduleViewModel = scheduleViewModel)
-        schedule500PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer)
+        schedule500PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer,scheduleViewModel = scheduleViewModel)
         aboutGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer )
 
         composable(
@@ -91,7 +92,10 @@ fun DrawerNavigationGraph(
              */
 
                 Schedule500PageScreen(modifier,onBackClick={},
-                    onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
+                    onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
+                    navigateToSchedule500SummingPage = {navController.navigateToSchedule500SummingPageGraph()},
+                    scheduleViewModel = scheduleViewModel
+                    )
 
         }
         composable(

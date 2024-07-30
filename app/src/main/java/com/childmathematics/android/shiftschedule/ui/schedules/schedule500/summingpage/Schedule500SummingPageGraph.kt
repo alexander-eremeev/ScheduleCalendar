@@ -19,7 +19,7 @@ private const val SCHEDULE500_SUMMINGPAGE_DEEPLINK ="$ROOT_DEEPLINK/schedule01_S
 Это позволяет нам перейти к данному экрану.
  */
 
-fun NavController.navigateToSchedule01SummingPageGraph() {
+fun NavController.navigateToSchedule500SummingPageGraph() {
     navigate(SCHEDULE500_SUMMINGPAGE_GRAPH_ROUTE)
 }
 //=============================
@@ -28,7 +28,7 @@ fun NavController.navigateToSchedule01SummingPageGraph() {
 выбранный экран в качестве пункта назначения в NavHost.
  */
 
-fun NavGraphBuilder.schedule01SummingPageGraph(
+fun NavGraphBuilder.schedule500SummingPageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 //    state: CalendarState<DynamicSelectionState>
@@ -48,7 +48,7 @@ fun NavGraphBuilder.schedule01SummingPageGraph(
         popExitTransition = { screenFadeOut() },
 
         ){
-        schedule01SummingPageScreen(
+        schedule500SummingPageScreen(
             navController,
             modifier,
             scheduleViewModel = scheduleViewModel

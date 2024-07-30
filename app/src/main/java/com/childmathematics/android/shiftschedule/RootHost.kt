@@ -45,7 +45,7 @@ internal fun RootHost(widthSizeClass: WindowWidthSizeClass,) {
         // =====================================
 //       mainPageGraph(navController = rootController,openDrawer ={},onOpenDrawer = false)
         // =====================================
-        schedule500PageGraph(navController = rootController,openDrawer ={},onOpenDrawer = false)
+ //       schedule500PageGraph(navController = rootController,openDrawer ={},onOpenDrawer = false)
         // =====================================
 //        schedule01PageGraph(navController = rootController,openDrawer ={},onOpenDrawer = false)
         // =====================================

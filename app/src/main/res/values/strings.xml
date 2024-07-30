@@ -9,7 +9,7 @@
     <string name="about_menu">О приложении</string>
     <string name="about_help">Справка</string>
     <string name="about_licenses">Лицензии</string>
-    <string name="about_localpolices">Полика конфиденциальности</string>
+    <string name="about_localpolices">Политика конфиденциальности</string>
     <!-- Help Screen -->
     <string name="help_menu">Справка</string>
     <string name="help_mainPage">Справка.Титульная страница</string>
@@ -17,7 +17,7 @@
     <string name="help_About">Справка.О приложении</string>
 
     <string name="licences">Лицензии</string>
-    <string name="localPolices">Полика конфиденциальности</string>
+    <string name="localPolices">Политика конфиденциальности</string>
 
     <string name="main_page">Производственный календарь</string>
 

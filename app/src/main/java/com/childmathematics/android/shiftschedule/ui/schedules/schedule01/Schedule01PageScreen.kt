@@ -76,10 +76,12 @@ fun Schedule01PageScreen(
   //      val schedule01PageUiState by viewModel.schedule01PageUiState.collectAsState()
 //        val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsStateWithLifecycle()
         val scheduleUiState by scheduleViewModel.scheduleUiState.collectAsState()
-
+/*
         var state = rememberSelectableCalendarState(
             initialSelectionMode = SelectionMode.Period,
         )
+
+ */
 
         /*
         Возвращает TopAppBarScrollBehavior. Верхняя панель приложения, настроенная с помощью этого
@@ -127,7 +129,7 @@ fun Schedule01PageScreen(
 
 
 
-                    Schedule01Page(true,state,scheduleViewModel)
+                    Schedule01Page(scheduleViewModel)
 //                    schedule01PageUiState.vmselection= state.selectionState.selection
 
                     //Schedule01Page(true,schedule01PageUiState.state)

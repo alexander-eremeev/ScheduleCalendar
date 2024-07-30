@@ -26,11 +26,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
@@ -38,8 +37,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.shiftschedule.BuildConfig
@@ -47,9 +44,6 @@ import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.getShift01
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.getShift01MonthDate
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.getShift01MonthDateDays
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.DialogSchedule500
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.getShift500
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.getShift500Date1Date2
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.getShift500Date1Date2Night
@@ -57,7 +51,6 @@ import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.getSh
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.getShift500MonthDateNight
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.getShift500Night
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.getShift500Text
-import com.childmathematics.android.shiftschedule.util.DialogButtonOK
 import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,29 +58,14 @@ import java.time.LocalDate
 fun Schedule500SummingPageScreen(
         modifier: Modifier = Modifier,
         onBackClick: () -> Unit,
-//        state: CalendarState<DynamicSelectionState>,
-        scheduleViewModel: ScheduleViewModel = viewModel()
-//                viewModel: Schedule01PageViewModel = viewModel()
+        scheduleViewModel: ScheduleViewModel,
 //        viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
-
 ) {
-    /*
-    if (BuildConfig.DEBUG) {
-        Log.d(
-            "Schedule01",
-            "+++Schedule01SummingPageScreen: selection.lastIndex =" +
-//                                    state.selectionState.selection.lastIndex
-                    schedule01PageViewModel.vmselection.lastIndex
-        )
-    }
-
-     */
-
 
     ScheduleCalendarTheme {
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 // val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
-        val scheduleUiState by scheduleViewModel.scheduleUiState.collectAsStateWithLifecycle()
+        val scheduleUiState by scheduleViewModel.scheduleUiState.collectAsState()
          Scaffold(
             modifier = modifier
                 .nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -101,21 +79,9 @@ fun Schedule500SummingPageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
-                    if (BuildConfig.DEBUG) {
-                        Log.d(
-                            "Schedule500",
-                            "+++Schedule500SummingPageScreen: selection.lastIndex =" +
-//                                    state.selectionState.selection.lastIndex
-                                    scheduleUiState.lastIndex
-                        )
-                    }
                     if (scheduleUiState.isNotEmpty()) {
                         if (BuildConfig.DEBUG) {
                             //-------------------------
-                            Log.d(
-                                "Schedule500", "+++Schedule500SummingPageScreen: scheduleUiState.lastIndex =" +
-                                        scheduleUiState.lastIndex
-                            )
                             for (i in  scheduleUiState.lastIndex downTo 0 step 1) {
                                 Log.d(
                                     "Schedule500", "+++Schedule500SummingPageScreen: selected " +
@@ -125,22 +91,16 @@ fun Schedule500SummingPageScreen(
                                 )
                             }
                         }
+                        DialogSchedule500(scheduleUiState)
                     }
+                    if (scheduleUiState.isEmpty()) {
+                        Toast.makeText(
 
-                    if (scheduleUiState.size == 0) {
-                        if (BuildConfig.DEBUG) {
-                            Log.d(
-                                "Schedule500", "+++Schedule500SummingPageScreen: scheduleUiState.lastIndex =" +
-                                        scheduleUiState.lastIndex
-                            )
-                            Log.d(
-                                "Schedule01", "+++++Schedule500SummingPage: "+
-                                        stringResource(R.string.schedule01_NoSelectedDays)
-                            )
-                        }
+                            LocalContext.current,
+                            stringResource(R.string.schedule01_NoSelectedDays),
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
-
-                    DialogSchedule500(scheduleUiState)
                 }
             },
         )
@@ -168,152 +128,10 @@ private fun Schedule500SummingPageTopAppBar(
     )
 }
 //====================================================================
-/*
-@Composable
-fun DialogSchedule500(selection: List<LocalDate>, onDismiss: Boolean) {
-
-    /*
-      Dialog(
-        onDismissRequest = onDismiss,
-        properties = DialogProperties()
-      ) {
-
-     */
-    /*
-    if (selection.isNotEmpty()) {
-        Toast.makeText(
-            LocalContext.current,
-            "Dialog Есть выделенные даты для расчета!! ",
-            Toast.LENGTH_LONG
-        ).show()
-
-    }
-
-     */
-
-    if (selection.size == 0) {
-        Toast.makeText(
-            LocalContext.current,
-//            stringResource(R.string.schedule01_NoSelectedDays),
-                    "Dialog Нет выделенных дат для расчета!! ",
-            Toast.LENGTH_LONG
-        ).show()
-    }
-
-    Surface(tonalElevation = 8.dp, shape = RoundedCornerShape(12.dp)) {
-        Column(
-            modifier = Modifier
-                //====================================================
-                // фиксация нажатия экрана для сдвига паказа рекламы
-                .pointerInput(Unit) {
-                    /*
-                    detectTapAndPressUnconsumed(onTap = {
-                        Log.d(YANDEX_MOBILE_ADS_TAG, "DialogSchedule01 Interstitial:select date TAP")
-                        yaAdsInterstutialTimerOff()  //реклама через 180 cек  durationNoPushTastaturAds
-                    })
-
-                     */
-                }
-                //--------------------------------------------------
-
-                .verticalScroll(rememberScrollState())
-                .fillMaxWidth()
-//          .width(400.dp)
-
-                .wrapContentHeight()
-                .background(Color.White)
-                .padding(8.dp)
-        ) {
-
-            Text(
-                text = "Расчет рабочих часов\nдля выделенных дат:",
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-//          modifier = Modifier.padding(8.dp)
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally),
-            )
-            if (selection.size ==1 ) {
-                //-------------------------------------------------------
-                Text(
-                    text = "\n"
-                            +selection[0].dayOfMonth.toString()+"."
-                            +selection[0].monthValue.toString()+"."
-                            +selection[0].year.toString()
-                    ,
-                    modifier = Modifier.align(Alignment.CenterHorizontally) ,
-                    fontSize = 20.sp,    )
-
-//----------------------------------------------------------------------------------------------
-
-                Text(
-                    text = "\nС начала месяца:\n\t"
-                            +String.format("%4d",(getShift01MonthDateDays(selection[0])))
-                            +"\tраб.дн.\t"
-                            + String.format("%4d",(getShift01MonthDate (selection[0]).toInt()))
-                            +"\tчас."
-                    ,
-
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 15.sp,
-//          modifier = Modifier.padding(8.dp)
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally),
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-
-                //=====================================================
-            } else
-                if (selection.size >1 &&
-                    selection[selection.lastIndex].toEpochDay()-selection[0].toEpochDay()< 70) {
-                    //------------------------------------------------
-                    Text(
-                        text = "\n"
-                                +selection[0].dayOfMonth.toString()+"."
-                                +selection[0].monthValue.toString()+"."
-                                +selection[0].year.toString()+"\t\t--\t\t"
-                                +selection[selection.lastIndex].dayOfMonth.toString()+"."
-                                +selection[selection.lastIndex].monthValue.toString()+"."
-                                +selection[selection.lastIndex].year.toString()
-                                +"\n"
-                        ,
-                        modifier = Modifier.align(Alignment.CenterHorizontally) ,
-//          textAlign= Center,
-                        fontSize = 20.sp,    )
-                    //-------------------------getShift01Date1Date2 (date1: LocalDate,date2: LocalDate------------------
-                    Text(
-                        text = "\tОтработано:\n\t"
-                                +String.format("%4d",(getShift01Date1Date2Days(selection[0],
-                            selection[selection.lastIndex])))
-                                +"\tраб.дн.\t"
-//                      + String.format("%4d",(getShift01MonthDate (selection[0],selection[selection.lastIndex]))
-                                +String.format("%5d", getShift01Date1Date2 (selection[0],
-                            selection[selection.lastIndex]).toInt())
-                                +"\tчас."
-                        ,
-                        fontSize = 15.sp,    )
-                } else {
-                    Text(
-                        text = "\n\nСлишком длинный промежуток\nмежду выделенными датами!!"
-                        ,
-                        modifier = Modifier.align(Alignment.CenterHorizontally) ,
-                        color = Color.Red ,
-                        fontSize = 20.sp,
-                    )
-
-                }
-            Spacer(modifier = Modifier.height(4.dp))
-            //     DialogButtonOK(onDismiss)
-        }
-    }
-//  }
-}
-
- */
-//===================================================================
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DialogSchedule500(selection: List<LocalDate>) {
+
 
     if (selection.size == 0) {
         Toast.makeText(
@@ -564,7 +382,6 @@ fun DialogSchedule500(selection: List<LocalDate>) {
 
                     }
                 Spacer(modifier = Modifier.height(4.dp))
-//                DialogButtonOK(onDismiss)
             }
         }
 }
