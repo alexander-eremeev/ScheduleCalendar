@@ -30,10 +30,10 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "8.5.2"                               #
 #---???????????????????
-jetbrainsKotlin = "2.0.0"                  #agp
+jetbrainsKotlin = "2.0.10"                  #agp
 googleAccompanist = "0.34.0"
-googleDevToolsKsp = "2.0.0-1.0.22"         #agp
-googleAds = "23.2.0"                        #
+googleDevToolsKsp = "2.0.10-1.0.24"         #agp
+googleAds = "23.3.0"                        #
 jetbrainsKotlinxCoroutines = "1.8.1"        #
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.0"
@@ -57,7 +57,7 @@ androidx-webkit = "1.11.0"                   #
 androidxComposeBom = "2024.06.00"            #
 #---------------
 androidxActivityCompose = "1.9.1"              #
-androidxComposeCompiler = "1.5.14"            #agp
+androidxComposeCompiler = "1.5.15"            #agp
 #this plugin provides a task to determine which dependencies have updates.
 benmanesVersions = "0.51.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
@@ -77,8 +77,8 @@ yandexMobMetrica = "7.0.0"          #
 #================
 androidxTest = "1.6.1"
 androidxTestExt = "1.2.1"
-androidxTestRunner = "1.6.1"
-androidxTestMonitor = "1.7.1"
+androidxTestRunner = "1.6.2"
+androidxTestMonitor = "1.7.2"
 androidxTestEspressoCore = "3.6.1"
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
@@ -91,6 +91,9 @@ toolsCore = "1.0.0-alpha09"
 #===================
 #====jetbrains  Libraries
 #===================
+androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 dev-chrisbanes-snapper-snapper = { module = "dev.chrisbanes.snapper:snapper", version.ref = "devSnapper" }
 jetbrains-kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "jetbrainsKotlin" }
 jetbrains-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "jetbrainsKotlin" }
@@ -165,10 +168,15 @@ androidx-compose-material = { module = "androidx.compose.material:material" }
 androidx-compose-material-iconsCore = { module = "androidx.compose.material:material-icons-core" }
 androidx-compose-material-iconsExtended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-material3-window-size = { module = "androidx.compose.material3:material3-window-size-class" }
+
 androidx-lifecycle-viewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigation" }
 androidx-compose-ui = { module = "androidx.compose.ui:ui" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-compose-ui-graphics= { module = "androidx.compose.ui:ui-graphics" }
+
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-util = { module = "androidx.compose.ui:ui-util" }
 #square-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "squareUpOkhttp" }
@@ -197,8 +205,8 @@ androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "a
 androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidxTestExt" }
 androidx-test-monitor = { module = "androidx.test:monitor", version.ref = "androidxTestMonitor" }
 jetbrains-test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "jetbrainsKotlinxCoroutines" }
-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 square-okhttp-mockjunit5 = { module = "com.squareup.okhttp3:mockwebserver3-junit5", version.ref = "squareUpOkhttp" }
 androidx-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "toolsCore" }
 #===================#===================#===================#===================

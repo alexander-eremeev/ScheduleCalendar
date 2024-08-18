@@ -1,11 +1,11 @@
 //pluginManager.apply (org.gradle.api.Action)
-
 pluginManagement {
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
     }
+
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -14,7 +14,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
 rootProject.name = "ScheduleCalendar"
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 /*
@@ -26,8 +25,6 @@ Build Cache и другие типичные узкие места произв�
 plugins {
     id("com.gradle.develocity") version "latest.release"
 }
-
-//gradleEnterprise {
 develocity {
     // configuration
     buildScan {

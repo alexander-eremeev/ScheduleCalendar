@@ -1,8 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-/*
-buildscript {
-}
- */
+
 plugins {
     id("com.android.application") version libs.versions.agp apply false
     id("com.android.library") version libs.versions.agp apply false
