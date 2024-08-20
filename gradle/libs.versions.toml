@@ -34,6 +34,7 @@ jetbrainsKotlin = "2.0.10"                  #agp
 googleAccompanist = "0.34.0"
 googleDevToolsKsp = "2.0.10-1.0.24"         #agp
 googleAds = "23.3.0"                        #
+googlePlayAppUpdate ="2.1.0"
 jetbrainsKotlinxCoroutines = "1.8.1"        #
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.0"
@@ -105,6 +106,8 @@ google-accompanist-insets = { module = "com.google.accompanist:accompanist-inset
 google-accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "googleAccompanist" }
 #================
 google-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "googleAds" }
+google-play-appupdate = { module = "com.google.android.play:app-update", version.ref = "googlePlayAppUpdate" }
+google-play-appupdate-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "googlePlayAppUpdate" }
 #================
 #===== Yandex =====
 #================

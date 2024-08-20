@@ -115,6 +115,8 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    buildToolsVersion = "35.0.0"
+    ndkVersion = "27.0.12077973"
 //-------------------------------------------------------------
 // The feature "context receivers" is experimental and should be enabled explicitly
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
@@ -141,6 +143,10 @@ dependencies {
     implementation(libs.androidx.glance)
     implementation(libs.androidx.glance.appwidget)
     implementation(libs.androidx.glance.material3)
+    //---------------------------------------------
+    // for Play In-App Update
+    implementation(libs.google.play.appupdate)
+    implementation(libs.google.play.appupdate.ktx)
     // ---------------------------------------------------------------------
     // Compose
     // For Compose runtime by default coroutine runtime already included from ui, foundation, implicitly
