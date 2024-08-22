@@ -15,6 +15,7 @@ internal fun NavGraphBuilder.aboutPageScreen(
     navigateToHelp: () -> Unit,
     navigateToLicences: () -> Unit,
     navigateToLocalPolices: () -> Unit,
+    navigateToInUpUpdate: () -> Unit,
 )
 {
     composable(route = ABOUT_PAGE_ROUTE) {
@@ -25,8 +26,8 @@ internal fun NavGraphBuilder.aboutPageScreen(
             modifier = modifier,
             navigateToHelp = navigateToHelp,
             navigateToLicences = navigateToLicences,
-            navigateToLocalPolices =navigateToLocalPolices
-
+            navigateToLocalPolices =navigateToLocalPolices,
+            navigateToInUpUpdate =navigateToInUpUpdate,
          )
     }
 

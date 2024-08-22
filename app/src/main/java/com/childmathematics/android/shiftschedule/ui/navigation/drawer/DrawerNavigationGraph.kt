@@ -102,7 +102,8 @@ fun DrawerNavigationGraph(
             route = DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {
                 AboutPageScreen(onBackClick={},modifier,onOpenDrawer = true,
                     openDrawer = openDrawer,navigateToHelp={},
-                    navigateToLicences={},navigateToLocalPolices={},)
+                    navigateToLicences={},navigateToLocalPolices={},navigateToInUpUpdate={},
+                    )
         }
     }
 }

@@ -11,6 +11,8 @@ import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
 import com.childmathematics.android.shiftschedule.ui.help.helpGraph
 import com.childmathematics.android.shiftschedule.ui.help.navigateToHelpGraph
+import com.childmathematics.android.shiftschedule.ui.in_app_update.inAppUpdatePageGraph
+import com.childmathematics.android.shiftschedule.ui.in_app_update.navigateToInAppUpdatePageGraph
 import com.childmathematics.android.shiftschedule.ui.licences.licencesGraph
 import com.childmathematics.android.shiftschedule.ui.licences.navigateToLicencesGraph
 import com.childmathematics.android.shiftschedule.ui.localpolices.localPolicesGraph
@@ -34,6 +36,7 @@ fun NavGraphBuilder.aboutGraph(
     helpGraph(navController  = navController)
     localPolicesGraph(navController  = navController)
     licencesGraph(navController  = navController)
+    inAppUpdatePageGraph(navController  = navController)
     // =====================================
 
     // =====================================
@@ -54,7 +57,8 @@ fun NavGraphBuilder.aboutGraph(
                 onOpenDrawer,
                 navigateToHelp = {navController.navigateToHelpGraph()},
                 navigateToLicences = {navController.navigateToLicencesGraph()},
-                navigateToLocalPolices={ navController.navigateToLocalPolicesGraph() }
+                navigateToLocalPolices={ navController.navigateToLocalPolicesGraph() },
+                navigateToInUpUpdate={ navController.navigateToInAppUpdatePageGraph() }
             )
     }
 }

@@ -30,6 +30,8 @@ internal fun AboutPageScreen(
     navigateToHelp: () -> Unit,
     navigateToLicences: () -> Unit,
     navigateToLocalPolices: () -> Unit,
+    navigateToInUpUpdate: () -> Unit,
+
 
     viewModel: AboutViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
@@ -73,6 +75,7 @@ internal fun AboutPageScreen(
                     navigateToHelp,
                     navigateToLicences,
                     navigateToLocalPolices,
+                    navigateToInUpUpdate
                     )
             },
             content = { padding ->
