@@ -16,13 +16,21 @@
 
 package com.childmathematics.android.shiftschedule.ui.navigation.drawer
 
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.ui.about.AboutPageScreen
 import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
 
@@ -31,11 +39,13 @@ import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
 import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageScreen
 import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
+import com.childmathematics.android.shiftschedule.ui.in_app_update.UpdateViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.navigateToSchedule01SummingPageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.Schedule500PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.summingpage.navigateToSchedule500SummingPageGraph
+import com.google.android.play.core.install.model.UpdateAvailability
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -49,24 +59,34 @@ fun DrawerNavigationGraph(
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
     startDestination: String = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
-    scheduleViewModel: ScheduleViewModel = viewModel()
+    scheduleViewModel: ScheduleViewModel = viewModel(),
+    updateViewModel: UpdateViewModel = viewModel()
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier
     ) {
-
-        mainPageGraph(navController,modifier,openDrawer ,onOpenDrawer = onOpenDrawer )
-        schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,scheduleViewModel = scheduleViewModel)
-        schedule500PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer,scheduleViewModel = scheduleViewModel)
-        aboutGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer )
+         mainPageGraph(navController,modifier,openDrawer ,onOpenDrawer = onOpenDrawer,
+                updateViewModel = updateViewModel
+        )
+        schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,
+            scheduleViewModel = scheduleViewModel)
+        schedule500PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer,
+            scheduleViewModel = scheduleViewModel)
+        aboutGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer,
+                updateViewModel = updateViewModel
+            )
 
         composable(
             route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
             ) {
-                MainPageScreen(modifier,onBackClick={},
-                onOpenDrawer = onOpenDrawer,openDrawer = openDrawer)
+            updateViewModel.checkForUpdateApp()
+//            val updateUiState by updateViewModel.updateUiState.collectAsState()
+            MainPageScreen(modifier,onBackClick={},
+                onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
+                updateViewModel = updateViewModel
+                )
             }
 
         composable(
@@ -100,7 +120,9 @@ fun DrawerNavigationGraph(
         }
         composable(
             route = DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {
-                AboutPageScreen(onBackClick={},modifier,onOpenDrawer = true,
+ //           updateViewModel.checkForUpdateApp()
+
+            AboutPageScreen(onBackClick={},modifier,onOpenDrawer = true,
                     openDrawer = openDrawer,navigateToHelp={},
                     navigateToLicences={},navigateToLocalPolices={},navigateToInUpUpdate={},
                     )

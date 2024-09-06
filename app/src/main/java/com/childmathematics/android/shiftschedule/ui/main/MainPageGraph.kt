@@ -9,6 +9,7 @@ import androidx.navigation.navDeepLink
 import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
+import com.childmathematics.android.shiftschedule.ui.in_app_update.UpdateViewModel
 import kotlinx.coroutines.launch
 
 const val MAIN_GRAPH_ROUTE = "main_graph"
@@ -30,6 +31,7 @@ fun NavGraphBuilder.mainPageGraph(
     modifier: Modifier = Modifier,
     openDrawer: ()-> Unit,
     onOpenDrawer: Boolean,
+    updateViewModel: UpdateViewModel
 ) {
 
     navigation(startDestination = MAIN_PAGE_ROUTE,
@@ -50,6 +52,7 @@ fun NavGraphBuilder.mainPageGraph(
             modifier,
             onOpenDrawer,
             openDrawer,
+            updateViewModel
             /*
             navigateToHelpMainPage = { navController.navigateToHelpMainPageGraph() },
             navigateToHelpGraphicsPage = { navController.navigateToHelpGraphicsGraph() },

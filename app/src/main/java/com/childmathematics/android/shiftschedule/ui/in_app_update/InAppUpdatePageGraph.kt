@@ -28,6 +28,8 @@ fun NavController.navigateToInAppUpdatePageGraph() {
 fun NavGraphBuilder.inAppUpdatePageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
+    updateViewModel: UpdateViewModel
+
 ) {
     navigation(startDestination = IN_APP_UPDATEPAGE_ROUTE,
         route = IN_APP_UPDATEPAGE_GRAPH_ROUTE,
@@ -44,6 +46,7 @@ fun NavGraphBuilder.inAppUpdatePageGraph(
         inAppUpdatePageScreen(
             navController,
             modifier,
+            updateViewModel
         )
     }
 }

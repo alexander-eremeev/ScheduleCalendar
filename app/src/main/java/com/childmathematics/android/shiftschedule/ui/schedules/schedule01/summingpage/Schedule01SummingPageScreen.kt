@@ -203,18 +203,21 @@ fun DialogSchedule01(selection: List<LocalDate>) {
                         selection[selection.lastIndex])))
                             +"\tраб.дн.\t"
 //                      + String.format("%4d",(getShift01MonthDate (selection[0],selection[selection.lastIndex]))
-                            +String.format("%5d", getShift01Date1Date2 (selection[0],
+                            +String.format("%7d", getShift01Date1Date2 (selection[0],
                         selection[selection.lastIndex]).toInt())
-                            +"\tчас."
+                            +" час."
                     ,
-                    fontSize = 15.sp,    )
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally),
+                    )
 //---------------------------------------------------------------------------------------------
                 Text(
                     text = "\nС начала месяца:\n\t"
                             +String.format("%4d",(getShift01MonthDateDays(selection[0])))
                             +"\tраб.дн.\t"
                             + String.format("%4d",(getShift01MonthDate (selection[0]).toInt()))
-                            +"\tчас."
+                            +" час."
                     ,
 
                     fontWeight = FontWeight.Bold,
@@ -252,9 +255,9 @@ fun DialogSchedule01(selection: List<LocalDate>) {
 //                      + String.format("%4d",(getShift01MonthDate (selection[0],selection[selection.lastIndex]))
                                 +String.format("%5d", getShift01Date1Date2 (selection[0],
                             selection[selection.lastIndex]).toInt())
-                                +"\tчас."
+                                +" час."
                         ,
-                        fontSize = 15.sp,    )
+                        fontSize = 14.sp,    )
                 } else {
                     Text(
                         text = "\n\nСлишком длинный промежуток\nмежду выделенными датами!!"

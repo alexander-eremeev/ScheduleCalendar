@@ -37,6 +37,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
+import com.childmathematics.android.shiftschedule.ui.in_app_update.UpdateViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,11 +46,7 @@ internal fun MainPageScreen(
     onBackClick: () -> Unit,
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
-    /*
-    navigateToHelpMainPage: () -> Unit,
-    navigateToHelpGraphicsPage: () -> Unit,
-    navigateToHelpAboutPage: () -> Unit
-     */
+    updateViewModel: UpdateViewModel,
     viewModel: MainPageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     ScheduleCalendarTheme {
@@ -99,7 +96,7 @@ internal fun MainPageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
-                    MainPageShow()
+                    MainPageShow(updateViewModel)
                   }
             },
         )
