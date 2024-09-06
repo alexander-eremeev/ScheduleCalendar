@@ -136,6 +136,7 @@ name="schedule01_title">График прерывный, односменный,
     <string name="cd_navigate_up">Navigate up</string>
     <string name="cd_navigate_home">Navigate to the home screen</string>
     <string name="cd_navigate_interests">Navigate to the interests screen</string>
-    <string name="inUpUpdatePage">Проверка наличия обновления</string>
-    <string name="inUpUpdate_Request_update">Запрос обновления</string>
+    <string name="inAppUpdatePage">Проверить наличие обновления</string>
+    <string name="inAppUpdate_Request_update">Запросить установку обновления</string>
+    <string name="UpdatePage">Обновить приложение</string>
 </resources>

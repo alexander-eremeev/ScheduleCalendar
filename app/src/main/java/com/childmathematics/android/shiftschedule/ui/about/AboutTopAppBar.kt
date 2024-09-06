@@ -42,10 +42,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import com.childmathematics.android.basement.lib.in_app_update.InAppUpdateManager
-import com.childmathematics.android.basement.lib.in_app_update.InAppUpdateManager.UPDATE_AVAILABLE
+import com.childmathematics.android.basement.lib.in_app_update.InAppUpdateManager.UPDATEAVAILABLE
 import com.childmathematics.android.shiftschedule.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -148,12 +146,14 @@ private fun AboutMenu(
             },
             text = { Text(text = stringResource(id = R.string.about_localpolices)) }
         )
-        val idUpdate: Int
+        val text1: String
+        /*
         InAppUpdateManager.initCheckForUpdates(
             LocalContext.current,
             InAppUpdateManager.activityResultLauncher)
-        if(UPDATE_AVAILABLE)idUpdate = R.string.inUpUpdatePage
-        else idUpdate = R.string.inUpUpdatePage
+        */
+        if(UPDATEAVAILABLE)text1 = stringResource(id = R.string.UpdatePage)
+        else text1 = stringResource(id = R.string.inAppUpdatePage)
         DropdownMenuItem(
             leadingIcon = {Icon(imageVector = Icons.Filled.Update, contentDescription = null)}
             ,
@@ -161,7 +161,7 @@ private fun AboutMenu(
                 navigateToInUopUpdate()
                 closeMenu()
             },
-            text = { Text(text = stringResource(id = idUpdate)) }
+            text = { Text(text = text1) }
          //           text = { Text(text = stringResource(id = R.string.inUpUpdatePage)) }
         )
     }

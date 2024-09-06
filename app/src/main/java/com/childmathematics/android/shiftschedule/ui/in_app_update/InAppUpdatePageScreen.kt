@@ -1,9 +1,5 @@
 package com.childmathematics.android.shiftschedule.ui.in_app_update
 
-import android.util.Log
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.IntentSenderRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,23 +10,20 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.childmathematics.android.basement.lib.in_app_update.InAppUpdateManager
-import com.childmathematics.android.basement.lib.in_app_update.InAppUpdateManager.UPDATE_AVAILABLE
-import com.childmathematics.android.shiftschedule.BuildConfig
+import com.childmathematics.android.basement.lib.in_app_update.InAppUpdateManager.UPDATEAVAILABLE
+import com.childmathematics.android.basement.lib.in_app_update.ScheduleAppUpdateManager
+import com.childmathematics.android.shiftschedule.MainActivity
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.UpdateAvailability
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,6 +32,7 @@ internal fun InAppUpdatePageScreen(
         onBackClick: () -> Unit,
     ) {
     val DAYS_FOR_FLEXIBLE_UPDATE:Int = 5
+    var mes: Boolean
 
 
     ScheduleCalendarTheme {
@@ -56,11 +50,45 @@ internal fun InAppUpdatePageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
-                    InAppUpdateManager.initCheckForUpdates(LocalContext.current,
-                        InAppUpdateManager.activityResultLauncher)
-                    if(UPDATE_AVAILABLE){
-                    }
+
+                    InAppUpdateManager.initCheckForUpdates()
+
+//                    checkForUpdate()
                     /*
+                    Text(
+                        text = "--------------" + scheduleAppUpdateManager.messageStr,
+//                        text = scheduleAppUpdateManager.message,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 10.sp,
+                        modifier = Modifier
+                            .align(End),
+                    )
+                                        appUpdateManager.appUpdateInfoTask.availableVersionCode()
+                                        appUpdateInfo.bytesDownloaded()
+                                        appUpdateInfo.totalBytesToDownload()
+                                        appUpdateInfo.packageName()
+                        var availVersionCode by Delegates.notNull<Int>()
+                        lateinit var packName:String
+
+                                        Text(
+                                            text = "Package=$packName",
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 20.sp,
+                                            modifier = Modifier
+                                                .align(End),
+                                        )
+
+                                        Text(
+                                            text =String.format("%4d","Version available="+availVersionCode),
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 20.sp,
+                                            modifier = Modifier
+                                                .align(End),
+                                        )
+
+                     */
+
+/*
                     val context = LocalContext.current
                     val appUpdateManager = AppUpdateManagerFactory.create(LocalContext.current)
                     // Returns an intent object that you use to check for an update.
@@ -79,19 +107,29 @@ internal fun InAppUpdatePageScreen(
                             ) {
                                 // Request the update.
                                 // Запросить обновление.
-                            }
+                                UPDATE_AVAILABLE = true
+                            } else UPDATE_AVAILABLE=false
+                        Toast.makeText(
+                            context,
+                            //                   stringResource(R.string.inUpUpdate_Request_update),
+                            "UPDATE_AVAILABLE="+UPDATE_AVAILABLE,
+                            Toast.LENGTH_LONG
+                        ).show()
                         }
-
-                     */
+*/
 
                         // Checks whether the platform allows the specified type of update,
                         // and current version staleness.
                         // Проверяет, допускает ли платформа указанный тип обновления,
                         // и актуальность текущей версии.
+                    /*
                     if (BuildConfig.DEBUG) {
-                        Log.d("InUpUpdatePageScreen", "Проверка, допускает ли платформа указанный тип обновления,\n" +
-                                " и актуальность текущей версии.")
+                        Log.d("InAppUpdateManager", "UPDATE_AVAILABLE="+UPDATE_AVAILABLE)
+                        Log.d("InAppUpdateManager", "pakage="+packName)
+                        Log.d("InAppUpdateManager", "availVersionCode="+availVersionCode)
                     }
+
+                     */
                     //--------------------------------------
                      //===================================
                     // Checks whether the platform allows the specified type of update,
@@ -180,6 +218,20 @@ internal fun InAppUpdatePageScreen(
         )
     }
 }
+//----------------------------------
+val scheduleAppUpdateManager = ScheduleAppUpdateManager(MainActivity())
+
+private fun checkForUpdate() {
+    scheduleAppUpdateManager.setUpdateType(AppUpdateType.FLEXIBLE)
+    scheduleAppUpdateManager.checkForUpdate { isAvailable, _ ->
+//        scheduleAppUpdateManager.checkForUpdate { isAvailable, message ->
+//            binding.tvText.text = message
+        if (isAvailable) {
+            //    requestForUpdate()
+        }
+    }
+}
+
 //=================================
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
@@ -187,9 +239,12 @@ private fun InAppUpdatePageTopAppBar(
                 onBackClick: () -> Unit,
                 scrollBehavior: TopAppBarScrollBehavior,
 ) {
+    val text1: String
+    if(UPDATEAVAILABLE) text1 = stringResource(id = R.string.UpdatePage)
+    else text1 = stringResource(id = R.string.inAppUpdatePage)
     CenterAlignedTopAppBar(
         title = {
-            Text(text = stringResource(R.string.inUpUpdatePage))
+            Text(text = text1)
         },
         navigationIcon = {
             IconButton(onClick = onBackClick) {
