@@ -176,7 +176,7 @@ dependencies {
     implementation(libs.androidx.tools.core)
     implementation(libs.androidx.compose.material3.window.size)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    //implementation(libs.material)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.common)
