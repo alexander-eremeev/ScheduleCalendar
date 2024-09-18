@@ -44,14 +44,6 @@ class MainActivity : ComponentActivity() {
 //        val appContainer = (application as MainApplication).container
         setContent {
             val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
-            /*
-//            checkForUpdate()
-            val updateViewModel: UpdateViewModel = viewModel()
-
-            updateViewModel.checkForUpdateApp()
-
-             */
-
             DrawerApp( widthSizeClass)
 //            RootHost(widthSizeClass) //
         }
