@@ -82,7 +82,6 @@ fun DrawerNavigationGraph(
             route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
             ) {
             updateViewModel.checkForUpdateApp()
-//            val updateUiState by updateViewModel.updateUiState.collectAsState()
             MainPageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                 updateViewModel = updateViewModel

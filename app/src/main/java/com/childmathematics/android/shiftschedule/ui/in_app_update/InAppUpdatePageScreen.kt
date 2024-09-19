@@ -1,5 +1,6 @@
 package com.childmathematics.android.shiftschedule.ui.in_app_update
 
+import android.app.ProgressDialog.show
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,10 +19,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
+import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
 import com.childmathematics.android.basement.lib.in_app_update.InAppUpdateManager.UPDATEAVAILABLE
+import com.childmathematics.android.basement.lib.in_app_update.InAppUpdateManager.appUpdateManager
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
+import com.google.android.play.core.install.InstallStateUpdatedListener
+import com.google.android.play.core.install.model.InstallStatus
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -199,4 +204,66 @@ private fun InAppUpdatePageTopAppBar(
         modifier = Modifier.fillMaxWidth()
     )
 }
+//------------------------------------
+/*
+// Запуск
+appUpdateManager.startUpdateFlowForResult(
+// Pass the intent that is returned by 'getAppUpdateInfo()'.
+appUpdateInfo,
+// an activity result launcher registered via registerForActivityResult
+activityResultLauncher,
+// Or pass 'AppUpdateType.FLEXIBLE' to newBuilder() for
+// flexible updates.
+AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build())
+//--------------------------------
+// Before starting an update, register a listener for updates.
+appUpdateManager.registerListener(listenerUp)
+// Start an update.
 
+//--------------------------------------
+// Create a listener to track request state updates.
+val listenerUp = InstallStateUpdatedListener { state ->
+// (Optional) Provide a download progress bar.
+    if (state.installStatus() == InstallStatus.DOWNLOADING) {
+        val bytesDownloaded = state.bytesDownloaded()
+        val totalBytesToDownload = state.totalBytesToDownload()
+// Show update progress bar.
+    }
+// Log state or install the update.
+}
+// Before starting an update, register a listener for updates.
+appUpdateManager.registerListener(listenerUp)
+// Start an update.
+// When status updates are no longer needed, unregister the listener.
+appUpdateManager.unregisterListener(listenerUp)
+
+ */
+//------------------------------------------
+/*
+val listener = { state ->
+    if (state.installStatus() == InstallStatus.DOWNLOADED) {
+// After the update is downloaded, show a notification
+// and request user confirmation to restart the app.
+        popupSnackbarForCompleteUpdate()
+    }
+    ...
+}
+
+ */
+//-------------------------------------------
+// Displays the snackbar notification and call to action.
+/*
+fun popupSnackbarForCompleteUpdate() {
+    Snackbar.make(
+        findViewById(R.id.activity_main_layout),
+        "An update has just been downloaded.",
+        Snackbar.LENGTH_INDEFINITE
+    ).apply {
+        setAction("RESTART") { appUpdateManager.completeUpdate() }
+        setActionTextColor(resources.getColor(R.color.snackbar_action_text_color))
+        show()
+    }
+}
+
+ */
+//++++++++++++++++++++++++++++++++++++++
