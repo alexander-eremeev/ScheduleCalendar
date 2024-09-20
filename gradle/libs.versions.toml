@@ -11,9 +11,9 @@ plugin = "0.8.1"
 # @keep
 ndk-sdk = "27.1.12297006"
 # @keep
-versionCode = "102"     #202
+versionCode = "202"
 # @keep
-versionName = "1.0.2"   #202
+versionName = "2.0.2"
 # @keep
 applicationId = "com.childmathematics.android.shiftschedule"
 # @keep
