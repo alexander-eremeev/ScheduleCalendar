@@ -82,9 +82,11 @@ fun MainPageShow(
         if (updateUiState.lastIndex >=0 &&
                 (updateUiState[updateUiState.lastIndex].UpdateAvailabilityStatus !=
                     UpdateAvailability.UPDATE_AVAILABLE)
+            /*
                 &&
                 (updateUiState[updateUiState.lastIndex].UpdateAvailabilityStatus !=
                     UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS)
+           */
             )
         {
             UPDATEAVAILABLE =true

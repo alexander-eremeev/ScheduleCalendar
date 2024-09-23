@@ -123,7 +123,7 @@ fun DrawerNavigationGraph(
 
             AboutPageScreen(onBackClick={},modifier,onOpenDrawer = true,
                     openDrawer = openDrawer,navigateToHelp={},
-                    navigateToLicences={},navigateToLocalPolices={},navigateToInUpUpdate={},
+                    navigateToLicences={},navigateToLocalPolices={},navigateToAppUpdate={},
                     )
         }
     }

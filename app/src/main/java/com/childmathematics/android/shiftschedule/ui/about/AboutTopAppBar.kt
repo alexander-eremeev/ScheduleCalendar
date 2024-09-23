@@ -57,7 +57,7 @@ fun AboutTopAppBar(
     navigateToHelp: () -> Unit,
     navigateToLicences: () -> Unit,
     navigateToLocalPolices: () -> Unit,
-    navigateToInUopUpdate: () -> Unit,
+    navigateToAppUpdate: () -> Unit,
  ) {
 //fun HomePageTopAppBar(openDrawer: () -> Unit,closeDrawer: () -> Unit) {
     TopAppBar(
@@ -80,7 +80,7 @@ fun AboutTopAppBar(
            AboutMenu( navigateToHelp,
                     navigateToLicences,
                     navigateToLocalPolices,
-                    navigateToInUopUpdate,
+                    navigateToAppUpdate,
 
             )
          },
@@ -108,7 +108,7 @@ private fun AboutMenu(
     navigateToHelp: () -> Unit,
     navigateToLicences: () -> Unit,
     navigateToLocalPolices: () -> Unit,
-    navigateToInUopUpdate: () -> Unit,
+    navigateToAppUpdate: () -> Unit,
     ) {
     TopAppBarDropdownMenu(
         iconContent = {
@@ -146,24 +146,21 @@ private fun AboutMenu(
             },
             text = { Text(text = stringResource(id = R.string.about_localpolices)) }
         )
-        val text1: String
-        /*
-        InAppUpdateManager.initCheckForUpdates(
-            LocalContext.current,
-            InAppUpdateManager.activityResultLauncher)
-        */
-        if(UPDATEAVAILABLE)text1 = stringResource(id = R.string.UpdatePage)
-        else text1 = stringResource(id = R.string.inAppUpdatePage)
-        DropdownMenuItem(
-            leadingIcon = {Icon(imageVector = Icons.Filled.Update, contentDescription = null)}
-            ,
-            onClick = {
-                navigateToInUopUpdate()
-                closeMenu()
-            },
-            text = { Text(text = text1) }
-         //           text = { Text(text = stringResource(id = R.string.inUpUpdatePage)) }
-        )
+         if(UPDATEAVAILABLE) {
+            DropdownMenuItem(
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Filled.Update,
+                        contentDescription = null
+                    )
+                },
+                onClick = {
+                    navigateToAppUpdate()
+                    closeMenu()
+                },
+                 text = { Text(text = stringResource(id = R.string.UpdatePage)) }
+            )
+        }
     }
 }
 //-----------------------------
