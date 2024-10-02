@@ -190,6 +190,7 @@ dependencies {
     // /////////////
     // TEST AND DEBUG SUPPORT
     // ////
+    testImplementation(libs.jetbrains.test.coroutines)
     testImplementation(libs.junit.test)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.espresso.core)
