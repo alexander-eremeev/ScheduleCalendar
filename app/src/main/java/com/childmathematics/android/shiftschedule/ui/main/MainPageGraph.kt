@@ -9,8 +9,7 @@ import androidx.navigation.navDeepLink
 import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
-import com.childmathematics.android.shiftschedule.ui.in_app_update.UpdateViewModel
-import kotlinx.coroutines.launch
+import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
 
 const val MAIN_GRAPH_ROUTE = "main_graph"
 private const val MAIN_DEEPLINK ="$ROOT_DEEPLINK/main.html"

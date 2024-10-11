@@ -1,4 +1,4 @@
-package com.childmathematics.android.shiftschedule.ui.in_app_update
+package com.childmathematics.android.shiftschedule.ui.inappupdate
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,6 +8,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -20,7 +21,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun LinearDeterminateIndicator() {
-    var currentProgress by remember { mutableStateOf(0f) }
+    var currentProgress by remember { mutableFloatStateOf(0f) }
     var loading by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope() // Create a coroutine scope
 
@@ -52,8 +53,11 @@ fun LinearDeterminateIndicator() {
 
 /** Iterate the progress value */
 suspend fun loadProgress(updateProgress: (Float) -> Unit) {
-    for (i in 1..100) {
-        updateProgress(i.toFloat() / 100)
-        delay(100)
+    val maxPercent : Int = 100
+    val delayMs : Long = 100
+
+    for (i in 1..maxPercent) {
+        updateProgress(i.toFloat() / maxPercent)
+        delay( delayMs)
     }
 }

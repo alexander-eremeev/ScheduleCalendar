@@ -1,4 +1,4 @@
-package com.childmathematics.android.shiftschedule.ui.in_app_update
+package com.childmathematics.android.shiftschedule.ui.inappupdate
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext

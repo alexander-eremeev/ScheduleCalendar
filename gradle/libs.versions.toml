@@ -30,9 +30,9 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "8.7.0"                               #
 #---???????????????????
-jetbrainsKotlin = "2.0.20"                  #agp
+jetbrainsKotlin = "2.0.21"                  #agp
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.0.20-1.0.25"         #agp
+googleDevToolsKsp = "2.0.20-1.0.25"         #"2.0.20-1.0.25"
 googleAds = "23.4.0"                        #
 googlePlayAppUpdate ="2.1.0"
 jetbrainsKotlinxCoroutines = "1.9.0"        #1.8.1
@@ -42,20 +42,20 @@ androidxActivityKtx = "1.9.2"               #
 androidxCoreKtx = "1.13.1"                  #
 androidxRecyclerview = "1.3.2"
 androidx-glance = "1.1.0"                   #
-androidxNavigation = "2.8.1"                #
+androidxNavigation = "2.8.2"                #
 androidxLifecycle = "2.8.6"                 #
 androidxAnnotation = "1.8.2"                #
 androidxViewpager2 = "1.1.0"                #
 androidxRoom = "2.6.1"
-androidxProfileinstaller = "1.4.0"
+androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.3.0"
-androidxUiToolingPreview = "1.7.2"           #
-androidx-webkit = "1.12.0"                   #
+androidxUiToolingPreview = "1.7.3"           #
+androidx-webkit = "1.12.1"                   #
 #===========================
 #===== Android Compose =====
 #===========================
-androidxComposeBom = "2024.09.02"            #
+androidxComposeBom = "2024.09.03"            #
 #---------------
 androidxActivityCompose = "1.9.2"              #
 androidxComposeCompiler = "1.5.15"            #agp
@@ -86,7 +86,7 @@ androidxTestEspressoCore = "3.6.1"
 #testandroidxuiautomator =  "2.2.0"
 #JUnit is a unit testing framework to write and run repeatable automated tests on Java.
 junitTest = "4.13.2"
-toolsCore = "1.0.0-alpha09"
+toolsCore = "1.0.0-alpha10"
 material = "1.12.0"
 #===================#===================#===================#===================
 [libraries]

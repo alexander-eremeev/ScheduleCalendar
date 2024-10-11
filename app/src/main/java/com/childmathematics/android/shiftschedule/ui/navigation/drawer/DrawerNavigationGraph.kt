@@ -16,21 +16,13 @@
 
 package com.childmathematics.android.shiftschedule.ui.navigation.drawer
 
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.ui.about.AboutPageScreen
 import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
 
@@ -39,13 +31,12 @@ import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
 import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageScreen
 import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
-import com.childmathematics.android.shiftschedule.ui.in_app_update.UpdateViewModel
+import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.navigateToSchedule01SummingPageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.Schedule500PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.summingpage.navigateToSchedule500SummingPageGraph
-import com.google.android.play.core.install.model.UpdateAvailability
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @OptIn(ExperimentalCoroutinesApi::class)

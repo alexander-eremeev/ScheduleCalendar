@@ -37,7 +37,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
-import com.childmathematics.android.shiftschedule.ui.in_app_update.UpdateViewModel
+import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

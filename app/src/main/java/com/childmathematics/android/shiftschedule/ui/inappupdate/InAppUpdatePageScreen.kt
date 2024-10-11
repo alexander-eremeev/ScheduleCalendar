@@ -1,6 +1,5 @@
-package com.childmathematics.android.shiftschedule.ui.in_app_update
+package com.childmathematics.android.shiftschedule.ui.inappupdate
 
-import android.content.Context
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.compose.foundation.layout.Column
@@ -10,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BackHand
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton

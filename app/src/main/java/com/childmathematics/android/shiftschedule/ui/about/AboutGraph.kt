@@ -1,7 +1,6 @@
 package com.childmathematics.android.shiftschedule.ui.about
 
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -12,9 +11,9 @@ import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
 import com.childmathematics.android.shiftschedule.ui.help.helpGraph
 import com.childmathematics.android.shiftschedule.ui.help.navigateToHelpGraph
-import com.childmathematics.android.shiftschedule.ui.in_app_update.UpdateViewModel
-import com.childmathematics.android.shiftschedule.ui.in_app_update.inAppUpdatePageGraph
-import com.childmathematics.android.shiftschedule.ui.in_app_update.navigateToInAppUpdatePageGraph
+import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
+import com.childmathematics.android.shiftschedule.ui.inappupdate.inAppUpdatePageGraph
+import com.childmathematics.android.shiftschedule.ui.inappupdate.navigateToInAppUpdatePageGraph
 import com.childmathematics.android.shiftschedule.ui.licences.licencesGraph
 import com.childmathematics.android.shiftschedule.ui.licences.navigateToLicencesGraph
 import com.childmathematics.android.shiftschedule.ui.localpolices.localPolicesGraph

@@ -4,7 +4,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.childmathematics.android.shiftschedule.ui.in_app_update.UpdateViewModel
+import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
 
 
 internal const val MAIN_PAGE_ROUTE = "mainPage"
