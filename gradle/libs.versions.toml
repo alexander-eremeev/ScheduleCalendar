@@ -32,7 +32,7 @@ agp = "8.7.0"                               #
 #---???????????????????
 jetbrainsKotlin = "2.0.21"                  #agp
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.0.20-1.0.25"         #"2.0.20-1.0.25"
+googleDevToolsKsp = "2.0.21-1.0.25"         #"2.0.20-1.0.25"
 googleAds = "23.4.0"                        #
 googlePlayAppUpdate ="2.1.0"
 jetbrainsKotlinxCoroutines = "1.9.0"        #1.8.1
