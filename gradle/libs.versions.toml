@@ -28,36 +28,36 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "8.7.1"                               #
+agp = "8.7.2"                               #
 #---???????????????????
 jetbrainsKotlin = "2.0.21"                  #agp
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.0.21-1.0.25"         #"2.0.20-1.0.25"
-googleAds = "23.4.0"                        #
+googleDevToolsKsp = "2.0.21-1.0.26"         #
+googleAds = "23.5.0"                        #
 googlePlayAppUpdate ="2.1.0"
-jetbrainsKotlinxCoroutines = "1.9.0"        #1.8.1
+jetbrainsKotlinxCoroutines = "1.9.0"        #
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.0"
-androidxActivityKtx = "1.9.2"               #
-androidxCoreKtx = "1.13.1"                  #
+androidxActivityKtx = "1.9.3"               #
+androidxCoreKtx = "1.15.0"                  #
 androidxRecyclerview = "1.3.2"
-androidx-glance = "1.1.0"                   #
-androidxNavigation = "2.8.2"                #
-androidxLifecycle = "2.8.6"                 #
-androidxAnnotation = "1.8.2"                #
+androidx-glance = "1.1.1"                   #
+androidxNavigation = "2.8.3"                #
+androidxLifecycle = "2.8.7"                 #
+androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
 androidxRoom = "2.6.1"
 androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.3.0"
-androidxUiToolingPreview = "1.7.3"           #
+androidxUiToolingPreview = "1.7.5"           #
 androidx-webkit = "1.12.1"                   #
 #===========================
 #===== Android Compose =====
 #===========================
-androidxComposeBom = "2024.09.03"            #
+androidxComposeBom = "2024.10.01"            #
 #---------------
-androidxActivityCompose = "1.9.2"              #
+androidxActivityCompose = "1.9.3"              #
 androidxComposeCompiler = "1.5.15"            #agp
 #this plugin provides a task to determine which dependencies have updates.
 benmanesVersions = "0.51.0"
@@ -71,7 +71,7 @@ devSnapper = "0.3.0"        # 1.3.0         ????????
 #================
 #===== Yandex =====
 #================
-yandexmMobileads = "7.5.0"          #
+yandexmMobileads = "7.6.0"          #
 yandexMobMetrica = "7.0.0"          #
 #================
 #===== Test =====
