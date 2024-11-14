@@ -72,7 +72,7 @@ fun DrawerNavigationGraph(
         composable(
             route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
             ) {
-            updateViewModel.checkForUpdateApp()
+            updateViewModel.CheckForUpdateApp()
             MainPageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                 updateViewModel = updateViewModel

@@ -130,13 +130,15 @@ android {
 //-------------------------------------------------------------
 }
 dependencies {
-    implementation( libs.dev.chrisbanes.snapper.snapper)    //??????
+    implementation( libs.dev.chrisbanes.snapper.snapper)    //?????? Snapper в настоящее время устарел,
+                                // поскольку его функционал заменен на SnapFlingBehavior, доступный в Jetpack Compose 1.3.0.
     // /////////////
     // UI SUPPORT
     // ////
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.jetbrains.kotlin.coroutines)
     // Webkit
     implementation(libs.androidx.webkit.webkit)
 

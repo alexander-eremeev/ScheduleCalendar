@@ -46,7 +46,6 @@ import java.time.LocalDate
 import java.time.format.TextStyle
 import java.util.Locale
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainPageShow(
     updateViewModel: UpdateViewModel
@@ -76,7 +75,7 @@ fun MainPageShow(
         imageHightDp = 0.dp
         UPDATEAVAILABLE=false
         if (updateUiState.lastIndex >=0 &&
-                (updateUiState[updateUiState.lastIndex].UpdateAvailabilityStatus !=
+                (updateUiState[updateUiState.lastIndex].updateAvailabilityStatus !=
                     UpdateAvailability.UPDATE_AVAILABLE)
             /*
                 &&
