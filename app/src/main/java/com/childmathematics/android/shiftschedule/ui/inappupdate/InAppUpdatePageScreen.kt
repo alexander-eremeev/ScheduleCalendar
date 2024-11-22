@@ -65,13 +65,14 @@ internal fun InAppUpdatePageScreen(
                 ) {
 
                     Button(
-                        onClick = {  },
+                        onClick = { updateViewModel.CheckAndUpdatedApp() },
                     )
                     {
                         Text(stringResource(id = R.string.UpdatePage),
                             fontWeight = FontWeight.Bold,
                         )
                      }
+                    /*
                     LinearDeterminateIndicator()
                     var appInstalled: Boolean = false
 
@@ -158,6 +159,7 @@ internal fun InAppUpdatePageScreen(
                     appUpdateManager.completeUpdate()
 
                     LinearDeterminateIndicator()
+                    */
                 }
             },
         )

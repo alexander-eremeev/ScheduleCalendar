@@ -4,12 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+import com.childmathematics.android.shiftschedule.ui.inappupdate.InAppUpdateMan.init
+
 import com.childmathematics.android.shiftschedule.ui.navigation.drawer.DrawerApp
 
 class MainActivity : ComponentActivity() {
-
+    private lateinit var activityResultLauncher: ActivityResultLauncher<IntentSenderRequest>
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         // -----------------------------------------------
@@ -19,6 +24,13 @@ class MainActivity : ComponentActivity() {
         // ==============================================
         super.onCreate(savedInstanceState)
         // ------------------------------------------------------------------
+        //USING In App Update Library
+        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult())
+        { result ->
+            // Handle the result of the update flow here
+        }
+        // подготовка проверки готовности обновления приложения
+        init(this,activityResultLauncher)
 //-------------------------------------------------------------------------
 //        val appContainer = (application as MainApplication).container
         setContent {

@@ -34,9 +34,10 @@ import androidx.compose.ui.unit.sp
 
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.childmathematics.android.basement.lib.ads.yandex.mYaInterstitialAdOnOff
-import com.childmathematics.android.basement.lib.in_app_update.InAppUpdateManager.UPDATEAVAILABLE
+
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
+import com.childmathematics.android.shiftschedule.ui.inappupdate.InAppUpdateMan.UPDATEAVAILABLE
 import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
@@ -73,20 +74,23 @@ fun MainPageShow(
     ) {
         //------------------------------------------
         imageHightDp = 0.dp
-        UPDATEAVAILABLE=false
-        if (updateUiState.lastIndex >=0 &&
-                (updateUiState[updateUiState.lastIndex].updateAvailabilityStatus !=
-                    UpdateAvailability.UPDATE_AVAILABLE)
-            /*
-                &&
-                (updateUiState[updateUiState.lastIndex].UpdateAvailabilityStatus !=
-                    UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS)
-           */
+        /*
+    if (updateUiState.lastIndex >=0 &&
+            (updateUiState[updateUiState.lastIndex].updateAvailabilityStatus !=
+                UpdateAvailability.UPDATE_AVAILABLE)
+
+            &&
+            (updateUiState[updateUiState.lastIndex].UpdateAvailabilityStatus !=
+                UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS)
+
             )
+
+         */
+        if(UPDATEAVAILABLE)
         {
-            UPDATEAVAILABLE =true
+
             Button(
-                    onClick = {  },
+                    onClick = { updateViewModel.CheckAndUpdatedApp() },
                  )
             {
                 Text(stringResource(id = R.string.UpdatePage),

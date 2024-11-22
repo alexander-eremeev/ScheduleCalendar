@@ -16,13 +16,17 @@
 
 package com.childmathematics.android.shiftschedule.ui.navigation.drawer
 
+import android.app.Activity
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.childmathematics.android.shiftschedule.MainActivity
+import com.childmathematics.android.shiftschedule.MainApplication
 import com.childmathematics.android.shiftschedule.ui.about.AboutPageScreen
 import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
 
@@ -58,7 +62,9 @@ fun DrawerNavigationGraph(
         startDestination = startDestination,
         modifier = modifier
     ) {
-         mainPageGraph(navController,modifier,openDrawer ,onOpenDrawer = onOpenDrawer,
+        updateViewModel.CheckForUpdatedApp()
+
+        mainPageGraph(navController,modifier,openDrawer ,onOpenDrawer = onOpenDrawer,
                 updateViewModel = updateViewModel
         )
         schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,
@@ -72,7 +78,7 @@ fun DrawerNavigationGraph(
         composable(
             route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
             ) {
-            updateViewModel.CheckForUpdateApp()
+ //           updateViewModel.CheckForUpdateApp()
             MainPageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                 updateViewModel = updateViewModel

@@ -43,8 +43,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.childmathematics.android.basement.lib.in_app_update.InAppUpdateManager.UPDATEAVAILABLE
+
+
 import com.childmathematics.android.shiftschedule.R
+import com.childmathematics.android.shiftschedule.ui.inappupdate.InAppUpdateMan.UPDATEAVAILABLE
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -42,9 +42,9 @@ object InAppUpdateManager {
      * Call this function to initialize the update manager which will check for updates.
      */
 
-    fun init(activity: Activity, launcher: ActivityResultLauncher<IntentSenderRequest>) {
+    fun init(activity: Activity,/* launcher: ActivityResultLauncher<IntentSenderRequest>*/) {
         appUpdateManager = AppUpdateManagerFactory.create(activity)
-        activityResultLauncher = launcher
+//        activityResultLauncher = launcher
     //    checkForUpdates()
     }
     @Composable
