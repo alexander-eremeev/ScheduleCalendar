@@ -2,6 +2,7 @@ package com.childmathematics.android.shiftschedule.ui.schedules.schedule500
 
 
 //import com.childmathematics.android.basement.lib.ads.util.detectTapAndPressUnconsumed
+import android.content.Context
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
@@ -28,10 +29,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
@@ -49,6 +52,7 @@ import com.childmathematics.android.shiftschedule.util.bannerHightWithVideoMin
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.time.LocalDate
+import com.childmathematics.android.shiftschedule.util.nonScaledSp
 
 /**
  * In this sample, calendar composable is wired with an ViewModel. It's purpose is to show how to use
@@ -143,8 +147,10 @@ fun Schedule500Page(
                     )).toInt()
                 )
                         + ") час",
-                fontSize = 14.sp,
+                fontSize = 14.sp.nonScaledSp,
+
             )
+
             Text(
                 text =
                 "\tБригада 2:"
@@ -163,7 +169,8 @@ fun Schedule500Page(
                     )).toInt()
                 )
                         + ") час",
-                fontSize = 14.sp,
+                fontSize = 14.sp.nonScaledSp,
+
             )
             Text(
                 text =
@@ -183,7 +190,7 @@ fun Schedule500Page(
                     )).toInt()
                 )
                         + ") час",
-                fontSize = 14.sp,
+                fontSize = 14.sp.nonScaledSp,
             )
             Text(
                 text =
@@ -203,16 +210,16 @@ fun Schedule500Page(
                     )).toInt()
                 )
                         + ") час",
-                fontSize = 14.sp,
+                fontSize = 14.sp.nonScaledSp,
             )
             //========================================================================
             Text(
                 text = "\n\tПояснение:\tв скобках - ночные часы",
-                fontSize = 14.sp,
+                fontSize = 14.sp.nonScaledSp,
             )
             Text(
                 text = "-------------",
-                fontSize = 4.sp,
+                fontSize = 4.sp.nonScaledSp,
             )
 
 //            Spacer(modifier = Modifier.height(5.dp))
@@ -305,7 +312,7 @@ fun Sch500RecipeDay(
       horizontalAlignment = Alignment.CenterHorizontally,
     ) {
       Text(
-        fontSize = 20.sp,
+        fontSize = 20.sp.nonScaledSp,
         fontWeight= FontWeight.Bold,
 //        Style= MaterialTheme.typography.subtitle2   ,
 
@@ -317,12 +324,15 @@ fun Sch500RecipeDay(
         style = MaterialTheme.typography.bodyLarge,
 
         )
+
         Text(
 //          text = plannedRecipe.price.toString(),
           text = String.format("%2d",(getShift500(date,1)).toInt())
                   +" / "
                   +String.format("%2d",(getShift500(date,2)).toInt()),
-          fontSize = 12.sp,
+//            fontSize = 12.dp,
+          fontSize = 12.sp.nonScaledSp,
+
 //            fontWeight= FontWeight.Bold,
           style = MaterialTheme.typography.bodyMedium,
         )
@@ -331,7 +341,7 @@ fun Sch500RecipeDay(
           text = String.format("%2d",(getShift500(date,3)).toInt())
                   +" / "
                   +String.format("%2d",(getShift500(date,4)).toInt()),
-          fontSize = 12.sp,
+          fontSize = 12.sp.nonScaledSp,
 //            fontWeight= FontWeight.Bold,
             style = MaterialTheme.typography.bodyMedium,
         )
@@ -673,4 +683,11 @@ fun getShift500Date1Date2Night (date1: LocalDate,date2: LocalDate,nBrig: Int):Do
     }
     return summ
 }
+//------------------------------------------------------
+/*
+// получить исходное «нормальное», немасштабированное значение:
+val TextUnit.nonScaledSp
+    @Composable
+    get() = (this.value / LocalDensity.current.fontScale).sp
 
+ */

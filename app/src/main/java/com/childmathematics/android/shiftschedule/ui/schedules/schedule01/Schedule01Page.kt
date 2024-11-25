@@ -56,6 +56,7 @@ import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
 import com.childmathematics.android.shiftschedule.util.bannerHightWithVideoMin
+import com.childmathematics.android.shiftschedule.util.nonScaledSp
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.time.LocalDate
 
@@ -141,7 +142,7 @@ fun Schedule01Page(
                 )
 //                        + "\tчас.\n",  //schedule01_MonthWorkHours
                           + stringResource(R.string.schedule01_MonthWorkHours),
-                fontSize = 15.sp,
+                fontSize = 15.sp.nonScaledSp,
                 fontWeight = FontWeight.Bold,
 
                 )
@@ -235,7 +236,7 @@ if (isSelected)
     ) {
             Text(
 //                modifier = Modifier.background(androidx.compose.ui.graphics.Color.Red, CircleShape),
-                fontSize = 20.sp,       //15.sp
+                fontSize = 20.sp.nonScaledSp,       //15.sp
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 text = date.dayOfMonth.toString(),
@@ -253,7 +254,7 @@ if (isSelected)
                 text = //String.format("%2d",(getShift01(date)).toInt())
 //                  +" / "+
                 String.format("%2d", (getShift01(date)).toInt()),
-                fontSize = 15.sp,
+                fontSize = 15.sp.nonScaledSp,
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
