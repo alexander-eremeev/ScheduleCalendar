@@ -107,7 +107,7 @@ private fun Schedule500PageTopAppBar(
 ) {
     CenterAlignedTopAppBar(
         title = {
-            Text(text = stringResource(R.string.schedule500_title))
+            Text(text = stringResource(R.string.schedule500_titleshort))
         },
         navigationIcon = {
             if(onOpenDrawer) {

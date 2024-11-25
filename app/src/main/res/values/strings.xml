@@ -29,14 +29,14 @@ name="schedule01_title">График прерывный, односменный,
     -->
     <string name="schedule01_title">График односменный, 8 часовой с выходными днями СБ и ВС</string>
     <string name="schedule01_titlemidle">График односменный,8 час. с выходн. СБ и ВС</string>
-    <string name="schedule01_titleshort">5x2(сб,вс)</string>
+    <string name="schedule01_titleshort">График 1см.5дн.2вых.(сб,вс)</string>
     <string name="schedule01_MonthWorkDays">\tраб.дн.\t</string>
     <string name="schedule01_MonthWorkHours">\tчас.\n</string>
     <string name="schedule01_NoSelectedDays">Нет выделенных дат для расчета!!</string>
     <string name="schedule01_SummingSelectedDays">Расчет рабочих часов для выделенных дат</string>
 
     <string name="schedule500_title">График 12 часовой,4-х бригадный,2-х сменный</string>
-    <string name="schedule500_titleshort">12х4x2</string>
+    <string name="schedule500_titleshort">График 12ч.4бр.2см.</string>
     <string name="schedule511_title">График 11 часовой,4-х бригадный,2-х сменный</string>
     <string name="schedule511_titleshort">11х4x2</string>
     <string name="about_title">О приложении</string>
