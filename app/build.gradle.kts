@@ -1,4 +1,5 @@
 
+import com.android.build.api.dsl.Ndk
 import java.io.FileInputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -15,12 +16,16 @@ android {
     namespace = libs.versions.applicationId.get()
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
+    buildToolsVersion = libs.versions.buildToolsVersion.get().toString()
+    ndkVersion = libs.versions.ndkVersion.get().toString()
+
     defaultConfig {
         applicationId = libs.versions.applicationId.get()
         minSdk = libs.versions.min.sdk.get().toInt()
         targetSdk = libs.versions.target.sdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()
         versionName = libs.versions.versionName.get()
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -87,6 +92,14 @@ android {
                 "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("release")
+            // Native Development Kit (NDK) — это набор инструментов, позволяющий использовать код C и C++ с Android.
+            // Появление предупреждения в Google Play Console означает, что ваше приложение содержит код C/C++.
+            // Для отладки собственного кода необходимы собственные символы отладки.
+/*
+            ndk {
+//                debugSymbolLevel ="none"    // "symbol_table"  "full"
+            }
+ */
         }
         getByName("debug") {
             multiDexEnabled = true
@@ -118,8 +131,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    buildToolsVersion = "35.0.0"
-    ndkVersion = "27.0.12077973"
 //-------------------------------------------------------------
 // The feature "context receivers" is experimental and should be enabled explicitly
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
@@ -131,8 +142,13 @@ android {
 }
 dependencies {
     implementation( libs.dev.chrisbanes.snapper.snapper)    //?????? Snapper в настоящее время устарел,
-                                // поскольку его функционал заменен на SnapFlingBehavior, доступный в Jetpack Compose 1.3.0.
-    // /////////////
+    // поскольку его функционал заменен на SnapFlingBehavior,
+    // доступный в Jetpack Compose 1.3.0.
+
+    // Native Development Kit (NDK) — это набор инструментов, позволяющий использовать код C и C++ с Android.
+    // Для отладки собственного кода необходимы собственные символы отладки.
+//    implementation(libs.android.tools.build)
+     /////////////
     // UI SUPPORT
     // ////
     implementation(libs.androidx.core.ktx)

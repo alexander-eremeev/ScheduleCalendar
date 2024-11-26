@@ -12,12 +12,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.presentation.WebViewMainScreen
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
+import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 
@@ -32,6 +34,7 @@ internal fun AboutPageScreen(
     navigateToLocalPolices: () -> Unit,
     navigateToAppUpdate: () -> Unit,
 
+    updateViewModel: UpdateViewModel,
 
     viewModel: AboutViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
@@ -43,6 +46,8 @@ internal fun AboutPageScreen(
         возвращаемое состояние будет обновляться, вызывая рекомпозицию каждого использования State.value.
          */
         val aboutUiState by viewModel.aboutUiState.collectAsState()
+        val updateUiState by updateViewModel.updateUiState.collectAsStateWithLifecycle()
+
         /*
         Возвращает TopAppBarScrollBehavior. Верхняя панель приложения, настроенная с помощью этого
         TopAppBarScrollBehavior, немедленно свернется при извлечении содержимого и сразу же появится при перемещении
@@ -75,7 +80,8 @@ internal fun AboutPageScreen(
                     navigateToHelp,
                     navigateToLicences,
                     navigateToLocalPolices,
-                    navigateToAppUpdate
+                    navigateToAppUpdate,
+                    updateViewModel
                     )
             },
             content = { padding ->

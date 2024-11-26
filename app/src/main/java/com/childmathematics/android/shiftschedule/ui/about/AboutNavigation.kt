@@ -4,6 +4,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
 
 internal const val ABOUT_PAGE_ROUTE = "aboutPage"
 
@@ -16,6 +17,7 @@ internal fun NavGraphBuilder.aboutPageScreen(
     navigateToLicences: () -> Unit,
     navigateToLocalPolices: () -> Unit,
     navigateToAppUpdate: () -> Unit,
+    updateViewModel: UpdateViewModel,
 )
 {
     composable(route = ABOUT_PAGE_ROUTE) {
@@ -28,6 +30,7 @@ internal fun NavGraphBuilder.aboutPageScreen(
             navigateToLicences = navigateToLicences,
             navigateToLocalPolices =navigateToLocalPolices,
             navigateToAppUpdate =navigateToAppUpdate,
+            updateViewModel = updateViewModel
          )
     }
 

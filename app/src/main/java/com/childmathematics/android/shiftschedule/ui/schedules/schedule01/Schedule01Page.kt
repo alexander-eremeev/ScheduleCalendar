@@ -140,8 +140,8 @@ fun Schedule01Page(
                         state.monthState.currentMonth.year, state.monthState.currentMonth.monthValue
                     )).toInt()
                 )
-//                        + "\tчас.\n",  //schedule01_MonthWorkHours
-                          + stringResource(R.string.schedule01_MonthWorkHours),
+//                        + " час\n",  //schedule01_MonthWorkHours
+                                + " " + stringResource(R.string.schedule01_MonthWorkHours)+ "\n",
                 fontSize = 15.sp.nonScaledSp,
                 fontWeight = FontWeight.Bold,
 

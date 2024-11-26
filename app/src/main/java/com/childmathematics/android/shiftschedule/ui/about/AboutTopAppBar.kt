@@ -43,10 +43,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.ui.inappupdate.InAppUpdateMan.UPDATEAVAILABLE
+import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
+import com.google.android.play.core.install.model.UpdateAvailability
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,8 +63,12 @@ fun AboutTopAppBar(
     navigateToLicences: () -> Unit,
     navigateToLocalPolices: () -> Unit,
     navigateToAppUpdate: () -> Unit,
- ) {
+    updateViewModel: UpdateViewModel
+
+) {
 //fun HomePageTopAppBar(openDrawer: () -> Unit,closeDrawer: () -> Unit) {
+
+
     TopAppBar(
         title = { Text(text = stringResource(id = R.string.about_title)) },
         navigationIcon = {
@@ -83,7 +90,7 @@ fun AboutTopAppBar(
                     navigateToLicences,
                     navigateToLocalPolices,
                     navigateToAppUpdate,
-
+                    updateViewModel
             )
          },
         modifier = Modifier.fillMaxWidth()
@@ -111,7 +118,11 @@ private fun AboutMenu(
     navigateToLicences: () -> Unit,
     navigateToLocalPolices: () -> Unit,
     navigateToAppUpdate: () -> Unit,
-    ) {
+    updateViewModel: UpdateViewModel
+
+) {
+    val updateUiState by updateViewModel.updateUiState.collectAsStateWithLifecycle()
+
     TopAppBarDropdownMenu(
         iconContent = {
             Icon(
@@ -148,7 +159,10 @@ private fun AboutMenu(
             },
             text = { Text(text = stringResource(id = R.string.about_localpolices)) }
         )
-         if(UPDATEAVAILABLE) {
+        if (updateUiState.lastIndex >0 && updateUiState[updateUiState.lastIndex].updateAvailabilityStatus ==
+                    UpdateAvailability.UPDATE_AVAILABLE)
+            //if(UPDATEAVAILABLE)
+         {
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(

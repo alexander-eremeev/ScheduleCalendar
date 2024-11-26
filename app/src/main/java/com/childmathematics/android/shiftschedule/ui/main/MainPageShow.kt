@@ -86,7 +86,9 @@ fun MainPageShow(
             )
 
          */
-        if(UPDATEAVAILABLE)
+        if (updateUiState.lastIndex >0 && updateUiState[updateUiState.lastIndex].updateAvailabilityStatus ==
+                    UpdateAvailability.UPDATE_AVAILABLE)
+            //        if(UPDATEAVAILABLE)
         {
 
             Button(

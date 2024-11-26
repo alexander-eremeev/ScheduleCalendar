@@ -62,7 +62,8 @@ fun NavGraphBuilder.aboutGraph(
                 navigateToHelp = {navController.navigateToHelpGraph()},
                 navigateToLicences = {navController.navigateToLicencesGraph()},
                 navigateToLocalPolices={ navController.navigateToLocalPolicesGraph() },
-                navigateToAppUpdate={ navController.navigateToInAppUpdatePageGraph() }
+                navigateToAppUpdate={ navController.navigateToInAppUpdatePageGraph() },
+                updateViewModel = updateViewModel
             )
     }
 }
