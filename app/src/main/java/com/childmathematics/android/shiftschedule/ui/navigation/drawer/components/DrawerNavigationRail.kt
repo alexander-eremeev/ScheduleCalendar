@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
@@ -37,6 +38,7 @@ import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.about.ABOUT_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.ui.nonworkingdays.NONWORKINGDAYS_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
 
@@ -44,6 +46,7 @@ import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHED
 fun DrawerNavigationRail(
     currentRoute: String,
     navigateToMainPage: () -> Unit,
+    navigateToNonWorkingDays : () -> Unit,
     navigateToSchedule01 : () -> Unit,
     navigateToSchedule500: () -> Unit,
     navigateToAbout: () -> Unit,
@@ -90,6 +93,16 @@ fun DrawerNavigationRail(
             alwaysShowLabel = false
         )
         NavigationRailItem(
+            selected = currentRoute == NONWORKINGDAYS_PAGE_ROUTE,
+            onClick = navigateToSchedule01,
+            icon = { Icon(painterResource(R.drawable.holiday24), stringResource(R.string.nonWorkingDays_titleshort)) },
+//              icon = { Icon(painterResource(R.drawable.sharp_counter_8_24), stringResource(R.string.schedule01_titleshort)) },
+//            icon = { Icon(Icons.Rounded.h, stringResource(R.string.nonWorkingDays_titleshort)) },
+            label = { Text(stringResource(R.string.nonWorkingDays_titleshort)) },
+            alwaysShowLabel = false
+        )
+
+        NavigationRailItem(
             selected = currentRoute == SCHEDULE01_PAGE_ROUTE,
             onClick = navigateToSchedule01,
             icon = { Icon(painterResource(R.drawable.shift_8), stringResource(R.string.schedule01_titleshort)) },
@@ -128,6 +141,7 @@ fun PreviewAppNavRail() {
         DrawerNavigationRail(
             currentRoute = "",
             navigateToMainPage = { /*TODO*/ },
+            navigateToNonWorkingDays ={},
             navigateToSchedule01 = { /*TODO*/ },
             navigateToSchedule500 = { /*TODO*/ },
             navigateToAbout = { /*TODO*/ })
