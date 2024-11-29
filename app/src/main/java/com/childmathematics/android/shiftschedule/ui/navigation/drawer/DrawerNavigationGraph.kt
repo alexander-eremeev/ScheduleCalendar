@@ -33,6 +33,7 @@ import com.childmathematics.android.shiftschedule.ui.navigation.drawer.component
 import com.childmathematics.android.shiftschedule.ui.nonworkingdays.NonWorkingDaysPageScreen
 import com.childmathematics.android.shiftschedule.ui.nonworkingdays.NonWorkingDaysViewModel
 import com.childmathematics.android.shiftschedule.ui.nonworkingdays.nonWorkingDaysPageGraph
+import com.childmathematics.android.shiftschedule.ui.nonworkingdays.year.navigateToNonWorkingDaysYearPageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageScreen
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.navigateToSchedule01SummingPageGraph
@@ -65,10 +66,10 @@ fun DrawerNavigationGraph(
 
         mainPageGraph(navController,modifier,openDrawer ,onOpenDrawer = onOpenDrawer,
                 updateViewModel = updateViewModel )
-/*
+
         nonWorkingDaysPageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,
             nonWorkingDaysViewModel = nonWorkingDaysViewModel)
-*/
+
         schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,
             scheduleViewModel = scheduleViewModel)
         schedule500PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer,
@@ -85,18 +86,14 @@ fun DrawerNavigationGraph(
         }
 
         composable(route = DrawerNavDestinations.D_NONWORKINGDAYS_PAGE_ROUTE,) {
-//;            NonWorkingDaysPageScreen(modifier,onBackClick={navController.popBackStack()},
-
             NonWorkingDaysPageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
- //               navigateToSchedule01SummingPage = {navController.navigateToSchedule01SummingPageGraph()},
+                navigateToNonWorkingDaysYearPage = {navController.navigateToNonWorkingDaysYearPageGraph()},
                 nonWorkingDaysViewModel = nonWorkingDaysViewModel
             )
         }
 
         composable(route = DrawerNavDestinations.D_SCHEDULE01_PAGE_ROUTE,) {
-//            Schedule01PageScreen(modifier,onBackClick={navController.popBackStack()},
-
             Schedule01PageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                 navigateToSchedule01SummingPage = {navController.navigateToSchedule01SummingPageGraph()},

@@ -66,4 +66,5 @@ fun NavGraphBuilder.aboutGraph(
                 updateViewModel = updateViewModel
             )
     }
+
 }

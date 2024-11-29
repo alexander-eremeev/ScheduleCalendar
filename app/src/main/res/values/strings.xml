@@ -142,4 +142,5 @@ name="schedule01_title">График прерывный, односменный,
     <string name="nonWorkingDays_titleshort">Праздничные и нерабочие дни</string>
     <string name="nonWorkingDays_MonthSelectedDays">нерабочие дни года</string>
     <string name="nonWorkingDays_title">Календарь праздничных и нерабочих дней</string>
+    <string name="nonWorkingDays_Year">Праздничные и нерабочие дни года</string>
 </resources>

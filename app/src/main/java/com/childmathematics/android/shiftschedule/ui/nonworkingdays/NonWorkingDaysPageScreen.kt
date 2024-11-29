@@ -46,7 +46,7 @@ fun NonWorkingDaysPageScreen(
     onBackClick: () -> Unit,
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
-//    navigateToNonWorkingDaysSummingPage: () -> Unit,
+    navigateToNonWorkingDaysYearPage: () -> Unit,
 //    state: CalendarState<DynamicSelectionState>,
 
     /*
@@ -109,14 +109,7 @@ fun NonWorkingDaysPageScreen(
                     onOpenDrawer,
                     openDrawer,
                     onBackClick,scrollBehavior,
- //                   navigateToNonWorkingDaysSummingPage = navigateToNonWorkingDaysSummingPage,
-
-                    /*
-                    navigateToHelpNonWorkingDaysPage,
-                    navigateToHelpGraphicsPage,
-                    navigateToHelpAboutPage
-
-                     */
+                   navigateToNonWorkingDaysYearPage = navigateToNonWorkingDaysYearPage,
                 )
             },
             content ={ padding ->
@@ -124,11 +117,6 @@ fun NonWorkingDaysPageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
-
-                    //            nonWorkingDays01PageUiState.state = rememberSelectableCalendarState(
-
-
-
                     NonWorkingDaysPage(nonWorkingDaysViewModel)
                 }
             },
@@ -143,14 +131,7 @@ private fun NonWorkingDaysPageTopAppBar(
     openDrawer: () -> Unit,
     onBackClick: () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,
-//    navigateToNonWorkingDaysSummingPage: () -> Unit,
-
-    /*
-    navigateToHelpNonWorkingDaysPage: () -> Unit,
-    navigateToHelpGraphicsPage: () -> Unit,
-    navigateToHelpAboutPage: () -> Unit
-
-     */
+    navigateToNonWorkingDaysYearPage: () -> Unit,
 ) {
     CenterAlignedTopAppBar(
         title = {
@@ -173,8 +154,7 @@ private fun NonWorkingDaysPageTopAppBar(
         actions = {
 
             NonWorkingDaysPageMenu(
-                navigateToNonWorkingDaysSummingPage = {  },
-//                navigateToNonWorkingDaysSummingPage = navigateToNonWorkingDaysSummingPage,
+                navigateToNonWorkingDaysYearPage = navigateToNonWorkingDaysYearPage,
             )
         },
 
@@ -185,12 +165,7 @@ private fun NonWorkingDaysPageTopAppBar(
 //-------------------------
 @Composable
 private fun NonWorkingDaysPageMenu(
-    navigateToNonWorkingDaysSummingPage: () -> Unit,
-    /*
-navigateToHelpGraphicsPage: () -> Unit,
-navigateToHelpAboutPage: () -> Unit,
-
- */
+    navigateToNonWorkingDaysYearPage: () -> Unit,
 ) {
     NonWorkingDaysPageTopAppBarDropdownMenu(
         iconContent = {
@@ -209,7 +184,7 @@ navigateToHelpAboutPage: () -> Unit,
                             contentDescription =null )}
             ,
             onClick = {
-                navigateToNonWorkingDaysSummingPage()
+                navigateToNonWorkingDaysYearPage()
                 closeMenu()
             },
             text = { Text(text = stringResource(id = R.string.nonWorkingDays_MonthSelectedDays)) }
@@ -226,8 +201,6 @@ navigateToHelpAboutPage: () -> Unit,
         )
          */
     }
-
-
 }
 //-----------------------------
 @Composable

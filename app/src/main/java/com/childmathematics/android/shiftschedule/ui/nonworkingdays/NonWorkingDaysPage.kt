@@ -52,7 +52,6 @@ import java.time.LocalDate
 @Composable
 fun NonWorkingDaysPage(
     nonWorkingDaysViewModel: NonWorkingDaysViewModel
-//                           viewModel: NonWorkingDaysPageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 )
 {
     var state = rememberSelectableCalendarState(

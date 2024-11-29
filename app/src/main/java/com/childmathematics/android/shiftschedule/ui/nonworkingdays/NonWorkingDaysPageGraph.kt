@@ -10,6 +10,7 @@ import androidx.navigation.navDeepLink
 import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
+import com.childmathematics.android.shiftschedule.ui.nonworkingdays.year.nonWorkingDaysYearPageGraph
 
 const val NONWORKINGDAYS_GRAPH_ROUTE = "nonworkingdays_graph"
 private const val NONWORKINGDAYS_DEEPLINK ="$ROOT_DEEPLINK/nonworkingdays.html"
@@ -35,7 +36,7 @@ fun NavGraphBuilder.nonWorkingDaysPageGraph(
 ) {
     // =====================================
 //        nonworkingDays01SummingPageGraph(navController)
-//    nonworkingDays01SummingPageGraph(navController,nonworkingDaysViewModel = nonworkingDaysViewModel)
+    nonWorkingDaysYearPageGraph(navController,nonWorkingDaysViewModel = nonWorkingDaysViewModel)
 
     // =====================================
 /*

@@ -35,7 +35,7 @@ fun NavGraphBuilder.schedule500PageGraph(
     // =====================================
     schedule500SummingPageGraph(navController,scheduleViewModel = scheduleViewModel)
     // =====================================
-
+/*
     navigation(startDestination = SCHEDULE500_PAGE_ROUTE,
         route = SCHEDULE500_GRAPH_ROUTE,
         deepLinks = listOf(
@@ -55,4 +55,5 @@ fun NavGraphBuilder.schedule500PageGraph(
             scheduleViewModel = scheduleViewModel
         )
     }
+    */
 }

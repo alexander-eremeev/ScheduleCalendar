@@ -39,7 +39,7 @@ fun NavGraphBuilder.schedule01PageGraph(
     schedule01SummingPageGraph(navController,scheduleViewModel = scheduleViewModel)
 
         // =====================================
-
+/*
     navigation(startDestination = SCHEDULE01_PAGE_ROUTE,
         route = SCHEDULE01_GRAPH_ROUTE,
         deepLinks = listOf(
@@ -72,4 +72,5 @@ fun NavGraphBuilder.schedule01PageGraph(
              )
         }
     }
+    */
 }
