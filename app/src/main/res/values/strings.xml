@@ -139,6 +139,7 @@ name="schedule01_title">График прерывный, односменный,
     <string name="inAppUpdatePage">Проверить наличие обновления</string>
     <string name="inAppUpdate_Request_update">Запросить установку обновления</string>
     <string name="UpdatePage">Обновить приложение</string>
-    <string name="nonWorkingDays_titleshort">Нерабочие дни</string>
-    <string name="nonWorkingDays_MonthSelectedDays">нерабочие дни месяца</string>
+    <string name="nonWorkingDays_titleshort">Праздничные и нерабочие дни</string>
+    <string name="nonWorkingDays_MonthSelectedDays">нерабочие дни года</string>
+    <string name="nonWorkingDays_title">Календарь праздничных и нерабочих дней</string>
 </resources>

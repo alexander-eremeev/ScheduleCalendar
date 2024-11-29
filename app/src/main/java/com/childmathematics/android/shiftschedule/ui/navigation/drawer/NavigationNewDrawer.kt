@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
+//import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
 
@@ -55,6 +56,7 @@ import com.childmathematics.android.shiftschedule.ui.navigation.drawer.component
 fun NavigationNewDrawer(
     currentRoute: String,
     navigateToMainPage: () -> Unit,
+    navigateToNonWorkingDays: () -> Unit,
     navigateToSchedule01: () -> Unit,
     navigateToSchedule500: () -> Unit,
     navigateToAbout: () -> Unit,
@@ -67,7 +69,6 @@ fun NavigationNewDrawer(
     ) {
         DrawerHeader(
             modifier = Modifier
-//                .padding(horizontal = 28.dp, vertical = 24.dp)
                 .padding(horizontal = 3.dp, vertical = 3.dp)
         )
         /*
@@ -86,6 +87,18 @@ fun NavigationNewDrawer(
                 navigateToMainPage(); closeDrawer()
             },
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+        )
+        HorizontalDivider()
+        NavigationDrawerItem(
+            label = { Text(stringResource(id = R.string.nonWorkingDays_title)) },
+            icon = { Icon(painterResource(R.drawable.holidays_vacation), null) },
+            selected = currentRoute == DrawerNavDestinations.D_NONWORKINGDAYS_PAGE_ROUTE,
+            onClick = {
+                navigateToNonWorkingDays(); closeDrawer()
+            },
+            modifier = Modifier
+                .padding(NavigationDrawerItemDefaults.ItemPadding)
+                .height(96.dp)
         )
         HorizontalDivider()
         NavigationDrawerItem(
@@ -161,6 +174,7 @@ fun PreviewAppDrawer() {
         NavigationNewDrawer(
             currentRoute = MAIN_PAGE_ROUTE,
             navigateToMainPage = {},
+            navigateToNonWorkingDays = {},
             navigateToSchedule01 = {},
             navigateToSchedule500 = {},
             navigateToAbout = {},

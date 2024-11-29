@@ -54,7 +54,7 @@ fun NonWorkingDaysPageScreen(
     navigateToHelpGraphicsPage: () -> Unit,
     navigateToHelpAboutPage: () -> Unit
      */
-    nonWorkingDaysViewModel: NonWorkingDaysViewModel = viewModel()
+    nonWorkingDaysViewModel: NonWorkingDaysViewModel
     //           viewModel: NonWorkingDaysPageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     /*
@@ -130,9 +130,6 @@ fun NonWorkingDaysPageScreen(
 
 
                     NonWorkingDaysPage(nonWorkingDaysViewModel)
-//                    nonWorkingDays01PageUiState.vmselection= state.selectionState.selection
-
-                    //NonWorkingDaysPage(true,nonWorkingDays01PageUiState.state)
                 }
             },
         )
@@ -208,7 +205,8 @@ navigateToHelpAboutPage: () -> Unit,
 
         DropdownMenuItem(
 //            leadingIcon = {Icon(imageVector = Icons.AutoMirrored.Filled.ViewList, contentDescription = null)}
-            leadingIcon = { Icon(painter = painterResource(R.drawable.functions_24px) , contentDescription =null )}
+            leadingIcon = { Icon(painter = painterResource(R.drawable.calendar_1) ,
+                            contentDescription =null )}
             ,
             onClick = {
                 navigateToNonWorkingDaysSummingPage()

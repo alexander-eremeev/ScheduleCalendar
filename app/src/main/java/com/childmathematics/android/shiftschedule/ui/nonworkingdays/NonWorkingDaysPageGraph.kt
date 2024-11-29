@@ -38,6 +38,9 @@ fun NavGraphBuilder.nonWorkingDaysPageGraph(
 //    nonworkingDays01SummingPageGraph(navController,nonworkingDaysViewModel = nonworkingDaysViewModel)
 
     // =====================================
+/*
+// если нет вложенных меню то не работает
+// протестировать правильность использования !!!!
 
     navigation(startDestination = NONWORKINGDAYS_PAGE_ROUTE,
         route = NONWORKINGDAYS_GRAPH_ROUTE,
@@ -52,22 +55,13 @@ fun NavGraphBuilder.nonWorkingDaysPageGraph(
 
         ){
         composable(route = NONWORKINGDAYS_PAGE_ROUTE) {
-            /*
-            nonworkingDays01PageUiState.state = rememberSelectableCalendarState(
-              initialSelectionMode = SelectionMode.Period,
-          )
-
-             */
-            //            val nonworkingDays01PageViewModel : Schedule01PageViewModel = viewModel()
-            // =====================================
-
-            // =====================================
             nonWorkingDaysPageScreen(
                 navController,
                 modifier,
                 onOpenDrawer = onOpenDrawer, openDrawer = openDrawer,
-               nonWorkingDaysViewModel = nonWorkingDaysViewModel
+                nonWorkingDaysViewModel = nonWorkingDaysViewModel
             )
         }
     }
+    */
 }

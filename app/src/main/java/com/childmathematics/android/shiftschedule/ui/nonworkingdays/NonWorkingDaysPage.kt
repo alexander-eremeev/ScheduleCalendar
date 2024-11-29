@@ -51,7 +51,7 @@ import java.time.LocalDate
 @ExperimentalCoroutinesApi
 @Composable
 fun NonWorkingDaysPage(
-    nonWorkingDaysViewModel: NonWorkingDaysViewModel = viewModel()
+    nonWorkingDaysViewModel: NonWorkingDaysViewModel
 //                           viewModel: NonWorkingDaysPageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 )
 {
@@ -106,7 +106,9 @@ fun NonWorkingDaysPage(
                     )
                 }
             )
+/*
             Spacer(modifier = Modifier.height(20.dp))
+
             Text(
                 ""+ String.format("%4d", (getShift01WorkDayMonth(
                     state.monthState.currentMonth.year,
@@ -129,9 +131,9 @@ fun NonWorkingDaysPage(
             //========================================================================
             Spacer(modifier = Modifier.height(20.dp))
             //--------------------------------------
-
+*/
         }
-
+/*
         if (state.selectionState.selection.isNotEmpty()) {
 //                nonWorkingDaysUiState.updateSelection(state.selectionState.selection )
             nonWorkingDaysViewModel.updateSelection(state.selectionState.selection )
@@ -145,6 +147,7 @@ fun NonWorkingDaysPage(
                 }
             }
         }
+ */
     }
 //--------------------------
 }

@@ -22,16 +22,6 @@ internal fun NavGraphBuilder.nonWorkingDaysPageScreen(
      */
 ) {
     composable(route = NONWORKINGDAYS_PAGE_ROUTE) {
-        /*
-        val state = rememberSelectableCalendarState(
-//.        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
-//        confirmSelectionChange = viewModel::onSelectionChanged, //SelectionMode
-
-            initialSelectionMode = SelectionMode.Period,
-        )
-
-         */
-
 
         NonWorkingDaysPageScreen(
             modifier,

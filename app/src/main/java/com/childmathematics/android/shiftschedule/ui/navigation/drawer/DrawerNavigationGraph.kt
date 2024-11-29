@@ -16,26 +16,24 @@
 
 package com.childmathematics.android.shiftschedule.ui.navigation.drawer
 
-import android.app.Activity
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.childmathematics.android.shiftschedule.MainActivity
-import com.childmathematics.android.shiftschedule.MainApplication
+import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
 import com.childmathematics.android.shiftschedule.ui.about.AboutPageScreen
 import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
-
+import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
 import com.childmathematics.android.shiftschedule.ui.main.MainPageScreen
 import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
 import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
+import com.childmathematics.android.shiftschedule.ui.nonworkingdays.NonWorkingDaysPageScreen
+import com.childmathematics.android.shiftschedule.ui.nonworkingdays.NonWorkingDaysViewModel
+import com.childmathematics.android.shiftschedule.ui.nonworkingdays.nonWorkingDaysPageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.Schedule01PageScreen
-import com.childmathematics.android.shiftschedule.ui.ScheduleViewModel
-import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.summingpage.navigateToSchedule01SummingPageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.Schedule500PageScreen
@@ -54,6 +52,7 @@ fun DrawerNavigationGraph(
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
     startDestination: String = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
+    nonWorkingDaysViewModel: NonWorkingDaysViewModel= viewModel(),
     scheduleViewModel: ScheduleViewModel = viewModel(),
     updateViewModel: UpdateViewModel = viewModel()
 ) {
@@ -65,65 +64,63 @@ fun DrawerNavigationGraph(
         updateViewModel.CheckForUpdatedApp()
 
         mainPageGraph(navController,modifier,openDrawer ,onOpenDrawer = onOpenDrawer,
-                updateViewModel = updateViewModel
-        )
+                updateViewModel = updateViewModel )
+/*
+        nonWorkingDaysPageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,
+            nonWorkingDaysViewModel = nonWorkingDaysViewModel)
+*/
         schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,
             scheduleViewModel = scheduleViewModel)
         schedule500PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer,
             scheduleViewModel = scheduleViewModel)
         aboutGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer,
-                updateViewModel = updateViewModel
-            )
+                updateViewModel = updateViewModel )
 
-        composable(
-            route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
-            ) {
+        composable(route = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,) {
  //           updateViewModel.CheckForUpdateApp()
             MainPageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                 updateViewModel = updateViewModel
-                )
-            }
+            )
+        }
 
-        composable(
-            route = DrawerNavDestinations.D_SCHEDULE01_PAGE_ROUTE,) {
+        composable(route = DrawerNavDestinations.D_NONWORKINGDAYS_PAGE_ROUTE,) {
+//;            NonWorkingDaysPageScreen(modifier,onBackClick={navController.popBackStack()},
 
-            Schedule01PageScreen(modifier,onBackClick={navController.popBackStack()},
+            NonWorkingDaysPageScreen(modifier,onBackClick={},
+                onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
+ //               navigateToSchedule01SummingPage = {navController.navigateToSchedule01SummingPageGraph()},
+                nonWorkingDaysViewModel = nonWorkingDaysViewModel
+            )
+        }
+
+        composable(route = DrawerNavDestinations.D_SCHEDULE01_PAGE_ROUTE,) {
+//            Schedule01PageScreen(modifier,onBackClick={navController.popBackStack()},
+
+            Schedule01PageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                 navigateToSchedule01SummingPage = {navController.navigateToSchedule01SummingPageGraph()},
                 scheduleViewModel = scheduleViewModel
             )
         }
-        composable(
-            route = DrawerNavDestinations.D_SCHEDULE500_PAGE_ROUTE) {
-            /*
-                val interestsViewModel: InterestsViewModel = viewModel(
-                    factory = InterestsViewModel.provideFactory(appContainer.itemsRepository)
-                )
-                InterestsRoute(
-                    interestsViewModel = interestsViewModel,
-                    isExpandedScreen = isExpandedScreen,
-                    openDrawer = openDrawer
-                )
-             */
+
+        composable(route = DrawerNavDestinations.D_SCHEDULE500_PAGE_ROUTE) {
 
                 Schedule500PageScreen(modifier,onBackClick={},
                     onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                     navigateToSchedule500SummingPage = {navController.navigateToSchedule500SummingPageGraph()},
                     scheduleViewModel = scheduleViewModel
-                    )
-
+                )
         }
-        composable(
-            route = DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {
- //           updateViewModel.checkForUpdateApp()
+
+        composable(route = DrawerNavDestinations.D_ABOUT_PAGE_ROUTE) {
 
             AboutPageScreen(onBackClick={},modifier,onOpenDrawer = true,
                     openDrawer = openDrawer,navigateToHelp={},
                     navigateToLicences={},navigateToLocalPolices={},navigateToAppUpdate={},
 
-                updateViewModel = updateViewModel
-                    )
+                    updateViewModel = updateViewModel
+            )
         }
     }
 }

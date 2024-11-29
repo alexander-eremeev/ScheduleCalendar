@@ -88,16 +88,14 @@ fun DrawerNavigationRail(
             selected = currentRoute == MAIN_PAGE_ROUTE,
             onClick = navigateToMainPage,
             icon = { Icon(painterResource(R.drawable.home_24px), stringResource(R.string.homepage_title)) },
-//            icon = { Icon(Icons.Filled.Home, stringResource(R.string.homepage_title)) },
             label = { Text(stringResource(R.string.homepage_title)) },
             alwaysShowLabel = false
         )
         NavigationRailItem(
             selected = currentRoute == NONWORKINGDAYS_PAGE_ROUTE,
-            onClick = navigateToSchedule01,
-            icon = { Icon(painterResource(R.drawable.holiday24), stringResource(R.string.nonWorkingDays_titleshort)) },
-//              icon = { Icon(painterResource(R.drawable.sharp_counter_8_24), stringResource(R.string.schedule01_titleshort)) },
-//            icon = { Icon(Icons.Rounded.h, stringResource(R.string.nonWorkingDays_titleshort)) },
+            onClick = navigateToNonWorkingDays,
+            icon = { Icon(painterResource(R.drawable.holidays_vacation),
+                            stringResource(R.string.nonWorkingDays_titleshort)) },
             label = { Text(stringResource(R.string.nonWorkingDays_titleshort)) },
             alwaysShowLabel = false
         )
@@ -106,8 +104,6 @@ fun DrawerNavigationRail(
             selected = currentRoute == SCHEDULE01_PAGE_ROUTE,
             onClick = navigateToSchedule01,
             icon = { Icon(painterResource(R.drawable.shift_8), stringResource(R.string.schedule01_titleshort)) },
-//              icon = { Icon(painterResource(R.drawable.sharp_counter_8_24), stringResource(R.string.schedule01_titleshort)) },
-//            icon = { Icon(Icons.Filled.ListAlt, stringResource(R.string.schedule01_titleshort)) },
             label = { Text(stringResource(R.string.schedule01_titleshort)) },
             alwaysShowLabel = false
         )
@@ -115,8 +111,6 @@ fun DrawerNavigationRail(
             selected = currentRoute == SCHEDULE500_PAGE_ROUTE,
             onClick = navigateToSchedule500,
             icon = { Icon(painterResource(R.drawable.shift_12), stringResource(R.string.schedule500_titleshort)) },
-//              icon = { Icon(painterResource(R.drawable.sharp_counter_8_24), stringResource(R.string.schedule01_titleshort)) },
-//            icon = { Icon(Icons.Filled.ListAlt, stringResource(R.string.schedule01_titleshort)) },
             label = { Text(stringResource(R.string.schedule500_titleshort)) },
             alwaysShowLabel = false
         )
@@ -124,8 +118,6 @@ fun DrawerNavigationRail(
             selected = currentRoute == ABOUT_PAGE_ROUTE,
             onClick = navigateToAbout,
             icon = { Icon(painterResource(R.drawable.info_outl_24px), stringResource(R.string.about_title)) },
-//              icon = { Icon(painterResource(R.drawable.sharp_counter_8_24), stringResource(R.string.schedule01_titleshort)) },
-//            icon = { Icon(Icons.Filled.ListAlt, stringResource(R.string.schedule01_titleshort)) },
             label = { Text(stringResource(R.string.about_title)) },
             alwaysShowLabel = false
         )
