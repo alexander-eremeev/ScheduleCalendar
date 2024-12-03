@@ -9,7 +9,7 @@ compile-sdk = "35"
 # @keep
 plugin = "0.8.1"
 # @keep
-ndkVersion = "28.0.12433566"
+ndkVersion = "28.0.12674087"
 #ndk-sdk = "28.0.12433566"
 # @keep
 versionCode = "205"
@@ -29,11 +29,11 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "8.7.2"                               #
+agp = "8.7.3"                               #
 #---???????????????????
-jetbrainsKotlin = "2.0.21"                  #agp
+jetbrainsKotlin = "2.1.0"                  #agp
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.0.21-1.0.28"         #
+googleDevToolsKsp = "2.1.0-1.0.29"         #
 googleAds = "23.5.0"                        #
 googlePlayAppUpdate ="2.1.0"
 jetbrainsKotlinxCoroutines = "1.9.0"        #
