@@ -8,7 +8,7 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    alias(libs.plugins.compose.compiler)
+    id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
 }
 
@@ -152,9 +152,16 @@ dependencies {
     // UI SUPPORT
     // ////
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.appcompat)
+
+    // Kotlin Coroutines
     implementation(libs.jetbrains.kotlin.coroutines)
+
+    // Hilt
+    implementation(libs.google.dagger.hilt)
+    ksp(libs.google.dagger.hilt.compiler )
+
     // Webkit
     implementation(libs.androidx.webkit.webkit)
 
@@ -186,15 +193,14 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewModelCompose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
+    // песочница улучшения конфиденциальности пользователей
+    implementation(libs.androidx.privacysandbox.tools.core)
+
     // /////////////
     // DATA SUPPORT
     // ////
     // Room
     implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.tools.core)
-    implementation(libs.androidx.compose.material3.window.size)
-    implementation(libs.androidx.appcompat)
-    //implementation(libs.material)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.common)
@@ -204,6 +210,7 @@ dependencies {
     implementation(libs.google.ads)
     implementation(libs.yandex.mobileads)
 //        implementation(libs.yandex.mobmetrica)
+//        implementation(libs.yandex.appmetrica)
 
     // /////////////
     // TEST AND DEBUG SUPPORT
