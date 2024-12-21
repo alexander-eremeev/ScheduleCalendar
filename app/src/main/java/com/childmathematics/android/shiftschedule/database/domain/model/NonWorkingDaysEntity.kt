@@ -29,5 +29,4 @@ CREATE TABLE NonWorkingDays (
   Typ             integer(1) NOT NULL,
   MoveDateYMD     timestamp,
   Reason          varchar(100));
-
  */
