@@ -10,9 +10,12 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
+
+//    id("androidx.room")                         // Plugin для настройки параметров компилятора Room
 }
 
 android {
+
     namespace = libs.versions.applicationId.get()
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
@@ -139,6 +142,12 @@ android {
         }
     }
 //-------------------------------------------------------------
+    /*
+    room {      //buildDirectory
+//        schemaDirectory("$projectDir/schemas")
+        schemaDirectory("$projectDir/schemas")
+    }
+     */
 }
 dependencies {
     implementation( libs.dev.chrisbanes.snapper.snapper)    //?????? Snapper в настоящее время устарел,
@@ -156,7 +165,8 @@ dependencies {
     implementation(libs.androidx.appcompat)
 
     // Kotlin Coroutines
-    implementation(libs.jetbrains.kotlin.coroutines)
+    implementation(libs.jetbrains.kotlin.coroutines.core)
+    implementation(libs.jetbrains.kotlin.coroutines.android)
 
     // Hilt
     implementation(libs.google.dagger.hilt)
@@ -201,8 +211,8 @@ dependencies {
     // ////
     // Room
     implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)            // Kotlin Symbol Processing (KSP)
+    implementation(libs.androidx.room.ktx)      //Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.common)
     // /////////////
     // ADS SUPPORT

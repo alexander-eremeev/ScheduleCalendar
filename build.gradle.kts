@@ -8,6 +8,9 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose") version libs.versions.jetbrainsKotlin apply false
 
     id("com.google.devtools.ksp") version libs.versions.googleDevToolsKsp apply false
+
+    // Plugin для настройки параметров компилятора Room
+    id("androidx.room") version libs.versions.androidxRoom apply false
 }
 tasks.register("clean", Delete::class) {
     delete(rootProject.layout.buildDirectory)
