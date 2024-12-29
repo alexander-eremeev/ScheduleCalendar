@@ -22,9 +22,10 @@ import android.app.Application
 
 import com.childmathematics.android.shiftschedule.data.AppContainer
 import com.childmathematics.android.shiftschedule.data.AppDataContainer
+import dagger.hilt.android.HiltAndroidApp
 
 //public class MainApplication extends Application {
-
+//@HiltAndroidApp
 class MainApplication : Application() {
 //public class InventoryApplication  extends Application {
 

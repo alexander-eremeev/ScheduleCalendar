@@ -10,8 +10,9 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
+//    id("com.google.dagger.hilt.android")
 
-//    id("androidx.room")                         // Plugin для настройки параметров компилятора Room
+    id("androidx.room")                         // Plugin для настройки параметров компилятора Room
 }
 
 android {
@@ -142,12 +143,9 @@ android {
         }
     }
 //-------------------------------------------------------------
-    /*
     room {      //buildDirectory
-//        schemaDirectory("$projectDir/schemas")
         schemaDirectory("$projectDir/schemas")
     }
-     */
 }
 dependencies {
     implementation( libs.dev.chrisbanes.snapper.snapper)    //?????? Snapper в настоящее время устарел,
@@ -225,15 +223,15 @@ dependencies {
     // /////////////
     // TEST AND DEBUG SUPPORT
     // ////
-    testImplementation(libs.jetbrains.test.coroutines)
-    testImplementation(libs.junit.test)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+//    testImplementation(libs.jetbrains.test.coroutines)
+//    testImplementation(libs.junit.test)
+//    androidTestImplementation(libs.androidx.test.ext.junit)
+//    androidTestImplementation(libs.androidx.espresso.core)
 
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
+//    androidTestImplementation(platform(libs.androidx.compose.bom))
+//    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+//    debugImplementation(libs.androidx.ui.tooling)
+//    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
 fun getDate(): String {
     val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")

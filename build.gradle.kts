@@ -8,6 +8,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose") version libs.versions.jetbrainsKotlin apply false
 
     id("com.google.devtools.ksp") version libs.versions.googleDevToolsKsp apply false
+//    id("com.google.dagger.hilt.android") version libs.versions.googleDaggerHilt apply false
 
     // Plugin для настройки параметров компилятора Room
     id("androidx.room") version libs.versions.androidxRoom apply false
