@@ -2,6 +2,7 @@ package com.childmathematics.android.basement.lib.ads.util
 
 import androidx.compose.foundation.gestures.GestureCancellationException
 import androidx.compose.foundation.gestures.PressGestureScope
+import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.forEachGesture
 import androidx.compose.ui.geometry.Offset
@@ -21,9 +22,10 @@ suspend fun PointerInputScope.detectTapAndPressUnconsumed(
 ) {
     val pressScope = PressGestureScopeImpl(this)
     //    forEachGesture {
-    forEachGesture {
-        coroutineScope {
-            pressScope.reset()
+    /*
+    awaitEachGesture {
+//       coroutineScope {
+//            pressScope.reset()
             awaitPointerEventScope {
                 val down = awaitFirstDown(
                     requireUnconsumed = false
@@ -40,7 +42,9 @@ suspend fun PointerInputScope.detectTapAndPressUnconsumed(
                 }
             }
         }
-    }
+//    }
+
+     */
 }
 suspend fun AwaitPointerEventScope.waitForUpOrCancellationInitial(): PointerInputChange? {
     while (true) {

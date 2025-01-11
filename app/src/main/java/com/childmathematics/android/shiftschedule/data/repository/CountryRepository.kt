@@ -1,6 +1,6 @@
-package com.childmathematics.android.shiftschedule.database.domain.repository
+package com.childmathematics.android.shiftschedule.data.repository
 
-import com.childmathematics.android.shiftschedule.database.domain.model.Countries
+import com.childmathematics.android.shiftschedule.data.models.Countries
 import kotlinx.coroutines.flow.Flow
 
 interface CountryRepository {

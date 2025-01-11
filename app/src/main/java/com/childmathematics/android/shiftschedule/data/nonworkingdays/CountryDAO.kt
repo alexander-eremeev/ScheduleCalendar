@@ -1,8 +1,8 @@
-package com.childmathematics.android.shiftschedule.database.data.network
+package com.childmathematics.android.shiftschedule.data.nonworkingdays
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.Companion.IGNORE
-import com.childmathematics.android.shiftschedule.database.domain.model.Countries
+import com.childmathematics.android.shiftschedule.data.models.Countries
 import kotlinx.coroutines.flow.Flow
 
 @Dao

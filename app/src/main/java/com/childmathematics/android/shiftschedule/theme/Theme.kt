@@ -62,7 +62,8 @@ fun ScheduleCalendarTheme(
         SideEffect {
             val window = (view.context as Activity).window
  //           WindowInsetsCompat.Type.statusBars()
-            window.statusBarColor = colorScheme.primary.toArgb()
+ //           window.statusBarColor = colorScheme.primary.toArgb()
+            view.setBackgroundColor(colorScheme.primary.toArgb())
 
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }

@@ -18,6 +18,8 @@ package com.example.inventory.ui.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -117,9 +119,17 @@ fun InventoryTheme(
         SideEffect {
             val window = (view.context as Activity).window
             if (darkTheme) {
-                window.statusBarColor = colorScheme.primary.toArgb()
+//.                window.statusBarColor = colorScheme.primary.toArgb()
+                //--------------------------------------------------
+                view.setBackgroundColor(colorScheme.primary.toArgb())
+
+                //-------------------------------------------------
             } else {
-                window.statusBarColor = Color.Transparent.toArgb()
+//                window.statusBarColor = Color.Transparent.toArgb()
+                //--------------------------------------------------
+                view.setBackgroundColor(Color.Transparent.toArgb())
+
+                 //-------------------------------------------------
             }
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }

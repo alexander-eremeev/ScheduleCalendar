@@ -1,4 +1,4 @@
-package com.childmathematics.android.shiftschedule.database.domain.model
+package com.childmathematics.android.shiftschedule.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

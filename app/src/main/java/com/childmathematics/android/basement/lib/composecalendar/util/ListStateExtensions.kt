@@ -8,13 +8,59 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 
 
-context(LazyListState) internal fun <T> Flow<T>.throttleOnOffset() =
+context(LazyListState ) internal fun <T> Flow<T>.throttleOnOffset() =
   combine(
     snapshotFlow { firstVisibleItemScrollOffset }
   ) { newMonth, offset ->
-    newMonth to (offset <= MinimalOffsetForEmit)
+//    newMonth to (offset <= MinimalOffsetForEmit)
+    newMonth to (offset <= MINIMAL_OFFSET_FOR_EMIT)
   }.filter { (_, shouldUpdate) ->
     shouldUpdate
   }.map { (newValue, _) -> newValue }
 
-private const val MinimalOffsetForEmit = 10
+//private const val MinimalOffsetForEmit = 10
+private const val MINIMAL_OFFSET_FOR_EMIT = 10
+/*
+до
+context(ContextReceiverType)
+fun contextReceiverMember() = TODO()
+
+context(ContextReceiverType)
+fun someFunction() {
+    contextReceiverMember()
+}
+после
+class ContextReceiverType {
+    fun contextReceiverMember() = TODO()
+}
+
+fun ContextReceiverType.someFunction() {
+    contextReceiverMember()
+}
+//------------------------------------
+class LazyListState {
+internal fun <T> Flow<T>.throttleOnOffset() =
+  combine(
+    snapshotFlow { firstVisibleItemScrollOffset }
+  ) { newMonth, offset ->
+//    newMonth to (offset <= MinimalOffsetForEmit)
+    newMonth to (offset <= MINIMAL_OFFSET_FOR_EMIT)
+  }.filter { (_, shouldUpdate) ->
+    shouldUpdate
+  }.map { (newValue, _) -> newValue }
+}
+//--------------------------
+
+class LazyListState {
+  internal fun <T> Flow<T>.throttleOnOffset() =
+    combine(
+      snapshotFlow { firstVisibleItemScrollOffset }
+    ) { newMonth, offset ->
+//    newMonth to (offset <= MinimalOffsetForEmit)
+      newMonth to (offset <= MINIMAL_OFFSET_FOR_EMIT)
+    }.filter { (_, shouldUpdate) ->
+      shouldUpdate
+    }.map { (newValue, _) -> newValue }
+}
+
+ */

@@ -168,6 +168,7 @@ dependencies {
 
     // Hilt
     implementation(libs.google.dagger.hilt)
+    testImplementation(libs.junit)
     ksp(libs.google.dagger.hilt.compiler )
 
     // Webkit
@@ -223,13 +224,13 @@ dependencies {
     // /////////////
     // TEST AND DEBUG SUPPORT
     // ////
-//    testImplementation(libs.jetbrains.test.coroutines)
-//    testImplementation(libs.junit.test)
-//    androidTestImplementation(libs.androidx.test.ext.junit)
+    testImplementation(libs.jetbrains.test.coroutines)
+        testImplementation(libs.junit.test)
+    androidTestImplementation(libs.androidx.test.ext.junit)
 //    androidTestImplementation(libs.androidx.espresso.core)
 
-//    androidTestImplementation(platform(libs.androidx.compose.bom))
-//    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 //    debugImplementation(libs.androidx.ui.tooling)
 //    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.childmathematics.android.shiftschedule.database.domain.model.Countries
-import com.childmathematics.android.shiftschedule.database.domain.repository.CountryRepository
+import com.childmathematics.android.shiftschedule.data.models.Countries
+import com.childmathematics.android.shiftschedule.data.repository.CountryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
