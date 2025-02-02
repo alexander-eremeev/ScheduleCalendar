@@ -168,7 +168,7 @@ dependencies {
 
     // Hilt
     implementation(libs.google.dagger.hilt)
-    testImplementation(libs.junit)
+    //testImplementation(libs.junit.test)
     ksp(libs.google.dagger.hilt.compiler )
 
     // Webkit

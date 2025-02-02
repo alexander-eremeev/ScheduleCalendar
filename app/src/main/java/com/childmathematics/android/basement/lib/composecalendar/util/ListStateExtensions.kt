@@ -6,8 +6,19 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
-
-
+/*
+class LazyListStateN:LazyListState {
+   fun <T> Flow<T>.throttleOnOffset() =
+    combine(
+      snapshotFlow { firstVisibleItemScrollOffset }
+    ) { newMonth, offset ->
+//    newMonth to (offset <= MinimalOffsetForEmit)
+      newMonth to (offset <= MINIMAL_OFFSET_FOR_EMIT)
+    }.filter { (_, shouldUpdate) ->
+      shouldUpdate
+    }.map { (newValue, _) -> newValue }
+}
+*/
 context(LazyListState ) internal fun <T> Flow<T>.throttleOnOffset() =
   combine(
     snapshotFlow { firstVisibleItemScrollOffset }
@@ -18,7 +29,6 @@ context(LazyListState ) internal fun <T> Flow<T>.throttleOnOffset() =
     shouldUpdate
   }.map { (newValue, _) -> newValue }
 
-//private const val MinimalOffsetForEmit = 10
 private const val MINIMAL_OFFSET_FOR_EMIT = 10
 /*
 до
@@ -29,6 +39,18 @@ context(ContextReceiverType)
 fun someFunction() {
     contextReceiverMember()
 }
+//-------------------------
+context(LazyListState ) internal fun <T> Flow<T>.throttleOnOffset() =
+  combine(
+    snapshotFlow { firstVisibleItemScrollOffset }
+  ) { newMonth, offset ->
+//    newMonth to (offset <= MinimalOffsetForEmit)
+    newMonth to (offset <= MINIMAL_OFFSET_FOR_EMIT)
+  }.filter { (_, shouldUpdate) ->
+    shouldUpdate
+  }.map { (newValue, _) -> newValue }
+
+//=============
 после
 class ContextReceiverType {
     fun contextReceiverMember() = TODO()
