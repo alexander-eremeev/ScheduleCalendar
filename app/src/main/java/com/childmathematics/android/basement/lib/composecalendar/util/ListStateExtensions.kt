@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 /*
-class LazyListStateN:LazyListState {
+class lazyListState:LazyListState {
    fun <T> Flow<T>.throttleOnOffset() =
     combine(
       snapshotFlow { firstVisibleItemScrollOffset }
@@ -60,7 +60,7 @@ fun ContextReceiverType.someFunction() {
     contextReceiverMember()
 }
 //------------------------------------
-class LazyListState {
+class lazyListState:LazyListState {
 internal fun <T> Flow<T>.throttleOnOffset() =
   combine(
     snapshotFlow { firstVisibleItemScrollOffset }
