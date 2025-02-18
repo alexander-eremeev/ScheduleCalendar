@@ -77,8 +77,8 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #================
 #===== Yandex =====
 #================
-yandexmMobileads = "7.10.0"          #
-yandexAppMetrica = "7.6.0"          #
+yandexmMobileads = "7.10.1"          #
+yandexAppMetrica = "7.7.0"          #
 yandexMobMetrica = "7.0.0"       #
 #================
 #===== Test =====
