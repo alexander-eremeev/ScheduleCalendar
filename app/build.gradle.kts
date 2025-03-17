@@ -106,6 +106,8 @@ android {
  */
         }
         getByName("debug") {
+//            namespace = libs.versions.applicationIdDebug.get()
+
             multiDexEnabled = true
             isDebuggable = true
             isMinifyEnabled = false // включение/выключение ProGuard

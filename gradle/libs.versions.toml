@@ -4,8 +4,8 @@
 #===================
 # @keep
 min-sdk = "26"
-target-sdk = "35"
-compile-sdk = "35"
+target-sdk = "36"   #"35"
+compile-sdk = "35"  #"35"
 # @keep
 plugin = "0.8.1"
 # @keep
@@ -17,19 +17,20 @@ versionCode = "205"
 versionName = "2.0.5"
 # @keep
 applicationId = "com.childmathematics.android.shiftschedule"
+applicationIdDebug = "com.childmathematics.android.shiftschedule.debug"
 # @keep
 appNameRelease = "ScheduleCalendar"
 # @keep
 appNameDebug = "ScheduleCalendar Debug"
 # @keep
-buildToolsVersion = "35.0.1"
+buildToolsVersion = "36.0.0"    #"35.0.1"
 # @keep
 keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleCalendar\\keystore.properties"
 #===================
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "8.9.0"                               #
+agp = "8.9.0"                               #8.10.0-alpha08     "8.9.0"
 #---???????????????????
 jetbrainsKotlin = "2.1.10"                  #agp
 jetbrainsKotlinxCoroutines = "1.10.1"        #
@@ -37,7 +38,7 @@ jetbrainsKotlinxCoroutines = "1.10.1"        #
 googleAccompanist = "0.36.0"
 googleDevToolsKsp = "2.1.10-1.0.31"         #
 googleDaggerHilt = "2.55"
-googleAds = "24.0.0"                        #
+googleAds = "24.1.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
@@ -46,7 +47,7 @@ androidxActivityKtx = "1.10.1"               #
 androidxCoreKtx = "1.15.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
-androidxNavigation = "2.8.8"                #
+androidxNavigation = "2.8.9"                #
 androidxLifecycle = "2.8.7"                 #
 androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
@@ -55,11 +56,11 @@ androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.3.0"
 androidxUiToolingPreview = "1.7.8"           #
-androidx-webkit = "1.12.1"                   #
+androidx-webkit = "1.13.0"                   #
 #===========================
 #===== Android Compose =====
 #===========================
-androidxComposeBom = "2025.02.00"            #
+androidxComposeBom = "2025.03.00"            #
 #---------------
 androidxActivityCompose = "1.10.1"              #
 androidxComposeCompiler = "1.5.15"            #agp
