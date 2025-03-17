@@ -106,7 +106,6 @@ android {
  */
         }
         getByName("debug") {
-//            namespace = libs.versions.applicationIdDebug.get()
 
             multiDexEnabled = true
             isDebuggable = true
@@ -219,7 +218,7 @@ dependencies {
     // ADS SUPPORT
     // ////
     implementation(libs.google.ads)
-    implementation(libs.yandex.mobileads)
+//    implementation(libs.yandex.mobileads)
 //        implementation(libs.yandex.mobmetrica)
 //        implementation(libs.yandex.appmetrica)
 

@@ -7,6 +7,8 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 package com.childmathematics.android.basement.lib.ads.yandex
+var mYaInterstitialAdOnOff = true
+/* 20250317
 
 import android.content.Context
 import android.util.Log
@@ -225,4 +227,4 @@ private class InterstitialAdYandexAdsEventListener : InterstitialAdEventListener
 
 //===============================================
 
-
+*/
