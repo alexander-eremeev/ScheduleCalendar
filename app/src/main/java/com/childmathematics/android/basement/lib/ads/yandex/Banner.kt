@@ -6,7 +6,7 @@
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
-/*
+/*  конфликт Yandex Ads
 package com.childmathematics.android.basement.lib.ads.yandex
 
 import android.util.Log

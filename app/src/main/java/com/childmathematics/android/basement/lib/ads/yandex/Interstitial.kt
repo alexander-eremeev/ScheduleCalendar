@@ -8,7 +8,7 @@
  */
 package com.childmathematics.android.basement.lib.ads.yandex
 var mYaInterstitialAdOnOff = true
-/* 20250317
+/* 20250317  конфликт Yandex Ads
 
 import android.content.Context
 import android.util.Log
