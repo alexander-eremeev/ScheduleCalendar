@@ -6,8 +6,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
+
 /*
-class lazyListState:LazyListState {
+class lazyListStateN:LazyListState {
    fun <T> Flow<T>.throttleOnOffset() =
     combine(
       snapshotFlow { firstVisibleItemScrollOffset }
@@ -19,6 +20,7 @@ class lazyListState:LazyListState {
     }.map { (newValue, _) -> newValue }
 }
 */
+
 context(LazyListState ) internal fun <T> Flow<T>.throttleOnOffset() =
   combine(
     snapshotFlow { firstVisibleItemScrollOffset }
@@ -31,7 +33,7 @@ context(LazyListState ) internal fun <T> Flow<T>.throttleOnOffset() =
 
 private const val MINIMAL_OFFSET_FOR_EMIT = 10
 /*
-до
+//до
 context(ContextReceiverType)
 fun contextReceiverMember() = TODO()
 
@@ -51,7 +53,7 @@ context(LazyListState ) internal fun <T> Flow<T>.throttleOnOffset() =
   }.map { (newValue, _) -> newValue }
 
 //=============
-после
+//после
 class ContextReceiverType {
     fun contextReceiverMember() = TODO()
 }

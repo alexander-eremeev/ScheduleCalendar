@@ -53,7 +53,7 @@ abstract class InventoryDatabase : RoomDatabase() {
                      * безвозвратно удаляет все данные из таблиц вашей базы данных, когда они
                      * пытается выполнить миграцию без определенного пути миграции.
                      */
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration(false)
                     .build()
                     .also { Instance = it }
             }
