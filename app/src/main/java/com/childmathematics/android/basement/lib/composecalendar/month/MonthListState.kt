@@ -6,7 +6,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshotFlow
 import com.childmathematics.android.basement.lib.composecalendar.header.MonthState
-import com.childmathematics.android.basement.lib.composecalendar.util.throttleOnOffset
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -32,7 +31,7 @@ internal class MonthListState(
 
     with(listState) {
       snapshotFlow { currentFirstVisibleMonth }
-        .throttleOnOffset()
+ //       .throttleOnOffset()
         .onEach { newMonth ->
           monthState.currentMonth = newMonth
         }.launchIn(coroutineScope)

@@ -146,8 +146,8 @@ android {
 // The feature "context receivers" is experimental and should be enabled explicitly
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
          compilerOptions {
-            freeCompilerArgs.add("-Xcontext-receivers")
-//             freeCompilerArgs.add("-Xcontext-parameters")
+//            freeCompilerArgs.add("-Xcontext-receivers")
+             freeCompilerArgs.add("-Xcontext-parameters")
         }
     }
 //-------------------------------------------------------------

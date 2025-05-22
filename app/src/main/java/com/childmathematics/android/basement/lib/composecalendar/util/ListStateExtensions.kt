@@ -20,15 +20,15 @@ internal class MonthListState(
     getMonthForPage(listState.firstVisibleItemIndex)
   }
  */
-
-context( LazyListState ) internal fun <T> Flow<T>.throttleOnOffset() =
+/*
+context( lLS: ScrollableState ) internal fun <T> Flow<T>.throttleOnOffset() =
   combine(
     /*
     snapshotFlow создает поток, который запускает блок при сборе и выдает результат, записывая любое
     состояние снимка,  к которому был получен доступ
     Если результат блока не равен предыдущему результату, поток выдаст этот новый результат.
      */
-    snapshotFlow { firstVisibleItemScrollOffset }
+    snapshotFlow { /*firstVisibleItemScrollOffset*/ }
     /*
     Смещение прокрутки первого видимого элемента. Прокрутка вперед положительна, т. е. величина,
     на которую элемент смещен назад.Обратите внимание, что это свойство наблюдаемое, и если
@@ -41,6 +41,8 @@ context( LazyListState ) internal fun <T> Flow<T>.throttleOnOffset() =
   }.filter { (_, shouldUpdate) ->
     shouldUpdate
   }.map { (newValue, _) -> newValue }
+
+ */
 /*
 Возвращает поток, содержащий результаты применения заданной функции преобразования к каждому значению исходного потока.
  */
