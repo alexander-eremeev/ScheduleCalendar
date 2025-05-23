@@ -148,6 +148,8 @@ android {
          compilerOptions {
 //            freeCompilerArgs.add("-Xcontext-receivers")
              freeCompilerArgs.add("-Xcontext-parameters")
+             // - Чтобы выбрать применение аннотации как к параметру value, так и к полю
+             freeCompilerArgs.add("-Xannotation-default-target=param-property")
         }
     }
 //-------------------------------------------------------------
