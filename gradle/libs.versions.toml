@@ -30,7 +30,7 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "8.10.1"                               #
 #---???????????????????
-jetbrainsKotlin = "2.2.0-RC"                  #  2.1.20
+jetbrainsKotlin = "2.2.0-RC2"                  #  2.1.20
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
@@ -40,13 +40,13 @@ googleAds = "24.3.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
-androidxAppcompat = "1.7.0"
+androidxAppcompat = "1.7.1"
 androidxActivityKtx = "1.10.1"               #
 androidxCoreKtx = "1.16.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
 androidxNavigation = "2.9.0"                #
-androidxLifecycle = "2.9.0"                 #
+androidxLifecycle = "2.9.1"                 #
 androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
 androidxRoom = "2.7.1"
@@ -54,11 +54,11 @@ androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.4.0"
 androidxUiToolingPreview = "1.8.2"           #
-androidx-webkit = "1.13.0"                   #
+androidx-webkit = "1.14.0"                   #
 #===========================
-#===== Android Compose =====
+#===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2025.05.01"            #
+androidxComposeBom = "2025.06.00"            #
 #---------------
 androidxActivityCompose = "1.10.1"              #
 androidxComposeCompiler = "1.5.15"            #agp
@@ -76,7 +76,7 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #================
 #===== Yandex =====
 #================
-yandexmMobileads = "7.12.3"          #
+yandexmMobileads = "7.13.0"          #
 yandexAppMetrica = "7.7.0"          #
 yandexMobMetrica = "7.0.0"       #
 #================
