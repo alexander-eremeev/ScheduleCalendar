@@ -84,7 +84,7 @@ fun DrawerNavigationGraph(
                 updateViewModel = updateViewModel
             )
         }
-/*
+
         composable(route = DrawerNavDestinations.D_NONWORKINGDAYS_PAGE_ROUTE,) {
             NonWorkingDaysPageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
@@ -94,7 +94,7 @@ fun DrawerNavigationGraph(
         }
 
 
- */
+
         composable(route = DrawerNavDestinations.D_SCHEDULE01_PAGE_ROUTE,) {
             Schedule01PageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,

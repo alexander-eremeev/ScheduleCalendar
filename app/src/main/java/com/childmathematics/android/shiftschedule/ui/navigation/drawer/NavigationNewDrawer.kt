@@ -88,7 +88,7 @@ fun NavigationNewDrawer(
             },
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
         )
-        /*
+
         HorizontalDivider()
         NavigationDrawerItem(
             label = { Text(stringResource(id = R.string.nonWorkingDays_title)) },
@@ -101,7 +101,7 @@ fun NavigationNewDrawer(
                 .padding(NavigationDrawerItemDefaults.ItemPadding)
                 .height(96.dp)
         )
-        */
+
         HorizontalDivider()
         NavigationDrawerItem(
             label = { Text(stringResource(id = R.string.schedule01_title)) },

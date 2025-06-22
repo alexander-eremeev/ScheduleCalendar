@@ -91,7 +91,7 @@ fun DrawerNavigationRail(
             label = { Text(stringResource(R.string.homepage_title)) },
             alwaysShowLabel = false
         )
-        /*
+
         NavigationRailItem(
             selected = currentRoute == NONWORKINGDAYS_PAGE_ROUTE,
             onClick = navigateToNonWorkingDays,
@@ -101,7 +101,7 @@ fun DrawerNavigationRail(
             alwaysShowLabel = false
         )
 
-         */
+
 
         NavigationRailItem(
             selected = currentRoute == SCHEDULE01_PAGE_ROUTE,
