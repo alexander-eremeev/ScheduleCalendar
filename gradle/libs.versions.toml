@@ -30,11 +30,11 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "8.10.1"                               #
 #---???????????????????
-jetbrainsKotlin = "2.2.0-RC2"                  #  2.1.20
+jetbrainsKotlin = "2.2.0-RC3"                  #  2.1.20
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.2.0-RC2-2.0.2"         # 	  2.1.20-2.0.1
+googleDevToolsKsp = "2.2.0-RC3-2.0.2"         # 	  2.1.20-2.0.1
 googleDaggerHilt = "2.56.2"
 googleAds = "24.4.0"                        #
 googlePlayAppUpdate ="2.1.0"
