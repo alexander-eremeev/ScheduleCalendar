@@ -9,7 +9,7 @@ compile-sdk = "36"  #
 # @keep
 plugin = "0.8.1"
 # @keep
-ndkVersion = "28.1.13356709" #
+ndkVersion = "28.2.13676358" #
 # @keep
 versionCode = "206"
 # @keep
@@ -28,14 +28,14 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "8.11.0"                               #
+agp = "8.11.1"                               #
 #---???????????????????
 jetbrainsKotlin = "2.2.0"                  #  2.1.20
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
 googleDevToolsKsp = "2.2.0-2.0.2"         # 	  2.1.20-2.0.1
-googleDaggerHilt = "2.56.2"
+googleDaggerHilt = "2.57"
 googleAds = "24.4.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
@@ -45,8 +45,8 @@ androidxActivityKtx = "1.10.1"               #
 androidxCoreKtx = "1.16.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
-androidxNavigation = "2.9.0"                #
-androidxLifecycle = "2.9.1"                 #
+androidxNavigation = "2.9.2"                #
+androidxLifecycle = "2.9.2"                 #
 androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
 androidxRoom = "2.7.2"
@@ -58,17 +58,17 @@ androidx-webkit = "1.14.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2025.06.01"            #
+androidxComposeBom = "2025.07.00"            #
 #---------------
 androidxActivityCompose = "1.10.1"              #
 androidxComposeCompiler = "1.5.15"            #agp
 #--------------------------------
 #this plugin provides a task to determine which dependencies have updates.
-benmanesVersions = "0.51.0"
+benmanesVersions = "0.52.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
 littlerobotsVersionCatalogUpdate = "1.0.0"
 #Square’s meticulous HTTP client for Java and Kotlin.
-squareUpOkhttp = "4.12.0"
+squareUpOkhttp = "5.1.0"
 #A type-safe HTTP client for Android and Java.
 squareUpRetrofit2 = "3.0.0"
 devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее время устарел, поскольку его функционал
@@ -77,7 +77,7 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #===== Yandex =====
 #================
 yandexmMobileads = "7.14.1"          #
-yandexAppMetrica = "7.9.0"          #
+yandexAppMetrica = "7.10.0"          #
 yandexMobMetrica = "7.0.0"       #
 #================
 #===== Test =====
