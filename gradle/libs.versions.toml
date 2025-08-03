@@ -28,7 +28,7 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "8.11.1"                               #
+agp = "8.12.0"                               #
 #---???????????????????
 jetbrainsKotlin = "2.2.0"                  #  2.1.20
 jetbrainsKotlinxCoroutines = "1.10.2"        #
@@ -45,7 +45,7 @@ androidxActivityKtx = "1.10.1"               #
 androidxCoreKtx = "1.16.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
-androidxNavigation = "2.9.2"                #
+androidxNavigation = "2.9.3"                #
 androidxLifecycle = "2.9.2"                 #
 androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
@@ -82,11 +82,11 @@ yandexMobMetrica = "7.0.0"       #
 #================
 #===== Test =====
 #================
-androidxTest = "1.6.1"
-androidxTestExt = "1.2.1"
-androidxTestRunner = "1.6.2"
-androidxTestMonitor = "1.7.2"
-androidxTestEspressoCore = "3.6.1"
+androidxTest = "1.7.0"
+androidxTestExt = "1.3.0"
+androidxTestRunner = "1.7.0"
+androidxTestMonitor = "1.8.0"
+androidxTestEspressoCore = "3.7.0"
 androidxComposeUiTestManifest = "1.8.3"
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
