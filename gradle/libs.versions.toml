@@ -30,11 +30,11 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "8.12.0"                               #
 #---???????????????????
-jetbrainsKotlin = "2.2.0"                  #  2.1.20
+jetbrainsKotlin = "2.2.10"                  #  2.1.20
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.2.0-2.0.2"         # 	  2.1.20-2.0.1
+googleDevToolsKsp = "2.2.10-2.0.2"         # 	  2.1.20-2.0.1
 googleDaggerHilt = "2.57"
 googleAds = "24.5.0"                        #
 googlePlayAppUpdate ="2.1.0"
@@ -76,7 +76,7 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #================
 #===== Yandex =====
 #================
-yandexmMobileads = "7.15.0"          #
+yandexmMobileads = "7.15.1"          #
 yandexAppMetrica = "7.10.0"          #
 yandexMobMetrica = "7.0.0"       #
 #================
