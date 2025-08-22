@@ -1,27 +1,31 @@
 package com.childmathematics.android.shiftschedule.data.nonworkingdays
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
 import androidx.room.OnConflictStrategy.Companion.IGNORE
-import com.childmathematics.android.shiftschedule.data.models.Countries
+import androidx.room.Query
+import androidx.room.Update
+import com.childmathematics.android.shiftschedule.data.models.Country
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CountryDAO {
 
     @Query("SELECT * FROM Countries ORDER BY CountryId ASC")
-    fun getCountries(): Flow<List<Countries>>
+    fun getCountries(): Flow<List<Country>>
 
     @Query("SELECT * FROM Countries WHERE CountryId = :countryId")
-    fun getCountry(countryId: Int): Flow<Countries>
+    fun getCountry(countryId: Int): Flow<Country>
 
     @Insert(onConflict = IGNORE)
-    fun addCountry(shortName: Countries)
+    suspend fun addCountry(shortName: Country)
 
     @Update
-    fun updateCountry(shortName: Countries)
+    suspend fun updateCountry(shortName: Country)
 
     @Delete
-    fun deleteCountry(shortName: Countries)
+    suspend fun deleteCountry(shortName: Country)
 
 
 }

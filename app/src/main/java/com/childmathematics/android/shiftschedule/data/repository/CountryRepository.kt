@@ -1,32 +1,17 @@
 package com.childmathematics.android.shiftschedule.data.repository
 
-import com.childmathematics.android.shiftschedule.data.models.Countries
+import com.childmathematics.android.shiftschedule.data.models.Country
 import kotlinx.coroutines.flow.Flow
 
 interface CountryRepository {
-    fun getCountriesFromRoom(): Flow<List<Countries>>
+    fun getCountriesFromRoom(): Flow<List<Country>>
 
-    fun getCountryFromRoom(countryId: Int): Flow<Countries>
+    fun getCountryFromRoom(countryId: Int): Flow<Country>
 
-    fun addCountryToRoom(shortName: Countries)
+    fun addCountryToRoom(shortName: Country)
 
-    fun updateCountryInRoom(shortName: Countries)
+    fun updateCountryInRoom(shortName: Country)
 
-    fun deleteCountryFromRoom(shortName: Countries)
+    fun deleteCountryFromRoom(shortName: Country)
 }
-/*
-import kotlinx.coroutines.flow.Flow
-import ro.alexmamo.roomjetpackcompose.domain.model.Book
 
-interface BookRepository {
-    fun getBooksFromRoom(): Flow<List<Book>>
-
-    fun getBookFromRoom(id: Int): Flow<Book>
-
-    fun addBookToRoom(book: Book)
-
-    fun updateBookInRoom(book: Book)
-
-    fun deleteBookFromRoom(book: Book)
-}
- */
