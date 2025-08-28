@@ -35,7 +35,7 @@ jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
 googleDevToolsKsp = "2.2.10-2.0.2"         # 	  2.1.20-2.0.1
-googleDaggerHilt = "2.57"
+googleDaggerHilt = "2.57.1"
 googleAds = "24.5.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
@@ -46,7 +46,7 @@ androidxCoreKtx = "1.17.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
 androidxNavigation = "2.9.3"                #
-androidxLifecycle = "2.9.2"                 #
+androidxLifecycle = "2.9.3"                 #
 androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
 androidxRoom = "2.7.2"
@@ -58,7 +58,7 @@ androidx-webkit = "1.14.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2025.08.00"            #
+androidxComposeBom = "2025.08.01"            #
 #---------------
 androidxActivityCompose = "1.10.1"              #
 androidxComposeCompiler = "1.5.15"            #agp
@@ -77,7 +77,7 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #===== Yandex =====
 #================
 yandexmMobileads = "7.15.1"          #
-yandexAppMetrica = "7.10.0"          #
+yandexAppMetrica = "7.11.0"          #
 yandexMobMetrica = "7.0.0"       #
 #================
 #===== Test =====
