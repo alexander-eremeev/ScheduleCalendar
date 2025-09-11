@@ -30,37 +30,37 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "8.13.0"                               #
 #---???????????????????
-jetbrainsKotlin = "2.2.10"                  #
+jetbrainsKotlin = "2.2.20"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.2.10-2.0.2"         #
+googleDevToolsKsp = "2.2.20-RC2-2.0.2"         # "2.2.10-2.0.2"    ????
 googleDaggerHilt = "2.57.1"
 googleAds = "24.6.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.1"
-androidxActivityKtx = "1.10.1"               #
+androidxActivityKtx = "1.11.0"               #
 androidxCoreKtx = "1.17.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
-androidxNavigation = "2.9.3"                #
+androidxNavigation = "2.9.4"                #
 androidxLifecycle = "2.9.3"                 #
 androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
-androidxRoom = "2.7.2"
+androidxRoom = "2.8.0"
 androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.4.0"
-androidxUiToolingPreview = "1.9.0"           #
+androidxUiToolingPreview = "1.9.1"           #
 androidx-webkit = "1.14.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2025.08.01"            #
+androidxComposeBom = "2025.09.00"            #
 #---------------
-androidxActivityCompose = "1.10.1"              #
+androidxActivityCompose = "1.11.0"              #
 androidxComposeCompiler = "1.5.15"            #agp
 #--------------------------------
 #this plugin provides a task to determine which dependencies have updates.
@@ -77,7 +77,7 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #===== Yandex =====
 #================
 yandexmMobileads = "7.15.2"          #
-yandexAppMetrica = "7.11.0"          #
+yandexAppMetrica = "7.12.0"          #
 yandexMobMetrica = "7.0.0"       #
 #================
 #===== Test =====
@@ -87,7 +87,7 @@ androidxTestExt = "1.3.0"
 androidxTestRunner = "1.7.0"
 androidxTestMonitor = "1.8.0"
 androidxTestEspressoCore = "3.7.0"
-androidxComposeUiTestManifest = "1.9.0"
+androidxComposeUiTestManifest = "1.9.1"
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
 #testandroidxuiautomator =  "2.2.0"
