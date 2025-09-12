@@ -34,7 +34,7 @@ jetbrainsKotlin = "2.2.20"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.2.20-RC2-2.0.2"         # "2.2.10-2.0.2"    ????
+googleDevToolsKsp = "2.2.20-2.0.2"         #
 googleDaggerHilt = "2.57.1"
 googleAds = "24.6.0"                        #
 googlePlayAppUpdate ="2.1.0"
