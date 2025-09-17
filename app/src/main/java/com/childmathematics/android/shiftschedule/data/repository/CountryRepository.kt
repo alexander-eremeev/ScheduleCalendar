@@ -1,17 +1,17 @@
 package com.childmathematics.android.shiftschedule.data.repository
 
-import com.childmathematics.android.shiftschedule.data.models.Country
+import com.childmathematics.android.shiftschedule.data.models.CountryEntity
 import kotlinx.coroutines.flow.Flow
 
 interface CountryRepository {
-    fun getCountriesFromRoom(): Flow<List<Country>>
+    fun getCountriesFromRoom(): Flow<List<CountryEntity>>
 
-    fun getCountryFromRoom(countryId: Int): Flow<Country>
+    fun getCountryFromRoom(countryId: Int): Flow<CountryEntity>
 
-    fun addCountryToRoom(shortName: Country)
+    fun addCountryToRoom(shortName: CountryEntity)
 
-    fun updateCountryInRoom(shortName: Country)
+    fun updateCountryInRoom(shortName: CountryEntity)
 
-    fun deleteCountryFromRoom(shortName: Country)
+    fun deleteCountryFromRoom(shortName: CountryEntity)
 }
 

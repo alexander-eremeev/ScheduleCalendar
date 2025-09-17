@@ -5,15 +5,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.childmathematics.android.shiftschedule.data.models.NonWorkingDaysEntity
+import com.childmathematics.android.shiftschedule.data.models.CountryEntity
 
 /**
  * Database class with a singleton Instance object.
  * Класс базы данных с одноэлементным объектом экземпляра.
  */
-@Database(entities = [NonWorkingDaysEntity::class], version = 1, exportSchema = false)
+@Database(entities = [NonWorkingDaysEntity::class, CountryEntity::class], version = 1, exportSchema = false)
 abstract class NonWorkingDaysDatabase : RoomDatabase() {
     abstract fun nonWorkingDaysDao(): NonWorkingDaysDao
-//    abstract fun countryDao(): CountryDAO
+    abstract fun CountryDAO(): CountryDAO
     companion object {
         @Volatile
         private var INSTANCE: NonWorkingDaysDatabase? = null
