@@ -10,12 +10,13 @@ import kotlinx.coroutines.flow.flow
 
 class NonWorkingDaysRepositoryImpl @Inject constructor(
     private val nonWorkingDayDao: NonWorkingDaysDao) : NonWorkingDaysRepository {
-    override fun getAllNonWorkingDaysStream(): Flow<UiResources<List<NonWorkingDaysEntity>>> = flow {
-        emit(UiResources.Loading)
-        nonWorkingDayDao.getAllNonWorkingDays().collect { nonWorkingDays ->
-            emit(UiResources.Success(nonWorkingDays))
-        }
-    }.catch { e ->
+    override fun getAllNonWorkingDaysStream(): Flow<UiResources<List<NonWorkingDaysEntity>>> =
+        flow {
+            emit(UiResources.Loading)
+            nonWorkingDayDao.getAllNonWorkingDays().collect { nonWorkingDays ->
+                emit(UiResources.Success(nonWorkingDays))
+            }
+        }.catch { e ->
         emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
     }
 
