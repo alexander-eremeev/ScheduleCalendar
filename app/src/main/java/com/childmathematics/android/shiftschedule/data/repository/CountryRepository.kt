@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flow
 
 
 interface CountryRepository {
-    fun getCountriesFromRoom(): Flow<UiResources<List<CountryEntity>>>
+    fun getAllCountriesFromRoom(): Flow<UiResources<List<CountryEntity>>>
 
     fun getCountryFromRoom(countryId: Int): Flow<CountryEntity>
 
@@ -23,9 +23,9 @@ interface CountryRepository {
 
 class CountryRepositoryImpl @Inject constructor(
     private val countryDao: CountryDAO) : CountryRepository {
-    override fun getCountriesFromRoom(): Flow<UiResources<List<CountryEntity>>> = flow {
+    override fun getAllCountriesFromRoom(): Flow<UiResources<List<CountryEntity>>> = flow {
         emit(UiResources.Loading)
-        countryDao.getCountries().collect { countries ->
+        countryDao.getAllCountries().collect { countries ->
             emit(UiResources.Success(countries))
         }
     }.catch { e ->

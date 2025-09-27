@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 interface CountryDAO {
 
     @Query("SELECT * FROM Countries ORDER BY CountryId ASC")
-    fun getCountries(): Flow<List<CountryEntity>>
+    fun getAllCountries(): Flow<List<CountryEntity>>
 
     @Query("SELECT * FROM Countries WHERE CountryId = :countryId")
     fun getCountry(countryId: Int): Flow<CountryEntity>
