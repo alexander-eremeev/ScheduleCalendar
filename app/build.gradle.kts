@@ -11,7 +11,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
-//    id("com.google.dagger.hilt.android")
+    id("com.google.dagger.hilt.android")
 
     id("androidx.room")                         // Plugin для настройки параметров компилятора Room
 }

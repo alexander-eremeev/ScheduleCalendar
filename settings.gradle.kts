@@ -1,9 +1,10 @@
+//@file:Suppress("UnstableApiUsage")
 //pluginManager.apply (org.gradle.api.Action)
 pluginManagement {
     repositories {
         google()
-        mavenCentral()
         gradlePluginPortal()
+        mavenCentral()
     }
 
 }
@@ -12,6 +13,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 rootProject.name = "ScheduleCalendar"
@@ -24,13 +26,19 @@ Build Cache и другие типичные узкие места произв�
 */
 plugins {
     id("com.gradle.develocity") version "latest.release"
+//    id("com.gradle.develocity") version "4.2"
 }
 develocity {
     // configuration
     buildScan {
-        termsOfUseUrl = "https://gradle.com/terms-of-service"
-        termsOfUseAgree = "yes"
+        val acceptTOSProp = "acceptGradleTOS"
+        if (extra.properties.sets(acceptTOSProp)) {
+            termsOfUseUrl = "https://gradle.com/terms-of-service"
+            termsOfUseAgree = "yes"
+        }
+        publishing.onlyIf { true }
     }
+
 }
 // ----------------------------------------------------------------------------------------------------
 //  When enabled, tasks using a shared build service without declaring the requirement via the Task.usesService method
@@ -57,3 +65,7 @@ include(
     // TEST MODULE
     // ////
 )
+fun Map<String, Any>.sets(key: String) : Boolean {
+    val value = this.getOrDefault(key, "false").toString()
+    return value.isBlank() || value.toBoolean()
+}

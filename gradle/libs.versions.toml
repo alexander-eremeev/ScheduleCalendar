@@ -35,7 +35,7 @@ jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
 googleDevToolsKsp = "2.2.20-2.0.2"         #
-googleDaggerHilt = "2.57.1"
+googleDaggerHilt = "2.57.2"
 googleAds = "24.6.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
@@ -64,9 +64,9 @@ androidxActivityCompose = "1.11.0"              #
 androidxComposeCompiler = "1.5.15"            #agp
 #--------------------------------
 #this plugin provides a task to determine which dependencies have updates.
-benmanesVersions = "0.52.0"
+benmanesVersions = "0.53.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
-littlerobotsVersionCatalogUpdate = "1.0.0"
+littlerobotsVersionCatalogUpdate = "1.0.1"
 #Square’s meticulous HTTP client for Java and Kotlin.
 squareUpOkhttp = "5.1.0"
 #A type-safe HTTP client for Android and Java.
