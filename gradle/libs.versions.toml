@@ -9,7 +9,7 @@ compile-sdk = "36"  #
 # @keep
 plugin = "0.8.1"
 # @keep
-ndkVersion = "28.2.13676358" #
+ndkVersion = "29.0.14206865"
 # @keep
 versionCode = "206"
 # @keep
@@ -36,7 +36,7 @@ jetbrainsKotlinxCoroutines = "1.10.2"        #
 googleAccompanist = "0.36.0"
 googleDevToolsKsp = "2.2.20-2.0.2"         #
 googleDaggerHilt = "2.57.2"
-googleAds = "24.6.0"                        #
+googleAds = "24.7.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
@@ -49,16 +49,16 @@ androidxNavigation = "2.9.5"                #
 androidxLifecycle = "2.9.4"                 #
 androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
-androidxRoom = "2.8.1"
+androidxRoom = "2.8.2"
 androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.5.0"
-androidxUiToolingPreview = "1.9.2"           #
+androidxUiToolingPreview = "1.9.3"           #
 androidx-webkit = "1.14.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2025.09.01"            #
+androidxComposeBom = "2025.10.00"            #
 #---------------
 androidxActivityCompose = "1.11.0"              #
 androidxComposeCompiler = "1.5.15"            #agp
@@ -68,7 +68,7 @@ benmanesVersions = "0.53.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
 littlerobotsVersionCatalogUpdate = "1.0.1"
 #Square’s meticulous HTTP client for Java and Kotlin.
-squareUpOkhttp = "5.1.0"
+squareUpOkhttp = "5.2.1"
 #A type-safe HTTP client for Android and Java.
 squareUpRetrofit2 = "3.0.0"
 devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее время устарел, поскольку его функционал
@@ -87,7 +87,7 @@ androidxTestExt = "1.3.0"
 androidxTestRunner = "1.7.0"
 androidxTestMonitor = "1.8.0"
 androidxTestEspressoCore = "3.7.0"
-androidxComposeUiTestManifest = "1.9.2"
+androidxComposeUiTestManifest = "1.9.3"
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
 #testandroidxuiautomator =  "2.2.0"

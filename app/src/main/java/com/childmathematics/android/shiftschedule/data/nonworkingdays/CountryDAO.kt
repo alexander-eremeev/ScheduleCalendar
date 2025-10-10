@@ -3,6 +3,7 @@ package com.childmathematics.android.shiftschedule.data.nonworkingdays
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.OnConflictStrategy.Companion.IGNORE
 import androidx.room.Query
 import androidx.room.Update
@@ -16,9 +17,9 @@ interface CountryDAO {
     fun getAllCountries(): Flow<List<CountryEntity>>
 
     @Query("SELECT * FROM Countries WHERE CountryId = :countryId")
-    fun getCountry(countryId: Int): Flow<CountryEntity>
+    fun getCountry(countryId: Int)
 
-    @Insert(onConflict = IGNORE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun addCountry(shortName: CountryEntity)
 
     @Update
@@ -27,5 +28,7 @@ interface CountryDAO {
     @Delete
     suspend fun deleteCountry(shortName: CountryEntity)
 
+    @Query ( "SELECT * FROM Countries WHERE shortName LIKE :searchQuery  ")
+    fun searchCountry ( searchQuery : String): Flow<List<CountryEntity>>
 
 }

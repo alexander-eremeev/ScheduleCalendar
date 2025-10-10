@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 interface CountryRepository {
     fun getAllCountriesFromRoom(): Flow<UiResources<List<CountryEntity>>>
 
-    fun getCountryFromRoom(countryId: Int): Flow<CountryEntity>
+    suspend fun getCountryFromRoom(countryId: Int)
 
     suspend fun addCountryToRoom(shortName: CountryEntity)
 
@@ -20,25 +20,30 @@ interface CountryRepository {
 
     suspend fun deleteCountryFromRoom(shortName: CountryEntity)
 
-    fun searchCountryFromRoom(query: Int): Flow<UiResources<CountryEntity>>
+    fun searchCountryFromRoom(query: String): Flow<UiResources<List<CountryEntity>>>
 }
 
 
 class CountryRepositoryImpl @Inject constructor(
-    private val countryDao: CountryDAO) : CountryRepository {
+    private val countryDao: CountryDAO) : CountryRepository
+    {
         override fun getAllCountriesFromRoom(): Flow<UiResources<List<CountryEntity>>> = flow {
             emit(UiResources.Loading)
             countryDao.getAllCountries().collect { countries ->
                 emit(UiResources.Success(countries))
             }
-        }.catch { e ->
-            emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
-        }
+            }.catch { e ->
+                emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
+            }
 
-        override fun getCountryFromRoom(countryId: Int): Flow<CountryEntity> {
-            TODO("Not yet implemented")
+        override suspend fun getCountryFromRoom(countryId: Int) {
+    //            emit(UiResources.Loading)
+            try {
+                countryDao.getCountry(countryId)
+            } catch (e: Exception) {
+                throw e
+            }
         }
-
         override suspend fun addCountryToRoom(shortName: CountryEntity) {
             try {
                     countryDao.addCountry(shortName)
@@ -66,15 +71,16 @@ class CountryRepositoryImpl @Inject constructor(
             catch (e: Exception) { //TooGenericExceptionCaught: Перехваченное исключение слишком общее.
                 // Предпочтите перехват конкретных исключений, а не текущего случая.
                 throw e // Позвольте ViewModel обработать любое перехваченное исключение
-            }       }
+            }
+        }
 
-        override fun searchCountryFromRoom(query: Int): Flow<UiResources<CountryEntity>> = flow {
+        override fun searchCountryFromRoom(query: String): Flow<UiResources<List<CountryEntity>>> = flow {
 
             emit(UiResources.Loading)
-            countryDao.getCountry(query).collect { countries ->
+            countryDao.searchCountry(query).collect { countries ->
                 emit(UiResources.Success(countries))
                 }
-            }.catch { e ->
+        }.catch { e ->
                 emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
                 }
 
