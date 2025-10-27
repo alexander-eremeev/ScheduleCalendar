@@ -15,7 +15,7 @@
  */
 
 package com.childmathematics.android.shiftschedule.ui.item
-
+/*
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -89,3 +89,6 @@ data class ItemDetailsUiState(
     val outOfStock: Boolean = true,
     val itemDetails: ItemDetails = ItemDetails()
 )
+
+
+ */

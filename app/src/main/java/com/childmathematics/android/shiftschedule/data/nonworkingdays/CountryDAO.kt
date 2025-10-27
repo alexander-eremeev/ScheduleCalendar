@@ -13,11 +13,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CountryDAO {
 
-    @Query("SELECT * FROM Countries ORDER BY CountryId ASC")
+    @Query("SELECT * FROM Countries ORDER BY ContryId ASC")
     fun getAllCountries(): Flow<List<CountryEntity>>
 
-    @Query("SELECT * FROM Countries WHERE CountryId = :countryId")
-    fun getCountry(countryId: Int)
+    @Query("SELECT * FROM Countries WHERE ContryId = :countryId")
+    fun getCountry(countryId: Int): Flow<CountryEntity>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun addCountry(shortName: CountryEntity)
@@ -28,7 +28,7 @@ interface CountryDAO {
     @Delete
     suspend fun deleteCountry(shortName: CountryEntity)
 
-    @Query ( "SELECT * FROM Countries WHERE shortName LIKE :searchQuery  ")
+    @Query ( "SELECT * FROM Countries WHERE ShortName LIKE :searchQuery  ")
     fun searchCountry ( searchQuery : String): Flow<List<CountryEntity>>
 
 }

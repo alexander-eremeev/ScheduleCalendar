@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.childmathematics.android.shiftschedule.ui.navigation.drawer.components
+package com.childmathematics.android.shiftschedule.navigation.drawer.components
 
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController

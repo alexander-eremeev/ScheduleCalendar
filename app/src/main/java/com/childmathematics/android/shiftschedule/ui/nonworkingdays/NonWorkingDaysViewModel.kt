@@ -7,10 +7,19 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.data.ItemsRepository
+import com.childmathematics.android.shiftschedule.domain.repository.CountryRepository
+import com.childmathematics.android.shiftschedule.domain.usecases.AddCountryUseCase
+import com.childmathematics.android.shiftschedule.domain.usecases.DeleteCountryUseCase
+import com.childmathematics.android.shiftschedule.domain.usecases.GetAllCountriesUseCase
+import com.childmathematics.android.shiftschedule.domain.usecases.GetCountryUseCase
+import com.childmathematics.android.shiftschedule.domain.usecases.SearchCountryUseCase
+import com.childmathematics.android.shiftschedule.domain.usecases.UpdateCountryUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.time.LocalDate
+import javax.inject.Inject
 
 /*
 @HiltViewModel
@@ -27,7 +36,9 @@ internal class HelpViewModel @Inject constructor(
  * ViewModel to retrieve all items in the Room database.
  * ViewModel для получения всех элементов в базе данных Room.
  */
-class NonWorkingDaysViewModel : ViewModel() {
+@HiltViewModel
+class NonWorkingDaysViewModel @Inject constructor(
+    ): ViewModel() {
 //class NonWorkingDaysViewModel(itemsRepository: ItemsRepository) : ViewModel() {
 
 

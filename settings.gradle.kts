@@ -28,6 +28,8 @@ plugins {
     id("com.gradle.develocity") version "latest.release"
 //    id("com.gradle.develocity") version "4.2"
 }
+/*
+//A network error occurred.Publishing Build Scan failed due to network error
 develocity {
     // configuration
     buildScan {
@@ -38,8 +40,8 @@ develocity {
         }
         publishing.onlyIf { true }
     }
-
 }
+*/
 // ----------------------------------------------------------------------------------------------------
 //  When enabled, tasks using a shared build service without declaring the requirement via the Task.usesService method
 //   will emit a deprecation warning.

@@ -1,8 +1,8 @@
-package com.childmathematics.android.shiftschedule.data.usecases
+package com.childmathematics.android.shiftschedule.domain.usecases
 
 import com.childmathematics.android.shiftschedule.data.models.CountryEntity
 import com.childmathematics.android.shiftschedule.data.models.UiResources
-import com.childmathematics.android.shiftschedule.data.repository.CountryRepository
+import com.childmathematics.android.shiftschedule.domain.repository.CountryRepository
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 
@@ -17,7 +17,7 @@ class GetAllCountriesUseCase @Inject constructor (
 class GetCountryUseCase @Inject constructor (
     private val countryRepository: CountryRepository
 ) {
-    suspend operator fun invoke (countryId: Int){
+    suspend operator fun invoke (countryId: Int): Flow<UiResources<CountryEntity>> {
         return countryRepository.getCountryFromRoom(countryId)
     }
 }

@@ -1,4 +1,4 @@
-package com.childmathematics.android.shiftschedule.data.repository
+package com.childmathematics.android.shiftschedule.domain.repository
 
 import com.childmathematics.android.shiftschedule.data.Item
 import com.childmathematics.android.shiftschedule.data.models.NonWorkingDaysEntity

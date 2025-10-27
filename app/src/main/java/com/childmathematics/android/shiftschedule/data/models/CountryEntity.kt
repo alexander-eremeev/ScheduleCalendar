@@ -7,8 +7,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Countries")
 data class CountryEntity(
     @PrimaryKey(autoGenerate = true)
-//    @ColumnInfo(name = "CountryId")
+    @ColumnInfo(name = "ContryId")
     val countryId: Int?,
-    val shortName: String,
+    @ColumnInfo(name = "ShortName")
+   val shortName: String,
+    @ColumnInfo(name = "LongName")
     val longName: String
 )

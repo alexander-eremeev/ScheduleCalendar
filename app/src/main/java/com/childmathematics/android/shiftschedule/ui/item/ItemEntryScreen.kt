@@ -15,7 +15,7 @@
  */
 
 package com.childmathematics.android.shiftschedule.ui.item
-
+/*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -41,8 +41,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
-import com.childmathematics.android.shiftschedule.ui.navigation.NavigationDestination
-import com.childmathematics.android.shiftschedule.ui.navigation.components.PagesTopAppBar
+import com.childmathematics.android.shiftschedule.navigation.NavigationDestination
+import com.childmathematics.android.shiftschedule.navigation.components.PagesTopAppBar
 import kotlinx.coroutines.launch
 import java.util.Currency
 import java.util.Locale
@@ -196,3 +196,6 @@ private fun ItemEntryScreenPreview() {
         ), onItemValueChange = {}, onSaveClick = {})
     }
 }
+
+
+ */

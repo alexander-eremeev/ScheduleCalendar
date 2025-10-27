@@ -15,14 +15,14 @@
  */
 
 package com.childmathematics.android.shiftschedule.ui
-
+/*
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.childmathematics.android.shiftschedule.MainApplication
+import com.childmathematics.android.shiftschedule.app.MainApplication
 import com.childmathematics.android.shiftschedule.ui.about.AboutViewModel
 import com.childmathematics.android.shiftschedule.ui.item.ItemDetailsViewModel
 import com.childmathematics.android.shiftschedule.ui.item.ItemEditViewModel
@@ -34,6 +34,7 @@ import com.childmathematics.android.shiftschedule.ui.main.MainPageViewModel
  * Provides Factory to create instance of ViewModel for the entire Inventory app
  * Предоставляет Factory для создания экземпляра ViewModel для всего приложения .
  */
+
 object AppViewModelProvider {
     val Factory = viewModelFactory {
         // Initializer for ItemEditViewModel
@@ -84,3 +85,6 @@ initializer {
  */
 fun CreationExtras.mainApplication(): MainApplication =
     (this[AndroidViewModelFactory.APPLICATION_KEY] as MainApplication)
+
+
+ */

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/*
 package com.childmathematics.android.shiftschedule.ui.item
 
 import androidx.compose.foundation.layout.padding
@@ -28,8 +28,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
-import com.childmathematics.android.shiftschedule.ui.navigation.NavigationDestination
-import com.childmathematics.android.shiftschedule.ui.navigation.components.PagesTopAppBar
+import com.childmathematics.android.shiftschedule.navigation.NavigationDestination
+import com.childmathematics.android.shiftschedule.navigation.components.PagesTopAppBar
 import kotlinx.coroutines.launch
 
 object ItemEditDestination : NavigationDestination {
@@ -88,3 +88,6 @@ fun ItemEditScreenPreview() {//ScheduleCalendar
         ItemEditScreen(navigateBack = { /*Do nothing*/ }, onNavigateUp = { /*Do nothing*/ })
     }
 }
+
+
+ */

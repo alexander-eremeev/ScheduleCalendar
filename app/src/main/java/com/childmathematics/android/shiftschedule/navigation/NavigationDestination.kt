@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.childmathematics.android.shiftschedule.ui.navigation
+package com.childmathematics.android.shiftschedule.navigation
 
 /**
  * Interface to describe the navigation destinations for the app

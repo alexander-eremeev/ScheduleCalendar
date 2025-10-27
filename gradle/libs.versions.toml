@@ -30,11 +30,11 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "8.13.0"                               #
 #---???????????????????
-jetbrainsKotlin = "2.2.20"                  #
+jetbrainsKotlin = "2.2.21"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.2.20-2.0.2"         #
+googleDevToolsKsp = "2.2.21-RC2-2.0.4"         #    2.2.20-2.0.2
 googleDaggerHilt = "2.57.2"
 googleAds = "24.7.0"                        #
 googlePlayAppUpdate ="2.1.0"
@@ -49,16 +49,16 @@ androidxNavigation = "2.9.5"                #
 androidxLifecycle = "2.9.4"                 #
 androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
-androidxRoom = "2.8.2"
+androidxRoom = "2.8.3"
 androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.5.0"
-androidxUiToolingPreview = "1.9.3"           #
+androidxUiToolingPreview = "1.9.4"           #
 androidx-webkit = "1.14.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2025.10.00"            #
+androidxComposeBom = "2025.10.01"            #
 #---------------
 androidxActivityCompose = "1.11.0"              #
 androidxComposeCompiler = "1.5.15"            #agp
@@ -76,8 +76,8 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #================
 #===== Yandex =====
 #================
-yandexmMobileads = "7.16.0"          #
-yandexAppMetrica = "7.12.0"          #
+yandexmMobileads = "7.16.1"          #
+yandexAppMetrica = "7.13.0"          #
 yandexMobMetrica = "7.0.0"       #
 #================
 #===== Test =====
@@ -87,7 +87,7 @@ androidxTestExt = "1.3.0"
 androidxTestRunner = "1.7.0"
 androidxTestMonitor = "1.8.0"
 androidxTestEspressoCore = "3.7.0"
-androidxComposeUiTestManifest = "1.9.3"
+androidxComposeUiTestManifest = "1.9.4"
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
 #testandroidxuiautomator =  "2.2.0"

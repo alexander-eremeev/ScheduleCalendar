@@ -15,7 +15,7 @@
  */
 
 package com.childmathematics.android.shiftschedule.ui.item
-
+/*
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -55,8 +55,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.data.Item
 import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
-import com.childmathematics.android.shiftschedule.ui.navigation.NavigationDestination
-import com.childmathematics.android.shiftschedule.ui.navigation.components.PagesTopAppBar
+import com.childmathematics.android.shiftschedule.navigation.NavigationDestination
+import com.childmathematics.android.shiftschedule.navigation.components.PagesTopAppBar
 import com.example.inventory.ui.theme.InventoryTheme
 import kotlinx.coroutines.launch
 
@@ -257,3 +257,6 @@ fun ItemDetailsScreenPreview() {
         ), onSellItem = {}, onDelete = {})
     }
 }
+
+
+ */

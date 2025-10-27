@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.childmathematics.android.shiftschedule.ui.navigation.drawer
+package com.childmathematics.android.shiftschedule.navigation.drawer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,7 +29,7 @@ import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
 import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
 import com.childmathematics.android.shiftschedule.ui.main.MainPageScreen
 import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
-import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
+import com.childmathematics.android.shiftschedule.navigation.drawer.components.DrawerNavDestinations
 import com.childmathematics.android.shiftschedule.ui.nonworkingdays.NonWorkingDaysPageScreen
 import com.childmathematics.android.shiftschedule.ui.nonworkingdays.NonWorkingDaysViewModel
 import com.childmathematics.android.shiftschedule.ui.nonworkingdays.nonWorkingDaysPageGraph

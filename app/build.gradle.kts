@@ -222,7 +222,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)            // Kotlin Symbol Processing (KSP)
     implementation(libs.androidx.room.ktx)      //Kotlin Extensions and Coroutines support for Room
-    implementation(libs.androidx.room.common)
+    //implementation(libs.androidx.room.common)
     // /////////////
     // ADS SUPPORT
     // ////

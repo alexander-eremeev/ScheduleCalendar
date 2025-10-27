@@ -1,4 +1,4 @@
-package com.childmathematics.android.shiftschedule.ui.navigation.components
+package com.childmathematics.android.shiftschedule.navigation.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack

@@ -51,7 +51,7 @@ abstract class NonWorkingDaysDatabase : RoomDatabase() {
     }
 */
 }
-
+/*
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
@@ -78,3 +78,4 @@ object DatabaseModule {
         return db.nonWorkingDaysDao()
     }
 }
+*/

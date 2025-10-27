@@ -18,7 +18,7 @@ import androidx.navigation.NavHostController
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.presentation.WebViewMainScreen
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
-import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
+//import com.childmathematics.android.shiftschedule.ui.AppViewModelProvider
 import com.childmathematics.android.shiftschedule.ui.inappupdate.UpdateViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,9 +34,9 @@ internal fun AboutPageScreen(
     navigateToLocalPolices: () -> Unit,
     navigateToAppUpdate: () -> Unit,
 
-    updateViewModel: UpdateViewModel,
+    updateViewModel: UpdateViewModel
 
-    viewModel: AboutViewModel = viewModel(factory = AppViewModelProvider.Factory)
+ //   viewModel: AboutViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
 
     ScheduleCalendarTheme {
@@ -45,7 +45,7 @@ internal fun AboutPageScreen(
         используется в качестве начального значения. Каждый раз, когда в StateFlow будет отправляться новое значение,
         возвращаемое состояние будет обновляться, вызывая рекомпозицию каждого использования State.value.
          */
-        val aboutUiState by viewModel.aboutUiState.collectAsState()
+//        val aboutUiState by viewModel.aboutUiState.collectAsState()
         val updateUiState by updateViewModel.updateUiState.collectAsStateWithLifecycle()
 
         /*

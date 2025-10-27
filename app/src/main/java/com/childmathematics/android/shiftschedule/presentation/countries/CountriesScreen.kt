@@ -1,4 +1,4 @@
-package com.childmathematics.android.shiftschedule.database.presentation.countries
+package com.childmathematics.android.shiftschedule.presentation.countries
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

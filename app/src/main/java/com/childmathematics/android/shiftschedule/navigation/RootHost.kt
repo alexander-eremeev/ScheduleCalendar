@@ -1,4 +1,4 @@
-package com.childmathematics.android.shiftschedule
+package com.childmathematics.android.shiftschedule.navigation
 
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
@@ -8,14 +8,7 @@ import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
 import com.childmathematics.android.basement.lib.navigation.ui.screenSlideIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenSlideOut
-import com.childmathematics.android.shiftschedule.ui.about.ABOUT_GRAPH_ROUTE
-import com.childmathematics.android.shiftschedule.ui.about.aboutGraph
-import com.childmathematics.android.shiftschedule.ui.main.MAIN_GRAPH_ROUTE
-import com.childmathematics.android.shiftschedule.ui.main.mainPageGraph
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_GRAPH_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.schedule01PageGraph
 import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_GRAPH_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.schedule500PageGraph
 
 @Composable
 internal fun RootHost(widthSizeClass: WindowWidthSizeClass,) {

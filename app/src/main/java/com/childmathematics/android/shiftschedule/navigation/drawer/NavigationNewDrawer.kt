@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.childmathematics.android.shiftschedule.ui.navigation.drawer
+package com.childmathematics.android.shiftschedule.navigation.drawer
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.BorderStroke
@@ -48,7 +48,7 @@ import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 //import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.navigation.drawer.components.DrawerNavDestinations
+import com.childmathematics.android.shiftschedule.navigation.drawer.components.DrawerNavDestinations
 
 
 @OptIn(ExperimentalMaterial3Api::class)

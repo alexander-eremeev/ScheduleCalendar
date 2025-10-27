@@ -11,8 +11,10 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import com.childmathematics.android.shiftschedule.ui.inappupdate.InAppUpdateMan.init
 
-import com.childmathematics.android.shiftschedule.ui.navigation.drawer.DrawerApp
+import com.childmathematics.android.shiftschedule.navigation.drawer.DrawerApp
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private lateinit var activityResultLauncher: ActivityResultLauncher<IntentSenderRequest>
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
