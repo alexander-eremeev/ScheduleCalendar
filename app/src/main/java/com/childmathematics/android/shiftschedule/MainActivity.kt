@@ -9,7 +9,7 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
-import com.childmathematics.android.shiftschedule.ui.inappupdate.InAppUpdateMan.init
+import com.childmathematics.android.shiftschedule.presentation.ui.inappupdate.InAppUpdateMan.init
 
 import com.childmathematics.android.shiftschedule.navigation.drawer.DrawerApp
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,0 +1,37 @@
+package com.childmathematics.android.shiftschedule.presentation.ui.about
+
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
+import com.childmathematics.android.shiftschedule.presentation.ui.inappupdate.UpdateViewModel
+
+internal const val ABOUT_PAGE_ROUTE = "aboutPage"
+
+internal fun NavGraphBuilder.aboutPageScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    openDrawer: () -> Unit ,
+    onOpenDrawer: Boolean ,
+    navigateToHelp: () -> Unit,
+    navigateToLicences: () -> Unit,
+    navigateToLocalPolices: () -> Unit,
+    navigateToAppUpdate: () -> Unit,
+    updateViewModel: UpdateViewModel,
+)
+{
+    composable(route = ABOUT_PAGE_ROUTE) {
+        AboutPageScreen(
+            onBackClick = { navController.popBackStack() },
+//            onOpenDrawer = true,openDrawer = openDrawer,
+            onOpenDrawer = onOpenDrawer, openDrawer = openDrawer,
+            modifier = modifier,
+            navigateToHelp = navigateToHelp,
+            navigateToLicences = navigateToLicences,
+            navigateToLocalPolices = navigateToLocalPolices,
+            navigateToAppUpdate = navigateToAppUpdate,
+            updateViewModel = updateViewModel
+        )
+    }
+
+}

@@ -8,7 +8,7 @@ import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
 import com.childmathematics.android.basement.lib.navigation.ui.screenSlideIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenSlideOut
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_GRAPH_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule500.SCHEDULE500_GRAPH_ROUTE
 
 @Composable
 internal fun RootHost(widthSizeClass: WindowWidthSizeClass,) {

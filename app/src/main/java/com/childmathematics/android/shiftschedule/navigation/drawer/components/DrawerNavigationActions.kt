@@ -18,11 +18,11 @@ package com.childmathematics.android.shiftschedule.navigation.drawer.components
 
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import com.childmathematics.android.shiftschedule.ui.about.ABOUT_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.nonworkingdays.NONWORKINGDAYS_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.about.ABOUT_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.main.MAIN_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NONWORKINGDAYS_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
 
 object DrawerNavDestinations {
     const val D_MAIN_PAGE_ROUTE = MAIN_PAGE_ROUTE

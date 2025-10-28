@@ -34,12 +34,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.childmathematics.android.shiftschedule.R
-import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
-import com.childmathematics.android.shiftschedule.ui.about.ABOUT_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.nonworkingdays.NONWORKINGDAYS_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
-import com.childmathematics.android.shiftschedule.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.theme.ScheduleCalendarTheme
+import com.childmathematics.android.shiftschedule.presentation.ui.about.ABOUT_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.main.MAIN_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NONWORKINGDAYS_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule500.SCHEDULE500_PAGE_ROUTE
 
 @Composable
 fun DrawerNavigationRail(

@@ -45,9 +45,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.childmathematics.android.shiftschedule.R
-import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
+import com.childmathematics.android.shiftschedule.presentation.theme.ScheduleCalendarTheme
 //import com.childmathematics.android.shiftschedule.theme.ScheduleCalendarTheme
-import com.childmathematics.android.shiftschedule.ui.main.MAIN_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.main.MAIN_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.navigation.drawer.components.DrawerNavDestinations
 
 
