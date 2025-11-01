@@ -2,8 +2,8 @@
 //pluginManager.apply (org.gradle.api.Action)
 pluginManagement {
     repositories {
-        google()
         gradlePluginPortal()
+        google()
         mavenCentral()
     }
 
@@ -13,7 +13,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        gradlePluginPortal()
     }
 }
 rootProject.name = "ScheduleCalendar"

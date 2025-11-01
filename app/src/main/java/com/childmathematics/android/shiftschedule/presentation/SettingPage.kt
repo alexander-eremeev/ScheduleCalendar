@@ -1,4 +1,4 @@
-package com.childmathematics.android.shiftschedule.mainpage
+package com.childmathematics.android.shiftschedule.presentation
 
 import android.content.Context
 import androidx.compose.foundation.background

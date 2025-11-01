@@ -86,7 +86,8 @@ internal fun AboutPageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
-                    val yearStr = BuildConfig.BUILD_TIMESTAMP
+//                    val yearStr = BuildConfig.BUILD_TIMESTAMP
+                    val yearStr = BuildConfig.BUILD_Date_Rus
                     val versionName = BuildConfig.VERSION_NAME
 
                     WebViewMainScreen("file:///android_asset/about.html?Version=$versionName&Year=$yearStr")

@@ -18,7 +18,8 @@ plugins {
 
 android {
 
-    namespace = libs.versions.applicationId.get()
+//    namespace = libs.versions.applicationId.get().toString()
+    namespace = "com.childmathematics.android.shiftschedule"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
     buildToolsVersion = libs.versions.buildToolsVersion.get().toString()
