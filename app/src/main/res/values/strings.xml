@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">ScheduleCalendar</string>
+
+    <string name="app_label">ScheduleCalendar</string>
+
     <string name="drawer_header">Производственный календарь</string>
     <string name="e_mail">E-mail : trening.childmathematics@gmail.com</string>
 

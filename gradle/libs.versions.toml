@@ -7,7 +7,7 @@ min-sdk = "26"
 target-sdk = "36"   #
 compile-sdk = "36"  #
 # @keep
-plugin = "0.8.1"
+#plugin = "0.8.1"
 # @keep
 ndkVersion = "29.0.14206865"
 # @keep
@@ -34,7 +34,7 @@ jetbrainsKotlin = "2.2.21"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.2.21-RC2-2.0.4"         #    2.2.20-2.0.2
+googleDevToolsKsp = "2.2.21-2.0.4"         #    2.2.21-RC2-2.0.4
 googleDaggerHilt = "2.57.2"
 googleAds = "24.7.0"                        #
 googlePlayAppUpdate ="2.1.0"
@@ -45,7 +45,7 @@ androidxActivityKtx = "1.11.0"               #
 androidxCoreKtx = "1.17.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
-androidxNavigation = "2.9.5"                #
+androidxNavigation = "2.9.6"                #
 androidxLifecycle = "2.9.4"                 #
 androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
@@ -58,7 +58,7 @@ androidx-webkit = "1.14.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2025.10.01"            #
+androidxComposeBom = "2025.11.00"            #
 #---------------
 androidxActivityCompose = "1.11.0"              #
 androidxComposeCompiler = "1.5.15"            #agp
@@ -68,7 +68,7 @@ benmanesVersions = "0.53.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
 littlerobotsVersionCatalogUpdate = "1.0.1"
 #Square’s meticulous HTTP client for Java and Kotlin.
-squareUpOkhttp = "5.2.1"
+squareUpOkhttp = "5.3.0"
 #A type-safe HTTP client for Android and Java.
 squareUpRetrofit2 = "3.0.0"
 devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее время устарел, поскольку его функционал

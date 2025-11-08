@@ -159,7 +159,7 @@ private fun DrawerHeader(modifier: Modifier = Modifier) {
             Spacer(Modifier.width(8.dp))
             Icon(
                 painter = painterResource(id = R.drawable.ic_shiftschedule),
-                contentDescription = stringResource(R.string.app_name),
+                contentDescription = stringResource(R.string.app_label),
                 tint = Color.Unspecified
             )
             Text(stringResource(id =R.string.drawer_header))
