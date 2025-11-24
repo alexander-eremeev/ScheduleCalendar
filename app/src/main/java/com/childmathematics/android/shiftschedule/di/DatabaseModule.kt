@@ -45,8 +45,11 @@ object DatabaseModule {
         return Room.databaseBuilder(
             context.applicationContext,
             NonWorkingDaysDatabase::class.java,
+
+//            "data/local/Schedule.db"
             "nonWorkingDays_database"
         )
+            .createFromAsset("databases/Schedule.db")
             .fallbackToDestructiveMigration(false)
             .build()
         //    .also { INSTANCE = it }

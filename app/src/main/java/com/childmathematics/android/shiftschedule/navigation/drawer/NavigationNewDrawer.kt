@@ -56,6 +56,8 @@ import com.childmathematics.android.shiftschedule.navigation.drawer.components.D
 fun NavigationNewDrawer(
     currentRoute: String,
     navigateToMainPage: () -> Unit,
+    navigateToCountries: () -> Unit,
+
     navigateToNonWorkingDays: () -> Unit,
     navigateToSchedule01: () -> Unit,
     navigateToSchedule500: () -> Unit,
@@ -87,6 +89,19 @@ fun NavigationNewDrawer(
                 navigateToMainPage(); closeDrawer()
             },
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+        )
+
+        HorizontalDivider()
+        NavigationDrawerItem(
+            label = { Text(stringResource(id = R.string.countries_titleshort)) },
+            icon = { Icon(painterResource(R.drawable.holidays_vacation), null) },
+            selected = currentRoute == DrawerNavDestinations.D_COUNTRIES_PAGE_ROUTE,
+            onClick = {
+                navigateToCountries(); closeDrawer()
+            },
+            modifier = Modifier
+                .padding(NavigationDrawerItemDefaults.ItemPadding)
+                .height(96.dp)
         )
 
         HorizontalDivider()
@@ -176,6 +191,7 @@ fun PreviewAppDrawer() {
         NavigationNewDrawer(
             currentRoute = MAIN_PAGE_ROUTE,
             navigateToMainPage = {},
+            navigateToCountries = {},
             navigateToNonWorkingDays = {},
             navigateToSchedule01 = {},
             navigateToSchedule500 = {},

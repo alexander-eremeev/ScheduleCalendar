@@ -18,7 +18,7 @@ import javax.inject.Singleton
  * Database class with a singleton Instance object.
  * Класс базы данных с одноэлементным объектом экземпляра.
  */
-@Database(entities = [NonWorkingDaysEntity::class, CountryEntity::class], version = 1, exportSchema = false)
+@Database(entities = [NonWorkingDaysEntity::class, CountryEntity::class], version = 1, exportSchema = true)
 abstract class NonWorkingDaysDatabase : RoomDatabase() {
     abstract fun nonWorkingDaysDao(): NonWorkingDaysDao
     abstract fun countryDAO(): CountryDAO

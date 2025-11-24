@@ -19,6 +19,7 @@ package com.childmathematics.android.shiftschedule.navigation.drawer.components
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.childmathematics.android.shiftschedule.presentation.ui.about.ABOUT_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.countries.COUNTRIES_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.presentation.ui.main.MAIN_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NONWORKINGDAYS_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
@@ -28,6 +29,7 @@ object DrawerNavDestinations {
     const val D_MAIN_PAGE_ROUTE = MAIN_PAGE_ROUTE
 
     //        const val HOMEPAGE_ROUTE = "$HOMEPAGE_SCREEN?$HOMEPAGE_ARG={$USER_MESSAGE_ARG}"
+    const val D_COUNTRIES_PAGE_ROUTE = COUNTRIES_PAGE_ROUTE
     const val D_NONWORKINGDAYS_PAGE_ROUTE = NONWORKINGDAYS_PAGE_ROUTE
     const val D_SCHEDULE01_PAGE_ROUTE = SCHEDULE01_PAGE_ROUTE
     const val D_SCHEDULE500_PAGE_ROUTE = SCHEDULE500_PAGE_ROUTE
@@ -61,6 +63,18 @@ class DrawerNavigationActions(navController: NavHostController) {
             restoreState = true
         }
     }
+    val navigateToCountries: () -> Unit = {
+
+        navController.navigate(DrawerNavDestinations.D_COUNTRIES_PAGE_ROUTE) {
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+
+
     val navigateToNonWorkingDays: () -> Unit = {
 
         navController.navigate(DrawerNavDestinations.D_NONWORKINGDAYS_PAGE_ROUTE) {

@@ -53,7 +53,7 @@ class CountriesViewModel @Inject constructor(
     private val _effectChannel = Channel<SnackbarEffect>()
     val effectFlow: Flow<SnackbarEffect> = _effectChannel.receiveAsFlow()
 
-    private var recentlyDeletedCountry: CountryEntity? = null
+ //   private var recentlyDeletedCountry: CountryEntity? = null
 /*
     var countries by mutableStateOf(emptyList<CountryEntity>())
 //    var country by mutableStateOf(Countries(0, "", ""))
@@ -62,6 +62,7 @@ class CountriesViewModel @Inject constructor(
  */
 
         init {
+            handleIntent(CountryViewIntent.LoadCountries)
         }
         fun handleIntent(intent: CountryViewIntent) {
             when (intent) {
@@ -95,12 +96,15 @@ class CountriesViewModel @Inject constructor(
                                         filteredCountriesList = resource.data
                                     )
                         }
+                        _effectChannel.send(
+                            SnackbarEffect.ShowSnackbar(
+                                "Error loading countries: None}"))
                     }
                     is UiResources.Error -> withContext(Dispatchers.Main) {
                         _viewState.update {it.copy(isLoading = false ) }
                         _effectChannel.send(
                             SnackbarEffect.ShowSnackbar(
-                            "Error loading users: ${resource.message}"))
+                            "Error loading countries: ${resource.message}"))
                     }
                 }
             }

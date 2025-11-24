@@ -30,6 +30,9 @@ import com.childmathematics.android.shiftschedule.presentation.ui.inappupdate.Up
 import com.childmathematics.android.shiftschedule.presentation.ui.main.MainPageScreen
 import com.childmathematics.android.shiftschedule.presentation.ui.main.mainPageGraph
 import com.childmathematics.android.shiftschedule.navigation.drawer.components.DrawerNavDestinations
+import com.childmathematics.android.shiftschedule.presentation.ui.countries.CountriesPageScreen
+import com.childmathematics.android.shiftschedule.presentation.ui.countries.CountriesViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.countries.countriesPageGraph
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysPageScreen
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.nonWorkingDaysPageGraph
@@ -53,6 +56,8 @@ fun DrawerNavigationGraph(
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
     startDestination: String = DrawerNavDestinations.D_MAIN_PAGE_ROUTE,
+    countriesViewModel: CountriesViewModel = viewModel(),
+
     nonWorkingDaysViewModel: NonWorkingDaysViewModel= viewModel(),
     scheduleViewModel: ScheduleViewModel = viewModel(),
     updateViewModel: UpdateViewModel = viewModel()
@@ -66,6 +71,9 @@ fun DrawerNavigationGraph(
 
         mainPageGraph(navController,modifier,openDrawer ,onOpenDrawer = onOpenDrawer,
                 updateViewModel = updateViewModel )
+
+        countriesPageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,
+            countriesViewModel = countriesViewModel)
 
         nonWorkingDaysPageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,
             nonWorkingDaysViewModel = nonWorkingDaysViewModel)
@@ -82,6 +90,14 @@ fun DrawerNavigationGraph(
             MainPageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                 updateViewModel = updateViewModel
+            )
+        }
+        composable(route = DrawerNavDestinations.D_COUNTRIES_PAGE_ROUTE,) {
+            CountriesPageScreen(modifier,onBackClick={},
+                onOpenDrawer = onOpenDrawer,
+                openDrawer = openDrawer,
+//                navigateToCountries = {navController.navigateToCountries()},
+                countriesViewModel = countriesViewModel
             )
         }
 

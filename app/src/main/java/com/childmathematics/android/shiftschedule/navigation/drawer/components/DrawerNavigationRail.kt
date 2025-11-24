@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.presentation.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.presentation.ui.about.ABOUT_PAGE_ROUTE
+import com.childmathematics.android.shiftschedule.presentation.ui.countries.COUNTRIES_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.presentation.ui.main.MAIN_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NONWORKINGDAYS_PAGE_ROUTE
 import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.SCHEDULE01_PAGE_ROUTE
@@ -45,6 +46,7 @@ import com.childmathematics.android.shiftschedule.presentation.ui.schedules.sche
 fun DrawerNavigationRail(
     currentRoute: String,
     navigateToMainPage: () -> Unit,
+    navigateToCountries : () -> Unit,
     navigateToNonWorkingDays : () -> Unit,
     navigateToSchedule01 : () -> Unit,
     navigateToSchedule500: () -> Unit,
@@ -88,6 +90,14 @@ fun DrawerNavigationRail(
             onClick = navigateToMainPage,
             icon = { Icon(painterResource(R.drawable.home_24px), stringResource(R.string.homepage_title)) },
             label = { Text(stringResource(R.string.homepage_title)) },
+            alwaysShowLabel = false
+        )
+        NavigationRailItem(
+            selected = currentRoute == COUNTRIES_PAGE_ROUTE,
+            onClick = navigateToCountries,
+            icon = { Icon(painterResource(R.drawable.holidays_vacation),
+                stringResource(R.string.countries_titleshort)) },
+            label = { Text(stringResource(R.string.countries_titleshort)) },
             alwaysShowLabel = false
         )
 
@@ -135,6 +145,7 @@ fun PreviewAppNavRail() {
         DrawerNavigationRail(
             currentRoute = "",
             navigateToMainPage = { /*TODO*/ },
+            navigateToCountries ={},
             navigateToNonWorkingDays ={},
             navigateToSchedule01 = { /*TODO*/ },
             navigateToSchedule500 = { /*TODO*/ },

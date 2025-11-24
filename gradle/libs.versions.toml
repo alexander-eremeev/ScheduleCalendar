@@ -28,7 +28,7 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "8.13.0"                               #
+agp = "8.13.1"                               #
 #---???????????????????
 jetbrainsKotlin = "2.2.21"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
@@ -36,31 +36,31 @@ jetbrainsKotlinxCoroutines = "1.10.2"        #
 googleAccompanist = "0.36.0"
 googleDevToolsKsp = "2.2.21-2.0.4"         #    2.2.21-RC2-2.0.4
 googleDaggerHilt = "2.57.2"
-googleAds = "24.7.0"                        #
+googleAds = "24.8.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.1"
-androidxActivityKtx = "1.11.0"               #
+androidxActivityKtx = "1.12.0"               #
 androidxCoreKtx = "1.17.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
 androidxNavigation = "2.9.6"                #
-androidxLifecycle = "2.9.4"                 #
+androidxLifecycle = "2.10.0"                 #
 androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
-androidxRoom = "2.8.3"
+androidxRoom = "2.8.4"
 androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
-androidxWindow = "1.5.0"
-androidxUiToolingPreview = "1.9.4"           #
+androidxWindow = "1.5.1"
+androidxUiToolingPreview = "1.9.5"           #
 androidx-webkit = "1.14.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2025.11.00"            #
+androidxComposeBom = "2025.11.01"            #
 #---------------
-androidxActivityCompose = "1.11.0"              #
+androidxActivityCompose = "1.12.0"              #
 androidxComposeCompiler = "1.5.15"            #agp
 #--------------------------------
 #this plugin provides a task to determine which dependencies have updates.
@@ -68,7 +68,7 @@ benmanesVersions = "0.53.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
 littlerobotsVersionCatalogUpdate = "1.0.1"
 #Square’s meticulous HTTP client for Java and Kotlin.
-squareUpOkhttp = "5.3.0"
+squareUpOkhttp = "5.3.1"
 #A type-safe HTTP client for Android and Java.
 squareUpRetrofit2 = "3.0.0"
 devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее время устарел, поскольку его функционал
@@ -76,9 +76,9 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #================
 #===== Yandex =====
 #================
-yandexmMobileads = "7.16.1"          #
+yandexmMobileads = "7.17.0"          #
 yandexAppMetrica = "7.13.0"          #
-yandexMobMetrica = "7.0.0"       #
+#yandexMobMetrica = "7.0.0"       #
 #================
 #===== Test =====
 #================
@@ -87,7 +87,7 @@ androidxTestExt = "1.3.0"
 androidxTestRunner = "1.7.0"
 androidxTestMonitor = "1.8.0"
 androidxTestEspressoCore = "3.7.0"
-androidxComposeUiTestManifest = "1.9.4"
+androidxComposeUiTestManifest = "1.9.5"
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
 #testandroidxuiautomator =  "2.2.0"
@@ -126,7 +126,7 @@ google-dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", vers
 #===== Yandex =====
 #================
 yandex-mobileads = { module = "com.yandex.android:mobileads", version.ref = "yandexmMobileads" }
-yandex-mobmetricaold = { module = "com.yandex.android:mobmetricalib", version.ref = "yandexMobMetrica" }
+#yandex-mobmetricaold = { module = "com.yandex.android:mobmetricalib", version.ref = "yandexMobMetrica" }
 yandex-appmetrica = { module = "io.appmetrica.analytics:analytics", version.ref = "yandexAppMetrica" }
 #===================
 #===== Androidx =====
