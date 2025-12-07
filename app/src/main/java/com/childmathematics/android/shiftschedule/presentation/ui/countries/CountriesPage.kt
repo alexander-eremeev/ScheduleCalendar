@@ -1,139 +1,155 @@
 package com.childmathematics.android.shiftschedule.presentation.ui.countries
 
-import android.R.attr.country
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.childmathematics.android.basement.lib.ads.ui.theme.Shapes
 import com.childmathematics.android.shiftschedule.data.models.CountryEntity
-import com.childmathematics.android.shiftschedule.presentation.ui.countries.uimodels.CountryViewIntent
+import com.childmathematics.android.shiftschedule.presentation.util.SnackbarEffect
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun CountriesPage(
     viewModel: CountriesViewModel
 ) {
-    Text(text = "Country Экран !!!!!!!!!!!!!!!", fontWeight = FontWeight.Bold)
-/*
-    LaunchedEffect(Unit) {
-        viewModel.handleIntent(CountryViewIntent.LoadCountries)
-    }
 
- */
-
-    viewModel.handleIntent(CountryViewIntent.LoadCountries)
+    val countriesViewState by viewModel.viewState.collectAsStateWithLifecycle()
+    val listState = rememberLazyListState()
+    var countItem: Int =0
 
 
-    CountryListScreen (viewModel)
+    // State to manage Snackbar
+    val snackbarHostState = remember { SnackbarHostState() }
 
-
-}
-/*
-@Composable
-@ExperimentalMaterialApi
-fun BooksScreen(
-    viewModel: BooksViewModel = hiltViewModel(),
-    navigateToUpdateBookScreen: (bookId: Int) -> Unit
-) {
-    LaunchedEffect(Unit) {
-        viewModel.getBooks()
+    // Collect snackbar events and show snackbar
+    LaunchedEffect(viewModel) {
+        viewModel.effectFlow.collectLatest { effect ->
+            if (effect is SnackbarEffect.ShowSnackbar) {
+                val result = snackbarHostState.showSnackbar(
+                    message = effect.message,
+                    actionLabel = effect.actionLabel
+                )
+                if (result == SnackbarResult.ActionPerformed && effect.actionLabel == "Undo") {
+//                    viewModel.handleIntent(Intent.UndoDelete)
+                }
+            }
+        }
     }
     Scaffold(
-        topBar = {
-            BooksTopBar()
-        },
-        content = { padding ->
-            BooksContent(
-                padding = padding,
-                books = viewModel.books,
-                deleteBook = { book ->
-                    viewModel.deleteBook(book)
-                },
-                navigateToUpdateBookScreen = navigateToUpdateBookScreen
-            )
-            AddBookAlertDialog(
-                openDialog = viewModel.openDialog,
-                closeDialog = {
-                    viewModel.closeDialog()
-                },
-                addBook = { book ->
-                    viewModel.addBook(book)
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        content = { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.background, shape = Shapes.medium)
+            ) {
+                if (countriesViewState.countries.count()>0) {
+                    CountryHeader()
+                    CountryListScreen (viewModel)
                 }
-            )
-        },
-        floatingActionButton = {
-            AddBookFloatingActionButton(
-                openDialog = {
-                    viewModel.openDialog()
-                }
-            )
+            }
         }
     )
 }
- */
 @Composable
-fun CountryItem (country: CountryEntity) {
-    //   Row(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding( 16.dp )
-//    )
-    Spacer( modifier = Modifier.width( 16. dp))
-    Text("CountryItem --------")
-//    Column( modifier = Modifier.weight( 1f )) {
-    Column( modifier = Modifier) {
-        Text(text = country.shortName, fontWeight = FontWeight.Bold)
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(text = country.longName)
+fun CountryItem (countryEnt: CountryEntity?) {
+    Row(
+        modifier = Modifier
+    //        .fillMaxWidth(),
+    ) {
+        Text(countryEnt?.countryId.toString(),textAlign = TextAlign.Right
+            ,modifier = Modifier .weight(.1f)  )
+        Spacer(modifier = Modifier.width(10.dp))
+        Text(countryEnt?.shortName.toString(),textAlign = TextAlign.Left
+            ,modifier = Modifier .weight(.1f))
+        Spacer(modifier = Modifier.width(10.dp))
+        Text(countryEnt?.longName.toString(),textAlign = TextAlign.Left
+                ,modifier = Modifier    .width( 130.dp ) .weight(.8f))
     }
 }
 // Список праздничных дней
 @Composable
 fun CountryListScreen (countriesViewModel: CountriesViewModel) {
     val countriesViewState by countriesViewModel.viewState.collectAsStateWithLifecycle()
-    var countIt: Int =0
-
-    Text("CountryListScreen --------")
-    if (countriesViewState.isLoading) {Text("CountryListScreen ----загружено")}
-    else {Text("CountryListScreen ----НЕ загружено")}
-
-    if (countriesViewState.nameError) {Text("CountryListScreen ----ошибка")}
-    else {Text("CountryListScreen ----НЕ ошибки")}
-    if (countriesViewState.countries.count() >0 )
-        CountryItem(countriesViewState.countries[1] )
-    else {Text("CountryListScreen ----DB пусто")}
-
-
-    LazyColumn(
+    val listState = rememberLazyListState()
+    Box(
         modifier = Modifier
-            //           .fillMaxSize()
-            .padding(horizontal = 16.dp ),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        userScrollEnabled = true,
-
+ //           .weight(1f)
+ //           .fillMaxWidth(),
+ //       contentAlignment = Alignment.TopCenter
     ) {
-        items(countIt, {key -> countriesViewState.countryid})
-        { country->
-            CountryItem(countriesViewState.countries[countIt] )
+        when {
+            countriesViewState.isLoading -> CircularProgressIndicator(color =
+                MaterialTheme.colorScheme.primary)
+            countriesViewState.countries.isEmpty() && ! countriesViewState.isLoading ->
+                Text("No countries available")
+            countriesViewState.countries.count()>0 -> {
+                // Содержимое таблицы
+                LazyColumn(
+                    state = listState,
+                    modifier = Modifier
+ //                       .fillMaxSize()
+                        .padding(horizontal = 16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    itemsIndexed(
+                        items = countriesViewState.countries,
+                        key = { index, item ->
+                            index
+                        },
+                    ) { index, item ->
+                        CountryItem(countriesViewState.countries[index] )
+                    }
+                }
+            }
+            else -> {
+            }
+
         }
-        /*
-        items(countries, key = { country -> country.countryid })
-        { country->
-            CountryItem(country )
-        }
-
-
- */
-
     }
+}
+//--------------------------
+//     // Заголовоки столбцов таблицы
+@Composable
+fun CountryHeader()
+{
+    // Заголовоки столбцов таблицы
+    Row(
+        modifier = Modifier
+            //        .fillMaxWidth(),
+            .padding(horizontal = 16.dp),
+    ) {
+        Text("Код",textAlign = TextAlign.Right,modifier = Modifier .weight(.1f)  )
+        Spacer(modifier = Modifier.width(10.dp))
+        Text("Кр.",textAlign = TextAlign.Left ,modifier = Modifier .weight(.1f))
+        Spacer(modifier = Modifier.width(10.dp))
+        Text("Наименование",textAlign = TextAlign.Left
+            ,modifier = Modifier    .width( 130.dp ) .weight(.8f))
+    }
+
 }

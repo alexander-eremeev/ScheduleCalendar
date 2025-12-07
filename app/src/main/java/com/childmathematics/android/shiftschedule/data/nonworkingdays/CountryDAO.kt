@@ -13,10 +13,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CountryDAO {
 
-    @Query("SELECT * FROM Countries ORDER BY ContryId ASC")
+    @Query("SELECT * FROM Countries ORDER BY CountryId ASC")
     fun getAllCountries(): Flow<List<CountryEntity>>
 
-    @Query("SELECT * FROM Countries WHERE ContryId = :countryId")
+    @Query("SELECT * FROM Countries WHERE CountryId = :countryId")
     fun getCountry(countryId: Int): Flow<CountryEntity>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)

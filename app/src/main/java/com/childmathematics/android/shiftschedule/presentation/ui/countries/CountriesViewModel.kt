@@ -3,7 +3,6 @@ package com.childmathematics.android.shiftschedule.presentation.ui.countries
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.childmathematics.android.shiftschedule.data.models.CountryEntity
 import com.childmathematics.android.shiftschedule.domain.repository.CountryRepository
 import com.childmathematics.android.shiftschedule.domain.usecases.AddCountryUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.DeleteCountryUseCase
@@ -11,10 +10,10 @@ import com.childmathematics.android.shiftschedule.domain.usecases.GetAllCountrie
 import com.childmathematics.android.shiftschedule.domain.usecases.GetCountryUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.SearchCountryUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.UpdateCountryUseCase
-import com.childmathematics.android.shiftschedule.data.models.UiResources
+import com.childmathematics.android.shiftschedule.presentation.util.UiResources
 import com.childmathematics.android.shiftschedule.presentation.ui.countries.uimodels.CountryViewIntent
 import com.childmathematics.android.shiftschedule.presentation.ui.countries.uimodels.CountryViewState
-import com.childmathematics.android.shiftschedule.presentation.ui.countries.uimodels.SnackbarEffect
+import com.childmathematics.android.shiftschedule.presentation.util.SnackbarEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,10 +29,6 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
-/*
-import kotlinx.coroutines.Job
-
- */
 @HiltViewModel
 class CountriesViewModel @Inject constructor(
     private val countryRepository: CountryRepository,
@@ -53,13 +48,6 @@ class CountriesViewModel @Inject constructor(
     private val _effectChannel = Channel<SnackbarEffect>()
     val effectFlow: Flow<SnackbarEffect> = _effectChannel.receiveAsFlow()
 
- //   private var recentlyDeletedCountry: CountryEntity? = null
-/*
-    var countries by mutableStateOf(emptyList<CountryEntity>())
-//    var country by mutableStateOf(Countries(0, "", ""))
-    var openDialog by mutableStateOf(false)
-
- */
 
         init {
             handleIntent(CountryViewIntent.LoadCountries)
@@ -98,13 +86,13 @@ class CountriesViewModel @Inject constructor(
                         }
                         _effectChannel.send(
                             SnackbarEffect.ShowSnackbar(
-                                "Error loading countries: None}"))
+                                "Ошибки загрузки стран: Нет"))
                     }
                     is UiResources.Error -> withContext(Dispatchers.Main) {
                         _viewState.update {it.copy(isLoading = false ) }
                         _effectChannel.send(
                             SnackbarEffect.ShowSnackbar(
-                            "Error loading countries: ${resource.message}"))
+                            "Ошибка загрузки стран из БД: ${resource.message}"))
                     }
                 }
             }
@@ -200,41 +188,6 @@ private fun validateAndAddCountry (val shortname: String, val longname: String, 
         }
     }
 }
-// ========================================================================
-    fun getCountry(id: Int) = viewModelScope.launch {
-        repo.getCountryFromRoom(id).collect{
-                dbCountry ->
-            country = dbCountry
-        }
-    }
-    fun addCountry(country: Countries) = viewModelScope.launch(Dispatchers.IO) {
-        repo.addCountryToRoom(country)
-    }
-    fun updateCountry(country: Countries) = viewModelScope.launch(Dispatchers.IO) {
-        repo.updateCountryInRoom(country)
-    }
-    fun deleteCountry(country: Countries) = viewModelScope.launch(Dispatchers.IO) {
-        repo.deleteCountryFromRoom(country)
-    }
-    fun updateLongName(longName: String) {
-        country = country.copy(
-            longName = longName
-        )
-    }
-    fun updateShortName(shortName: String) {
-        country = country.copy(
-            shortName = shortName
-        )
-    }
-
-    fun openDialog() {
-        openDialog = true
-    }
-
-    fun closeDialog() {
-        openDialog = false
-    }
-
      */
 
 }

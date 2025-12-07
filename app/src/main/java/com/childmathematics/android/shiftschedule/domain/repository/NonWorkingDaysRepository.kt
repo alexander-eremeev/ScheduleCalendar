@@ -1,7 +1,7 @@
 package com.childmathematics.android.shiftschedule.domain.repository
 
 import com.childmathematics.android.shiftschedule.data.models.NonWorkingDaysEntity
-import com.childmathematics.android.shiftschedule.data.models.UiResources
+import com.childmathematics.android.shiftschedule.presentation.util.UiResources
 import kotlinx.coroutines.flow.Flow
 import com.childmathematics.android.shiftschedule.data.nonworkingdays.NonWorkingDaysDao
 import jakarta.inject.Inject

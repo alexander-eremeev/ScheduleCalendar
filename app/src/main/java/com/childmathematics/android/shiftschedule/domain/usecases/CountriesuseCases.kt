@@ -1,7 +1,7 @@
 package com.childmathematics.android.shiftschedule.domain.usecases
 
 import com.childmathematics.android.shiftschedule.data.models.CountryEntity
-import com.childmathematics.android.shiftschedule.data.models.UiResources
+import com.childmathematics.android.shiftschedule.presentation.util.UiResources
 import com.childmathematics.android.shiftschedule.domain.repository.CountryRepository
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow

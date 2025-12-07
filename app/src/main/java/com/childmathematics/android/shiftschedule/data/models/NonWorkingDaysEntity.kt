@@ -1,19 +1,30 @@
 package com.childmathematics.android.shiftschedule.data.models
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "NonWorkingDays")
 data class NonWorkingDaysEntity(
     @PrimaryKey(autoGenerate = true)
-    val nonWorkingDaysId : Int?,
-    val languageId : Int,
-    val countryId : Int,
-    val year : Int,
-    val month : Int,
-    val day : Int,
-    val name: String,
-    val typ : Int?,
-    val moveDateYMD : Long,
-    val reason: String
+    @ColumnInfo(name = "NonWorkingDayId")
+    val nonWorkingDayId : Int,   //?
+    @ColumnInfo(name = "LanguageId")
+    val languageId : Int,      //?
+    @ColumnInfo(name = "CountryId")
+    val countryId : Int,       //?
+    @ColumnInfo(name = "Year")
+    val year : Int?,
+    @ColumnInfo(name = "Month")
+    val month : Int?,
+    @ColumnInfo(name = "Day")
+    val day : Int,         //?
+    @ColumnInfo(name = "Name")
+    val name: String,      //?
+    @ColumnInfo(name = "Typ")
+    val typ : Int,     //?
+    @ColumnInfo(name = "MoveDateYMD")
+    val moveDateYMD : Long?,
+    @ColumnInfo(name = "Reason")
+    val reason: String?
 )

@@ -20,7 +20,7 @@ interface NonWorkingDaysDao {
     @Query("SELECT * from NonWorkingDays ORDER BY name ASC")
     fun getAllNonWorkingDays(): Flow<List<NonWorkingDaysEntity>>
 
-    @Query("SELECT * from NonWorkingDays WHERE nonWorkingDaysId = :id")
+    @Query("SELECT * from NonWorkingDays WHERE NonWorkingDayId = :id")
     fun getNonWorkingDay(id: Int): Flow<NonWorkingDaysEntity>
 
     // Specify the conflict strategy as IGNORE, when the user tries to add an

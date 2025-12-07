@@ -41,7 +41,7 @@ googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.1"
-androidxActivityKtx = "1.12.0"               #
+androidxActivityKtx = "1.12.1"               #
 androidxCoreKtx = "1.17.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
@@ -53,14 +53,14 @@ androidxRoom = "2.8.4"
 androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.5.1"
-androidxUiToolingPreview = "1.9.5"           #
+androidxUiToolingPreview = "1.10.0"           #
 androidx-webkit = "1.14.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2025.11.01"            #
+androidxComposeBom = "2025.12.00"            #
 #---------------
-androidxActivityCompose = "1.12.0"              #
+androidxActivityCompose = "1.12.1"              #
 androidxComposeCompiler = "1.5.15"            #agp
 #--------------------------------
 #this plugin provides a task to determine which dependencies have updates.
@@ -77,7 +77,7 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #===== Yandex =====
 #================
 yandexmMobileads = "7.17.0"          #
-yandexAppMetrica = "7.13.0"          #
+yandexAppMetrica = "7.14.0"          #
 #yandexMobMetrica = "7.0.0"       #
 #================
 #===== Test =====
@@ -87,7 +87,7 @@ androidxTestExt = "1.3.0"
 androidxTestRunner = "1.7.0"
 androidxTestMonitor = "1.8.0"
 androidxTestEspressoCore = "3.7.0"
-androidxComposeUiTestManifest = "1.9.5"
+androidxComposeUiTestManifest = "1.10.0"
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
 #testandroidxuiautomator =  "2.2.0"

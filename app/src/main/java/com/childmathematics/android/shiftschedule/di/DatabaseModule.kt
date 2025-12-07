@@ -2,6 +2,8 @@ package com.childmathematics.android.shiftschedule.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.childmathematics.android.shiftschedule.data.nonworkingdays.CountryDAO
 import com.childmathematics.android.shiftschedule.data.nonworkingdays.NonWorkingDaysDao
 import com.childmathematics.android.shiftschedule.data.nonworkingdays.NonWorkingDaysDatabase
@@ -34,24 +36,30 @@ object DatabaseModule {
 
 
  */
+
 //---------------------------------------------
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
+    val MIGRATION_1_2 = object : Migration(1, 2) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            // Empty implementation, because the schema isn't changing.
+        }
+    }
     @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext context: Context): NonWorkingDaysDatabase {
         return Room.databaseBuilder(
             context.applicationContext,
             NonWorkingDaysDatabase::class.java,
-
-//            "data/local/Schedule.db"
             "nonWorkingDays_database"
         )
-            .createFromAsset("databases/Schedule.db")
-            .fallbackToDestructiveMigration(false)
+            .createFromAsset("database/Schedule2025.db")
+            .fallbackToDestructiveMigration(true)
+ //           .addMigrations(MIGRATION_1_2)
             .build()
+
         //    .also { INSTANCE = it }
     }
     @Singleton

@@ -3,7 +3,7 @@ package com.childmathematics.android.shiftschedule.domain.repository
 import com.childmathematics.android.shiftschedule.data.models.CountryEntity
 import kotlinx.coroutines.flow.Flow
 import jakarta.inject.Inject
-import com.childmathematics.android.shiftschedule.data.models.UiResources
+import com.childmathematics.android.shiftschedule.presentation.util.UiResources
 import com.childmathematics.android.shiftschedule.data.nonworkingdays.CountryDAO
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -32,9 +32,9 @@ class CountryRepositoryImpl @Inject constructor(
             countryDao.getAllCountries().collect { countries ->
                 emit(UiResources.Success(countries))
             }
-            }.catch { e ->
+        }.catch { e ->
                 emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
-            }
+        }
 
         override suspend fun getCountryFromRoom(countryId: Int): Flow<UiResources<CountryEntity>>
             =flow {
@@ -45,7 +45,7 @@ class CountryRepositoryImpl @Inject constructor(
             }
             .catch  { e ->
                     emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
-                    }
+            }
 
         override suspend fun addCountryToRoom(shortName: CountryEntity) {
             try {
@@ -84,16 +84,10 @@ class CountryRepositoryImpl @Inject constructor(
             countryDao.searchCountry(query).collect { countries ->
                 emit(UiResources.Success(countries))
                 }
-
-
-            }
-
+        }
             .catch { e ->
                 emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
-                }
-
-
-
+            }
 }
 
 
