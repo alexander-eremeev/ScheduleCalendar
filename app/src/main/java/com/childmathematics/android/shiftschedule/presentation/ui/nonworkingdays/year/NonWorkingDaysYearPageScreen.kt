@@ -38,7 +38,7 @@ fun NonWorkingDaysYearPageScreen(
     ScheduleCalendarTheme {
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 // val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
-        val  nonWorkingDaysUiState by  nonWorkingDaysViewModel. nonWorkingDaysUiState.collectAsStateWithLifecycle()
+//        val  nonWorkingDaysUiState by  nonWorkingDaysViewModel. nonWorkingDaysUiState.collectAsStateWithLifecycle()
         Scaffold(
             modifier = modifier
                 .nestedScroll(scrollBehavior.nestedScrollConnection),

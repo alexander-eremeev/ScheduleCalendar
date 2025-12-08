@@ -32,15 +32,12 @@ import javax.inject.Inject
 @HiltViewModel
 class CountriesViewModel @Inject constructor(
     private val countryRepository: CountryRepository,
-
     private val getAllCountriesUseCase: GetAllCountriesUseCase,
     private val getCountryUseCase: GetCountryUseCase,
     private val addCountryUseCase: AddCountryUseCase,
     private val updateCountryUseCase: UpdateCountryUseCase,
     private val deleteCountryUseCase: DeleteCountryUseCase,
     private val searchCountryUseCase: SearchCountryUseCase,
-
-
 )  : ViewModel(){
 
     private val _viewState = MutableStateFlow(CountryViewState())
@@ -86,13 +83,13 @@ class CountriesViewModel @Inject constructor(
                         }
                         _effectChannel.send(
                             SnackbarEffect.ShowSnackbar(
-                                "Ошибки загрузки стран: Нет"))
+                                "Ошибки загрузки списка стран: Нет"))
                     }
                     is UiResources.Error -> withContext(Dispatchers.Main) {
                         _viewState.update {it.copy(isLoading = false ) }
                         _effectChannel.send(
                             SnackbarEffect.ShowSnackbar(
-                            "Ошибка загрузки стран из БД: ${resource.message}"))
+                            "Ошибка загрузки списка стран из БД: ${resource.message}"))
                     }
                 }
             }
@@ -119,7 +116,7 @@ class CountriesViewModel @Inject constructor(
                         _viewState.update {it.copy(isLoading = false ) }
                         _effectChannel.send(
                             SnackbarEffect.ShowSnackbar(
-                                "Error loading users: ${resource.message}"))
+                                "Ошибка загрузки данныхс страны: ${resource.message}"))
                     }
                 }
             }

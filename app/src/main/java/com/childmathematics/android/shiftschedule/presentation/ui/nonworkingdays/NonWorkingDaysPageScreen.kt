@@ -72,7 +72,7 @@ fun NonWorkingDaysPageScreen(
   */
         //      val nonWorkingDays01PageUiState by viewModel.nonWorkingDays01PageUiState.collectAsState()
 //        val nonWorkingDays01PageUiState by nonWorkingDays01PageViewModel.nonWorkingDays01PageUiState.collectAsStateWithLifecycle()
-        val nonWorkingDaysUiState by nonWorkingDaysViewModel.nonWorkingDaysUiState.collectAsState()
+//        val nonWorkingDaysUiState by nonWorkingDaysViewModel.nonWorkingDaysUiState.collectAsState()
         /*
                 var state = rememberSelectableCalendarState(
                     initialSelectionMode = SelectionMode.Period,
