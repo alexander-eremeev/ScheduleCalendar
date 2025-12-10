@@ -20,7 +20,8 @@ interface NonWorkingDaysRepository {
      * Retrieve all the items from the the given data source.
      * Получить все элементы из данного источника данных.
      */
-    fun getAllNonWorkingDays(): Flow<UiResources<List<NonWorkingDaysEntity>>>
+    fun getAllNonWorkingDaysYear(year: Int): Flow<UiResources<List<NonWorkingDaysEntity>>>
+    fun getAllNonWorkingDays( year: Int, month: Int): Flow<UiResources<List<NonWorkingDaysEntity>>>
     /**
      * Retrieve an item from the given data source that matches with the [id].
      * Получите элемент из заданного источника данных, соответствующий [id].
@@ -51,10 +52,23 @@ interface NonWorkingDaysRepository {
 //=======================================================================================
 class NonWorkingDaysRepositoryImpl @Inject constructor(
     private val nonWorkingDayDao: NonWorkingDaysDao) : NonWorkingDaysRepository {
-    override fun getAllNonWorkingDays(): Flow<UiResources<List<NonWorkingDaysEntity>>> =
+//--------------------------------------------------------------------------------------
+    override fun getAllNonWorkingDaysYear(year: Int): Flow<UiResources<List<NonWorkingDaysEntity>>> =
         flow {
             emit(UiResources.Loading)
-            nonWorkingDayDao.getAllNonWorkingDays().collect { nonWorkingDays ->
+            nonWorkingDayDao.getAllNonWorkingDaysYear(year).collect { nonWorkingDays ->
+                emit(UiResources.Success(nonWorkingDays))
+            }
+        }
+            .catch { e ->
+                emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
+            }
+//--------------------------------------------------------------------------------------
+
+    override fun getAllNonWorkingDays(year: Int, month: Int): Flow<UiResources<List<NonWorkingDaysEntity>>> =
+        flow {
+            emit(UiResources.Loading)
+            nonWorkingDayDao.getAllNonWorkingDays(year, month).collect { nonWorkingDays ->
                 emit(UiResources.Success(nonWorkingDays))
             }
         }

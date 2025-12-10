@@ -17,9 +17,12 @@ import kotlinx.coroutines.flow.Flow
  */
 @Dao
 interface NonWorkingDaysDao {
+    @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7  AND Typ = 1 AND Year = :year  ORDER BY Year ASC,Month ASC,Day ASC, Name ASC")
+    fun getAllNonWorkingDaysYear(year: Int): Flow<List<NonWorkingDaysEntity>>
 
-    @Query("SELECT * from NonWorkingDays ORDER BY name ASC")
-    fun getAllNonWorkingDays(): Flow<List<NonWorkingDaysEntity>>
+
+    @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7 AND Typ = 1 AND Year = :year AND Month = :month ORDER BY Year ASC,Month ASC,Day ASC, Name ASC")
+    fun getAllNonWorkingDays(year: Int, month: Int): Flow<List<NonWorkingDaysEntity>>
 
     @Query("SELECT * from NonWorkingDays WHERE NonWorkingDayId = :id")
     fun getNonWorkingDay(id: Int): Flow<List<NonWorkingDaysEntity>>

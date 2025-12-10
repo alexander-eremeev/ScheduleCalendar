@@ -96,6 +96,7 @@ junitTest = "4.13.2"
 toolsCore = "1.0.0-alpha13"
 material = "1.13.0"
 junit = "4.13.2"
+uiUnit = "1.10.0"
 #===================#===================#===================#===================
 [libraries]
 #===================
@@ -231,6 +232,7 @@ square-okhttp-mockjunit5 = { module = "com.squareup.okhttp3:mockwebserver3-junit
 junit-test = { module = "junit:junit", version.ref = "junitTest" }
 #----------------------
 dev-chrisbanes-snapper-snapper = { module = "dev.chrisbanes.snapper:snapper", version.ref = "devSnapper" }
+androidx-compose-ui-unit = { group = "androidx.compose.ui", name = "ui-unit", version.ref = "uiUnit" }
 #junit = { group = "junit", name = "junit", version.ref = "junit" }
 #===================#===================#===================#===================
 [bundles]

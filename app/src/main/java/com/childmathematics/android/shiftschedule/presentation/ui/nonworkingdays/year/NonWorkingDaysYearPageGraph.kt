@@ -6,6 +6,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigation
 import androidx.navigation.navDeepLink
+import com.childmathematics.android.basement.lib.composecalendar.CalendarState
+import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
@@ -31,10 +33,7 @@ fun NavController.navigateToNonWorkingDaysYearPageGraph() {
 fun NavGraphBuilder.nonWorkingDaysYearPageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-//    state: CalendarState<DynamicSelectionState>
-//    schedule01PageViewModel:,
-    nonWorkingDaysViewModel: NonWorkingDaysViewModel,
-
+   nonWorkingDaysViewModel: NonWorkingDaysViewModel,
     ) {
     navigation(startDestination = NONWORKINGDAYS_YEARPAGE_ROUTE,
         route = NONWORKINGDAYS_YEARPAGE_GRAPH_ROUTE,
@@ -51,6 +50,7 @@ fun NavGraphBuilder.nonWorkingDaysYearPageGraph(
         nonWorkingDaysYearPageScreen(
             navController,
             modifier,
+//            state,
             nonWorkingDaysViewModel = nonWorkingDaysViewModel
         )
     }

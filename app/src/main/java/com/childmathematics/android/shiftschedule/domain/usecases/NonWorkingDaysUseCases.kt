@@ -6,11 +6,19 @@ import com.childmathematics.android.shiftschedule.presentation.util.UiResources
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 
+class GetAllNonWorkingDaysYearUseCase @Inject constructor (
+    private val nonWorkingDayRepository: NonWorkingDaysRepository
+) {
+    operator fun invoke (year : Int) : Flow<UiResources<List<NonWorkingDaysEntity>>> {
+        return nonWorkingDayRepository.getAllNonWorkingDaysYear(year)
+    }
+}
+
 class GetAllNonWorkingDaysUseCase @Inject constructor (
     private val nonWorkingDayRepository: NonWorkingDaysRepository
 ) {
-    operator fun invoke () : Flow<UiResources<List<NonWorkingDaysEntity>>> {
-        return nonWorkingDayRepository.getAllNonWorkingDays()
+    operator fun invoke (year : Int,month : Int) : Flow<UiResources<List<NonWorkingDaysEntity>>> {
+        return nonWorkingDayRepository.getAllNonWorkingDays(year,month)
     }
 }
 

@@ -10,21 +10,28 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.presentation.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.uimodels.NonWorkingDaysViewIntent
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.NonWorkingDaysHeader
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.year.util.NonWorkingDaysYearListScreen
+import com.childmathematics.android.shiftschedule.presentation.util.SnackbarEffect
+import kotlinx.coroutines.flow.collectLatest
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,13 +39,39 @@ import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays
 fun NonWorkingDaysYearPageScreen(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit,
+//    state: CalendarState<DynamicSelectionState>,
     nonWorkingDaysViewModel:  NonWorkingDaysViewModel
 ) {
+    //-------------------------------------------------------------------------
+//    val state: CalendarState<DynamicSelectionState>,
+    var state = rememberSelectableCalendarState()
+    val year = state.monthState.currentMonth.year
+
+    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDaysYear(year))
+
+    val nonWorkingDaysViewState by nonWorkingDaysViewModel.viewState.collectAsStateWithLifecycle()
+
+    // State to manage Snackbar
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    // Collect snackbar events and show snackbar
+    LaunchedEffect(nonWorkingDaysViewModel) {
+        nonWorkingDaysViewModel.effectFlow.collectLatest { effect ->
+            if (effect is SnackbarEffect.ShowSnackbar) {
+                val result = snackbarHostState.showSnackbar(
+                    message = effect.message,
+                    actionLabel = effect.actionLabel
+                )
+                if (result == SnackbarResult.ActionPerformed && effect.actionLabel == "Undo") {
+//                    viewModel.handleIntent(Intent.UndoDelete)
+                }
+            }
+        }
+    }
+    //-------------------------------------------------------------------------------
 
     ScheduleCalendarTheme {
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-// val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
-//        val  nonWorkingDaysUiState by  nonWorkingDaysViewModel. nonWorkingDaysUiState.collectAsStateWithLifecycle()
         Scaffold(
             modifier = modifier
                 .nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -52,19 +85,18 @@ fun NonWorkingDaysYearPageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
-                    Text(
-                        text = "\n\nЭкран нерабочих дней года\nОк!!"
-                        ,
-                        modifier = Modifier.align(Alignment.CenterHorizontally) ,
-                        color = Color.Red ,
-                        fontSize = 20.sp,
-                    )
+                    if (nonWorkingDaysViewState.nonWorkingDaysYear.count()<=0) {
+ //                       delay(300)
+                    }
+                    if (nonWorkingDaysViewState.nonWorkingDaysYear.count()>0) {
+                        NonWorkingDaysHeader()
+                        NonWorkingDaysYearListScreen(nonWorkingDaysViewModel)
+                    }
 
                 }
             },
         )
     }
-
 }
 //=================================
 @Composable

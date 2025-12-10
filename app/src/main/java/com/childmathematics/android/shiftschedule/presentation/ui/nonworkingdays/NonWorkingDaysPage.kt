@@ -1,11 +1,13 @@
 package com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays
 
+import android.provider.CalendarContract
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues.Companion.Zero
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -48,17 +50,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.childmathematics.android.basement.lib.ads.ui.theme.Shapes
+import com.childmathematics.android.basement.lib.composecalendar.CalendarState
 import com.childmathematics.android.basement.lib.composecalendar.SelectableCalendar
 import com.childmathematics.android.basement.lib.composecalendar.day.DayState
 import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
 import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionMode
+import com.childmathematics.android.basement.lib.composecalendar.selection.SelectionState
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.data.models.CountryEntity
 import com.childmathematics.android.shiftschedule.data.models.NonWorkingDaysEntity
 import com.childmathematics.android.shiftschedule.presentation.ui.countries.CountriesViewModel
 import com.childmathematics.android.shiftschedule.presentation.ui.countries.CountryHeader
 import com.childmathematics.android.shiftschedule.presentation.ui.countries.CountryListScreen
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.uimodels.NonWorkingDaysViewIntent
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.NonWorkingDaysHeader
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.NonWorkingDaysListScreen
 import com.childmathematics.android.shiftschedule.presentation.util.SnackbarEffect
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
@@ -67,6 +74,7 @@ import com.childmathematics.android.shiftschedule.util.nonScaledSp
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import java.time.LocalDate
+import java.util.Calendar
 
 @ExperimentalCoroutinesApi
 @Composable
@@ -98,6 +106,10 @@ fun NonWorkingDaysPage(
     var state = rememberSelectableCalendarState(
         initialSelectionMode = SelectionMode.Period,
     )
+    val year = state.monthState.currentMonth.year
+    val month = state.monthState.currentMonth.monthValue
+
+    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDays(year,month))
 
     var changeDp: Dp
 
@@ -115,13 +127,12 @@ fun NonWorkingDaysPage(
 //----------------------------------
     changeDp = 0.dp
 //=========================
-//--------------------------
      Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
-        content = { paddingValues ->
+        content = {  paddingValues  ->
             Column(
                 modifier = Modifier
- //                   .padding(paddingValues)
+                    .padding(paddingValues= Zero)
                     .fillMaxSize()
                     .background(MaterialTheme.colorScheme.background, shape = Shapes.medium)
             ) {
@@ -153,6 +164,7 @@ fun NonWorkingDaysPage(
                     }
                 }
 //------------------------------------------------
+
                 if (nonWorkingDaysViewState.nonWorkingDays.count()>0) {
                     NonWorkingDaysHeader()
                     NonWorkingDaysListScreen (nonWorkingDaysViewModel)
@@ -415,82 +427,3 @@ fun getShift01MonthDate (datecalc: LocalDate):Double {
     }
     return summ
 }
-//-----------------------------------------
-@Composable
-fun NonWorkingDaysItem (nonWorkingDaysEnt: NonWorkingDaysEntity?) {
-    Row(
-        modifier = Modifier
-        //        .fillMaxWidth(),
-    ) {
-        Text(nonWorkingDaysEnt?.nonWorkingDayId.toString(),textAlign = TextAlign.Right
-            ,modifier = Modifier .weight(.1f)  )
-        Spacer(modifier = Modifier.width(10.dp))
-        Text(nonWorkingDaysEnt?.month.toString(),textAlign = TextAlign.Left
-            ,modifier = Modifier .weight(.1f))
-        Spacer(modifier = Modifier.width(10.dp))
-        Text(nonWorkingDaysEnt?.name.toString(),textAlign = TextAlign.Left
-            ,modifier = Modifier    .width( 130.dp ) .weight(.8f))
-    }
-}
-// Список праздничных дней
-@Composable
-fun NonWorkingDaysListScreen (nonWorkingDaysViewModel: NonWorkingDaysViewModel) {
-    val nonWorkingDaysViewState by nonWorkingDaysViewModel.viewState.collectAsStateWithLifecycle()
-    val listState = rememberLazyListState()
-    Box(
-        modifier = Modifier
-        //           .weight(1f)
-        //           .fillMaxWidth(),
-        //       contentAlignment = Alignment.TopCenter
-    ) {
-        when {
-            nonWorkingDaysViewState.isLoading -> CircularProgressIndicator(color =
-                MaterialTheme.colorScheme.primary)
-            nonWorkingDaysViewState.nonWorkingDays.isEmpty() && ! nonWorkingDaysViewState.isLoading ->
-                Text("No countries available")
-            nonWorkingDaysViewState.nonWorkingDays.count()>0 -> {
-                // Содержимое таблицы
-                LazyColumn(
-                    state = listState,
-                    modifier = Modifier
-                        //                       .fillMaxSize()
-                        .padding(horizontal = 16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    itemsIndexed(
-                        items = nonWorkingDaysViewState.nonWorkingDays,
-                        key = { index, item ->
-                            index
-                        },
-                    ) { index, item ->
-                        NonWorkingDaysItem(nonWorkingDaysViewState.nonWorkingDays[index] )
-                    }
-                }
-            }
-            else -> {
-            }
-
-        }
-    }
-}
-//--------------------------
-//     // Заголовоки столбцов таблицы
-@Composable
-fun NonWorkingDaysHeader()
-{
-    // Заголовоки столбцов таблицы
-    Row(
-        modifier = Modifier
-            //        .fillMaxWidth(),
-            .padding(horizontal = 16.dp),
-    ) {
-        Text("Код",textAlign = TextAlign.Right,modifier = Modifier .weight(.1f)  )
-        Spacer(modifier = Modifier.width(10.dp))
-        Text("Кр.",textAlign = TextAlign.Left ,modifier = Modifier .weight(.1f))
-        Spacer(modifier = Modifier.width(10.dp))
-        Text("Наименование",textAlign = TextAlign.Left
-            ,modifier = Modifier    .width( 130.dp ) .weight(.8f))
-    }
-
-}
-//-----------------------------------------

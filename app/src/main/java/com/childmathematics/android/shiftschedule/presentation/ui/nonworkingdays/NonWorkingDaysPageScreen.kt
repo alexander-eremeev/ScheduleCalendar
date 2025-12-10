@@ -44,25 +44,8 @@ fun NonWorkingDaysPageScreen(
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
     navigateToNonWorkingDaysYearPage: () -> Unit,
-//    state: CalendarState<DynamicSelectionState>,
-
-    /*
-    navigateToHelpNonWorkingDaysPage: () -> Unit,
-    navigateToHelpGraphicsPage: () -> Unit,
-    navigateToHelpAboutPage: () -> Unit
-     */
     nonWorkingDaysViewModel: NonWorkingDaysViewModel
-    //           viewModel: NonWorkingDaysPageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
-    /*
-    val state = rememberSelectableCalendarState(
-//.        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
-//        confirmSelectionChange = viewModel::onSelectionChanged, //SelectionMode
-
-        initialSelectionMode = SelectionMode.Period,
-    )
-
-     */
 
     ScheduleCalendarTheme {
         /*
@@ -70,15 +53,6 @@ fun NonWorkingDaysPageScreen(
  используется в качестве начального значения. Каждый раз, когда в StateFlow будет отправляться новое значение,
  возвращаемое состояние будет обновляться, вызывая рекомпозицию каждого использования State.value.
   */
-        //      val nonWorkingDays01PageUiState by viewModel.nonWorkingDays01PageUiState.collectAsState()
-//        val nonWorkingDays01PageUiState by nonWorkingDays01PageViewModel.nonWorkingDays01PageUiState.collectAsStateWithLifecycle()
-//        val nonWorkingDaysUiState by nonWorkingDaysViewModel.nonWorkingDaysUiState.collectAsState()
-        /*
-                var state = rememberSelectableCalendarState(
-                    initialSelectionMode = SelectionMode.Period,
-                )
-
-         */
 
         /*
         Возвращает TopAppBarScrollBehavior. Верхняя панель приложения, настроенная с помощью этого

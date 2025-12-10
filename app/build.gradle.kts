@@ -179,6 +179,7 @@ dependencies {
 
     // Hilt
     implementation(libs.google.dagger.hilt)
+    implementation(libs.androidx.compose.ui.unit)
     //testImplementation(libs.junit.test)
     ksp(libs.google.dagger.hilt.compiler )
 
