@@ -34,36 +34,22 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.presentation.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.presentation.ui.ScheduleViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalCoroutinesApi::class)
 @Composable
 fun Schedule01PageScreen(
-//internal fun Schedule01PageScreen(
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit,
     onOpenDrawer: Boolean,
     openDrawer: () -> Unit,
     navigateToSchedule01SummingPage: () -> Unit,
-//    state: CalendarState<DynamicSelectionState>,
+    navigateToNonWorkingDaysYearPage: () -> Unit,
+    scheduleViewModel: ScheduleViewModel = viewModel(),
+    nonWorkingDaysViewModel: NonWorkingDaysViewModel
 
-    /*
-    navigateToHelpSchedule01Page: () -> Unit,
-    navigateToHelpGraphicsPage: () -> Unit,
-    navigateToHelpAboutPage: () -> Unit
-     */
-    scheduleViewModel: ScheduleViewModel = viewModel()
- //           viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
-    /*
-    val state = rememberSelectableCalendarState(
-//.        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
-//        confirmSelectionChange = viewModel::onSelectionChanged, //SelectionMode
-
-        initialSelectionMode = SelectionMode.Period,
-    )
-
-     */
 
     ScheduleCalendarTheme {
         /*
@@ -71,16 +57,7 @@ fun Schedule01PageScreen(
  используется в качестве начального значения. Каждый раз, когда в StateFlow будет отправляться новое значение,
  возвращаемое состояние будет обновляться, вызывая рекомпозицию каждого использования State.value.
   */
-  //      val schedule01PageUiState by viewModel.schedule01PageUiState.collectAsState()
-//        val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsStateWithLifecycle()
         val scheduleUiState by scheduleViewModel.scheduleUiState.collectAsState()
-/*
-        var state = rememberSelectableCalendarState(
-            initialSelectionMode = SelectionMode.Period,
-        )
-
- */
-
         /*
         Возвращает TopAppBarScrollBehavior. Верхняя панель приложения, настроенная с помощью этого
         TopAppBarScrollBehavior, немедленно свернется при извлечении содержимого и сразу же появится при перемещении
@@ -108,13 +85,7 @@ fun Schedule01PageScreen(
                     openDrawer,
                     onBackClick,scrollBehavior,
                     navigateToSchedule01SummingPage = navigateToSchedule01SummingPage,
-
-                    /*
-                    navigateToHelpSchedule01Page,
-                    navigateToHelpGraphicsPage,
-                    navigateToHelpAboutPage
-
-                     */
+                    navigateToNonWorkingDaysYearPage
                 )
             },
             content ={ padding ->
@@ -127,7 +98,7 @@ fun Schedule01PageScreen(
 
 
 
-                    Schedule01Page(scheduleViewModel)
+                    Schedule01Page(scheduleViewModel,    nonWorkingDaysViewModel)
 //                    schedule01PageUiState.vmselection= state.selectionState.selection
 
                     //Schedule01Page(true,schedule01PageUiState.state)
@@ -145,13 +116,7 @@ private fun Schedule01PageTopAppBar(
       onBackClick: () -> Unit,
       scrollBehavior: TopAppBarScrollBehavior,
     navigateToSchedule01SummingPage: () -> Unit,
-
-    /*
-    navigateToHelpSchedule01Page: () -> Unit,
-    navigateToHelpGraphicsPage: () -> Unit,
-    navigateToHelpAboutPage: () -> Unit
-
-     */
+    navigateToNonWorkingDaysYearPage: () -> Unit
 ) {
     CenterAlignedTopAppBar(
         title = {
@@ -175,6 +140,7 @@ private fun Schedule01PageTopAppBar(
 
             Schedule01PageMenu(
                 navigateToSchedule01SummingPage = navigateToSchedule01SummingPage,
+                navigateToNonWorkingDaysYearPage
             )
         },
 
@@ -186,11 +152,8 @@ private fun Schedule01PageTopAppBar(
 @Composable
 private fun Schedule01PageMenu(
     navigateToSchedule01SummingPage: () -> Unit,
-    /*
-navigateToHelpGraphicsPage: () -> Unit,
-navigateToHelpAboutPage: () -> Unit,
+    navigateToNonWorkingDaysYearPage: () -> Unit
 
- */
 ) {
     Schedule01PageTopAppBarDropdownMenu(
         iconContent = {
@@ -213,20 +176,20 @@ navigateToHelpAboutPage: () -> Unit,
             },
             text = { Text(text = stringResource(id = R.string.schedule01_SummingSelectedDays)) }
         )
-        /*
+
         DropdownMenuItem(
-            leadingIcon = {Icon(imageVector = Icons.Filled.AppRegistration, contentDescription = null)}
+//            leadingIcon = {Icon(imageVector = Icons.AutoMirrored.Filled.ViewList, contentDescription = null)}
+            leadingIcon = { Icon(painter = painterResource(R.drawable.calendar_1) ,
+                            contentDescription =null )}
             ,
             onClick = {
-//                navigateToHelpGraphicsPage()
+                navigateToNonWorkingDaysYearPage()
                 closeMenu()
             },
-            text = { Text(text = stringResource(id = R.string.help_Graphics)) }
+            text = { Text(text = stringResource(id = R.string.nonWorkingDays_MonthSelectedDays)) }
         )
-         */
+
     }
-
-
 }
 //-----------------------------
 @Composable

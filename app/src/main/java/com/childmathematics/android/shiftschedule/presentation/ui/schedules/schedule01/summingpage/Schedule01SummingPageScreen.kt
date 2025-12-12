@@ -41,6 +41,7 @@ import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.presentation.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.presentation.ui.ScheduleViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
 import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.getShift01
 import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.getShift01MonthDate
 import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.getShift01MonthDateDays
@@ -51,28 +52,11 @@ import java.time.LocalDate
 fun Schedule01SummingPageScreen(
         modifier: Modifier = Modifier,
         onBackClick: () -> Unit,
-//        state: CalendarState<DynamicSelectionState>,
         scheduleViewModel: ScheduleViewModel = viewModel()
-//                viewModel: Schedule01PageViewModel = viewModel()
-//        viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
-
 ) {
-    /*
-    if (BuildConfig.DEBUG) {
-        Log.d(
-            "Schedule01",
-            "+++Schedule01SummingPageScreen: selection.lastIndex =" +
-//                                    state.selectionState.selection.lastIndex
-                    schedule01PageViewModel.vmselection.lastIndex
-        )
-    }
-
-     */
-
 
     ScheduleCalendarTheme {
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-// val schedule01PageUiState by schedule01PageViewModel.schedule01PageUiState.collectAsState()
         val scheduleUiState by scheduleViewModel.scheduleUiState.collectAsStateWithLifecycle()
          Scaffold(
             modifier = modifier
@@ -88,28 +72,36 @@ fun Schedule01SummingPageScreen(
                         .padding(padding)
                 ) {
                     if (BuildConfig.DEBUG) {
+/*                        
                         Log.d(
                             "Schedule01",
                             "+++Schedule01SummingPageScreen: selection.lastIndex =" +
 //                                    state.selectionState.selection.lastIndex
                                     scheduleUiState.lastIndex
                         )
+                        
+ */
                     }
                     if (scheduleUiState.isNotEmpty()) {
                         if (BuildConfig.DEBUG) {
                             //-------------------------
+/*                            
                             Log.d(
                                 "Schedule01", "+++Schedule01SummingPageScreen: scheduleUiState.lastIndex =" +
                                         scheduleUiState.lastIndex
                             )
                             for (i in  scheduleUiState.lastIndex downTo 0 step 1) {
+                                /*
                                 Log.d(
                                     "Schedule01", "+++Schedule01SummingPageScreen: selected " +
                                             scheduleUiState[i].dayOfMonth + "/"
                                             +  scheduleUiState[i].monthValue + "/" +
                                             scheduleUiState[i].year
                                 )
+                                 */
                             }
+                            
+ */
                         }
                         DialogSchedule01(scheduleUiState)
                     }

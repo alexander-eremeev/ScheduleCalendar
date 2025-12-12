@@ -5,6 +5,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.childmathematics.android.shiftschedule.presentation.ui.ScheduleViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.year.navigateToNonWorkingDaysYearPageGraph
 import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.summingpage.navigateToSchedule01SummingPageGraph
 
 
@@ -15,14 +17,7 @@ internal fun NavGraphBuilder.schedule01PageScreen(
     openDrawer: () -> Unit,
     onOpenDrawer: Boolean,
     scheduleViewModel : ScheduleViewModel,
-    // =====================================
-//    state: CalendarState<DynamicSelectionState>,
-    /*
-    navigateToHelpSchedule01Page: () -> Unit,
-    navigateToHelpGraphicsPage: () -> Unit,
-    navigateToHelpAboutPage: () -> Unit
-
-     */
+    nonWorkingDaysViewModel: NonWorkingDaysViewModel
   ) {
     composable(route = SCHEDULE01_PAGE_ROUTE) {
         /*
@@ -41,7 +36,10 @@ internal fun NavGraphBuilder.schedule01PageScreen(
             onBackClick = { navController.popBackStack()},
             onOpenDrawer = onOpenDrawer,openDrawer =openDrawer,
             navigateToSchedule01SummingPage = { navController.navigateToSchedule01SummingPageGraph()},
-            scheduleViewModel,
+            { navController.navigateToNonWorkingDaysYearPageGraph()},
+            scheduleViewModel,    nonWorkingDaysViewModel
+
+
         )
     }
 }

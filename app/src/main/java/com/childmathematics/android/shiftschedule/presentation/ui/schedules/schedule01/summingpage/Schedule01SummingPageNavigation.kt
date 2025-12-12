@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.childmathematics.android.shiftschedule.presentation.ui.ScheduleViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
 
 
 internal const val SCHEDULE01_SUMMINGPAGE_ROUTE = "schedule01SummingPage"

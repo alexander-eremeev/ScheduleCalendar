@@ -24,8 +24,13 @@ import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,6 +42,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.childmathematics.android.basement.lib.composecalendar.SelectableCalendar
 import com.childmathematics.android.basement.lib.composecalendar.day.DayState
@@ -46,11 +52,19 @@ import com.childmathematics.android.basement.lib.composecalendar.selection.Selec
 import com.childmathematics.android.shiftschedule.BuildConfig
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.presentation.ui.ScheduleViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.uimodels.NonWorkingDaysViewIntent
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.HoliDaysHeader
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.HoliDaysListScreen
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.NonWorkingDaysHeader
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.NonWorkingDaysListScreen
+import com.childmathematics.android.shiftschedule.presentation.util.SnackbarEffect
 import com.childmathematics.android.shiftschedule.util.bannerHightMin
 import com.childmathematics.android.shiftschedule.util.bannerHightPlus
 import com.childmathematics.android.shiftschedule.util.bannerHightWithVideoMin
 import com.childmathematics.android.shiftschedule.util.nonScaledSp
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collectLatest
 import java.time.LocalDate
 
 
@@ -64,16 +78,40 @@ import java.time.LocalDate
 @ExperimentalCoroutinesApi
 @Composable
 fun Schedule01Page(
-                   scheduleViewModel: ScheduleViewModel = viewModel()
-//                           viewModel: Schedule01PageViewModel = viewModel(factory = AppViewModelProvider.Factory)
+                   scheduleViewModel: ScheduleViewModel = viewModel(),
+                   nonWorkingDaysViewModel: NonWorkingDaysViewModel
 )
 {
     var state = rememberSelectableCalendarState(
         initialSelectionMode = SelectionMode.Period,
     )
+    val year = state.monthState.currentMonth.year
+    val month = state.monthState.currentMonth.monthValue
 
+    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadHoliDays(year,month))
+    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDays(year,month))
+//-------------------------------------------------------------------------
+    val nonWorkingDaysViewState by nonWorkingDaysViewModel.viewState.collectAsStateWithLifecycle()
+
+    // State to manage Snackbar
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    // Collect snackbar events and show snackbar
+    LaunchedEffect(nonWorkingDaysViewModel) {
+        nonWorkingDaysViewModel.effectFlow.collectLatest { effect ->
+            if (effect is SnackbarEffect.ShowSnackbar) {
+                val result = snackbarHostState.showSnackbar(
+                    message = effect.message,
+                    actionLabel = effect.actionLabel
+                )
+                if (result == SnackbarResult.ActionPerformed && effect.actionLabel == "Undo") {
+//                    viewModel.handleIntent(Intent.UndoDelete)
+                }
+            }
+        }
+    }
+    //-------------------------------------------------------------------------------
     var changeDp: Dp
-
     //------------------------
     var changeHightDp: Int
     var screenHeightDp: Int
@@ -96,9 +134,11 @@ fun Schedule01Page(
 //            .background(Color.LightGray)
 //            .padding(0.dp, changeDp, 0.dp, 0.dp)
 //                .size(300.dp, 250.dp)               //(LocalConfiguration.current.screenHeightDp-50).dp
+            /*
             .size(
                 (LocalConfiguration.current.screenWidthDp).dp,
                 changeHightDp.dp)
+            */
             .verticalScroll(rememberScrollState(changeHightDp))
 //            .horizontalScroll(rememberScrollState())
     ) {
@@ -121,47 +161,47 @@ fun Schedule01Page(
             )
             Spacer(modifier = Modifier.height(20.dp))
             Text(
-                        ""+ String.format("%4d", (getShift01WorkDayMonth(
+                ""+ String.format("%4d", (getShift01WorkDayMonth(
                         state.monthState.currentMonth.year,
-                        state.monthState.currentMonth.monthValue
-                    ))
-                )
+                        state.monthState.currentMonth.monthValue)))
 //                        + "\tраб.дн.\t" //schedule01_MonthWorkDays
-                        + stringResource(R.string.schedule01_MonthWorkDays)
-                        + String.format(
-                    "%4d", (getShift01Month(
-                        state.monthState.currentMonth.year, state.monthState.currentMonth.monthValue
-                    )).toInt()
-                )
+                        + " "+ stringResource(R.string.schedule01_MonthWorkDays)
+                        + String.format("%4d", (getShift01Month(state.monthState.currentMonth.year,
+                            state.monthState.currentMonth.monthValue )).toInt() )
 //                        + " час\n",  //schedule01_MonthWorkHours
-                                + " " + stringResource(R.string.schedule01_MonthWorkHours)+ "\n",
+                    //                        + " " + stringResource(R.string.schedule01_MonthWorkHours)+ "\n",
+                        + " "+ stringResource(R.string.schedule01_MonthWorkHours),
                 fontSize = 15.sp.nonScaledSp,
-                fontWeight = FontWeight.Bold,
-
-                )
+                fontWeight = FontWeight.Bold
+            )
             //========================================================================
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(10.dp))
             //--------------------------------------
-
         }
-
-            if (state.selectionState.selection.isNotEmpty()) {
-//                scheduleUiState.updateSelection(state.selectionState.selection )
-                scheduleViewModel.updateSelection(state.selectionState.selection )
-                if (BuildConfig.DEBUG) {
-                    //-------------------------
-                    for (i in  state.selectionState.selection.lastIndex downTo 0 step 1) {
-                        Log.d(
-                            "Schedule01", "+++Schedule01Page: selected " +  state.selectionState.selection[i].dayOfMonth + "/"
-                                    +  state.selectionState.selection[i].monthValue + "/" +  state.selectionState.selection[i].year
-                        )
-                    }
+        if (state.selectionState.selection.isNotEmpty()) {
+            scheduleViewModel.updateSelection(state.selectionState.selection )
+            if (BuildConfig.DEBUG) {
+                //-------------------------
+                for (i in  state.selectionState.selection.lastIndex downTo 0 step 1) {
+                    Log.d(
+                        "Schedule01", "+++Schedule01Page: selected " +  state.selectionState.selection[i].dayOfMonth + "/"
+                                +  state.selectionState.selection[i].monthValue + "/" +  state.selectionState.selection[i].year
+                    )
                 }
             }
-     }
-//--------------------------
+        }
+    }
+//------------------------------------------------
+    if (nonWorkingDaysViewState.holiDays.count()>0) {
+        HoliDaysHeader()
+        HoliDaysListScreen(nonWorkingDaysViewState)
+    }
+    if (nonWorkingDaysViewState.nonWorkingDays.count()>0) {
+        NonWorkingDaysHeader()
+        NonWorkingDaysListScreen (nonWorkingDaysViewState)
+    }
+//------------------------------------------------
 }
-
 /**
  * Custom implementation of DayContent, which shows a dot
  * if there is an recipe planned for this day.

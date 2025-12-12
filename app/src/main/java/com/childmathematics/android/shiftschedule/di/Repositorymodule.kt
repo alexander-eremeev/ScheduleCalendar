@@ -18,34 +18,12 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun bindCountryRepository(
-//        countryRepositoryImpl: CountryRepository
         countryRepositoryImpl: CountryRepositoryImpl
     ): CountryRepository
-/*
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
 
-    @Binds
-    @Singleton
-    abstract fun bindMovieRepository(
-        impl: MovieRepositoryImpl
-    ): MovieRepository
-}
-
- */
     @Binds
     @Singleton
     abstract fun bindNonWorkingDaysRepository(
         nonWorkingDaysRepositoryImpl: NonWorkingDaysRepositoryImpl
     ): NonWorkingDaysRepository
-
-//    @Provides
-//    @Singleton
-//    fun provideNoteRepository(
-//        dao: UserDao
-//    ): UserRepository {
-//        return UserRepositoryImpl(dao)
-//    }
-
 }

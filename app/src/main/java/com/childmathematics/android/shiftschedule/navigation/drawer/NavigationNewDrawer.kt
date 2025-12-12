@@ -56,9 +56,9 @@ import com.childmathematics.android.shiftschedule.navigation.drawer.components.D
 fun NavigationNewDrawer(
     currentRoute: String,
     navigateToMainPage: () -> Unit,
-    navigateToCountries: () -> Unit,
+//    navigateToCountries: () -> Unit,
 
-    navigateToNonWorkingDays: () -> Unit,
+//    navigateToNonWorkingDays: () -> Unit,
     navigateToSchedule01: () -> Unit,
     navigateToSchedule500: () -> Unit,
     navigateToAbout: () -> Unit,
@@ -90,7 +90,7 @@ fun NavigationNewDrawer(
             },
             modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
         )
-
+/*
         HorizontalDivider()
         NavigationDrawerItem(
             label = { Text(stringResource(id = R.string.countries_titleshort)) },
@@ -116,6 +116,7 @@ fun NavigationNewDrawer(
                 .padding(NavigationDrawerItemDefaults.ItemPadding)
                 .height(96.dp)
         )
+ */
 
         HorizontalDivider()
         NavigationDrawerItem(
@@ -191,8 +192,8 @@ fun PreviewAppDrawer() {
         NavigationNewDrawer(
             currentRoute = MAIN_PAGE_ROUTE,
             navigateToMainPage = {},
-            navigateToCountries = {},
-            navigateToNonWorkingDays = {},
+//            navigateToCountries = {},
+//            navigateToNonWorkingDays = {},
             navigateToSchedule01 = {},
             navigateToSchedule500 = {},
             navigateToAbout = {},

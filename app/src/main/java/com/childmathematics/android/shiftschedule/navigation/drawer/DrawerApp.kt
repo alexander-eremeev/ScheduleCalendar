@@ -73,8 +73,8 @@ fun DrawerApp(
                 NavigationNewDrawer(
                     currentRoute = currentRoute,
                     navigateToMainPage = navigationActions.navigateToMainPage,
-                    navigateToCountries = navigationActions.navigateToCountries,
-                    navigateToNonWorkingDays = navigationActions.navigateToNonWorkingDays,
+//                    navigateToCountries = navigationActions.navigateToCountries,
+//                    navigateToNonWorkingDays = navigationActions.navigateToNonWorkingDays,
                     navigateToSchedule01 = navigationActions.navigateToSchedule01,
                     navigateToSchedule500 = navigationActions.navigateToSchedule500,
                     navigateToAbout = navigationActions.navigateToAbout,
@@ -90,8 +90,8 @@ fun DrawerApp(
                     DrawerNavigationRail(
                         currentRoute = currentRoute,
                         navigateToMainPage = navigationActions.navigateToMainPage,
-                        navigateToCountries = navigationActions.navigateToCountries,
-                        navigateToNonWorkingDays = navigationActions.navigateToNonWorkingDays,
+//                        navigateToCountries = navigationActions.navigateToCountries,
+//                        navigateToNonWorkingDays = navigationActions.navigateToNonWorkingDays,
                         navigateToSchedule01 = navigationActions.navigateToSchedule01,
                         navigateToSchedule500 = navigationActions.navigateToSchedule500,
                         navigateToAbout = navigationActions.navigateToAbout,

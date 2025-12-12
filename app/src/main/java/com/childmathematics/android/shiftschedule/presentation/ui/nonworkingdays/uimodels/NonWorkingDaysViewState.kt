@@ -8,6 +8,8 @@ import com.childmathematics.android.shiftschedule.data.models.NonWorkingDaysEnti
 data  class NonWorkingDaysViewState (
     val isLoading: Boolean = false,
     val error: Boolean = false,
+    val holiDaysYear: List<NonWorkingDaysEntity> = emptyList(),
+    val holiDays: List<NonWorkingDaysEntity> = emptyList(),
     val nonWorkingDaysYear: List<NonWorkingDaysEntity> = emptyList(),
     val nonWorkingDays: List<NonWorkingDaysEntity> = emptyList(),
     val nonWorkingDay: List<NonWorkingDaysEntity> = emptyList(),

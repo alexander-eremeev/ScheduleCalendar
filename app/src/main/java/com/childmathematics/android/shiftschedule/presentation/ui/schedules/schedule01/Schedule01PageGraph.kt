@@ -6,6 +6,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.shiftschedule.presentation.ui.ScheduleViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.year.nonWorkingDaysYearPageGraph
 import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.summingpage.schedule01SummingPageGraph
 
 const val SCHEDULE01_GRAPH_ROUTE = "schedule01_graph"
@@ -27,45 +29,14 @@ fun NavGraphBuilder.schedule01PageGraph(
     modifier: Modifier = Modifier,
     openDrawer: () -> Unit,
     onOpenDrawer: Boolean,
-    scheduleViewModel: ScheduleViewModel,
+    nonWorkingDaysViewModel: NonWorkingDaysViewModel,
+    scheduleViewModel : ScheduleViewModel
     ) {
         // =====================================
 //        schedule01SummingPageGraph(navController)
     schedule01SummingPageGraph(navController,scheduleViewModel = scheduleViewModel)
+    nonWorkingDaysYearPageGraph(navController,nonWorkingDaysViewModel = nonWorkingDaysViewModel)
 
         // =====================================
-/*
-    navigation(startDestination = SCHEDULE01_PAGE_ROUTE,
-        route = SCHEDULE01_GRAPH_ROUTE,
-        deepLinks = listOf(
-            navDeepLink { uriPattern = SCHEDULE01_DEEPLINK }
-        ),
 
-    enterTransition = { screenFadeIn() },
-    exitTransition = { screenFadeOut() },
-    popEnterTransition = { screenFadeIn() },
-    popExitTransition = { screenFadeOut() },
-
-    ){
-          composable(route = SCHEDULE01_PAGE_ROUTE) {
-              /*
-              schedule01PageUiState.state = rememberSelectableCalendarState(
-                initialSelectionMode = SelectionMode.Period,
-            )
-
-               */
-  //            val schedule01PageViewModel : Schedule01PageViewModel = viewModel()
-              // =====================================
-
-              // =====================================
-            schedule01PageScreen(
-                navController,
-                modifier,
-                onOpenDrawer = onOpenDrawer, openDrawer = openDrawer,
-//                state = state,
-                scheduleViewModel = scheduleViewModel
-             )
-        }
-    }
-    */
 }

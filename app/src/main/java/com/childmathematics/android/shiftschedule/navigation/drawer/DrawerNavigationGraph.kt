@@ -81,7 +81,7 @@ fun DrawerNavigationGraph(
             nonWorkingDaysViewModel = nonWorkingDaysViewModel)
 
         schedule01PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer ,
-            scheduleViewModel = scheduleViewModel)
+            scheduleViewModel = scheduleViewModel,nonWorkingDaysViewModel = nonWorkingDaysViewModel)
         schedule500PageGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer,
             scheduleViewModel = scheduleViewModel)
         aboutGraph(navController,modifier,openDrawer,onOpenDrawer = onOpenDrawer,
@@ -117,7 +117,10 @@ fun DrawerNavigationGraph(
             Schedule01PageScreen(modifier,onBackClick={},
                 onOpenDrawer = onOpenDrawer,openDrawer = openDrawer,
                 navigateToSchedule01SummingPage = {navController.navigateToSchedule01SummingPageGraph()},
-                scheduleViewModel = scheduleViewModel
+                navigateToNonWorkingDaysYearPage = {navController.navigateToNonWorkingDaysYearPageGraph()},
+                scheduleViewModel = scheduleViewModel,
+                nonWorkingDaysViewModel
+
             )
         }
 

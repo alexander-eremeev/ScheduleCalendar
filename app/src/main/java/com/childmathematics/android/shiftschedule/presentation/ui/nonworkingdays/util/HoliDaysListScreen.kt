@@ -5,8 +5,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -20,7 +18,7 @@ import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays
 
 // Список праздничных дней
 @Composable
-fun NonWorkingDaysListScreen (nonWorkingDaysViewState: NonWorkingDaysViewState
+fun HoliDaysListScreen (nonWorkingDaysViewState: NonWorkingDaysViewState
 //    nonWorkingDaysViewModel: NonWorkingDaysViewModel,
     ) {
 //    val nonWorkingDaysViewState by nonWorkingDaysViewModel.viewState.collectAsStateWithLifecycle()
@@ -28,7 +26,6 @@ fun NonWorkingDaysListScreen (nonWorkingDaysViewState: NonWorkingDaysViewState
 
     Box(
         modifier = Modifier
-//             .verticalScroll(rememberScrollState())
         //           .weight(1f)
         //           .fillMaxWidth(),
         //       contentAlignment = Alignment.TopCenter
@@ -40,7 +37,7 @@ fun NonWorkingDaysListScreen (nonWorkingDaysViewState: NonWorkingDaysViewState
                         nonWorkingDaysViewState.nonWorkingDays.isEmpty() && ! nonWorkingDaysViewState.isLoading ->
                             Text("Нет данных в БД")
             */
-            nonWorkingDaysViewState.nonWorkingDays.count()>0 -> {
+            nonWorkingDaysViewState.holiDays.count()>0 -> {
                 // Содержимое таблицы
                 LazyColumn(
                     state = listState,
@@ -50,12 +47,12 @@ fun NonWorkingDaysListScreen (nonWorkingDaysViewState: NonWorkingDaysViewState
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     itemsIndexed(
-                        items = nonWorkingDaysViewState.nonWorkingDays,
+                        items = nonWorkingDaysViewState.holiDays,
                         key = { index, item ->
                             index
                         },
                     ) { index, item ->
-                        NonWorkingDaysItem(nonWorkingDaysViewState.nonWorkingDays[index] )
+                        HoliDaysItem(nonWorkingDaysViewState.holiDays[index] )
                     }
                 }
             }

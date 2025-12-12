@@ -28,7 +28,9 @@ import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.presentation.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.uimodels.NonWorkingDaysViewIntent
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.HoliDaysHeader
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.NonWorkingDaysHeader
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.year.util.HolyDaysYearListScreen
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.year.util.NonWorkingDaysYearListScreen
 import com.childmathematics.android.shiftschedule.presentation.util.SnackbarEffect
 import kotlinx.coroutines.flow.collectLatest
@@ -48,6 +50,7 @@ fun NonWorkingDaysYearPageScreen(
     val year = state.monthState.currentMonth.year
 
     nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDaysYear(year))
+    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadHoliDaysYear(year))
 
     val nonWorkingDaysViewState by nonWorkingDaysViewModel.viewState.collectAsStateWithLifecycle()
 
@@ -85,8 +88,9 @@ fun NonWorkingDaysYearPageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
-                    if (nonWorkingDaysViewState.nonWorkingDaysYear.count()<=0) {
- //                       delay(300)
+                    if (nonWorkingDaysViewState.holiDaysYear.count()>0) {
+                        HoliDaysHeader()
+                        HolyDaysYearListScreen(nonWorkingDaysViewModel)
                     }
                     if (nonWorkingDaysViewState.nonWorkingDaysYear.count()>0) {
                         NonWorkingDaysHeader()

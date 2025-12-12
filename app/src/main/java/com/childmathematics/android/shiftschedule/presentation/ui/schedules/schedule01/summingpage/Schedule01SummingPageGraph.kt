@@ -10,6 +10,7 @@ import com.childmathematics.android.basement.lib.navigation.ui.ROOT_DEEPLINK
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeIn
 import com.childmathematics.android.basement.lib.navigation.ui.screenFadeOut
 import com.childmathematics.android.shiftschedule.presentation.ui.ScheduleViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
 
 
 const val SCHEDULE01_SUMMINGPAGE_GRAPH_ROUTE = "schedule01_SummingPage_graph"
@@ -32,8 +33,8 @@ fun NavGraphBuilder.schedule01SummingPageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 //    state: CalendarState<DynamicSelectionState>
-//    schedule01PageViewModel:,
     scheduleViewModel: ScheduleViewModel,
+//    nonWorkingDaysViewModel: NonWorkingDaysViewModel,
 
     ) {
     navigation(startDestination = SCHEDULE01_SUMMINGPAGE_ROUTE,

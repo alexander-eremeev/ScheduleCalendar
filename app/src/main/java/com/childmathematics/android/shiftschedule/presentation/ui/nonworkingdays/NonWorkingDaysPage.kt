@@ -167,7 +167,7 @@ fun NonWorkingDaysPage(
 
                 if (nonWorkingDaysViewState.nonWorkingDays.count()>0) {
                     NonWorkingDaysHeader()
-                    NonWorkingDaysListScreen (nonWorkingDaysViewModel)
+                    NonWorkingDaysListScreen (nonWorkingDaysViewState)
                 }
             }
         }
