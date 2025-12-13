@@ -36,11 +36,11 @@ fun NonWorkingDaysItem (nonWorkingDaysEnt: NonWorkingDaysEntity?) {
         Text(nonWorkingDaysEnt?.day.toString()+"."+
                 nonWorkingDaysEnt?.month.toString()+"."+nonWorkingDaysEnt?.year.
             toString(),textAlign = TextAlign.Right,color = Color.DarkGray
-            ,modifier = Modifier  .weight(.23f)  )
-        Spacer(modifier = Modifier.width(5.dp))
+            ,modifier = Modifier  .weight(.3f)  )
+        Spacer(modifier = Modifier.width(3.dp))
         Text(nonWorkingDaysEnt?.name.toString(),textAlign = TextAlign.Left
-            ,modifier = Modifier    .weight(.45f) .horizontalScroll(rememberScrollState()))
-        Spacer(modifier = Modifier.width(5.dp))
+            ,modifier = Modifier    .weight(.25f) .horizontalScroll(rememberScrollState()))
+        Spacer(modifier = Modifier.width(3.dp))
         Text(nonWorkingDaysEnt?.moveDateYMD.toString().substring(6,8)+"."+
                 nonWorkingDaysEnt?.moveDateYMD.toString().substring(4,6)
             ,textAlign = TextAlign.Left
@@ -48,7 +48,7 @@ fun NonWorkingDaysItem (nonWorkingDaysEnt: NonWorkingDaysEntity?) {
 
         Spacer(modifier = Modifier.width(5.dp))
         Text(nonWorkingDaysEnt?.reason.toString(),textAlign = TextAlign.Left
-            ,modifier = Modifier    .weight(.32f) .horizontalScroll(rememberScrollState()))
+            ,modifier = Modifier    .weight(.30f) .horizontalScroll(rememberScrollState()))
 
 //-------------------------------------------------------------
 

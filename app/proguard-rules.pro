@@ -29,3 +29,4 @@
 #вывести полный отчет обо всех правилах, которые R8 применяет при сборке вашего проекта
 #// You can specify any path and filename.
 #-printconfiguration ~/tmp/full-r8-config.txt
+-dontwarn com.google.j2objc.annotations.RetainedWith

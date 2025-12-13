@@ -11,9 +11,9 @@ compile-sdk = "36"  #
 # @keep
 ndkVersion = "29.0.14206865"
 # @keep
-versionCode = "206"
+versionCode = "207"
 # @keep
-versionName = "2.0.6"
+versionName = "2.0.7"
 # @keep
 applicationId = "com.childmathematics.android.shiftschedule"
 # @keep
@@ -28,15 +28,15 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "8.13.1"                               #
+agp = "8.13.2"                               #
 #---???????????????????
 jetbrainsKotlin = "2.2.21"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.2.21-2.0.4"         #    2.2.21-RC2-2.0.4
+googleDevToolsKsp = "2.2.21-2.0.4"         #
 googleDaggerHilt = "2.57.2"
-googleAds = "24.8.0"                        #
+googleAds = "24.9.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
