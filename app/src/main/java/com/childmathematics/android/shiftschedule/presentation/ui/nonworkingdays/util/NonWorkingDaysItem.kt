@@ -1,10 +1,12 @@
 package com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util
 
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,9 +18,9 @@ import com.childmathematics.android.shiftschedule.data.models.NonWorkingDaysEnti
 
 @Composable
 fun NonWorkingDaysItem (nonWorkingDaysEnt: NonWorkingDaysEntity?) {
-    Row(
+    FlowRow(
         modifier = Modifier
-//            .fillMaxWidth(),
+            .fillMaxWidth(),
 //            .horizontalScroll(rememberScrollState())
 
     ) {
@@ -35,21 +37,31 @@ fun NonWorkingDaysItem (nonWorkingDaysEnt: NonWorkingDaysEntity?) {
 //----------------------------------------------------------
         Text(nonWorkingDaysEnt?.day.toString()+"."+
                 nonWorkingDaysEnt?.month.toString()+"."+nonWorkingDaysEnt?.year.
-            toString(),textAlign = TextAlign.Right,color = Color.DarkGray
-            ,modifier = Modifier  .weight(.3f)  )
-        Spacer(modifier = Modifier.width(3.dp))
+            toString().substring(2,4),textAlign = TextAlign.Right,color = Color.DarkGray
+            ,modifier = Modifier  .weight(.27f)
+//            ,modifier = Modifier  .weight(.18f)
+        )
+        Spacer(modifier = Modifier.weight(.01f))
+//        Spacer(modifier = Modifier.width(3.dp))
         Text(nonWorkingDaysEnt?.name.toString(),textAlign = TextAlign.Left
-            ,modifier = Modifier    .weight(.25f) .horizontalScroll(rememberScrollState()))
-        Spacer(modifier = Modifier.width(3.dp))
+            ,modifier = Modifier    .weight(.53f)
+//            ,modifier = Modifier    .weight(.31f)
+                .horizontalScroll(rememberScrollState()))
+        Spacer(modifier = Modifier.weight(.01f))
+//        Spacer(modifier = Modifier.width(3.dp))
         Text(nonWorkingDaysEnt?.moveDateYMD.toString().substring(6,8)+"."+
                 nonWorkingDaysEnt?.moveDateYMD.toString().substring(4,6)
-            ,textAlign = TextAlign.Left
-            ,modifier = Modifier    .weight(.15f))
-
-        Spacer(modifier = Modifier.width(5.dp))
+            ,textAlign = TextAlign.Right
+//            ,modifier = Modifier    .weight(.16f))
+        ,modifier = Modifier    .weight(.18f))
+/*
+        Spacer(modifier = Modifier.weight(.01f))
+//        Spacer(modifier = Modifier.width(5.dp))
         Text(nonWorkingDaysEnt?.reason.toString(),textAlign = TextAlign.Left
-            ,modifier = Modifier    .weight(.30f) .horizontalScroll(rememberScrollState()))
+            ,modifier = Modifier    .weight(.35f) .horizontalScroll(rememberScrollState()))
 
+
+ */
 //-------------------------------------------------------------
 
     }

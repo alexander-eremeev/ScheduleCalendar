@@ -1,8 +1,12 @@
 package com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util
 
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,16 +20,18 @@ import com.childmathematics.android.shiftschedule.data.models.NonWorkingDaysEnti
 
 @Composable
 fun HoliDaysItem (nonWorkingDaysEnt: NonWorkingDaysEntity?) {
-    Row(
+    FlowRow(
         modifier = Modifier
-        //        .fillMaxWidth(),
+                .fillMaxWidth(),
     ) {
         Text(nonWorkingDaysEnt?.day.toString()+"."+
                 nonWorkingDaysEnt?.month.toString()+"."+nonWorkingDaysEnt?.year.
-            toString(),textAlign = TextAlign.Right,color = Color.Red
-            ,modifier = Modifier  .weight(.23f)  )
-        Spacer(modifier = Modifier.width(10.dp))
+            toString().substring(2,4),textAlign = TextAlign.Right,color = Color.Red
+            ,modifier = Modifier  .weight(.25f)  )
+        Spacer(modifier = Modifier.weight(.01f))
+//        Spacer(modifier = Modifier.width(10.dp))
         Text(nonWorkingDaysEnt?.name.toString(),textAlign = TextAlign.Left
-            ,modifier = Modifier    .weight(.77f))
+            ,modifier = Modifier    .weight(.74f) .horizontalScroll(rememberScrollState()),color = Color.Red
+            )
     }
 }

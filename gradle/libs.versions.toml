@@ -97,6 +97,8 @@ toolsCore = "1.0.0-alpha13"
 material = "1.13.0"
 junit = "4.13.2"
 uiUnit = "1.10.0"
+foundationLayout = "1.10.0"
+foundation = "1.10.0"
 #===================#===================#===================#===================
 [libraries]
 #===================
@@ -233,6 +235,8 @@ junit-test = { module = "junit:junit", version.ref = "junitTest" }
 #----------------------
 dev-chrisbanes-snapper-snapper = { module = "dev.chrisbanes.snapper:snapper", version.ref = "devSnapper" }
 androidx-compose-ui-unit = { group = "androidx.compose.ui", name = "ui-unit", version.ref = "uiUnit" }
+androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "foundationLayout" }
+androidx-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
 #junit = { group = "junit", name = "junit", version.ref = "junit" }
 #===================#===================#===================#===================
 [bundles]

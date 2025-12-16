@@ -180,6 +180,8 @@ dependencies {
     // Hilt
     implementation(libs.google.dagger.hilt)
     implementation(libs.androidx.compose.ui.unit)
+    implementation(libs.androidx.compose.foundation.layout)
+    implementation(libs.androidx.foundation)
     //testImplementation(libs.junit.test)
     ksp(libs.google.dagger.hilt.compiler )
 

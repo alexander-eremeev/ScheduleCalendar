@@ -120,7 +120,7 @@ private fun Schedule01PageTopAppBar(
 ) {
     CenterAlignedTopAppBar(
         title = {
-            Text(text = stringResource(R.string.schedule01_titleshort))
+            Text(text = stringResource(R.string.schedule01_titleshort) )
         },
         navigationIcon = {
             if(onOpenDrawer) {

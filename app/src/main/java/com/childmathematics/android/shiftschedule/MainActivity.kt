@@ -1,5 +1,7 @@
 package com.childmathematics.android.shiftschedule
 
+import android.app.Activity
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,6 +14,7 @@ import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import com.childmathematics.android.shiftschedule.presentation.ui.inappupdate.InAppUpdateMan.init
 
 import com.childmathematics.android.shiftschedule.navigation.drawer.DrawerApp
+import com.google.android.gms.common.internal.service.Common.API
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +25,7 @@ class MainActivity : ComponentActivity() {
         // -----------------------------------------------
         // сделать так, чтобы ваше приложение отображалось от края до края, используя всю ширину
         // и высоту экрана, рисуя за системными панелями.
-        enableEdgeToEdge()
+        //if (Build.VERSION.SDK_INT < 35) Activity.  enableEdgeToEdge()
         // ==============================================
         super.onCreate(savedInstanceState)
         // ------------------------------------------------------------------

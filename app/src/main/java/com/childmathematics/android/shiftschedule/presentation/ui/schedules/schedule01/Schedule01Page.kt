@@ -1,15 +1,12 @@
 package com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01
 
-//import androidx.compose.foundation.*
-//import androidx.compose.foundation.layout.*
-//import androidx.compose.material.*
-//import androidx.compose.runtime.*
-//import com.childmathematics.android.basement.lib.ads.util.detectTapAndPressUnconsumed
+
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -66,15 +63,11 @@ import com.childmathematics.android.shiftschedule.util.nonScaledSp
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import java.time.LocalDate
-
-
 /**
  * In this sample, calendar composable is wired with an ViewModel. It's purpose is to show how to use
  * the composable in real world use-case, by an example implementation of a calendar
  * which can display planned recipes along with their prices
  */
-
-
 @ExperimentalCoroutinesApi
 @Composable
 fun Schedule01Page(
@@ -128,29 +121,17 @@ fun Schedule01Page(
 //=========================
     scheduleViewModel.emptySelection()
 //=========================
-    Box(
-//        contentAlignment = Alignment.TopStart,
-        modifier = Modifier
-//            .background(Color.LightGray)
-//            .padding(0.dp, changeDp, 0.dp, 0.dp)
-//                .size(300.dp, 250.dp)               //(LocalConfiguration.current.screenHeightDp-50).dp
-            /*
-            .size(
-                (LocalConfiguration.current.screenWidthDp).dp,
-                changeHightDp.dp)
-            */
-            .verticalScroll(rememberScrollState(changeHightDp))
-//            .horizontalScroll(rememberScrollState())
-    ) {
 
-        Column(
+        FlowColumn(
             Modifier
                 .padding(0.dp, changeDp + 0.dp, 0.dp, 0.dp)        // добавлен для баннера
-//                .padding(0.dp, changeDp + 50.dp, 0.dp, 0.dp)        // добавлен для баннера
-//                .verticalScroll(rememberScrollState())
+//                .weight(.70f)
+        //                .padding(0.dp, changeDp + 50.dp, 0.dp, 0.dp)        // добавлен для баннера
+                .verticalScroll(rememberScrollState())
 
         ) {
             SelectableCalendar(
+//                modifier = Modifier .weight(.70f),
                 calendarState = state,
                 dayContent = { dayState ->
                     Sch01RecipeDay(
@@ -159,24 +140,19 @@ fun Schedule01Page(
                     )
                 }
             )
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(5.dp))
             Text(
                 ""+ String.format("%4d", (getShift01WorkDayMonth(
                         state.monthState.currentMonth.year,
                         state.monthState.currentMonth.monthValue)))
-//                        + "\tраб.дн.\t" //schedule01_MonthWorkDays
                         + " "+ stringResource(R.string.schedule01_MonthWorkDays)
                         + String.format("%4d", (getShift01Month(state.monthState.currentMonth.year,
                             state.monthState.currentMonth.monthValue )).toInt() )
-//                        + " час\n",  //schedule01_MonthWorkHours
-                    //                        + " " + stringResource(R.string.schedule01_MonthWorkHours)+ "\n",
                         + " "+ stringResource(R.string.schedule01_MonthWorkHours),
                 fontSize = 15.sp.nonScaledSp,
                 fontWeight = FontWeight.Bold
             )
             //========================================================================
-            Spacer(modifier = Modifier.height(10.dp))
-            //--------------------------------------
         }
         if (state.selectionState.selection.isNotEmpty()) {
             scheduleViewModel.updateSelection(state.selectionState.selection )
@@ -190,16 +166,15 @@ fun Schedule01Page(
                 }
             }
         }
-    }
 //------------------------------------------------
-    if (nonWorkingDaysViewState.holiDays.count()>0) {
-        HoliDaysHeader()
-        HoliDaysListScreen(nonWorkingDaysViewState)
-    }
-    if (nonWorkingDaysViewState.nonWorkingDays.count()>0) {
-        NonWorkingDaysHeader()
-        NonWorkingDaysListScreen (nonWorkingDaysViewState)
-    }
+            if (nonWorkingDaysViewState.holiDays.count() > 0) {
+//                HoliDaysHeader()
+                HoliDaysListScreen(nonWorkingDaysViewState)
+            }
+            if (nonWorkingDaysViewState.nonWorkingDays.count() > 0) {
+//                NonWorkingDaysHeader()
+                NonWorkingDaysListScreen(nonWorkingDaysViewState)
+            }
 //------------------------------------------------
 }
 /**

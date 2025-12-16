@@ -2,7 +2,11 @@ package com.childmathematics.android.shiftschedule.presentation.ui.nonworkingday
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BackHand
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -19,9 +23,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
 import com.childmathematics.android.shiftschedule.R
@@ -29,7 +36,9 @@ import com.childmathematics.android.shiftschedule.presentation.theme.ScheduleCal
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.uimodels.NonWorkingDaysViewIntent
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.HoliDaysHeader
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.HoliDaysItem
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.NonWorkingDaysHeader
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.NonWorkingDaysItem
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.year.util.HolyDaysYearListScreen
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.year.util.NonWorkingDaysYearListScreen
 import com.childmathematics.android.shiftschedule.presentation.util.SnackbarEffect
@@ -89,12 +98,55 @@ fun NonWorkingDaysYearPageScreen(
                         .padding(padding)
                 ) {
                     if (nonWorkingDaysViewState.holiDaysYear.count()>0) {
-                        HoliDaysHeader()
-                        HolyDaysYearListScreen(nonWorkingDaysViewModel)
+//                        HoliDaysHeader()
+//                        HolyDaysYearListScreen(nonWorkingDaysViewModel)
+// ----------------------------------------------------------------------------------
+                        val listState = rememberLazyListState()
+                        LazyColumn(
+                            state = listState,
+                            modifier = Modifier
+                                //                       .fillMaxSize()
+                                .height( (LocalConfiguration.current.screenHeightDp*0.7). dp)
+
+                                .padding(horizontal = 0.dp),
+
+                            horizontalAlignment = Alignment.CenterHorizontally,
+
+                        ) {
+                            itemsIndexed(
+                                items = nonWorkingDaysViewState.holiDaysYear,
+                                key = { index, item ->
+                                    index
+                                },
+                            ) { index, item ->
+                                HoliDaysItem(nonWorkingDaysViewState.holiDaysYear[index] )
+                            }
+                        }
+// ----------------------------------------------------------------------------------
                     }
                     if (nonWorkingDaysViewState.nonWorkingDaysYear.count()>0) {
-                        NonWorkingDaysHeader()
-                        NonWorkingDaysYearListScreen(nonWorkingDaysViewModel)
+//                        NonWorkingDaysHeader()
+//                        NonWorkingDaysYearListScreen(nonWorkingDaysViewModel)
+// ----------------------------------------------------------------------------------
+                        val listState = rememberLazyListState()
+                        LazyColumn(
+                            state = listState,
+                            modifier = Modifier
+                                .height( (LocalConfiguration.current.screenHeightDp*0.2). dp)
+                                .padding(horizontal = 0.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            //items
+                            itemsIndexed(
+                                items = nonWorkingDaysViewState.nonWorkingDaysYear,
+                                key = { index, item ->
+                                    index
+                                },
+                            ) { index, item ->
+                                NonWorkingDaysItem(nonWorkingDaysViewState.nonWorkingDaysYear[index])
+                            }
+                        }
+// ----------------------------------------------------------------------------------
                     }
 
                 }
