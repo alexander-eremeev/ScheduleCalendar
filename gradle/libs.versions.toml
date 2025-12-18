@@ -41,7 +41,7 @@ googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.1"
-androidxActivityKtx = "1.12.1"               #
+androidxActivityKtx = "1.12.2"               #
 androidxCoreKtx = "1.17.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
@@ -54,13 +54,13 @@ androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.5.1"
 androidxUiToolingPreview = "1.10.0"           #
-androidx-webkit = "1.14.0"                   #
+androidx-webkit = "1.15.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2025.12.00"            #
+androidxComposeBom = "2025.12.01"            #
 #---------------
-androidxActivityCompose = "1.12.1"              #
+androidxActivityCompose = "1.12.2"              #
 androidxComposeCompiler = "1.5.15"            #agp
 #--------------------------------
 #this plugin provides a task to determine which dependencies have updates.
@@ -93,7 +93,7 @@ androidxComposeUiTestManifest = "1.10.0"
 #testandroidxuiautomator =  "2.2.0"
 #JUnit is a unit testing framework to write and run repeatable automated tests on Java.
 junitTest = "4.13.2"
-toolsCore = "1.0.0-alpha13"
+toolsCore = "1.0.0-alpha14"
 material = "1.13.0"
 junit = "4.13.2"
 uiUnit = "1.10.0"
