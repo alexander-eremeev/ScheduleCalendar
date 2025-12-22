@@ -85,6 +85,8 @@ fun Schedule01Page(
     nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDays(year,month))
 //-------------------------------------------------------------------------
     val nonWorkingDaysViewState by nonWorkingDaysViewModel.viewState.collectAsStateWithLifecycle()
+    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadHoliOnlyDays(nonWorkingDaysViewState)) // заполнение списка праздничных дней
+    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingOnlyDays(nonWorkingDaysViewState)) // заполнение списка пнерабочих дней
 
     // State to manage Snackbar
     val snackbarHostState = remember { SnackbarHostState() }

@@ -23,6 +23,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
+
+
 object InAppUpdateMan {
 
     //   private lateinit var appUpdateManager: AppUpdateManager
@@ -61,7 +66,13 @@ data class UpdateUiState(
     val updateAvailabilityStatus: Int = 999,
     val message: String = ""
 )
-class UpdateViewModel: ViewModel() {
+/*
+@HiltViewModel
+class NonWorkingDaysViewModel @Inject constructor(
+
+ */
+@HiltViewModel
+class UpdateViewModel @Inject constructor(): ViewModel() {
     private val _updateState = MutableStateFlow<List<UpdateUiState>>(emptyList())
     val updateUiState: StateFlow<List<UpdateUiState>> = _updateState.asStateFlow()
 

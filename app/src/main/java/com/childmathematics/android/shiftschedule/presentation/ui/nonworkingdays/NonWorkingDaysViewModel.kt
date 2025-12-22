@@ -42,6 +42,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import javax.inject.Inject
+import kotlin.collections.forEach
 
 /**
  * ViewModel to retrieve all items in the Room database.
@@ -81,8 +82,10 @@ class NonWorkingDaysViewModel @Inject constructor(
         when (intent) {
             is NonWorkingDaysViewIntent.LoadHoliDaysYear -> loadHoliDaysYear(intent.year)
             is NonWorkingDaysViewIntent.LoadHoliDays -> loadHoliDays(intent.year,intent.month)
+            is NonWorkingDaysViewIntent.LoadHoliOnlyDays -> loadHoliDaysOnlyDays(NonWorkingDaysViewState())
             is NonWorkingDaysViewIntent.LoadNonWorkingDaysYear -> loadNonWorkingDaysYear(intent.year)
             is NonWorkingDaysViewIntent.LoadNonWorkingDays -> loadNonWorkingDays(intent.year,intent.month)
+            is NonWorkingDaysViewIntent.LoadNonWorkingOnlyDays -> loadNonWorkingDaysOnlyDays(NonWorkingDaysViewState())
             is NonWorkingDaysViewIntent.LoadNonWorkingDay -> loadNonWorkingDay(intent.nonWorkingDayId)
             is NonWorkingDaysViewIntent.InsertNonWorkingDay -> validateAndAddNonWorkingDay(
                 intent.shortName, intent.longName, intent.nonWorkingDaysId
@@ -206,8 +209,9 @@ class NonWorkingDaysViewModel @Inject constructor(
 
                             it.copy(
                                 isLoading = false, nonWorkingDays = resource.data,
-//                                nonWorkingDaysOnlyDays = resource.data
+//                                nonWorkingDaysOnlyDays = nonWorkingDays.
                             )
+//                           it.nonWorkingDaysOnlyDays.plus(it.nonWorkingDays[2].day)
                         }
                     }
                     is UiResources.Error -> withContext(Dispatchers.Main) {
@@ -240,6 +244,7 @@ class NonWorkingDaysViewModel @Inject constructor(
                             it.copy(
                                 isLoading = false, nonWorkingDay = resource.data
                             )
+ //                           loadHoliDaysOnlyDays(it)
                         }
                     }
 
@@ -269,14 +274,29 @@ class NonWorkingDaysViewModel @Inject constructor(
 
     private fun updateNonWorkingDay(longName: String) {}
     //----------------------------------------------------------------------
+    // заполнение списка праздничных дней
     private fun loadHoliDaysOnlyDays(nonWorkingDaysViewState: NonWorkingDaysViewState) {
 
+//        val mutableList = nonWorkingDaysViewState.holiDaysOnlyDays
+//        nonWorkingDaysViewState.holiDaysOnlyDays=emptyList<Int>()
+
         nonWorkingDaysViewState.holiDays.forEach{
-            nonWorkingDaysViewState.holiDaysOnlyDays
-    //            nonWorkingDaysViewState.holiDays[].day
+ //           mutableList.plus(  it.day)
+            nonWorkingDaysViewState.holiDaysOnlyDays.plus(it.day)
         }
     }
+    //----------------------------------------------------------------------
+    // заполнение списка нерабочих дней
+    private fun loadNonWorkingDaysOnlyDays(nonWorkingDaysViewState: NonWorkingDaysViewState) {
 
+//        val mutableList = nonWorkingDaysViewState.nonWorkingDaysOnlyDays
+
+        nonWorkingDaysViewState.nonWorkingDays.forEach{
+ //           mutableList.plus(  it.day)
+            nonWorkingDaysViewState.nonWorkingDaysOnlyDays.plus(it.day)
+        }
+    }
+    //----------------------------------------------------------------------
 }
 
 
