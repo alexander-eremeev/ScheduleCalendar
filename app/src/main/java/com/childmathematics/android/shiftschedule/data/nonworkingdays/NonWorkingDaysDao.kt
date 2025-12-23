@@ -29,9 +29,17 @@ interface NonWorkingDaysDao {
             "ORDER BY Year ASC,Month ASC,Day ASC, Name ASC")
     fun getAllHoliDays(year: Int, month: Int): Flow<List<NonWorkingDaysEntity>>
 
+    @Query("SELECT Day from NonWorkingDays WHERE CountryId  = 7 AND Typ = 1 AND Year = :year AND Month = :month " +
+            "ORDER BY Day ASC")
+    fun getHoliDaysOnlyDays(year: Int, month: Int): Flow<List<Int>>
+
     @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7 AND Typ = 2 AND Year = :year AND Month = :month " +
             "ORDER BY Year ASC,Month ASC,Day ASC, Name ASC")
     fun getAllNonWorkingDays(year: Int, month: Int): Flow<List<NonWorkingDaysEntity>>
+
+    @Query("SELECT Day from NonWorkingDays WHERE CountryId  = 7 AND Typ = 2 AND Year = :year AND Month = :month " +
+            "ORDER BY Day ASC")
+    fun getNonWorkingDaysOnlyDays(year: Int, month: Int): Flow<List<Int>>
 
     @Query("SELECT * from NonWorkingDays WHERE NonWorkingDayId = :id")
     fun getNonWorkingDay(id: Int): Flow<List<NonWorkingDaysEntity>>

@@ -24,6 +24,8 @@ interface NonWorkingDaysRepository {
     fun getAllNonWorkingDaysYear(year: Int): Flow<UiResources<List<NonWorkingDaysEntity>>>
     fun getAllHoliDays( year: Int, month: Int): Flow<UiResources<List<NonWorkingDaysEntity>>>
     fun getAllNonWorkingDays( year: Int, month: Int): Flow<UiResources<List<NonWorkingDaysEntity>>>
+    fun getHoliDaysOnlyDays( year: Int, month: Int): Flow<UiResources<List<Int>>>
+    fun getNonWorkingDaysOnlyDays( year: Int, month: Int): Flow<UiResources<List<Int>>>
     /**
      * Retrieve an item from the given data source that matches with the [id].
      * Получите элемент из заданного источника данных, соответствующий [id].
@@ -87,6 +89,17 @@ class NonWorkingDaysRepositoryImpl @Inject constructor(
             .catch { e ->
                 emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
             }
+    //--------------------------------------------------------------------------------------
+    override fun getHoliDaysOnlyDays(year: Int, month: Int): Flow<UiResources<List<Int>>> =
+        flow {
+            emit(UiResources.Loading)
+            nonWorkingDayDao.getHoliDaysOnlyDays(year, month).collect { holiDays ->
+                emit(UiResources.Success(holiDays))
+            }
+        }
+            .catch { e ->
+                emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
+            }
 //--------------------------------------------------------------------------------------
     override fun getAllNonWorkingDays(year: Int, month: Int): Flow<UiResources<List<NonWorkingDaysEntity>>> =
         flow {
@@ -98,6 +111,17 @@ class NonWorkingDaysRepositoryImpl @Inject constructor(
         .catch { e ->
             emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
         }
+    //--------------------------------------------------------------------------------------
+    override fun getNonWorkingDaysOnlyDays(year: Int, month: Int): Flow<UiResources<List<Int>>> =
+        flow {
+            emit(UiResources.Loading)
+            nonWorkingDayDao.getNonWorkingDaysOnlyDays(year, month).collect { nonWorkingDays ->
+                emit(UiResources.Success(nonWorkingDays))
+            }
+        }
+            .catch { e ->
+                emit(UiResources.Error(e.localizedMessage ?: "Unknown error occurred"))
+            }
 //--------------------------------------------------------------------------------------
     override fun getNonWorkingDay(id: Int): Flow<UiResources<List<NonWorkingDaysEntity>>>
         =flow {

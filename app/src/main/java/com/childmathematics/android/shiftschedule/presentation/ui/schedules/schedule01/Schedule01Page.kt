@@ -51,6 +51,7 @@ import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.presentation.ui.ScheduleViewModel
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.uimodels.NonWorkingDaysViewIntent
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.uimodels.NonWorkingDaysViewState
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.HoliDaysHeader
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.HoliDaysListScreen
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util.NonWorkingDaysHeader
@@ -83,10 +84,10 @@ fun Schedule01Page(
 
     nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadHoliDays(year,month))
     nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDays(year,month))
+    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadHoliOnlyDays(year,month))
+    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingOnlyDays(year,month))
 //-------------------------------------------------------------------------
     val nonWorkingDaysViewState by nonWorkingDaysViewModel.viewState.collectAsStateWithLifecycle()
-    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadHoliOnlyDays(nonWorkingDaysViewState)) // заполнение списка праздничных дней
-    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingOnlyDays(nonWorkingDaysViewState)) // заполнение списка пнерабочих дней
 
     // State to manage Snackbar
     val snackbarHostState = remember { SnackbarHostState() }
@@ -138,6 +139,7 @@ fun Schedule01Page(
                 dayContent = { dayState ->
                     Sch01RecipeDay(
                         state = dayState,
+                        nonWorkingDaysViewState
                         //plannedRecipe = recipes.firstOrNull { it.date == dayState.date },
                     )
                 }
@@ -188,6 +190,7 @@ fun Schedule01Page(
 @Composable
 fun Sch01RecipeDay(
     state: DayState<DynamicSelectionState>,
+    nonWorkingDaysViewState : NonWorkingDaysViewState,
   //plannedRecipe: Sch500PlannedRecipe?,
     modifier: Modifier = Modifier,
 ) {
@@ -202,6 +205,7 @@ fun Sch01RecipeDay(
 if (state.isCurrentDay)
       colorsCard = CardDefaults.cardColors(
             containerColor = Color.Green, //Card background color
+
             contentColor = Color.White  //Card content color,e.g.text
         )
 if (isSelected)
@@ -215,12 +219,21 @@ if (isSelected)
         .aspectRatio(1f)
       .padding(2.dp),
           enabled = true,
-    border = if (state.isCurrentDay && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
+    border =
+        if (state.isCurrentDay && ((date.dayOfWeek.value==6 || date.dayOfWeek.value==7)||
+            (nonWorkingDaysViewState.holiDaysOnlyDays.contains( date.dayOfMonth))||
+                (nonWorkingDaysViewState.nonWorkingDaysOnlyDays.contains( date.dayOfMonth)))
+                )
                         BorderStroke(3.dp, MaterialTheme.colorScheme.error)
             else if(state.isCurrentDay){ BorderStroke(3.dp, MaterialTheme.colorScheme.primary)}
-            else if (state.isFromCurrentMonth && (date.dayOfWeek.value==6 || date.dayOfWeek.value==7))
+            else if (state.isFromCurrentMonth && ((date.dayOfWeek.value==6 || date.dayOfWeek.value==7)||
+                (nonWorkingDaysViewState.holiDaysOnlyDays.contains( date.dayOfMonth))||
+                (nonWorkingDaysViewState.nonWorkingDaysOnlyDays.contains( date.dayOfMonth)))
+            )
                             BorderStroke(1.dp, MaterialTheme.colorScheme.error)
-            else null,
+            else null
+
+            ,
       colors = colorsCard
    ) {
     Column(
