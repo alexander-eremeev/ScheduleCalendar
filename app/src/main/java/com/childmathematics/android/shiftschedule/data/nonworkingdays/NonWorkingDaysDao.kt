@@ -41,6 +41,11 @@ interface NonWorkingDaysDao {
             "ORDER BY Day ASC")
     fun getNonWorkingDaysOnlyDays(year: Int, month: Int): Flow<List<Int>>
 
+    @Query("SELECT MoveDateDay from NonWorkingDays WHERE CountryId  = 7 AND Typ = 2 " +
+            "AND  MoveDateYear = :year AND  MoveDateMonth = :month " + "ORDER BY Day ASC")
+    fun getNonWorkingDaysOnlyWorkDays(year: Int, month: Int): Flow<List<Int>>
+
+
     @Query("SELECT * from NonWorkingDays WHERE NonWorkingDayId = :id")
     fun getNonWorkingDay(id: Int): Flow<List<NonWorkingDaysEntity>>
 

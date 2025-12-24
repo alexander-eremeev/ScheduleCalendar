@@ -23,8 +23,12 @@ data class NonWorkingDaysEntity(
     val name: String,      //?
     @ColumnInfo(name = "Typ")
     val typ : Int,     //?
-    @ColumnInfo(name = "MoveDateYMD")
-    val moveDateYMD : Long?,
+    @ColumnInfo(name = "MoveDateYear")
+    val moveDateYear : Int?,
+    @ColumnInfo(name = "MoveDateMonth")
+    val moveDateMonth : Int?,
+    @ColumnInfo(name = "MoveDateDay")
+    val moveDateDay : Int?,
     @ColumnInfo(name = "Reason")
     val reason: String?
 )

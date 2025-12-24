@@ -30,7 +30,7 @@ object DatabaseModule {
             NonWorkingDaysDatabase::class.java,
             "nonWorkingDays_database"
         )
-            .createFromAsset("database/Schedule.db")
+            .createFromAsset("database/ScheduleCalendar.db")
             .fallbackToDestructiveMigration(true)
  //           .addMigrations(MIGRATION_1_2)
             .build()
