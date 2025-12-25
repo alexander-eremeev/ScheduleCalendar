@@ -86,6 +86,7 @@ fun Schedule01Page(
     nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDays(year,month))
     nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadHoliOnlyDays(year,month))
     nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingOnlyDays(year,month))
+    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingOnlyWorkDays(year,month))
 //-------------------------------------------------------------------------
     val nonWorkingDaysViewState by nonWorkingDaysViewModel.viewState.collectAsStateWithLifecycle()
 
@@ -219,21 +220,18 @@ if (isSelected)
         .aspectRatio(1f)
       .padding(2.dp),
           enabled = true,
-    border =
-        if (state.isCurrentDay && ((date.dayOfWeek.value==6 || date.dayOfWeek.value==7)||
-            (nonWorkingDaysViewState.holiDaysOnlyDays.contains( date.dayOfMonth))||
-                (nonWorkingDaysViewState.nonWorkingDaysOnlyDays.contains( date.dayOfMonth)))
-                )
-                        BorderStroke(3.dp, MaterialTheme.colorScheme.error)
-            else if(state.isCurrentDay){ BorderStroke(3.dp, MaterialTheme.colorScheme.primary)}
-            else if (state.isFromCurrentMonth && ((date.dayOfWeek.value==6 || date.dayOfWeek.value==7)||
-                (nonWorkingDaysViewState.holiDaysOnlyDays.contains( date.dayOfMonth))||
-                (nonWorkingDaysViewState.nonWorkingDaysOnlyDays.contains( date.dayOfMonth)))
-            )
-                            BorderStroke(1.dp, MaterialTheme.colorScheme.error)
-            else null
-
-            ,
+    border = when ( getDayNonWorking (state,nonWorkingDaysViewState )){
+        1 -> BorderStroke(3.dp, MaterialTheme.colorScheme.error) // праздник СЕГОДНЯ?
+        2 -> BorderStroke(1.dp, MaterialTheme.colorScheme.secondary) // нерабочий СЕГОДНЯ?
+        3 -> null //рабочая СБ
+        4 -> BorderStroke(3.dp, MaterialTheme.colorScheme.primary) // // СБ или ВС выходной СЕГОДНЯ
+        5 -> BorderStroke(1.dp, MaterialTheme.colorScheme.error)   // праздник не сегодня?
+        6 -> BorderStroke(1.dp, MaterialTheme.colorScheme.secondary)  // нерабочий  не сегодня?
+        7 -> BorderStroke(1.dp, MaterialTheme.colorScheme.error)//сб вс и нерабочий не сегодня
+        8 -> null // Рабочая СБ
+        9 -> null // другой месяц
+        else -> {null}
+        },
       colors = colorsCard
    ) {
     Column(
@@ -266,24 +264,92 @@ if (isSelected)
           style = MaterialTheme.typography.bodyLarge,
 
             )
-        if (date.dayOfWeek.value==6 || date.dayOfWeek.value==7) {
-            Text(
-                text = "",
-            )
-        }
-            else {
-            Text(
-//          text = plannedRecipe.price.toString(),
-                text = //String.format("%2d",(getShift01(date)).toInt())
-//                  +" / "+
-                String.format("%2d", (getShift01(date)).toInt()),
-                fontSize = 15.sp.nonScaledSp,
-                style = MaterialTheme.typography.bodyMedium,
-            )
+         when ( getDayNonWorking (state,nonWorkingDaysViewState )) {
+            1 -> Text(text = "",) // праздник СЕГОДНЯ?
+            2 -> Text(text = "",) // нерабочий СЕГОДНЯ?
+            3,8,9-> {       //рабочая СБ //рабочая СБ , //рабочая день
+                Text(
+                    text = //String.format("%2d",(getShift01(date)).toInt())
+                        String.format("%2d", 8),
+                    fontSize = 15.sp.nonScaledSp,
+                    style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
+            4 -> Text(text = "",)  // // СБ или ВС выходной СЕГОДНЯ
+            5 -> Text(text = "",)    // праздник не сегодня?
+            6 -> Text(text = "",)   // нерабочий  не сегодня?
+            7 -> Text(text = "",) //сб вс и нерабочий не сегодня
+            10 -> Text(text = "",) //другой месяц
+
+            else -> Text(text = "",)
         }
     }
   }
 }
+//====================================================================
+// расчет основного времени до выбранной даты
+//==============================================
+@Composable
+fun getDayNonWorking (state: DayState<DynamicSelectionState>,
+                      nonWorkingDaysViewState : NonWorkingDaysViewState):Int {
+    val date = state.date
+    var nonWork: Int =0
+     //-------------------------
+    when  (state.isCurrentDay)  {   // праздник?
+        true ->
+            when (nonWorkingDaysViewState.holiDaysOnlyDays.contains( date.dayOfMonth)){
+                true -> nonWork =1
+                else -> {               // нерабочий ?
+                    when (nonWorkingDaysViewState.nonWorkingDaysOnlyDays.contains( date.dayOfMonth)) {
+                        true -> nonWork =2
+                        else -> {
+                            when (nonWorkingDaysViewState.nonWorkingDaysOnlyWorkDays.contains( date.dayOfMonth)){
+                                true -> nonWork =3     // рабочая суббота
+                                else -> {
+                                    when (date.dayOfWeek.value == 6 || date.dayOfWeek.value == 7) {
+                                        true -> nonWork = 4    // СБ или ВС выходной
+                                        else -> {
+                                            nonWork = 9        // обычный день Сегодня
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        else -> {
+            when (state.isFromCurrentMonth){
+                true ->                             // праздник?
+                    when (nonWorkingDaysViewState.holiDaysOnlyDays.contains( date.dayOfMonth)) {
+                        true -> nonWork =5
+                    else -> {                       // нерабочий ?
+                        when (nonWorkingDaysViewState.nonWorkingDaysOnlyDays.contains( date.dayOfMonth)) {
+                            true -> nonWork =6
+                            else -> {               // СБ ВС и нерабочий ?
+                                when (nonWorkingDaysViewState.nonWorkingDaysOnlyWorkDays.contains( date.dayOfMonth)){
+                                    true -> nonWork =8     // рабочая суббота
+                                    else -> {
+                                        when (date.dayOfWeek.value == 6 || date.dayOfWeek.value == 7) {
+                                            true -> nonWork = 7    // СБ или ВС выходной
+                                            else -> {
+                                                nonWork = 9        // обычный день месяца
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else -> {nonWork =10} // другой месяц
+            }
+        }
+    }
+//---------------------------------
+    return nonWork
+}
+//====================================================================
 
 /**
  * Enables for changing current selection mode.

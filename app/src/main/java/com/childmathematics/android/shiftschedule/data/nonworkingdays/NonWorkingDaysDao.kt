@@ -18,31 +18,31 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface NonWorkingDaysDao {
     @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7  AND Typ = 1 AND Year = :year  " +
-            "ORDER BY Year ASC,Month ASC,Day ASC, Name ASC")
+            "ORDER BY Month ASC,Day ASC")
     fun getAllHoliDaysYear(year: Int): Flow<List<NonWorkingDaysEntity>>
 
-    @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7  AND Typ = 2 AND Year = :year  " +
-            "ORDER BY Year ASC,Month ASC,Day ASC, Name ASC")
+    @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7  AND (Typ = 2 OR Typ = 3) AND Year = :year  " +
+            "ORDER BY Month ASC,Day ASC")
     fun getAllNonWorkingDaysYear(year: Int): Flow<List<NonWorkingDaysEntity>>
 
     @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7 AND Typ = 1 AND Year = :year AND Month = :month " +
-            "ORDER BY Year ASC,Month ASC,Day ASC, Name ASC")
+            "ORDER BY Day ASC")
     fun getAllHoliDays(year: Int, month: Int): Flow<List<NonWorkingDaysEntity>>
 
     @Query("SELECT Day from NonWorkingDays WHERE CountryId  = 7 AND Typ = 1 AND Year = :year AND Month = :month " +
             "ORDER BY Day ASC")
     fun getHoliDaysOnlyDays(year: Int, month: Int): Flow<List<Int>>
 
-    @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7 AND Typ = 2 AND Year = :year AND Month = :month " +
-            "ORDER BY Year ASC,Month ASC,Day ASC, Name ASC")
+    @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7 AND (Typ = 2 OR Typ = 3) AND Year = :year AND Month = :month " +
+            "ORDER BY Day ASC")
     fun getAllNonWorkingDays(year: Int, month: Int): Flow<List<NonWorkingDaysEntity>>
 
-    @Query("SELECT Day from NonWorkingDays WHERE CountryId  = 7 AND Typ = 2 AND Year = :year AND Month = :month " +
+    @Query("SELECT Day from NonWorkingDays WHERE CountryId  = 7 AND (Typ = 2 OR Typ = 3) AND Year = :year AND Month = :month " +
             "ORDER BY Day ASC")
     fun getNonWorkingDaysOnlyDays(year: Int, month: Int): Flow<List<Int>>
 
-    @Query("SELECT MoveDateDay from NonWorkingDays WHERE CountryId  = 7 AND Typ = 2 " +
-            "AND  MoveDateYear = :year AND  MoveDateMonth = :month " + "ORDER BY Day ASC")
+    @Query("SELECT MoveDateDay from NonWorkingDays WHERE CountryId  = 7 AND Typ = 3 " +
+            "AND  MoveDateYear = :year AND  MoveDateMonth = :month " + "ORDER BY MoveDateDay ASC")
     fun getNonWorkingDaysOnlyWorkDays(year: Int, month: Int): Flow<List<Int>>
 
 

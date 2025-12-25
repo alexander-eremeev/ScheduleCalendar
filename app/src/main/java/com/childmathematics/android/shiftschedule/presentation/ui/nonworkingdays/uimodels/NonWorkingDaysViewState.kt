@@ -14,6 +14,7 @@ data  class NonWorkingDaysViewState (
     val nonWorkingDaysYear: List<NonWorkingDaysEntity> = emptyList(),
     val nonWorkingDays: List<NonWorkingDaysEntity> = emptyList(),
     val nonWorkingDaysOnlyDays: List<Int> = emptyList(),
+    val nonWorkingDaysOnlyWorkDays: List<Int> = emptyList(),
     val nonWorkingDay: List<NonWorkingDaysEntity> = emptyList(),
     val country: CountryEntity? = null,
     val filteredNonWorkingDaysList: List<NonWorkingDaysEntity> = emptyList(), // The filtered list of users

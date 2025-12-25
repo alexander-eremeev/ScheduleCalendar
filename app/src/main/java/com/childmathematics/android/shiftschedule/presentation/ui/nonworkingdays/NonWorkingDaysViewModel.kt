@@ -18,6 +18,7 @@ import com.childmathematics.android.shiftschedule.domain.usecases.GetCountryUseC
 import com.childmathematics.android.shiftschedule.domain.usecases.GetHoliDaysOnlyDaysUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.GetNonWorkingDayUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.GetNonWorkingDaysOnlyDaysUseCase
+import com.childmathematics.android.shiftschedule.domain.usecases.GetNonWorkingDaysOnlyWorkDaysUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.InsertNonWorkingDayUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.SearchCountryUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.SearchNonWorkingDayUseCase
@@ -59,6 +60,7 @@ class NonWorkingDaysViewModel @Inject constructor(
     private val getNonWorkingDaysYearUseCase: GetAllNonWorkingDaysYearUseCase,
     private val getNonWorkingDaysUseCase: GetAllNonWorkingDaysUseCase,
     private val getNonWorkingDaysOnlyDaysUseCase: GetNonWorkingDaysOnlyDaysUseCase,
+    private val getNonWorkingDaysOnlyWorkDaysUseCase: GetNonWorkingDaysOnlyWorkDaysUseCase,
     private val getNonWorkingDayUseCase: GetNonWorkingDayUseCase,
     private val insertNonWorkingDayUseCase: InsertNonWorkingDayUseCase,
     private val updateNonWorkingDayUseCase: UpdateNonWorkingDayUseCase,
@@ -90,6 +92,7 @@ class NonWorkingDaysViewModel @Inject constructor(
             is NonWorkingDaysViewIntent.LoadNonWorkingDaysYear -> loadNonWorkingDaysYear(intent.year)
             is NonWorkingDaysViewIntent.LoadNonWorkingDays -> loadNonWorkingDays(intent.year,intent.month)
             is NonWorkingDaysViewIntent.LoadNonWorkingOnlyDays -> loadNonWorkingDaysOnlyDays(intent.year,intent.month)
+            is NonWorkingDaysViewIntent.LoadNonWorkingOnlyWorkDays -> loadNonWorkingDaysOnlyWorkDays(intent.year,intent.month)
             is NonWorkingDaysViewIntent.LoadNonWorkingDay -> loadNonWorkingDay(intent.nonWorkingDayId)
             is NonWorkingDaysViewIntent.InsertNonWorkingDay -> validateAndAddNonWorkingDay(
                 intent.shortName, intent.longName, intent.nonWorkingDaysId
@@ -274,6 +277,37 @@ class NonWorkingDaysViewModel @Inject constructor(
 
                             it.copy(
                                 isLoading = false, nonWorkingDaysOnlyDays = resource.data,
+                            )
+                        }
+                    }
+                    is UiResources.Error -> withContext(Dispatchers.Main) {
+                        _viewState.update { it.copy(isLoading = false) }
+                        _effectChannel.send(
+                            SnackbarEffect.ShowSnackbar(
+                                "Ошибка загрузки данных из БД:  ${resource.message}"
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
+    //----------------------------------------------------------------------
+    // Load  from the Room database using Flow and UIResources
+    private fun loadNonWorkingDaysOnlyWorkDays(year : Int,month : Int) {
+        viewModelScope.launch(Dispatchers.IO) { // Perform loading on the IO thread
+            //--------------------------------------------------------------------------------------------------
+            getNonWorkingDaysOnlyWorkDaysUseCase(year,month).collectLatest { resource ->
+                when (resource) {
+                    is UiResources.Loading -> withContext(Dispatchers.Main) {
+                        _viewState.update { it.copy(isLoading = true) }
+                    }
+
+                    is UiResources.Success -> withContext(Dispatchers.Main) {
+                        _viewState.update {
+
+                            it.copy(
+                                isLoading = false, nonWorkingDaysOnlyWorkDays = resource.data,
                             )
                         }
                     }

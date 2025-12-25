@@ -24,16 +24,6 @@ fun NonWorkingDaysItem (nonWorkingDaysEnt: NonWorkingDaysEntity?) {
 //            .horizontalScroll(rememberScrollState())
 
     ) {
-/*
-        Text(nonWorkingDaysEnt?.day.toString()+"."+
-                nonWorkingDaysEnt?.month.toString()+"."+nonWorkingDaysEnt?.year.
-        toString(),textAlign = TextAlign.Right
-            ,modifier = Modifier  .weight(.2f)  )
-        Spacer(modifier = Modifier.width(10.dp))
-        Text(nonWorkingDaysEnt?.name.toString(),textAlign = TextAlign.Left
-            ,modifier = Modifier    .weight(.8f))
-*/
-
 //----------------------------------------------------------
         Text(nonWorkingDaysEnt?.day.toString()+"."+
                 nonWorkingDaysEnt?.month.toString()+"."+nonWorkingDaysEnt?.year.toString().substring(2,4),
@@ -42,23 +32,14 @@ fun NonWorkingDaysItem (nonWorkingDaysEnt: NonWorkingDaysEntity?) {
         )
         Spacer(modifier = Modifier.weight(.01f))
         Text(nonWorkingDaysEnt?.name.toString(),textAlign = TextAlign.Left
-            ,modifier = Modifier    .weight(.53f)
+            ,modifier = Modifier    .weight(.52f)
                 .horizontalScroll(rememberScrollState()))
         Spacer(modifier = Modifier.weight(.01f))
         Text(" c "+nonWorkingDaysEnt?.moveDateDay.toString()+"."+
                 nonWorkingDaysEnt?.moveDateMonth.toString()+"."+
                 nonWorkingDaysEnt?.moveDateYear.toString().substring(2,4)+" ",
                 textAlign = TextAlign.Right,
-                modifier = Modifier    .weight(.18f))
-/*
-        Spacer(modifier = Modifier.weight(.01f))
-//        Spacer(modifier = Modifier.width(5.dp))
-        Text(nonWorkingDaysEnt?.reason.toString(),textAlign = TextAlign.Left
-            ,modifier = Modifier    .weight(.35f) .horizontalScroll(rememberScrollState()))
-
-
- */
+                modifier = Modifier    .weight(.21f))
 //-------------------------------------------------------------
-
     }
 }

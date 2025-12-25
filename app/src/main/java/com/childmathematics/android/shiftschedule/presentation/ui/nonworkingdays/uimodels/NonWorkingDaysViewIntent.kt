@@ -8,6 +8,7 @@ sealed class NonWorkingDaysViewIntent {
     data class LoadNonWorkingDaysYear(val year: Int) : NonWorkingDaysViewIntent() // Intent for loading
     data class LoadNonWorkingDays(val year: Int, val month: Int) : NonWorkingDaysViewIntent() // Intent for loading
     data class LoadNonWorkingOnlyDays (val year: Int, val month: Int) : NonWorkingDaysViewIntent() // Intent for loading
+    data class LoadNonWorkingOnlyWorkDays (val year: Int, val month: Int) : NonWorkingDaysViewIntent() // Intent for loading
     data class LoadNonWorkingDay(val nonWorkingDayId: Int) : NonWorkingDaysViewIntent() // Intent for loading
     data class InsertNonWorkingDay(val shortName: String, val longName: String, val nonWorkingDaysId: Int?)
                         : NonWorkingDaysViewIntent() //
