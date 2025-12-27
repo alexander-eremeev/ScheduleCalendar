@@ -394,7 +394,7 @@ fun getShift01Date1Date2 (date1: LocalDate, date2: LocalDate):Double {
 
     var summ: Double = getShift01(dateforCalc)
     for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
-        summ += getShift01(dateforCalc.minusDays(i.toLong()))
+        summ += getShift01(dateforCalc.minusDays(i))
     }
     return summ
 }
@@ -408,7 +408,7 @@ fun getShift01Date1Date2Days (date1: LocalDate, date2: LocalDate):Int {
     var summDays: Int
     if (getShift01(dateforCalc) >0.0) summDays  =1 else summDays  =0
     for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
-        if (getShift01(dateforCalc.minusDays(i.toLong())) >0.0)
+        if (getShift01(dateforCalc.minusDays(i)) >0.0)
             summDays  +=1
 
 

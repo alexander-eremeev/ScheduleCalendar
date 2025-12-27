@@ -2,6 +2,10 @@ package com.childmathematics.android.shiftschedule.presentation.ui.nonworkingday
 
 // ViewIntent для обработки действий пользователя
 sealed class NonWorkingDaysViewIntent {
+    data class LoadHoliDaysOnlyDateYear(val year: Int) : NonWorkingDaysViewIntent() // Intent for loading
+    data class LoadNonWorkingDaysOnlyDateYear(val year: Int) : NonWorkingDaysViewIntent() // Intent for loading
+    data class LoadNonWorkingDaysOnlyWorkDateYear(val year: Int) : NonWorkingDaysViewIntent() // Intent for loading
+
     data class LoadHoliDaysYear(val year: Int) : NonWorkingDaysViewIntent() // Intent for loading
     data class LoadHoliDays(val year: Int, val month: Int) : NonWorkingDaysViewIntent() // Intent for loading
     data class LoadHoliOnlyDays (val year: Int, val month: Int) : NonWorkingDaysViewIntent() // Intent for loading

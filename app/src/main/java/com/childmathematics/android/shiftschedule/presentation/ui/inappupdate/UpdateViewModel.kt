@@ -122,8 +122,9 @@ class UpdateViewModel @Inject constructor(): ViewModel() {
                         }
 
                         UpdateAvailability.UPDATE_AVAILABLE -> {
-                         if (appUpdateInfo?.isUpdateTypeAllowed(updateType) == true) {
+//                         if (appUpdateInfo?.isUpdateTypeAllowed(updateType) == true) {
 //                            if (appUpdateInfo.isUpdateTypeAllowed(updateType) == true) {
+                           if (appUpdateInfo.isUpdateTypeAllowed(updateType)) {
                              UPDATEAVAILABLE = true
                                 _updateState.value += UpdateUiState(
                                     listUpdateInfoSuccess = true,
@@ -152,10 +153,7 @@ class UpdateViewModel @Inject constructor(): ViewModel() {
                 message = "UpdateViewModel " + " checkForUpdateApp: error="
                         + it.message.toString()
             )
-
         }
-//        }
-            //--------------------
     }
     fun CheckForUpdatedApp() {
 //        fun CheckForUpdatedApp(activity: ComponentActivity) {

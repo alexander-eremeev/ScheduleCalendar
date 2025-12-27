@@ -31,6 +31,7 @@ fun NavGraphBuilder.nonWorkingDaysPageGraph(
     modifier: Modifier = Modifier,
     openDrawer: () -> Unit,
     onOpenDrawer: Boolean,
+//    state: CalendarState<DynamicSelectionState>,
     nonWorkingDaysViewModel: NonWorkingDaysViewModel,
 ) {
     // =====================================

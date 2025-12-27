@@ -33,7 +33,9 @@ fun NavController.navigateToNonWorkingDaysYearPageGraph() {
 fun NavGraphBuilder.nonWorkingDaysYearPageGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-   nonWorkingDaysViewModel: NonWorkingDaysViewModel,
+//    state: CalendarState<DynamicSelectionState>,
+
+    nonWorkingDaysViewModel: NonWorkingDaysViewModel,
     ) {
     navigation(startDestination = NONWORKINGDAYS_YEARPAGE_ROUTE,
         route = NONWORKINGDAYS_YEARPAGE_GRAPH_ROUTE,

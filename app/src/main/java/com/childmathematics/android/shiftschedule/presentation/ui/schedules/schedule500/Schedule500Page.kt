@@ -402,6 +402,7 @@ fun Schedule500SamplePreview( ) {
 //====================================================================
 // расчет основного рабочего времени по дате по номеру бригады
 //==============================================
+@Suppress("ParamsComparedByRef")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500 (dateforCalc: LocalDate,nBrig: Int):Double
@@ -453,6 +454,7 @@ fun getShift500 (dateforCalc: LocalDate,nBrig: Int):Double
 //====================================================================
 // расчет ночных по дате по номеру бригады
 //==============================================
+@Suppress("ParamsComparedByRef")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500Night (dateforCalc: LocalDate,nBrig: Int):Double
@@ -504,6 +506,7 @@ fun getShift500Night (dateforCalc: LocalDate,nBrig: Int):Double
 //====================================================================
 // расчет основного рабочего времени по дате по номеру бригады
 //==============================================
+@Suppress("ParamsComparedByRef")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500Text (dateforCalc: LocalDate,nBrig: Int):String
@@ -567,6 +570,7 @@ return summ
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады
 //==============================================
+@Suppress("ParamsComparedByRef")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500Select (selection: List<LocalDate>,nBrig: Int):Double {
@@ -620,6 +624,7 @@ fun getShift500Month (year: Int,month: Int,nBrig: Int):Double {
 //====================================================================
 // расчет основного времени до выбранной даты по номеру бригады с начала месяца
 //==============================================
+@Suppress("ParamsComparedByRef")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500MonthDate (datecalc: LocalDate,nBrig: Int):Double {
@@ -650,6 +655,7 @@ fun getShift500MonthDateNight (datecalc: LocalDate,nBrig: Int):Double {
 //====================================================================
 // расчет основного времени между выбранной даты по номеру бригады с начала месяца
 //==============================================
+@Suppress("ParamsComparedByRef")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500Date1Date2 (date1: LocalDate,date2: LocalDate,nBrig: Int):Double {
@@ -658,13 +664,14 @@ fun getShift500Date1Date2 (date1: LocalDate,date2: LocalDate,nBrig: Int):Double 
 
     var summ: Double =getShift500(dateforCalc, nBrig)
     for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
-        summ += getShift500(dateforCalc.minusDays(i.toLong()), nBrig)
+        summ += getShift500(dateforCalc.minusDays(i), nBrig)
     }
     return summ
 }
 //====================================================================
 // расчет основного времени между выбранной даты по номеру бригады с начала месяца
 //==============================================
+@Suppress("ParamsComparedByRef")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun getShift500Date1Date2Night (date1: LocalDate,date2: LocalDate,nBrig: Int):Double {
@@ -673,7 +680,7 @@ fun getShift500Date1Date2Night (date1: LocalDate,date2: LocalDate,nBrig: Int):Do
 
     var summ: Double = getShift500Night(dateforCalc, nBrig)
     for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
-        summ += getShift500Night(dateforCalc.minusDays(i.toLong()), nBrig)
+        summ += getShift500Night(dateforCalc.minusDays(i), nBrig)
     }
     return summ
 }

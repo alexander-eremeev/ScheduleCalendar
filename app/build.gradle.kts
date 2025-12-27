@@ -182,6 +182,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.unit)
     implementation(libs.androidx.compose.foundation.layout)
     implementation(libs.androidx.foundation)
+    implementation(libs.androidx.core.i18n)
     //testImplementation(libs.junit.test)
     ksp(libs.google.dagger.hilt.compiler )
 

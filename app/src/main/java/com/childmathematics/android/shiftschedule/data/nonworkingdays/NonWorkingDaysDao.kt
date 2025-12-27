@@ -28,17 +28,39 @@ interface NonWorkingDaysDao {
     @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7 AND Typ = 1 AND Year = :year AND Month = :month " +
             "ORDER BY Day ASC")
     fun getAllHoliDays(year: Int, month: Int): Flow<List<NonWorkingDaysEntity>>
+    // ??????????????????????????????????????????????????????????????????????????????????????
+    @Query("SELECT printf('%04d',Year)||'-'|| printf('%02d', Month)||'-'|| printf('%02d',Day )" +
+            "from NonWorkingDays WHERE Typ = 1 AND (Year = :year OR (Year = :year-1 AND Month=12) OR (Year = :year+1 AND Month=1))"+
+            "ORDER BY Year ASC,Month ASC,Day ASC")
+//    "AND Year = :year OR Year = :year-1 OR Year = :year+1 ORDER BY Year ASC,Month ASC,Day ASC")
+    fun getHoliDaysOnlyDateYear(year: Int): Flow<List<String>>
 
     @Query("SELECT Day from NonWorkingDays WHERE CountryId  = 7 AND Typ = 1 AND Year = :year AND Month = :month " +
             "ORDER BY Day ASC")
     fun getHoliDaysOnlyDays(year: Int, month: Int): Flow<List<Int>>
 
-    @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7 AND (Typ = 2 OR Typ = 3) AND Year = :year AND Month = :month " +
-            "ORDER BY Day ASC")
+    @Query("SELECT * from NonWorkingDays WHERE CountryId  = 7 AND (Typ = 2 OR Typ = 3) AND Year = :year AND " +
+            "Month = :month " + "ORDER BY Day ASC")
     fun getAllNonWorkingDays(year: Int, month: Int): Flow<List<NonWorkingDaysEntity>>
+// ??????????????????????????????????????????????????????????????????????????????????????
 
-    @Query("SELECT Day from NonWorkingDays WHERE CountryId  = 7 AND (Typ = 2 OR Typ = 3) AND Year = :year AND Month = :month " +
-            "ORDER BY Day ASC")
+    @Query("SELECT printf('%04d',Year)||'-'|| printf('%02d', Month)||'-'|| printf('%02d',Day ) from NonWorkingDays "+
+//            "WHERE CountryId  = 7 AND (Typ = 2 OR Typ = 3) AND Year = :year OR Year = :year-1 "+
+              "WHERE  (Typ = 2 OR Typ = 3) AND (Year = :year OR (Year = :year-1 AND Month=12) OR (Year = :year+1 AND Month=1))"+
+            "ORDER BY Year ASC,Month ASC,Day ASC")
+    fun getNonWorkingDaysOnlyDateYear(year: Int): Flow<List<String>>
+
+    @Query("SELECT printf('%04d',MoveDateYear)||'-'|| printf('%02d', MoveDateMonth)||'-'|| printf('%02d',MoveDateDay )"+
+            "from NonWorkingDays WHERE Typ =3 AND (Year = :year OR (Year = :year-1 AND Month=12) OR (Year = :year+1 AND Month=1))"+
+            "ORDER BY Year ASC,Month ASC,Day ASC")
+//        "from NonWorkingDays WHERE CountryId  =7 AND Typ =3 AND Year =:year OR Year =:year-1 OR Year =:year+1 "+
+//            "ORDER BY  Year ASC,Month ASC,Day ASC")
+    fun getNonWorkingDaysOnlyWorkDateYear(year: Int): Flow<List<String>>
+
+
+
+    @Query("SELECT Day from NonWorkingDays WHERE CountryId =7 AND (Typ =2 OR Typ =3) AND Year =:year "+
+            "AND Month =:month "+"ORDER BY Day ASC")
     fun getNonWorkingDaysOnlyDays(year: Int, month: Int): Flow<List<Int>>
 
     @Query("SELECT MoveDateDay from NonWorkingDays WHERE CountryId  = 7 AND Typ = 3 " +

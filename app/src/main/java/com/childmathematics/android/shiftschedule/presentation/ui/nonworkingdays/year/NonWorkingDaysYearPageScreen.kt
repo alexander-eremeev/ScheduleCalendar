@@ -30,7 +30,9 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.childmathematics.android.basement.lib.composecalendar.CalendarState
 import com.childmathematics.android.basement.lib.composecalendar.rememberSelectableCalendarState
+import com.childmathematics.android.basement.lib.composecalendar.selection.DynamicSelectionState
 import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.presentation.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
@@ -54,12 +56,6 @@ fun NonWorkingDaysYearPageScreen(
     nonWorkingDaysViewModel:  NonWorkingDaysViewModel
 ) {
     //-------------------------------------------------------------------------
-//    val state: CalendarState<DynamicSelectionState>,
-    var state = rememberSelectableCalendarState()
-    val year = state.monthState.currentMonth.year
-
-    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDaysYear(year))
-    nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadHoliDaysYear(year))
 
     val nonWorkingDaysViewState by nonWorkingDaysViewModel.viewState.collectAsStateWithLifecycle()
 

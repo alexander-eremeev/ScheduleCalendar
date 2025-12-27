@@ -14,6 +14,14 @@ class GetAllHoliDaysYearUseCase @Inject constructor (
     }
 }
 //------------------------------------------------------------
+class GetHoliDaysOnlyDateYearUseCase @Inject constructor (
+    private val nonWorkingDayRepository: NonWorkingDaysRepository
+) {
+    operator fun invoke (year : Int) : Flow<UiResources<List<String>>> {
+        return nonWorkingDayRepository.getHoliDaysOnlyDateYear(year)
+    }
+}
+//------------------------------------------------------------
 class GetAllNonWorkingDaysYearUseCase @Inject constructor (
     private val nonWorkingDayRepository: NonWorkingDaysRepository
 ) {
@@ -46,6 +54,14 @@ class GetAllNonWorkingDaysUseCase @Inject constructor (
     }
 }
 //------------------------------------------------------------
+class GetNonWorkingDaysOnlyDateYearUseCase @Inject constructor (
+    private val nonWorkingDayRepository: NonWorkingDaysRepository
+) {
+    operator fun invoke (year : Int) : Flow<UiResources<List<String>>> {
+        return nonWorkingDayRepository.getNonWorkingDaysOnlyDateYear(year)
+    }
+}
+//------------------------------------------------------------
 class GetNonWorkingDaysOnlyDaysUseCase @Inject constructor (
     private val nonWorkingDayRepository: NonWorkingDaysRepository
 ) {
@@ -54,6 +70,17 @@ class GetNonWorkingDaysOnlyDaysUseCase @Inject constructor (
     }
 }
 //------------------------------------------------------------
+class GetNonWorkingDaysOnlyWorkDateYearUseCase @Inject constructor (
+    private val nonWorkingDayRepository: NonWorkingDaysRepository
+) {
+    operator fun invoke (year : Int) : Flow<UiResources<List<String>>> {
+        return nonWorkingDayRepository.getNonWorkingDaysOnlyWorkDateYear(year)
+    }
+}
+//------------------------------------------------------------
+/*
+    fun getNonWorkingDaysOnlyWorkDateYear(year: Int): Flow<UiResources<List<String>>>
+ */
 class GetNonWorkingDaysOnlyWorkDaysUseCase @Inject constructor (
     private val nonWorkingDayRepository: NonWorkingDaysRepository
 ) {

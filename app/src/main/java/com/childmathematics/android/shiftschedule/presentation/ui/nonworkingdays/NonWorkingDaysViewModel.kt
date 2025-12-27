@@ -15,9 +15,12 @@ import com.childmathematics.android.shiftschedule.domain.usecases.GetAllHoliDays
 import com.childmathematics.android.shiftschedule.domain.usecases.GetAllNonWorkingDaysUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.GetAllNonWorkingDaysYearUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.GetCountryUseCase
+import com.childmathematics.android.shiftschedule.domain.usecases.GetHoliDaysOnlyDateYearUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.GetHoliDaysOnlyDaysUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.GetNonWorkingDayUseCase
+import com.childmathematics.android.shiftschedule.domain.usecases.GetNonWorkingDaysOnlyDateYearUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.GetNonWorkingDaysOnlyDaysUseCase
+import com.childmathematics.android.shiftschedule.domain.usecases.GetNonWorkingDaysOnlyWorkDateYearUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.GetNonWorkingDaysOnlyWorkDaysUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.InsertNonWorkingDayUseCase
 import com.childmathematics.android.shiftschedule.domain.usecases.SearchCountryUseCase
@@ -62,6 +65,9 @@ class NonWorkingDaysViewModel @Inject constructor(
     private val getNonWorkingDaysOnlyDaysUseCase: GetNonWorkingDaysOnlyDaysUseCase,
     private val getNonWorkingDaysOnlyWorkDaysUseCase: GetNonWorkingDaysOnlyWorkDaysUseCase,
     private val getNonWorkingDayUseCase: GetNonWorkingDayUseCase,
+    private val getHoliDaysOnlyDateYearUseCase: GetHoliDaysOnlyDateYearUseCase,
+    private val getNonWorkingDaysOnlyDateYearUseCase: GetNonWorkingDaysOnlyDateYearUseCase,
+    private val getNonWorkingDaysOnlyWorkDateYearUseCase: GetNonWorkingDaysOnlyWorkDateYearUseCase,
     private val insertNonWorkingDayUseCase: InsertNonWorkingDayUseCase,
     private val updateNonWorkingDayUseCase: UpdateNonWorkingDayUseCase,
     private val deleteNonWorkingDayUseCase: DeleteNonWorkingDayUseCase,
@@ -81,11 +87,19 @@ class NonWorkingDaysViewModel @Inject constructor(
 
 
     init {
-//        handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDays)
+        handleIntent(NonWorkingDaysViewIntent.LoadHoliDays(LocalDate.now().year,LocalDate.now().month.value))
+        handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDays(LocalDate.now().year,LocalDate.now().month.value))
+        handleIntent(NonWorkingDaysViewIntent.LoadHoliDaysYear(LocalDate.now().year))
+        handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDaysYear(LocalDate.now().year))
+        handleIntent(NonWorkingDaysViewIntent.LoadHoliDaysOnlyDateYear(LocalDate.now().year))
+        handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDaysOnlyDateYear(LocalDate.now().year))
+        handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDaysOnlyWorkDateYear(LocalDate.now().year))
     }
-
     fun handleIntent(intent: NonWorkingDaysViewIntent) {
         when (intent) {
+            is NonWorkingDaysViewIntent.LoadHoliDaysOnlyDateYear -> loadHoliDaysOnlyDateYear(intent.year)
+            is NonWorkingDaysViewIntent.LoadNonWorkingDaysOnlyDateYear -> loadNonWorkingDaysOnlyDateYear(intent.year)
+            is NonWorkingDaysViewIntent.LoadNonWorkingDaysOnlyWorkDateYear -> loadNonWorkingDaysOnlyWorkDateYear(intent.year)
             is NonWorkingDaysViewIntent.LoadHoliDaysYear -> loadHoliDaysYear(intent.year)
             is NonWorkingDaysViewIntent.LoadHoliDays -> loadHoliDays(intent.year,intent.month)
             is NonWorkingDaysViewIntent.LoadHoliOnlyDays -> loadHoliDaysOnlyDays(intent.year,intent.month)
@@ -121,8 +135,94 @@ class NonWorkingDaysViewModel @Inject constructor(
                     is UiResources.Success -> withContext(Dispatchers.Main) {
                         _viewState.update {
                             it.copy(
-                                isLoading = false, holiDaysYear = resource.data,
-    //                            filteredNonWorkingDaysList = resource.data
+                                isLoading = false, holiDaysYear = resource.data,year=year
+                            )
+                        }
+                    }
+                    is UiResources.Error -> withContext(Dispatchers.Main) {
+                        _viewState.update { it.copy(isLoading = false) }
+                        _effectChannel.send(
+                            SnackbarEffect.ShowSnackbar(
+                                "Ошибка загрузки данных из БД:  ${resource.message}"
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
+    //----------------------------------------------------------------------
+    // Load  from the Room database using Flow and UIResources
+    private fun loadHoliDaysOnlyDateYear(year: Int) {
+
+        viewModelScope.launch(Dispatchers.IO) { // Perform loading on the IO thread
+            getHoliDaysOnlyDateYearUseCase(year).collectLatest { resource ->
+                when (resource) {
+                    is UiResources.Loading -> withContext(Dispatchers.Main) {
+                        _viewState.update { it.copy(isLoading = true) }
+                    }
+                    is UiResources.Success -> withContext(Dispatchers.Main) {
+                        _viewState.update {
+                            it.copy(
+                                isLoading = false, holiDaysOnlyDateYear = resource.data,year=year
+                            )
+                        }
+                    }
+                    is UiResources.Error -> withContext(Dispatchers.Main) {
+                        _viewState.update { it.copy(isLoading = false) }
+                        _effectChannel.send(
+                            SnackbarEffect.ShowSnackbar(
+                                "Ошибка загрузки данных из БД:  ${resource.message}"
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
+    //----------------------------------------------------------------------
+    // Load  from the Room database using Flow and UIResources
+    private fun loadNonWorkingDaysOnlyDateYear(year: Int) {
+
+        viewModelScope.launch(Dispatchers.IO) { // Perform loading on the IO thread
+            getNonWorkingDaysOnlyDateYearUseCase(year).collectLatest { resource ->
+                when (resource) {
+                    is UiResources.Loading -> withContext(Dispatchers.Main) {
+                        _viewState.update { it.copy(isLoading = true) }
+                    }
+                    is UiResources.Success -> withContext(Dispatchers.Main) {
+                        _viewState.update {
+                            it.copy(
+                                isLoading = false, nonWorkingDaysOnlyDateYear = resource.data,year=year
+                            )
+                        }
+                    }
+                    is UiResources.Error -> withContext(Dispatchers.Main) {
+                        _viewState.update { it.copy(isLoading = false) }
+                        _effectChannel.send(
+                            SnackbarEffect.ShowSnackbar(
+                                "Ошибка загрузки данных из БД:  ${resource.message}"
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
+    //----------------------------------------------------------------------
+    // Load  from the Room database using Flow and UIResources
+    private fun loadNonWorkingDaysOnlyWorkDateYear(year: Int) {
+
+        viewModelScope.launch(Dispatchers.IO) { // Perform loading on the IO thread
+            getNonWorkingDaysOnlyWorkDateYearUseCase(year).collectLatest { resource ->
+                when (resource) {
+                    is UiResources.Loading -> withContext(Dispatchers.Main) {
+                        _viewState.update { it.copy(isLoading = true) }
+                    }
+                    is UiResources.Success -> withContext(Dispatchers.Main) {
+                        _viewState.update {
+                            it.copy(
+                                isLoading = false, nonWorkingDaysOnlyWorkDateYear = resource.data,year=year
                             )
                         }
                     }
@@ -150,7 +250,7 @@ class NonWorkingDaysViewModel @Inject constructor(
                     is UiResources.Success -> withContext(Dispatchers.Main) {
                         _viewState.update {
                             it.copy(
-                                isLoading = false, nonWorkingDaysYear = resource.data,
+                                isLoading = false, nonWorkingDaysYear = resource.data,year=year
     //                            filteredNonWorkingDaysList = resource.data
                             )
                         }
@@ -182,7 +282,7 @@ class NonWorkingDaysViewModel @Inject constructor(
                         _viewState.update {
 
                             it.copy(
-                                isLoading = false, holiDays = resource.data,
+                                isLoading = false, holiDays = resource.data,month=month
 //                                filteredNonWorkingDaysList = resource.data
                             )
                         }
@@ -215,7 +315,7 @@ class NonWorkingDaysViewModel @Inject constructor(
                         _viewState.update {
 
                             it.copy(
-                                isLoading = false, holiDaysOnlyDays = resource.data,
+                                isLoading = false, holiDaysOnlyDays = resource.data,month=month
                             )
                         }
                     }
@@ -245,7 +345,7 @@ class NonWorkingDaysViewModel @Inject constructor(
                         _viewState.update {
 
                             it.copy(
-                                isLoading = false, nonWorkingDays = resource.data,
+                                isLoading = false, nonWorkingDays = resource.data,month=month
                             )
                         }
                     }
@@ -276,7 +376,7 @@ class NonWorkingDaysViewModel @Inject constructor(
                         _viewState.update {
 
                             it.copy(
-                                isLoading = false, nonWorkingDaysOnlyDays = resource.data,
+                                isLoading = false, nonWorkingDaysOnlyDays = resource.data,month=month
                             )
                         }
                     }
@@ -307,7 +407,7 @@ class NonWorkingDaysViewModel @Inject constructor(
                         _viewState.update {
 
                             it.copy(
-                                isLoading = false, nonWorkingDaysOnlyWorkDays = resource.data,
+                                isLoading = false, nonWorkingDaysOnlyWorkDays = resource.data,month=month
                             )
                         }
                     }
@@ -369,6 +469,15 @@ class NonWorkingDaysViewModel @Inject constructor(
     private fun searchNonWorkingDay(query: String) {}
 
     private fun updateNonWorkingDay(longName: String) {}
+//==========================================================
+
+    //                            it.nonWorkingDaysDateYear.plus(it.holiDaysYear.forEach { LocalDate(year,month,day) })
+    private fun loadNonWorkingDaysDateYear(nonWorkingDaysViewState: NonWorkingDaysViewState)
+    {
+    //    nonWorkingDaysViewState.nonWorkingDaysDateYear = nonWorkingDaysViewState.nonWorkingDaysYear.forEach {
+    //        LocalDate(it.year,it.month,it.day)
+//        }
+    }
 }
 
 
