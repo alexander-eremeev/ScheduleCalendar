@@ -94,8 +94,6 @@ fun NonWorkingDaysYearPageScreen(
                         .padding(padding)
                 ) {
                     if (nonWorkingDaysViewState.holiDaysYear.count()>0) {
-//                        HoliDaysHeader()
-//                        HolyDaysYearListScreen(nonWorkingDaysViewModel)
 // ----------------------------------------------------------------------------------
                         val listState = rememberLazyListState()
                         LazyColumn(
@@ -121,8 +119,6 @@ fun NonWorkingDaysYearPageScreen(
 // ----------------------------------------------------------------------------------
                     }
                     if (nonWorkingDaysViewState.nonWorkingDaysYear.count()>0) {
-//                        NonWorkingDaysHeader()
-//                        NonWorkingDaysYearListScreen(nonWorkingDaysViewModel)
 // ----------------------------------------------------------------------------------
                         val listState = rememberLazyListState()
                         LazyColumn(
@@ -144,7 +140,6 @@ fun NonWorkingDaysYearPageScreen(
                         }
 // ----------------------------------------------------------------------------------
                     }
-
                 }
             },
         )

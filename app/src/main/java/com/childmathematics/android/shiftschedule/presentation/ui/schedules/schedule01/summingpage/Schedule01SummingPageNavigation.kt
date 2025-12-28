@@ -14,14 +14,15 @@ internal fun NavGraphBuilder.schedule01SummingPageScreen(
     modifier: Modifier = Modifier,
 //                state: CalendarState<DynamicSelectionState>
     scheduleViewModel: ScheduleViewModel,
-
+    nonWorkingDaysViewModel: NonWorkingDaysViewModel
     ) {
     composable(route = SCHEDULE01_SUMMINGPAGE_ROUTE) {
 
         Schedule01SummingPageScreen(
             modifier,
             onBackClick = { navController.popBackStack()},
-            scheduleViewModel
+            scheduleViewModel,
+            nonWorkingDaysViewModel
         )
     }
 }

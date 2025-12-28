@@ -62,11 +62,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import java.time.LocalDate
 
-/**
- * In this sample, calendar composable is wired with an ViewModel. It's purpose is to show how to use
- * the composable in real world use-case, by an example implementation of a calendar
- * which can display planned recipes along with their prices
- */
 @ExperimentalCoroutinesApi
 @Composable
 fun Schedule01Page(
@@ -116,9 +111,6 @@ fun Schedule01Page(
         }
     }
     //-------------------------------------------------------------------------------
-    var sumWorkDaysInMonth: Int=0
-    var sumWorkHoursInMonth: Int=0
-
     var changeDp: Dp
     //------------------------
     var changeHightDp: Int
@@ -140,36 +132,31 @@ fun Schedule01Page(
         FlowColumn(
             Modifier
                 .padding(0.dp, changeDp + 0.dp, 0.dp, 0.dp)        // добавлен для баннера
-//                .weight(.70f)
-        //                .padding(0.dp, changeDp + 50.dp, 0.dp, 0.dp)        // добавлен для баннера
                 .verticalScroll(rememberScrollState())
 
         ) {
 
             SelectableCalendar(
-//                modifier = Modifier .weight(.70f),
                 calendarState = state,
                 dayContent = { dayState ->
                     Sch01RecipeDay(
                         state = dayState,
                         nonWorkingDaysViewState,
-                        //plannedRecipe = recipes.firstOrNull { it.date == dayState.date },
                     )
                 }
             )
             Spacer(modifier = Modifier.height(5.dp))
             Text(
-                ""+ String.format("%4d", (getShift01WorkDayMonth(
+                ""+ String.format("%4d", (getWorkingDays01Month (
                         state.monthState.currentMonth.year,
-                        state.monthState.currentMonth.monthValue)))
+                        state.monthState.currentMonth.monthValue,nonWorkingDaysViewState )))
                         + " "+ stringResource(R.string.schedule01_MonthWorkDays)
-                        + String.format("%4d", (getShift01Month(state.monthState.currentMonth.year,
-                            state.monthState.currentMonth.monthValue )).toInt() )
+                        + String.format("%4d", (getWorkingHours01Month(state.monthState.currentMonth.year,
+                    state.monthState.currentMonth.monthValue,nonWorkingDaysViewState )) )
                         + " "+ stringResource(R.string.schedule01_MonthWorkHours),
                 fontSize = 15.sp.nonScaledSp,
                 fontWeight = FontWeight.Bold
             )
-            //========================================================================
         }
         if (state.selectionState.selection.isNotEmpty()) {
             scheduleViewModel.updateSelection(state.selectionState.selection )
@@ -183,16 +170,12 @@ fun Schedule01Page(
                 }
             }
         }
-//------------------------------------------------
-            if (nonWorkingDaysViewState.holiDays.count() > 0) {
-//                HoliDaysHeader()
-                HoliDaysListScreen(nonWorkingDaysViewState)
-            }
-            if (nonWorkingDaysViewState.nonWorkingDays.count() > 0) {
-//                NonWorkingDaysHeader()
-                NonWorkingDaysListScreen(nonWorkingDaysViewState)
-            }
-//------------------------------------------------
+        if (nonWorkingDaysViewState.holiDays.count() > 0) {
+            HoliDaysListScreen(nonWorkingDaysViewState)
+        }
+        if (nonWorkingDaysViewState.nonWorkingDays.count() > 0) {
+            NonWorkingDaysListScreen(nonWorkingDaysViewState)
+        }
 }
 /**
  * Custom implementation of DayContent, which shows a dot
@@ -204,8 +187,6 @@ fun Schedule01Page(
 fun Sch01RecipeDay(
     state: DayState<DynamicSelectionState>,
     nonWorkingDaysViewState : NonWorkingDaysViewState,
-//    sumWorkDaysInMonth: Int,
-//    sumWorkHoursInMonth: Int,
     modifier: Modifier = Modifier,
 ) {
   val date = state.date
@@ -215,34 +196,6 @@ fun Sch01RecipeDay(
   val isSelected = selectionState.isDateSelected(date)
 
   colorsCard = CardDefaults.cardColors()
-    //-----------------------------------------------------------------------------
-    /*
-             when ( getDayNonWorking (state,nonWorkingDaysViewState )) {
-         //   1 -> Text(text = "",) // праздник СЕГОДНЯ?
-         //   2 -> Text(text = "",) // нерабочий СЕГОДНЯ?
-            3,8,9-> {       //рабочая СБ //рабочая СБ , //рабочая день
-                        when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains( date.plusDays(1).toString())) {
-                            true -> {
-                                sumWorkDaysInMonth =1
-                                sumWorkHoursInMonth +=7
-                            }
-                            else -> {
-                                sumWorkDaysInMonth +=1
-                                sumWorkHoursInMonth +=8
-                            }
-                        }
-                }
-         //   4 -> Text(text = "",)  // // СБ или ВС выходной СЕГОДНЯ
-         //   5 -> Text(text = "",)    // праздник не сегодня?
-         //   6 -> Text(text = "",)   // нерабочий  не сегодня?
-         //   7 -> Text(text = "",) //сб вс и нерабочий не сегодня
-         //   10 -> Text(text = "",) //другой месяц
-
-            else -> null
-        }
-
-     */
-     //-----------------------------------------------------------------------
 
 if (state.isCurrentDay)
       colorsCard = CardDefaults.cardColors(
@@ -257,23 +210,23 @@ if (isSelected)
 
       Card(
           onClick = {selectionState.onDateSelected(date)},
-    modifier = modifier
-        .aspectRatio(1f)
-        .padding(2.dp),
-          enabled = true,
-    border = when ( getDayNonWorking (state,nonWorkingDaysViewState )){
-        1 -> BorderStroke(3.dp, MaterialTheme.colorScheme.error) // праздник СЕГОДНЯ?
-        2 -> BorderStroke(1.dp, MaterialTheme.colorScheme.secondary) // нерабочий СЕГОДНЯ?
-        3 -> null //рабочая СБ
-        4 -> BorderStroke(3.dp, MaterialTheme.colorScheme.primary) // // СБ или ВС выходной СЕГОДНЯ
-        5 -> BorderStroke(1.dp, MaterialTheme.colorScheme.error)   // праздник не сегодня?
-        6 -> BorderStroke(1.dp, MaterialTheme.colorScheme.secondary)  // нерабочий  не сегодня?
-        7 -> BorderStroke(1.dp, MaterialTheme.colorScheme.error)//сб вс и нерабочий не сегодня
-        8 -> null // Рабочая СБ
-        9 -> null // другой месяц
-        else -> {null}
-        },
-      colors = colorsCard
+          modifier = modifier
+                .aspectRatio(1f)
+                .padding(2.dp),
+                  enabled = true,
+          border = when ( getDayNonWorking (state,nonWorkingDaysViewState )){
+                1 -> BorderStroke(3.dp, MaterialTheme.colorScheme.error) // праздник СЕГОДНЯ?
+                2 -> BorderStroke(1.dp, MaterialTheme.colorScheme.secondary) // нерабочий СЕГОДНЯ?
+                3 -> null //рабочая СБ
+                4 -> BorderStroke(3.dp, MaterialTheme.colorScheme.primary) // // СБ или ВС выходной СЕГОДНЯ
+                5 -> BorderStroke(1.dp, MaterialTheme.colorScheme.error)   // праздник не сегодня?
+                6 -> BorderStroke(1.dp, MaterialTheme.colorScheme.secondary)  // нерабочий  не сегодня?
+                7 -> BorderStroke(1.dp, MaterialTheme.colorScheme.error)//сб вс и нерабочий не сегодня
+                8 -> null // Рабочая СБ
+                9 -> null // другой месяц
+                else -> {null}
+                },
+          colors = colorsCard
    ) {
     Column(
         modifier = Modifier
@@ -290,27 +243,22 @@ if (isSelected)
                */
             }
             //--------------------------------------------------
-            .clickable(true) {
-                selectionState.onDateSelected(date)
-            },
+            .clickable(true) {selectionState.onDateSelected(date)},
         horizontalAlignment = CenterHorizontally,
     ) {
-            Text(
+        Text(
 //                modifier = Modifier.background(androidx.compose.ui.graphics.Color.Red, CircleShape),
-                fontSize = 20.sp.nonScaledSp,       //15.sp
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                text = date.dayOfMonth.toString(),
-          style = MaterialTheme.typography.bodyLarge,
-//------------------------------------------------------------
-                color = when(nonWorkingDaysViewState.holiDaysOnlyDateYear.contains(date.toString())
-                        || (date.dayOfWeek.value == 7)){
-//                        && state.isFromCurrentMonth )|| (date.dayOfWeek.value == 7)){
-                            true -> MaterialTheme.colorScheme.error
-                            else  -> MaterialTheme.colorScheme.primary
-                        }
-//-----------------------------------------------------------
-            )
+            fontSize = 20.sp.nonScaledSp,       //15.sp
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            text = date.dayOfMonth.toString(),
+            style = MaterialTheme.typography.bodyLarge,
+            color = when(nonWorkingDaysViewState.holiDaysOnlyDateYear.contains(date.toString())
+                    || (date.dayOfWeek.value == 7)){
+                        true -> MaterialTheme.colorScheme.error
+                        else  -> MaterialTheme.colorScheme.primary
+                    }
+        )
          when ( getDayNonWorking (state,nonWorkingDaysViewState )) {
          //   1 -> Text(text = "",) // праздник СЕГОДНЯ?
          //   2 -> Text(text = "",) // нерабочий СЕГОДНЯ?
@@ -347,15 +295,12 @@ if (isSelected)
 @Composable
 fun getDayNonWorking (state: DayState<DynamicSelectionState>,
                       nonWorkingDaysViewState : NonWorkingDaysViewState):Int {
-//    val dateFormatter: DateTimeFormatter? = DateTimeFormatter.ofPattern("yyyyMMdd")
-
     val date = state.date
     var nonWork: Int =0
      //-------------------------
     when  (state.isCurrentDay)  {   // праздник?
         true ->                 //LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
             when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains(date.toString())){
-//            when (nonWorkingDaysViewState.holiDaysOnlyDays.contains( date.dayOfMonth)){
                 true -> nonWork =1
                 else -> {               // нерабочий ?
                     when (nonWorkingDaysViewState.nonWorkingDaysOnlyDateYear.contains(date.toString())) {
@@ -379,22 +324,19 @@ fun getDayNonWorking (state: DayState<DynamicSelectionState>,
                 }
             }
         else -> {
-//            when (state.isFromCurrentMonth){
-//                true ->                             // праздник?
-                    when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains(date.toString())){
-                        true -> nonWork =5
-                    else -> {                       // нерабочий ?
-                        when (nonWorkingDaysViewState.nonWorkingDaysOnlyDateYear.contains(date.toString())) {
-                            true -> nonWork =6
-                            else -> {               // СБ ВС и нерабочий ?
-                                when (nonWorkingDaysViewState.nonWorkingDaysOnlyWorkDateYear.contains(date.toString())){
-                                    true -> nonWork =8     // рабочая суббота
-                                    else -> {
-                                        when (date.dayOfWeek.value == 6 || date.dayOfWeek.value == 7) {
-                                            true -> nonWork = 7    // СБ или ВС выходной
-                                            else -> {
-                                                nonWork = 9        // обычный день месяца
-                                            }
+            when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains(date.toString())){
+                    true -> nonWork =5
+                else -> {                       // нерабочий ?
+                    when (nonWorkingDaysViewState.nonWorkingDaysOnlyDateYear.contains(date.toString())) {
+                        true -> nonWork =6
+                        else -> {               // СБ ВС и нерабочий ?
+                            when (nonWorkingDaysViewState.nonWorkingDaysOnlyWorkDateYear.contains(date.toString())){
+                                true -> nonWork =8     // рабочая суббота
+                                else -> {
+                                    when (date.dayOfWeek.value == 6 || date.dayOfWeek.value == 7) {
+                                        true -> nonWork = 7    // СБ или ВС выходной
+                                        else -> {
+                                            nonWork = 9        // обычный день месяца
                                         }
                                     }
                                 }
@@ -402,85 +344,60 @@ fun getDayNonWorking (state: DayState<DynamicSelectionState>,
                         }
                     }
                 }
-//                else -> {nonWork =10} // другой месяц
-//            }
+            }
         }
     }
-//---------------------------------
     return nonWork
 }
 //====================================================================
+//====================================================================
+// выбор рабочих дней и сокращенного дня
+//==============================================
+@Composable
+fun getWorkingDay (year: Int, month: Int,day: Int,
+                      nonWorkingDaysViewState : NonWorkingDaysViewState):Int {
+    var nonWork: Int =0
+    val date: LocalDate= LocalDate.of(year,month,day)
+    //-------------------------
+    when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains(date.toString())){
+        true -> nonWork =1
+        else -> {               // нерабочий ?
+            when (nonWorkingDaysViewState.nonWorkingDaysOnlyDateYear.contains(date.toString())) {
+                true -> nonWork =2
+                else -> {
+                    when (nonWorkingDaysViewState.nonWorkingDaysOnlyWorkDateYear.contains(date.toString())){
+                        true -> {
+                            nonWork = 3     // рабочая суббота
+                        }
+                        else -> {
+                            when (date.dayOfWeek.value == 6 || date.dayOfWeek.value == 7) {
+                                true -> nonWork = 4    // СБ или ВС выходной
+                                else -> {
+                                    nonWork = 5        // обычный рабочий день
 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains( date.plusDays(1).toString())&&(nonWork==3 || nonWork==5))
+    {
+        true -> {
+                nonWork = 7 // часовой рабочий день
+        }
+        else -> null
+    }
+    return nonWork
+}
+//====================================================================
 /**
  * Enables for changing current selection mode.
  */
-@Composable
-private fun SelectionControls(
-    selectionState: DynamicSelectionState,
-) {
-  if (BuildConfig.DEBUG) {
-    Log.d("Schedule01", "SelectionControls")
-  }
-  Text(
-    text = "Calendar Selection Mode",
-    style = MaterialTheme.typography.headlineSmall,
-  )
-  SelectionMode.values().forEach { selectionMode ->
-    Row(modifier = Modifier.fillMaxWidth()) {
-      RadioButton(
-        selected = selectionState.selectionMode == selectionMode,
-        onClick = { selectionState.selectionMode = selectionMode }
-      )
-      Text(text = selectionMode.name)
-      Spacer(modifier = Modifier.height(4.dp))
-    }
-  }
-}
-data class Sch01PlannedRecipe(
-  val date: LocalDate,
-  val price: Double,
-)
-/**
- * ViewModel exposing list of our recipes
- */
-/*
-class Sch01RecipeViewModel : ViewModel() {
-  private val selectionFlow = MutableStateFlow(emptyList<LocalDate>())
-/*
-  val recipesFlow = MutableStateFlow(
-    listOf(
-//      PlannedRecipe(LocalDate.now().plusDays(1), getLong(LocalDate(2022,1,31))),
-      Sch01PlannedRecipe(LocalDate.now().plusDays(1), 20.0),
-      Sch01PlannedRecipe(LocalDate.now().plusDays(3), 20.0),
-      Sch01PlannedRecipe(LocalDate.now().plusDays(5), 10.0),
-      Sch01PlannedRecipe(LocalDate.now().plusDays(-2), 25.0),
-    )
-  )
-  val selectedRecipesPriceFlow = recipesFlow.combine(selectionFlow) { recipes, selection ->
-    recipes.filter { it.date in selection }.sumOf { it.price }
-  }
-*/
-//@Composable
-fun onSelectionChanged(selection: List<LocalDate>) {
-  for (i in selection.lastIndex downTo 0 step 1) {
-    if (BuildConfig.DEBUG) {
-//      Log.d(
-//        "Schedule500", "onSelectionChanged: " + selection[i].dayOfMonth + "/"
-//                + selection[i].monthValue + "/" + selection[i].year
-//      )
-    }
-  }
-//============================
-  }
-}
-
- */
-//====================================================================
 // расчет основного рабочего времени по дате по номеру бригады
 //==============================================
-//                                    state.date.plusDays(1)
-//                                    state.date.dayOfYear
-//                                    Date(2025,12,31)
 
 fun getShift01 (dateCalc: LocalDate):Double
 {
@@ -501,35 +418,9 @@ fun getShift01 (dateCalc: LocalDate):Double
 //====================================================================
 // расчет основного времени до выбранной даты
 //==============================================
-fun getShift01Select (selection: List<LocalDate>):Double {
-  var summ: Double =getShift01(selection[selection.lastIndex] )
-  for (i in selection.lastIndex downTo 0 step 1) {
-    summ+=getShift01(selection[selection.lastIndex-i] )
-  }
-  return summ
-}
-//====================================================================
-// расчет рабочих дней до конца месяца
-//==============================================
-fun getShift01WorkDayMonth (year: Int, month: Int):Int {
-  var monthW: Int=month+1
-  var yearW: Int=year
-  if (monthW >12) {
-    monthW=1
-    yearW=yearW+1
-  }
-  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1)
-  var daysInMonth:Int =0
-  for (i in dateforCalc.minusDays(1).dayOfMonth downTo 1 step 1) {
-      if (getShift01(dateforCalc.minusDays(i.toLong())) >0.0)
-          daysInMonth  +=1
-  }
-  return daysInMonth
-}
-//====================================================================
-// расчет основного времени до выбранной даты
-//==============================================
-fun getShift01Month (year: Int, month: Int):Double {
+@Composable
+fun getWorkingDays01Month (year: Int, month: Int,
+                     nonWorkingDaysViewState : NonWorkingDaysViewState):Int {
     var monthW: Int=month+1
     var yearW: Int=year
     if (monthW >12) {
@@ -539,37 +430,55 @@ fun getShift01Month (year: Int, month: Int):Double {
 //  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
     var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1)
 
-    var summ: Double =0.0
+    var summ: Int=0
     for (i in dateforCalc.minusDays(1).dayOfMonth downTo 1 step 1) {
-        summ+=getShift01(dateforCalc.minusDays(i.toLong()) )
+        when ( getWorkingDay (year,month,dateforCalc.minusDays(i.toLong()).dayOfMonth,nonWorkingDaysViewState )) {
+            3,5,7-> {       //рабочая СБ //рабочая СБ , //рабочая день
+                when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains(
+                    dateforCalc.minusDays(i.toLong()).plusDays(1).toString())) {
+                    true -> {
+                        summ +=1
+                    }
+                    else -> {
+                        summ +=1
+                    }
+                }
+            }
+            else -> null
+        }
     }
     return summ
 }
 //====================================================================
-// расчет основного времени до выбранной даты по номеру бригады с начала месяца
+// расчет основного времени до выбранной даты
 //==============================================
-fun getShift01MonthDateDays (datecalc: LocalDate):Int {
-//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
-    var dateforCalc: LocalDate= datecalc
-
-    var summDays: Int
-    if (getShift01(dateforCalc)>0.0) summDays  =1 else summDays  =0
-    for (i in dateforCalc.dayOfMonth-1 downTo 1 step 1) {
-        if (getShift01(dateforCalc.minusDays(i.toLong())) >0.0)
-            summDays  +=1
+@Composable
+fun getWorkingHours01Month (year: Int, month: Int,
+                           nonWorkingDaysViewState : NonWorkingDaysViewState):Int {
+    var monthW: Int=month+1
+    var yearW: Int=year
+    if (monthW >12) {
+        monthW=1
+        yearW=yearW+1
     }
-    return summDays
-}
-//====================================================================
-// расчет основного времени до выбранной даты по номеру бригады с начала месяца
-//==============================================
-fun getShift01MonthDate (datecalc: LocalDate):Double {
-//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
-    var dateforCalc: LocalDate= datecalc
+    var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1)
 
-    var summ: Double =getShift01(dateforCalc)
-    for (i in dateforCalc.dayOfMonth-1 downTo 1 step 1) {
-            summ += getShift01(dateforCalc.minusDays(i.toLong()))
+    var summ: Int=0
+    for (i in dateforCalc.minusDays(1).dayOfMonth downTo 1 step 1) {
+        when ( getWorkingDay (year,month,dateforCalc.minusDays(i.toLong()).dayOfMonth,nonWorkingDaysViewState )) {
+            3,5,7-> {       //рабочая СБ //рабочая СБ , //рабочая день
+                when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains(
+                    dateforCalc.minusDays(i.toLong()).plusDays(1).toString())) {
+                    true -> {
+                        summ +=7
+                    }
+                    else -> {
+                        summ +=8
+                    }
+                }
+            }
+            else -> null
+        }
     }
     return summ
 }

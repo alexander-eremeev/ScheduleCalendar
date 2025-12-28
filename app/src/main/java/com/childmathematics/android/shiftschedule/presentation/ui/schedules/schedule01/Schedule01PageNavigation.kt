@@ -20,17 +20,6 @@ internal fun NavGraphBuilder.schedule01PageScreen(
     nonWorkingDaysViewModel: NonWorkingDaysViewModel
   ) {
     composable(route = SCHEDULE01_PAGE_ROUTE) {
-        /*
-        val state = rememberSelectableCalendarState(
-//.        onSelectionChanged = viewModel::onSelectionChanged, //SelectionMode
-//        confirmSelectionChange = viewModel::onSelectionChanged, //SelectionMode
-
-            initialSelectionMode = SelectionMode.Period,
-        )
-
-         */
-
-
         Schedule01PageScreen(
             modifier,
             onBackClick = { navController.popBackStack()},
@@ -38,8 +27,6 @@ internal fun NavGraphBuilder.schedule01PageScreen(
             navigateToSchedule01SummingPage = { navController.navigateToSchedule01SummingPageGraph()},
             { navController.navigateToNonWorkingDaysYearPageGraph()},
             scheduleViewModel,    nonWorkingDaysViewModel
-
-
         )
     }
 }

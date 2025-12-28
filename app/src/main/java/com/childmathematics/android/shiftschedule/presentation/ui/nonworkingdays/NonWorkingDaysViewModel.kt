@@ -102,12 +102,12 @@ class NonWorkingDaysViewModel @Inject constructor(
             is NonWorkingDaysViewIntent.LoadNonWorkingDaysOnlyWorkDateYear -> loadNonWorkingDaysOnlyWorkDateYear(intent.year)
             is NonWorkingDaysViewIntent.LoadHoliDaysYear -> loadHoliDaysYear(intent.year)
             is NonWorkingDaysViewIntent.LoadHoliDays -> loadHoliDays(intent.year,intent.month)
-            is NonWorkingDaysViewIntent.LoadHoliOnlyDays -> loadHoliDaysOnlyDays(intent.year,intent.month)
+//            is NonWorkingDaysViewIntent.LoadHoliOnlyDays -> loadHoliDaysOnlyDays(intent.year,intent.month)
             is NonWorkingDaysViewIntent.LoadNonWorkingDaysYear -> loadNonWorkingDaysYear(intent.year)
             is NonWorkingDaysViewIntent.LoadNonWorkingDays -> loadNonWorkingDays(intent.year,intent.month)
-            is NonWorkingDaysViewIntent.LoadNonWorkingOnlyDays -> loadNonWorkingDaysOnlyDays(intent.year,intent.month)
-            is NonWorkingDaysViewIntent.LoadNonWorkingOnlyWorkDays -> loadNonWorkingDaysOnlyWorkDays(intent.year,intent.month)
-            is NonWorkingDaysViewIntent.LoadNonWorkingDay -> loadNonWorkingDay(intent.nonWorkingDayId)
+//            is NonWorkingDaysViewIntent.LoadNonWorkingOnlyDays -> loadNonWorkingDaysOnlyDays(intent.year,intent.month)
+//            is NonWorkingDaysViewIntent.LoadNonWorkingOnlyWorkDays -> loadNonWorkingDaysOnlyWorkDays(intent.year,intent.month)
+//            is NonWorkingDaysViewIntent.LoadNonWorkingDay -> loadNonWorkingDay(intent.nonWorkingDayId)
             is NonWorkingDaysViewIntent.InsertNonWorkingDay -> validateAndAddNonWorkingDay(
                 intent.shortName, intent.longName, intent.nonWorkingDaysId
             )
@@ -239,6 +239,7 @@ class NonWorkingDaysViewModel @Inject constructor(
         }
     }
     //----------------------------------------------------------------------
+
     private fun loadNonWorkingDaysYear(year: Int) {
 
         viewModelScope.launch(Dispatchers.IO) { // Perform loading on the IO thread
@@ -267,6 +268,7 @@ class NonWorkingDaysViewModel @Inject constructor(
             }
         }
     }
+
     //----------------------------------------------------------------------
     // Load  from the Room database using Flow and UIResources
     private fun loadHoliDays(year : Int,month : Int) {
@@ -283,7 +285,6 @@ class NonWorkingDaysViewModel @Inject constructor(
 
                             it.copy(
                                 isLoading = false, holiDays = resource.data,month=month
-//                                filteredNonWorkingDaysList = resource.data
                             )
                         }
                     }
@@ -302,6 +303,7 @@ class NonWorkingDaysViewModel @Inject constructor(
     }
 //----------------------------------------------------------------------
     // Load  from the Room database using Flow and UIResources
+    /*
     private fun loadHoliDaysOnlyDays(year : Int,month : Int) {
 
         viewModelScope.launch(Dispatchers.IO) { // Perform loading on the IO thread
@@ -331,6 +333,8 @@ class NonWorkingDaysViewModel @Inject constructor(
             }
         }
     }
+
+     */
 //----------------------------------------------------------------------
     // Load  from the Room database using Flow and UIResources
     private fun loadNonWorkingDays(year : Int,month : Int) {
@@ -362,6 +366,7 @@ class NonWorkingDaysViewModel @Inject constructor(
         }
     }
 //----------------------------------------------------------------------
+    /*
     // Load  from the Room database using Flow and UIResources
     private fun loadNonWorkingDaysOnlyDays(year : Int,month : Int) {
         viewModelScope.launch(Dispatchers.IO) { // Perform loading on the IO thread
@@ -392,7 +397,10 @@ class NonWorkingDaysViewModel @Inject constructor(
             }
         }
     }
+
+     */
     //----------------------------------------------------------------------
+    /*
     // Load  from the Room database using Flow and UIResources
     private fun loadNonWorkingDaysOnlyWorkDays(year : Int,month : Int) {
         viewModelScope.launch(Dispatchers.IO) { // Perform loading on the IO thread
@@ -423,7 +431,10 @@ class NonWorkingDaysViewModel @Inject constructor(
             }
         }
     }
+
+     */
 //----------------------------------------------------------------------
+    /*
     // Load  from the Room database using Flow and UIResources
     private fun loadNonWorkingDay(countryId: Int) {
 
@@ -457,6 +468,8 @@ class NonWorkingDaysViewModel @Inject constructor(
         }
     }
 
+     */
+
     //-----------------------------------------------------------------------------------
     private fun validateAndAddNonWorkingDay(shortName: String, longName: String, countryId: Int?) {}
 
@@ -470,14 +483,6 @@ class NonWorkingDaysViewModel @Inject constructor(
 
     private fun updateNonWorkingDay(longName: String) {}
 //==========================================================
-
-    //                            it.nonWorkingDaysDateYear.plus(it.holiDaysYear.forEach { LocalDate(year,month,day) })
-    private fun loadNonWorkingDaysDateYear(nonWorkingDaysViewState: NonWorkingDaysViewState)
-    {
-    //    nonWorkingDaysViewState.nonWorkingDaysDateYear = nonWorkingDaysViewState.nonWorkingDaysYear.forEach {
-    //        LocalDate(it.year,it.month,it.day)
-//        }
-    }
 }
 
 

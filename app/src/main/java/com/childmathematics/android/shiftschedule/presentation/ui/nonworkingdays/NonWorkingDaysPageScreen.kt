@@ -150,7 +150,6 @@ private fun NonWorkingDaysPageMenu(
     { closeMenu ->
 
         DropdownMenuItem(
-//            leadingIcon = {Icon(imageVector = Icons.AutoMirrored.Filled.ViewList, contentDescription = null)}
             leadingIcon = { Icon(painter = painterResource(R.drawable.calendar_1) ,
                             contentDescription =null )}
             ,
@@ -160,17 +159,6 @@ private fun NonWorkingDaysPageMenu(
             },
             text = { Text(text = stringResource(id = R.string.nonWorkingDays_MonthSelectedDays)) }
         )
-        /*
-        DropdownMenuItem(
-            leadingIcon = {Icon(imageVector = Icons.Filled.AppRegistration, contentDescription = null)}
-            ,
-            onClick = {
-//                navigateToHelpGraphicsPage()
-                closeMenu()
-            },
-            text = { Text(text = stringResource(id = R.string.help_Graphics)) }
-        )
-         */
     }
 }
 //-----------------------------

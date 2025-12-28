@@ -32,11 +32,6 @@ fun NavGraphBuilder.schedule01PageGraph(
     nonWorkingDaysViewModel: NonWorkingDaysViewModel,
     scheduleViewModel : ScheduleViewModel
     ) {
-        // =====================================
-//        schedule01SummingPageGraph(navController)
-    schedule01SummingPageGraph(navController,scheduleViewModel = scheduleViewModel)
+    schedule01SummingPageGraph(navController,scheduleViewModel = scheduleViewModel,nonWorkingDaysViewModel= nonWorkingDaysViewModel)
     nonWorkingDaysYearPageGraph(navController,nonWorkingDaysViewModel = nonWorkingDaysViewModel)
-
-        // =====================================
-
 }

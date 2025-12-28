@@ -139,15 +139,8 @@ fun NonWorkingDaysPage(
 //---------------------------------------------------------------
                 Box(
                     modifier = Modifier
-/*
-                        .size(
-                            (LocalConfiguration.current.screenWidthDp).dp,
-                            changeHightDp.dp)
-
- */
                         .verticalScroll(rememberScrollState(changeHightDp))
                 ) {
-
                     Column(
                         Modifier
                             .padding(0.dp, changeDp + 0.dp, 0.dp, 0.dp)        // добавлен для баннера
@@ -157,14 +150,12 @@ fun NonWorkingDaysPage(
                             dayContent = { dayState ->
                                 Sch01RecipeDay(
                                     state = dayState,
-                                    //plannedRecipe = recipes.firstOrNull { it.date == dayState.date },
                                 )
                             }
                         )
                     }
                 }
 //------------------------------------------------
-
                 if (nonWorkingDaysViewState.nonWorkingDays.count()>0) {
                     NonWorkingDaysHeader()
                     NonWorkingDaysListScreen (nonWorkingDaysViewState)
@@ -185,7 +176,6 @@ fun NonWorkingDaysPage(
 @Composable
 fun Sch01RecipeDay(
     state: DayState<DynamicSelectionState>,
-    //plannedRecipe: Sch500PlannedRecipe?,
     modifier: Modifier = Modifier,
 ) {
     val date = state.date
@@ -269,70 +259,10 @@ fun Sch01RecipeDay(
     }
 }
 
-/**
- * Enables for changing current selection mode.
- */
-@Composable
-private fun SelectionControls(
-    selectionState: DynamicSelectionState,
-) {
-    if (BuildConfig.DEBUG) {
-        Log.d("NonWorkingDays", "SelectionControls")
-    }
-    Text(
-        text = "Calendar Selection Mode",
-        style = MaterialTheme.typography.headlineSmall,
-    )
-    SelectionMode.values().forEach { selectionMode ->
-        Row(modifier = Modifier.fillMaxWidth()) {
-            RadioButton(
-                selected = selectionState.selectionMode == selectionMode,
-                onClick = { selectionState.selectionMode = selectionMode }
-            )
-            Text(text = selectionMode.name)
-            Spacer(modifier = Modifier.height(4.dp))
-        }
-    }
-}
 data class Sch01PlannedRecipe(
     val date: LocalDate,
     val price: Double,
 )
-/**
- * ViewModel exposing list of our recipes
- */
-/*
-class Sch01RecipeViewModel : ViewModel() {
-  private val selectionFlow = MutableStateFlow(emptyList<LocalDate>())
-/*
-  val recipesFlow = MutableStateFlow(
-    listOf(
-//      PlannedRecipe(LocalDate.now().plusDays(1), getLong(LocalDate(2022,1,31))),
-      Sch01PlannedRecipe(LocalDate.now().plusDays(1), 20.0),
-      Sch01PlannedRecipe(LocalDate.now().plusDays(3), 20.0),
-      Sch01PlannedRecipe(LocalDate.now().plusDays(5), 10.0),
-      Sch01PlannedRecipe(LocalDate.now().plusDays(-2), 25.0),
-    )
-  )
-  val selectedRecipesPriceFlow = recipesFlow.combine(selectionFlow) { recipes, selection ->
-    recipes.filter { it.date in selection }.sumOf { it.price }
-  }
-*/
-//@Composable
-fun onSelectionChanged(selection: List<LocalDate>) {
-  for (i in selection.lastIndex downTo 0 step 1) {
-    if (BuildConfig.DEBUG) {
-//      Log.d(
-//        "Schedule500", "onSelectionChanged: " + selection[i].dayOfMonth + "/"
-//                + selection[i].monthValue + "/" + selection[i].year
-//      )
-    }
-  }
-//============================
-  }
-}
-
- */
 //====================================================================
 // расчет основного рабочего времени по дате по номеру бригады
 //==============================================
@@ -351,79 +281,4 @@ fun getShift01 (dateforCalc: LocalDate):Double
         7 -> return 0.0
         else -> return 099.0
     }
-}
-//====================================================================
-// расчет основного времени до выбранной даты
-//==============================================
-fun getShift01Select (selection: List<LocalDate>):Double {
-    var summ: Double =getShift01(selection[selection.lastIndex] )
-    for (i in selection.lastIndex downTo 0 step 1) {
-        summ+=getShift01(selection[selection.lastIndex-i] )
-    }
-    return summ
-}
-//====================================================================
-// расчет рабочих дней до конца месяца
-//==============================================
-fun getShift01WorkDayMonth (year: Int, month: Int):Int {
-    var monthW: Int=month+1
-    var yearW: Int=year
-    if (monthW >12) {
-        monthW=1
-        yearW=yearW+1
-    }
-    var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1)
-    var daysInMonth:Int =0
-    for (i in dateforCalc.minusDays(1).dayOfMonth downTo 1 step 1) {
-        if (getShift01(dateforCalc.minusDays(i.toLong())) >0.0)
-            daysInMonth  +=1
-    }
-    return daysInMonth
-}
-//====================================================================
-// расчет основного времени до выбранной даты
-//==============================================
-fun getShift01Month (year: Int, month: Int):Double {
-    var monthW: Int=month+1
-    var yearW: Int=year
-    if (monthW >12) {
-        monthW=1
-        yearW=yearW+1
-    }
-//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
-    var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1)
-
-    var summ: Double =0.0
-    for (i in dateforCalc.minusDays(1).dayOfMonth downTo 1 step 1) {
-        summ+=getShift01(dateforCalc.minusDays(i.toLong()) )
-    }
-    return summ
-}
-//====================================================================
-// расчет основного времени до выбранной даты по номеру бригады с начала месяца
-//==============================================
-fun getShift01MonthDateDays (datecalc: LocalDate):Int {
-//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
-    var dateforCalc: LocalDate= datecalc
-
-    var summDays: Int
-    if (getShift01(dateforCalc)>0.0) summDays  =1 else summDays  =0
-    for (i in dateforCalc.dayOfMonth-1 downTo 1 step 1) {
-        if (getShift01(dateforCalc.minusDays(i.toLong())) >0.0)
-            summDays  +=1
-    }
-    return summDays
-}
-//====================================================================
-// расчет основного времени до выбранной даты по номеру бригады с начала месяца
-//==============================================
-fun getShift01MonthDate (datecalc: LocalDate):Double {
-//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
-    var dateforCalc: LocalDate= datecalc
-
-    var summ: Double =getShift01(dateforCalc)
-    for (i in dateforCalc.dayOfMonth-1 downTo 1 step 1) {
-        summ += getShift01(dateforCalc.minusDays(i.toLong()))
-    }
-    return summ
 }

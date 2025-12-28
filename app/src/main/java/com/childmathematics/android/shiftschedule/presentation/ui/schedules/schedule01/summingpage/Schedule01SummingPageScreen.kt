@@ -42,9 +42,9 @@ import com.childmathematics.android.shiftschedule.R
 import com.childmathematics.android.shiftschedule.presentation.theme.ScheduleCalendarTheme
 import com.childmathematics.android.shiftschedule.presentation.ui.ScheduleViewModel
 import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.NonWorkingDaysViewModel
+import com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.uimodels.NonWorkingDaysViewState
 import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.getShift01
-import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.getShift01MonthDate
-import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.getShift01MonthDateDays
+import com.childmathematics.android.shiftschedule.presentation.ui.schedules.schedule01.getWorkingDay
 import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,8 +52,11 @@ import java.time.LocalDate
 fun Schedule01SummingPageScreen(
         modifier: Modifier = Modifier,
         onBackClick: () -> Unit,
-        scheduleViewModel: ScheduleViewModel = viewModel()
+        scheduleViewModel: ScheduleViewModel = viewModel(),
+        nonWorkingDaysViewModel: NonWorkingDaysViewModel
+
 ) {
+    val nonWorkingDaysViewState by nonWorkingDaysViewModel.viewState.collectAsStateWithLifecycle()
 
     ScheduleCalendarTheme {
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -71,54 +74,18 @@ fun Schedule01SummingPageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
-                    if (BuildConfig.DEBUG) {
-/*                        
-                        Log.d(
-                            "Schedule01",
-                            "+++Schedule01SummingPageScreen: selection.lastIndex =" +
-//                                    state.selectionState.selection.lastIndex
-                                    scheduleUiState.lastIndex
-                        )
-                        
- */
+                        DialogSchedule01(scheduleUiState,nonWorkingDaysViewState)
                     }
-                    if (scheduleUiState.isNotEmpty()) {
-                        if (BuildConfig.DEBUG) {
-                            //-------------------------
-/*                            
-                            Log.d(
-                                "Schedule01", "+++Schedule01SummingPageScreen: scheduleUiState.lastIndex =" +
-                                        scheduleUiState.lastIndex
-                            )
-                            for (i in  scheduleUiState.lastIndex downTo 0 step 1) {
-                                /*
-                                Log.d(
-                                    "Schedule01", "+++Schedule01SummingPageScreen: selected " +
-                                            scheduleUiState[i].dayOfMonth + "/"
-                                            +  scheduleUiState[i].monthValue + "/" +
-                                            scheduleUiState[i].year
-                                )
-                                 */
-                            }
-                            
- */
-                        }
-                        DialogSchedule01(scheduleUiState)
-                    }
-
                      if (scheduleUiState.isEmpty()) {
                          Toast.makeText(
-
                              LocalContext.current,
                              stringResource(R.string.schedule01_NoSelectedDays),
                              Toast.LENGTH_LONG
                          ).show()
                      }
                 }
-            },
         )
     }
-
 }
 //=================================
 @Composable
@@ -142,7 +109,7 @@ private fun Schedule01SummingPageTopAppBar(
 }
 //====================================================================
 @Composable
-fun DialogSchedule01(selection: List<LocalDate>) {
+fun DialogSchedule01(selection: List<LocalDate>,nonWorkingDaysViewState : NonWorkingDaysViewState) {
 
     Surface(tonalElevation = 8.dp, shape = RoundedCornerShape(12.dp)) {
         Column(
@@ -150,30 +117,18 @@ fun DialogSchedule01(selection: List<LocalDate>) {
                 //====================================================
                 // фиксация нажатия экрана для сдвига паказа рекламы
                 .pointerInput(Unit) {
-                    /*
-                    detectTapAndPressUnconsumed(onTap = {
-                        Log.d(YANDEX_MOBILE_ADS_TAG, "DialogSchedule01 Interstitial:select date TAP")
-                        yaAdsInterstutialTimerOff()  //реклама через 180 cек  durationNoPushTastaturAds
-                    })
-
-                     */
-                }
+                 }
                 //--------------------------------------------------
-
                 .verticalScroll(rememberScrollState())
                 .fillMaxWidth()
-//          .width(400.dp)
-
                 .wrapContentHeight()
                 .background(Color.White)
                 .padding(8.dp)
         ) {
-
             Text(
                 text = "Расчет рабочих часов\nдля выделенных дат:",
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
-//          modifier = Modifier.padding(8.dp)
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally),
             )
@@ -187,17 +142,13 @@ fun DialogSchedule01(selection: List<LocalDate>) {
                     ,
                     modifier = Modifier.align(Alignment.CenterHorizontally) ,
                     fontSize = 20.sp,    )
-
 //----------------------------------------------------------------------------------------------
                 Text(
                     text = "\tОтработано:\n\t"
-                            +String.format("%4d",(getShift01Date1Date2Days(selection[0],
-                        selection[selection.lastIndex])))
-                            +"\tраб.дн.\t"
-//                      + String.format("%4d",(getShift01MonthDate (selection[0],selection[selection.lastIndex]))
-                            +String.format("%7d", getShift01Date1Date2 (selection[0],
-                        selection[selection.lastIndex]).toInt())
-                            +" час."
+                            +String.format("%4d \tраб.дн. \t",(getDays01Date1Date2(selection[0],
+                        selection[selection.lastIndex],nonWorkingDaysViewState)))
+                            +String.format("%5d час.", getHours01Date1Date2 (selection[0],
+                        selection[selection.lastIndex],nonWorkingDaysViewState))
                     ,
                     fontSize = 14.sp,
                     modifier = Modifier
@@ -206,20 +157,19 @@ fun DialogSchedule01(selection: List<LocalDate>) {
 //---------------------------------------------------------------------------------------------
                 Text(
                     text = "\nС начала месяца:\n\t"
-                            +String.format("%4d",(getShift01MonthDateDays(selection[0])))
-                            +"\tраб.дн.\t"
-                            + String.format("%4d",(getShift01MonthDate (selection[0]).toInt()))
-                            +" час."
-                    ,
-
+                            +String.format("%4d \tраб.дн. \t",(getDays01Date1Date2(selection[0].minusDays(
+                        (selection[0].dayOfMonth-1).toLong()
+                            ),selection[selection.lastIndex],nonWorkingDaysViewState)))
+                            +String.format("%5d час.", getHours01Date1Date2 (selection[0].minusDays(
+                        (selection[0].dayOfMonth-1).toLong()),
+                                selection[selection.lastIndex],nonWorkingDaysViewState))
+                        ,
                     fontWeight = FontWeight.Bold,
                     fontSize = 15.sp,
-//          modifier = Modifier.padding(8.dp)
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally),
                 )
                 Spacer(modifier = Modifier.height(20.dp))
-
                 //=====================================================
             } else
                 if (selection.size >1 &&
@@ -236,18 +186,14 @@ fun DialogSchedule01(selection: List<LocalDate>) {
                                 +"\n"
                         ,
                         modifier = Modifier.align(Alignment.CenterHorizontally) ,
-//          textAlign= Center,
                         fontSize = 20.sp,    )
                     //-------------------------getShift01Date1Date2 (date1: LocalDate,date2: LocalDate------------------
                     Text(
                         text = "\tОтработано:\n\t"
-                                +String.format("%4d",(getShift01Date1Date2Days(selection[0],
-                            selection[selection.lastIndex])))
-                                +"\tраб.дн.\t"
-//                      + String.format("%4d",(getShift01MonthDate (selection[0],selection[selection.lastIndex]))
-                                +String.format("%5d", getShift01Date1Date2 (selection[0],
-                            selection[selection.lastIndex]).toInt())
-                                +" час."
+                                +String.format("%4d \tраб.дн. \t",(getDays01Date1Date2(selection[0],
+                            selection[selection.lastIndex],nonWorkingDaysViewState)))
+                                +String.format("%5d час.", getHours01Date1Date2 (selection[0],
+                            selection[selection.lastIndex],nonWorkingDaysViewState))
                         ,
                         fontSize = 14.sp,    )
                 } else {
@@ -261,39 +207,74 @@ fun DialogSchedule01(selection: List<LocalDate>) {
 
                 }
             Spacer(modifier = Modifier.height(4.dp))
-            //     DialogButtonOK(onDismiss)
         }
     }
-//  }
 }
 //====================================================================
-// расчет основного времени между выбранной даты по номеру бригады с начала месяца
-//==============================================
-fun getShift01Date1Date2 (date1: LocalDate, date2: LocalDate):Double {
-//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
+@Composable
+fun getHours01Date1Date2 (date1: LocalDate, date2: LocalDate,
+                           nonWorkingDaysViewState : NonWorkingDaysViewState):Int {
     var dateforCalc: LocalDate= date2
 
-    var summ: Double = getShift01(dateforCalc)
+    var summ: Int = 0
+    //getWorkingDay (dateforCalc.year,dateforCalc.month.value,dateforCalc.dayOfMonth,nonWorkingDaysViewState )
+    when (getWorkingDay (dateforCalc.year,dateforCalc.month.value,dateforCalc.dayOfMonth,nonWorkingDaysViewState )) {
+        3,5,7-> {       //рабочая СБ //рабочая СБ , //рабочая день
+            when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains( dateforCalc.plusDays(1).toString())) {
+                true -> {
+                    summ +=7
+                }
+                else -> {
+                    summ +=8
+                }
+            }
+        }
+        else -> null
+    }
+
     for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
-//        summ += getShift01(dateforCalc.minusDays(i.toLong()))
-        summ += getShift01(dateforCalc.minusDays(i))
+        when ( getWorkingDay (dateforCalc.minusDays(i).year,
+            dateforCalc.minusDays(i).monthValue,
+            dateforCalc.minusDays(i).dayOfMonth,nonWorkingDaysViewState )){
+            3,5,7-> {       //рабочая СБ //рабочая СБ , //рабочая день
+                when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains(
+                    dateforCalc.minusDays(i).plusDays(1).toString())) {
+                    true -> {
+                        summ +=7
+                    }
+                    else -> {
+                        summ +=8
+                    }
+                }
+            }
+            else -> null
+        }
     }
     return summ
 }
-//====================================================================
-// расчет основного времени между выбранной даты по номеру бригады с начала месяца
 //==============================================
-fun getShift01Date1Date2Days (date1: LocalDate, date2: LocalDate):Int {
-//  var dateforCalc: LocalDate= LocalDate.of(yearW,monthW,1).minusDays(1)
+@Composable
+fun getDays01Date1Date2 (date1: LocalDate, date2: LocalDate,
+                           nonWorkingDaysViewState : NonWorkingDaysViewState):Int {
     var dateforCalc: LocalDate= date2
 
-    var summDays: Int
-    if (getShift01(dateforCalc) >0.0) summDays  =1 else summDays  =0
-    for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
-        if (getShift01(dateforCalc.minusDays(i)) >0.0)
-            summDays  +=1
-
-
+    var sumDays: Int = 0
+    when (getWorkingDay (dateforCalc.year,dateforCalc.month.value,dateforCalc.dayOfMonth,nonWorkingDaysViewState )) {
+        3,5,7-> {       //рабочая СБ //рабочая СБ , //рабочая день
+            sumDays += 1
+        }
+        else -> null
     }
-    return summDays
+    for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
+        when ( getWorkingDay (dateforCalc.minusDays(i).year,
+            dateforCalc.minusDays(i).monthValue,
+            dateforCalc.minusDays(i).dayOfMonth,nonWorkingDaysViewState )){
+            3,5,7-> {       //рабочая СБ //рабочая СБ , //рабочая день
+
+                sumDays += 1
+            }
+            else -> null
+         }
+    }
+    return sumDays
 }

@@ -93,15 +93,7 @@ fun Schedule01PageScreen(
                     modifier = Modifier
                         .padding(padding)
                 ) {
-
-    //            schedule01PageUiState.state = rememberSelectableCalendarState(
-
-
-
                     Schedule01Page(scheduleViewModel,    nonWorkingDaysViewModel)
-//                    schedule01PageUiState.vmselection= state.selectionState.selection
-
-                    //Schedule01Page(true,schedule01PageUiState.state)
                   }
             },
         )
@@ -143,8 +135,6 @@ private fun Schedule01PageTopAppBar(
                 navigateToNonWorkingDaysYearPage
             )
         },
-
-
         modifier = Modifier.fillMaxWidth()
     )
 }
@@ -163,11 +153,8 @@ private fun Schedule01PageMenu(
             )
         }
     )
-
     { closeMenu ->
-
         DropdownMenuItem(
-//            leadingIcon = {Icon(imageVector = Icons.AutoMirrored.Filled.ViewList, contentDescription = null)}
             leadingIcon = { Icon(painter = painterResource(R.drawable.functions_24px) , contentDescription =null )}
             ,
             onClick = {
@@ -176,9 +163,7 @@ private fun Schedule01PageMenu(
             },
             text = { Text(text = stringResource(id = R.string.schedule01_SummingSelectedDays)) }
         )
-
         DropdownMenuItem(
-//            leadingIcon = {Icon(imageVector = Icons.AutoMirrored.Filled.ViewList, contentDescription = null)}
             leadingIcon = { Icon(painter = painterResource(R.drawable.calendar_1) ,
                             contentDescription =null )}
             ,
@@ -188,7 +173,6 @@ private fun Schedule01PageMenu(
             },
             text = { Text(text = stringResource(id = R.string.nonWorkingDays_MonthSelectedDays)) }
         )
-
     }
 }
 //-----------------------------

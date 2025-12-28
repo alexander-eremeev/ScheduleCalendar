@@ -34,8 +34,7 @@ fun NavGraphBuilder.schedule01SummingPageGraph(
     modifier: Modifier = Modifier,
 //    state: CalendarState<DynamicSelectionState>
     scheduleViewModel: ScheduleViewModel,
-//    nonWorkingDaysViewModel: NonWorkingDaysViewModel,
-
+    nonWorkingDaysViewModel: NonWorkingDaysViewModel
     ) {
     navigation(startDestination = SCHEDULE01_SUMMINGPAGE_ROUTE,
         route = SCHEDULE01_SUMMINGPAGE_GRAPH_ROUTE,
@@ -52,7 +51,8 @@ fun NavGraphBuilder.schedule01SummingPageGraph(
         schedule01SummingPageScreen(
             navController,
             modifier,
-            scheduleViewModel = scheduleViewModel
+            scheduleViewModel = scheduleViewModel,
+            nonWorkingDaysViewModel
         )
     }
 }

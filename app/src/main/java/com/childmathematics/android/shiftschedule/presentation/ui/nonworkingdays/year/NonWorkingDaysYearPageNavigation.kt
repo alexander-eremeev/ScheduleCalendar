@@ -13,17 +13,13 @@ internal const val NONWORKINGDAYS_YEARPAGE_ROUTE = "nonWorkingDaysYearPage"
 internal fun NavGraphBuilder.nonWorkingDaysYearPageScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-//    state: CalendarState<DynamicSelectionState>,
-
     nonWorkingDaysViewModel: NonWorkingDaysViewModel,
-
     ) {
     composable(route = NONWORKINGDAYS_YEARPAGE_ROUTE) {
 
         NonWorkingDaysYearPageScreen(
             modifier,
             onBackClick = { navController.popBackStack()},
-//            state,
             nonWorkingDaysViewModel
         )
     }

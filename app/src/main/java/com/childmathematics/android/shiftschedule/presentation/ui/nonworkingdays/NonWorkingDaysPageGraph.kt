@@ -31,39 +31,10 @@ fun NavGraphBuilder.nonWorkingDaysPageGraph(
     modifier: Modifier = Modifier,
     openDrawer: () -> Unit,
     onOpenDrawer: Boolean,
-//    state: CalendarState<DynamicSelectionState>,
     nonWorkingDaysViewModel: NonWorkingDaysViewModel,
 ) {
     // =====================================
-//        nonworkingDays01SummingPageGraph(navController)
-
     nonWorkingDaysYearPageGraph(navController,nonWorkingDaysViewModel = nonWorkingDaysViewModel)
-
     // =====================================
-/*
-// если нет вложенных меню то не работает
-// протестировать правильность использования !!!!
 
-    navigation(startDestination = NONWORKINGDAYS_PAGE_ROUTE,
-        route = NONWORKINGDAYS_GRAPH_ROUTE,
-        deepLinks = listOf(
-            navDeepLink { uriPattern = NONWORKINGDAYS_DEEPLINK }
-        ),
-
-        enterTransition = { screenFadeIn() },
-        exitTransition = { screenFadeOut() },
-        popEnterTransition = { screenFadeIn() },
-        popExitTransition = { screenFadeOut() },
-
-        ){
-        composable(route = NONWORKINGDAYS_PAGE_ROUTE) {
-            nonWorkingDaysPageScreen(
-                navController,
-                modifier,
-                onOpenDrawer = onOpenDrawer, openDrawer = openDrawer,
-                nonWorkingDaysViewModel = nonWorkingDaysViewModel
-            )
-        }
-    }
-    */
 }
