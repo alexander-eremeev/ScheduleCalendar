@@ -28,14 +28,14 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "8.13.2"                               #
+agp = "9.0.0"                               #
 #---???????????????????
 jetbrainsKotlin = "2.3.0"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.3.2"         #2.2.21-2.0.4
-googleDaggerHilt = "2.57.2"
+googleDevToolsKsp = "2.3.4"         #2.2.21-2.0.4
+googleDaggerHilt = "2.58"
 googleAds = "24.9.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
@@ -53,12 +53,12 @@ androidxRoom = "2.8.4"
 androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.5.1"
-androidxUiToolingPreview = "1.10.0"           #
+androidxUiToolingPreview = "1.10.1"           #
 androidx-webkit = "1.15.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2025.12.01"            #
+androidxComposeBom = "2026.01.00"            #
 #---------------
 androidxActivityCompose = "1.12.2"              #
 androidxComposeCompiler = "1.5.15"            #agp
@@ -68,7 +68,7 @@ benmanesVersions = "0.53.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
 littlerobotsVersionCatalogUpdate = "1.0.1"
 #Square’s meticulous HTTP client for Java and Kotlin.
-squareUpOkhttp = "5.3.1"
+squareUpOkhttp = "5.3.2"
 #A type-safe HTTP client for Android and Java.
 squareUpRetrofit2 = "3.0.0"
 devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее время устарел, поскольку его функционал
@@ -86,7 +86,7 @@ androidxTestExt = "1.3.0"
 androidxTestRunner = "1.7.0"
 androidxTestMonitor = "1.8.0"
 androidxTestEspressoCore = "3.7.0"
-androidxComposeUiTestManifest = "1.10.0"
+androidxComposeUiTestManifest = "1.10.1"
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
 #testandroidxuiautomator =  "2.2.0"
@@ -95,9 +95,9 @@ junitTest = "4.13.2"
 toolsCore = "1.0.0-alpha14"
 material = "1.13.0"
 junit = "4.13.2"
-uiUnit = "1.10.0"
-foundationLayout = "1.10.0"
-foundation = "1.10.0"
+uiUnit = "1.10.1"
+foundationLayout = "1.10.1"
+foundation = "1.10.1"
 coreI18n = "1.0.0"
 #===================#===================#===================#===================
 [libraries]
