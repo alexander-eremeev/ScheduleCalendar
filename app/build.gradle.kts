@@ -220,6 +220,10 @@ dependencies {
     // песочница улучшения конфиденциальности пользователей
     implementation(libs.androidx.privacysandbox.tools.core)
 
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+
+
     // /////////////
     // DATA SUPPORT
     // ////
