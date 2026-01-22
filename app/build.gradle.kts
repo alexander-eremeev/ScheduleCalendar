@@ -1,6 +1,7 @@
 
-import com.android.build.api.dsl.Ndk
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+//import com.android.build.api.dsl.Ndk
+import androidx.room.gradle.RoomExtension
+//import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.FileInputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -8,7 +9,7 @@ import java.util.Properties
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+//    id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
@@ -22,8 +23,8 @@ android {
     namespace = "com.childmathematics.android.shiftschedule"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
-    buildToolsVersion = libs.versions.buildToolsVersion.get().toString()
-    ndkVersion = libs.versions.ndkVersion.get().toString()
+    buildToolsVersion = libs.versions.buildToolsVersion.get()
+    ndkVersion = libs.versions.ndkVersion.get()
 
     defaultConfig {
         applicationId = libs.versions.applicationId.get()
@@ -125,11 +126,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
 
     }
+    /*
     kotlin {
         compilerOptions {
             compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
         }
     }
+
+     */
     buildFeatures {
         compose = true
     }
@@ -154,10 +158,31 @@ android {
         }
     }
 //-------------------------------------------------------------
+    /*
+                extensions.configure<RoomExtension> {
+                // The schemas directory contains a schema file for each version of the Room database.
+                // This is required to enable Room auto migrations.
+                // В каталоге schemas находится файл схемы для каждой версии базы данных Room.
+                // Это необходимо для включения автоматической миграции Room.
+                // See https://developer.android.com/reference/kotlin/androidx/room/AutoMigration.
+                schemaDirectory("$projectDir/schemas")
+
+     */
+/*
     room {      //buildDirectory
         schemaDirectory("$projectDir/schemas")
     }
+*/
+    }
+extensions.configure<RoomExtension> {
+    // The schemas directory contains a schema file for each version of the Room database.
+    // This is required to enable Room auto migrations.
+    // В каталоге schemas находится файл схемы для каждой версии базы данных Room.
+    // Это необходимо для включения автоматической миграции Room.
+    // See https://developer.android.com/reference/kotlin/androidx/room/AutoMigration.
+    schemaDirectory("$projectDir/schemas")
 }
+
 dependencies {
     implementation( libs.dev.chrisbanes.snapper.snapper)    //?????? Snapper в настоящее время устарел,
     // поскольку его функционал заменен на SnapFlingBehavior,

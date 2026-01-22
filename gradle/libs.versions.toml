@@ -11,9 +11,9 @@ compile-sdk = "36"  #
 # @keep
 ndkVersion = "29.0.14206865"
 # @keep
-versionCode = "210"
+versionCode = "211"
 # @keep
-versionName = "2.1.0"
+versionName = "2.1.1"
 # @keep
 applicationId = "com.childmathematics.android.shiftschedule"
 # @keep
@@ -34,8 +34,8 @@ jetbrainsKotlin = "2.3.0"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.3.4"         #2.2.21-2.0.4
-googleDaggerHilt = "2.58"
+googleDevToolsKsp = "2.3.4"         #
+googleDaggerHilt = "2.59"
 googleAds = "24.9.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
@@ -332,5 +332,5 @@ google-ksp = { id = "com.google.devtools.ksp", version.ref = "googleDevToolsKsp"
 #jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 #kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "jetbrainsKotlin" }
 #-----Migrating a Jetpack Compose project
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrainsKotlin" }
+#org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrainsKotlin" }
 jetbrains-kotlin-plugin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "jetbrainsKotlin" }
