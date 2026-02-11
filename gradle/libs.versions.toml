@@ -11,9 +11,9 @@ compile-sdk = "36"  #
 # @keep
 ndkVersion = "29.0.14206865"
 # @keep
-versionCode = "212"
+versionCode = "214"
 # @keep
-versionName = "2.1.2"
+versionName = "2.1.4"
 # @keep
 applicationId = "com.childmathematics.android.shiftschedule"
 # @keep
@@ -30,22 +30,22 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "9.0.0"                               #
 #---???????????????????
-jetbrainsKotlin = "2.3.0"                  #
+jetbrainsKotlin = "2.3.10"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
 googleDevToolsKsp = "2.3.4"         #
-googleDaggerHilt = "2.59"
+googleDaggerHilt = "2.59.1"
 googleAds = "24.9.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.1"
-androidxActivityKtx = "1.12.2"               #
+androidxActivityKtx = "1.12.3"               #
 androidxCoreKtx = "1.17.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
-androidxNavigation = "2.9.6"                #
+androidxNavigation = "2.9.7"                #
 androidxLifecycle = "2.10.0"                 #
 androidxAnnotation = "1.9.1"                #
 androidxViewpager2 = "1.1.0"                #
@@ -53,17 +53,17 @@ androidxRoom = "2.8.4"
 androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.5.1"
-androidxUiToolingPreview = "1.10.1"           #
+androidxUiToolingPreview = "1.10.2"           #
 androidx-webkit = "1.15.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2026.01.00"            #
+androidxComposeBom = "2026.01.01"            #
 #---------------
-androidxActivityCompose = "1.12.2"              #
+androidxActivityCompose = "1.12.3"              #
 androidxComposeCompiler = "1.5.15"            #agp
 #--------------------------------
-firebaseBom = "34.8.0"
+firebaseBom = "34.9.0"
 firebaseCrashlyticsPlugin = "3.0.6"
 firebasePerfPlugin = "2.0.2"
 #--------------------------
@@ -80,7 +80,7 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #================
 #===== Yandex =====
 #================
-yandexmMobileads = "7.18.1"          #
+yandexmMobileads = "7.18.2"          #
 yandexAppMetrica = "8.0.0"          #
 #================
 #===== Test =====
@@ -90,7 +90,7 @@ androidxTestExt = "1.3.0"
 androidxTestRunner = "1.7.0"
 androidxTestMonitor = "1.8.0"
 androidxTestEspressoCore = "3.7.0"
-androidxComposeUiTestManifest = "1.10.1"
+androidxComposeUiTestManifest = "1.10.2"
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
 #testandroidxuiautomator =  "2.2.0"
@@ -99,9 +99,9 @@ junitTest = "4.13.2"
 toolsCore = "1.0.0-alpha14"
 material = "1.13.0"
 junit = "4.13.2"
-uiUnit = "1.10.1"
-foundationLayout = "1.10.1"
-foundation = "1.10.1"
+uiUnit = "1.10.2"
+foundationLayout = "1.10.2"
+foundation = "1.10.2"
 coreI18n = "1.0.0"
 #===================#===================#===================#===================
 [libraries]
