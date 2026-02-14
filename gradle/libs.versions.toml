@@ -28,7 +28,7 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "9.0.0"                               #
+agp = "9.0.1"                               #
 #---???????????????????
 jetbrainsKotlin = "2.3.10"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
@@ -41,7 +41,7 @@ googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.1"
-androidxActivityKtx = "1.12.3"               #
+androidxActivityKtx = "1.12.4"               #
 androidxCoreKtx = "1.17.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
@@ -53,14 +53,14 @@ androidxRoom = "2.8.4"
 androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.5.1"
-androidxUiToolingPreview = "1.10.2"           #
+androidxUiToolingPreview = "1.10.3"           #
 androidx-webkit = "1.15.0"                   #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2026.01.01"            #
+androidxComposeBom = "2026.02.00"            #
 #---------------
-androidxActivityCompose = "1.12.3"              #
+androidxActivityCompose = "1.12.4"              #
 androidxComposeCompiler = "1.5.15"            #agp
 #--------------------------------
 firebaseBom = "34.9.0"
@@ -90,7 +90,7 @@ androidxTestExt = "1.3.0"
 androidxTestRunner = "1.7.0"
 androidxTestMonitor = "1.8.0"
 androidxTestEspressoCore = "3.7.0"
-androidxComposeUiTestManifest = "1.10.2"
+androidxComposeUiTestManifest = "1.10.3"
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
 #testandroidxuiautomator =  "2.2.0"
@@ -99,9 +99,9 @@ junitTest = "4.13.2"
 toolsCore = "1.0.0-alpha14"
 material = "1.13.0"
 junit = "4.13.2"
-uiUnit = "1.10.2"
-foundationLayout = "1.10.2"
-foundation = "1.10.2"
+uiUnit = "1.10.3"
+foundationLayout = "1.10.3"
+foundation = "1.10.3"
 coreI18n = "1.0.0"
 #===================#===================#===================#===================
 [libraries]
