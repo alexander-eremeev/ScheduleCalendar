@@ -11,9 +11,9 @@ compile-sdk = "36"  #
 # @keep
 ndkVersion = "29.0.14206865"
 # @keep
-versionCode = "214"
+versionCode = "215"
 # @keep
-versionName = "2.1.4"
+versionName = "2.1.5"
 # @keep
 applicationId = "com.childmathematics.android.shiftschedule"
 # @keep
