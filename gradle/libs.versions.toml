@@ -103,6 +103,7 @@ uiUnit = "1.10.4"
 foundationLayout = "1.10.4"
 foundation = "1.10.4"
 coreI18n = "1.0.0"
+core-splashscreen = "1.2.0"
 #===================#===================#===================#===================
 [libraries]
 #===================
@@ -240,6 +241,8 @@ squareup-retrofit-converter = { module = "com.squareup.retrofit2:converter-moshi
 squareup-retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "squareUpRetrofit2" }
 squareup-okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "squareUpOkhttp" }
 square-okhttp-mockjunit5 = { module = "com.squareup.okhttp3:mockwebserver3-junit5", version.ref = "squareUpOkhttp" }
+splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
+
 #----------------------
 junit-test = { module = "junit:junit", version.ref = "junitTest" }
 #----------------------

@@ -26,6 +26,7 @@ class MainActivity : ComponentActivity() {
         // сделать так, чтобы ваше приложение отображалось от края до края, используя всю ширину
         // и высоту экрана, рисуя за системными панелями.
         //if (Build.VERSION.SDK_INT < 35) Activity.  enableEdgeToEdge()
+        enableEdgeToEdge()
         // ==============================================
         super.onCreate(savedInstanceState)
         // ------------------------------------------------------------------
