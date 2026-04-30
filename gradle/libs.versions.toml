@@ -30,7 +30,7 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "9.2.0"                               # 9.2.0-alpha06 9.1.0
 #---???????????????????
-jetbrainsKotlin = "2.3.20"                  #2.3.20
+jetbrainsKotlin = "2.3.21"                  #2.3.20
 jetbrainsKotlinStdlib = "2.3.20"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
@@ -69,7 +69,7 @@ firebaseCrashlyticsPlugin = "3.0.6"
 firebasePerfPlugin = "2.0.2"
 #--------------------------
 #this plugin provides a task to determine which dependencies have updates.
-benmanesVersions = "0.53.0"
+benmanesVersions = "0.54.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
 littlerobotsVersionCatalogUpdate = "1.1.0"
 #Square’s meticulous HTTP client for Java and Kotlin.
@@ -81,7 +81,7 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #================
 #===== Yandex =====
 #================
-yandexmMobileads = "7.18.5"          #
+yandexmMobileads = "8.0.0"          #
 yandexAppMetrica = "8.0.1"          #
 #================
 #===== Test =====
