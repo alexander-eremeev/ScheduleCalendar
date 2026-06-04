@@ -113,7 +113,7 @@ android {
             multiDexEnabled = true
             isDebuggable = true
             isMinifyEnabled = false // включение/выключение ProGuard
-            isShrinkResources = false
+   //         isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -203,6 +203,7 @@ dependencies {
     implementation(libs.jetbrains.kotlin.coroutines.android)
 
     // Hilt
+    implementation(libs.jetbrains.kotlin.metadata)
     implementation(libs.google.dagger.hilt)
     implementation(libs.androidx.compose.ui.unit)
     implementation(libs.androidx.compose.foundation.layout)

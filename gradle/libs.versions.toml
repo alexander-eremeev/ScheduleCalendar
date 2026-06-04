@@ -30,20 +30,20 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "9.2.1"                               #
 #---???????????????????
-jetbrainsKotlin = "2.3.21"                  #
+jetbrainsKotlin = "2.3.20"                  #2.4.0  hilt?
 jetbrainsKotlinStdlib = "2.3.20"                  #
 jetbrainsKotlinxCoroutines = "1.10.2"        #
 #----------------------------------------
 googleAccompanist = "0.36.0"
 googleDevToolsKsp = "2.3.4"         #
 googleDaggerHilt = "2.59.2"
-googleAds = "25.2.0"                        #
+googleAds = "25.3.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.1"
 androidxActivityKtx = "1.13.0"               #
-androidxCoreKtx = "1.18.0"                  #
+androidxCoreKtx = "1.19.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
 androidxNavigation = "2.9.8"                #
@@ -64,7 +64,7 @@ androidxComposeBom = "2026.05.01"            #
 androidxActivityCompose = "1.13.0"              #
 androidxComposeCompiler = "1.5.15"            #agp
 #--------------------------------
-firebaseBom = "34.13.0"
+firebaseBom = "34.14.0"
 firebaseCrashlyticsPlugin = "3.0.6"
 firebasePerfPlugin = "2.0.2"
 #--------------------------
@@ -81,7 +81,7 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #================
 #===== Yandex =====
 #================
-yandexmMobileads = "8.0.0"          #
+yandexmMobileads = "8.1.0"          #
 yandexAppMetrica = "8.0.1"          #
 #================
 #===== Test =====
@@ -116,6 +116,7 @@ jetbrains-kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-cor
 jetbrains-kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "jetbrainsKotlinxCoroutines" }
 jetbrains-kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "jetbrainsKotlin" }
 jetbrains-test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "jetbrainsKotlinxCoroutines" }
+jetbrains-kotlin-metadata = { module = "org.jetbrains.kotlin:kotlin-metadata-jvm", version.ref = "jetbrainsKotlin" }
 #-------------------------
 google-accompanist-navigation = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "googleAccompanist" }
 google-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "googleAccompanist" }
