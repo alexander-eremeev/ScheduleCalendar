@@ -229,7 +229,7 @@ fun getHours01Date1Date2 (date1: LocalDate, date2: LocalDate,
                 }
             }
         }
-        else -> null
+        //else -> null
     }
 
     for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
@@ -247,7 +247,7 @@ fun getHours01Date1Date2 (date1: LocalDate, date2: LocalDate,
                     }
                 }
             }
-            else -> null
+            //else -> null
         }
     }
     return summ
@@ -263,7 +263,7 @@ fun getDays01Date1Date2 (date1: LocalDate, date2: LocalDate,
         3,5,7-> {       //рабочая СБ //рабочая СБ , //рабочая день
             sumDays += 1
         }
-        else -> null
+        //else -> null
     }
     for (i in dateforCalc.toEpochDay()-date1.toEpochDay() downTo 1 step 1) {
         when ( getWorkingDay (dateforCalc.minusDays(i).year,
@@ -273,7 +273,7 @@ fun getDays01Date1Date2 (date1: LocalDate, date2: LocalDate,
 
                 sumDays += 1
             }
-            else -> null
+            //else -> null
          }
     }
     return sumDays

@@ -77,14 +77,14 @@ fun Schedule01Page(
 //-------------------------------------------------------------------------
     val nonWorkingDaysViewState by nonWorkingDaysViewModel.viewState.collectAsStateWithLifecycle()
     when (nonWorkingDaysViewState.month == month ){
-        true -> null
+        //true -> null
         else -> {
             nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadHoliDays(year,month))
             nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDays(year,month))
         }
     }
     when (nonWorkingDaysViewState.year == year){
-        true -> null
+        //true -> null
         else -> {
             nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadHoliDaysOnlyDateYear(year))
             nonWorkingDaysViewModel.handleIntent(NonWorkingDaysViewIntent.LoadNonWorkingDaysOnlyDateYear(year))
@@ -383,7 +383,8 @@ fun getWorkingDay (year: Int, month: Int,day: Int,
             }
         }
     }
-    when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains( date.plusDays(1).toString())&&(nonWork==3 || nonWork==5))
+    when (nonWorkingDaysViewState.holiDaysOnlyDateYear.contains(
+        date.plusDays(1).toString())&&(nonWork==3 || nonWork==5))
     {
         true -> {
                 nonWork = 7 // часовой рабочий день
@@ -444,7 +445,7 @@ fun getWorkingDays01Month (year: Int, month: Int,
                     }
                 }
             }
-            else -> null
+            //else -> null
         }
     }
     return summ
@@ -477,7 +478,7 @@ fun getWorkingHours01Month (year: Int, month: Int,
                     }
                 }
             }
-            else -> null
+            //else -> null
         }
     }
     return summ

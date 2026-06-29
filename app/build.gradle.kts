@@ -152,9 +152,10 @@ android {
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
          compilerOptions {
 //            freeCompilerArgs.add("-Xcontext-receivers")
-             freeCompilerArgs.add("-Xcontext-parameters")
+//             freeCompilerArgs.add("-Xcontext-parameters") // is redundant for the current language version 2.4
              // - Чтобы выбрать применение аннотации как к параметру value, так и к полю
-             freeCompilerArgs.add("-Xannotation-default-target=param-property")
+//            freeCompilerArgs.add("-Xannotation-default-target=param-property")
+                                            // is redundant for the current language version 2.4
         }
     }
 //-------------------------------------------------------------
