@@ -389,7 +389,7 @@ fun getWorkingDay (year: Int, month: Int,day: Int,
         true -> {
                 nonWork = 7 // часовой рабочий день
         }
-        else -> null
+        else -> {}
     }
     return nonWork
 }
