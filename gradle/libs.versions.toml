@@ -9,7 +9,7 @@ compile-sdk = "37"  #
 # @keep
 #plugin = "0.8.1"
 # @keep
-ndkVersion = "30.0.14904198 rc1"    #		30.0.14904198 rc1
+ndkVersion = "30.0.15729638"    #		30.0.14904198 rc1
 # @keep
 versionCode = "222"
 # @keep
@@ -64,7 +64,7 @@ androidxComposeBom = "2026.06.01"            #
 androidxActivityCompose = "1.13.0"              #
 androidxComposeCompiler = "1.5.15"            #agp
 #--------------------------------
-firebaseBom = "34.15.0"
+firebaseBom = "34.16.0"
 firebaseCrashlyticsPlugin = "3.0.6"
 firebasePerfPlugin = "2.0.2"
 #--------------------------

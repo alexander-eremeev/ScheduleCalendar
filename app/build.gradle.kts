@@ -21,7 +21,7 @@ android {
 
 //    namespace = libs.versions.applicationId.get().toString()
     namespace = "com.childmathematics.android.shiftschedule"
-    compileSdk = libs.versions.compile.sdk.get().toInt()
+     compileSdk = libs.versions.compile.sdk.get().toInt()
 
     buildToolsVersion = libs.versions.buildToolsVersion.get()
     ndkVersion = libs.versions.ndkVersion.get()
