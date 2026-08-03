@@ -25,7 +25,7 @@ Build Cache и другие типичные узкие места произв�
 */
 plugins {
 //    id("com.gradle.develocity") version "latest.release"
-    id("com.gradle.develocity") version "4.2.2"
+//    id("com.gradle.develocity") version "4.2.2"
 }
 /*
 //A network error occurred.Publishing Build Scan failed due to network error
