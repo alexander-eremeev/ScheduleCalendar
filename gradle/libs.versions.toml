@@ -30,48 +30,48 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "9.3.1"                               #
 #---???????????????????
-jetbrainsKotlin = "2.4.10"                  #2.4.0  hilt?
-jetbrainsKotlinStdlib = "2.3.20"                  #
-jetbrainsKotlinxCoroutines = "1.11.0"        #1.10.2
+jetbrainsKotlin = "2.4.10"                  #
+jetbrainsKotlinStdlib = "2.3.20"            #
+jetbrainsKotlinxCoroutines = "1.11.0"       #
 #----------------------------------------
 googleAccompanist = "0.36.0"
-googleDevToolsKsp = "2.3.6"         #
-googleDaggerHilt = "2.60.1"             # 2.59.2
+googleDevToolsKsp = "2.3.6"                 #
+googleDaggerHilt = "2.60.1"                 #
 googleAds = "25.4.0"                        #
 googlePlayAppUpdate ="2.1.0"
 #---------------------------
 androidxAppcompatv7 = "28.0.0"
 androidxAppcompat = "1.7.1"
-androidxActivityKtx = "1.13.0"               #
+androidxActivityKtx = "1.13.0"              #
 androidxCoreKtx = "1.19.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.1.1"                   #
 androidxNavigation = "2.9.8"                #
-androidxLifecycle = "2.11.0"                 #
-androidxAnnotation = "1.10.0"                #
+androidxLifecycle = "2.11.0"                #
+androidxAnnotation = "1.10.0"               #
 androidxViewpager2 = "1.1.0"                #
 androidxRoom = "2.8.4"
 androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.5.1"
-androidxUiToolingPreview = "1.11.4"           #
-androidx-webkit = "1.16.0"                   #
+androidxUiToolingPreview = "1.11.4"         #
+androidx-webkit = "1.16.0"                  #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2026.06.01"            #
+androidxComposeBom = "2026.06.01"           #
 #---------------
-androidxActivityCompose = "1.13.0"              #
-androidxComposeCompiler = "1.5.15"            #agp
+androidxActivityCompose = "1.13.0"          #
+androidxComposeCompiler = "1.5.15"          #agp
 #--------------------------------
 firebaseBom = "34.17.0"
 firebaseCrashlyticsPlugin = "3.0.6"
 firebasePerfPlugin = "2.0.2"
 #--------------------------
 #this plugin provides a task to determine which dependencies have updates.
-benmanesVersions = "0.58.0"
+benmanesVersions = "0.61.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
-littlerobotsVersionCatalogUpdate = "1.1.0"
+littlerobotsVersionCatalogUpdate = "1.1.1"
 #Square’s meticulous HTTP client for Java and Kotlin.
 squareUpOkhttp = "5.4.0"
 #A type-safe HTTP client for Android and Java.
