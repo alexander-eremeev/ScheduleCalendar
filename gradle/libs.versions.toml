@@ -73,7 +73,7 @@ benmanesVersions = "0.61.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
 littlerobotsVersionCatalogUpdate = "1.1.1"
 #Square’s meticulous HTTP client for Java and Kotlin.
-squareUpOkhttp = "5.4.0"
+squareUpOkhttp = "5.5.0"
 #A type-safe HTTP client for Android and Java.
 squareUpRetrofit2 = "3.0.0"
 devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее время устарел, поскольку его функционал
@@ -82,7 +82,7 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #===== Yandex =====
 #================
 yandexmMobileads = "8.3.0"          #
-yandexAppMetrica = "8.5.0"          #
+yandexAppMetrica = "8.5.1"          #
 #================
 #===== Test =====
 #================
