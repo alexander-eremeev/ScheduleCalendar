@@ -9,7 +9,7 @@ compile-sdk = "37"  #
 # @keep
 #plugin = "0.8.1"
 # @keep
-ndkVersion = "30.0.15729638"    #		30.0.14904198 rc1
+ndkVersion = "30.0.16138531"    #		30.0.16138531 rc3
 # @keep
 versionCode = "224"
 # @keep
@@ -28,7 +28,7 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "9.3.1"                               #
+agp = "9.3.2"                               #
 #---???????????????????
 jetbrainsKotlin = "2.4.10"                  #
 jetbrainsKotlinStdlib = "2.3.20"            #
@@ -64,7 +64,7 @@ androidxComposeBom = "2026.08.00"           #
 androidxActivityCompose = "1.13.0"          #
 androidxComposeCompiler = "1.5.15"          #agp
 #--------------------------------
-firebaseBom = "34.17.0"
+firebaseBom = "34.18.0"
 firebaseCrashlyticsPlugin = "3.0.6"
 firebasePerfPlugin = "2.0.2"
 #--------------------------
