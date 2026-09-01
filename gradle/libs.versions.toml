@@ -28,7 +28,7 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #===== Compile =====
 #===================
 #androidGradlePlugin
-agp = "9.3.2"                               #
+agp = "9.4.0"                               #
 #---???????????????????
 jetbrainsKotlin = "2.4.10"                  #
 jetbrainsKotlinStdlib = "2.3.20"            #
@@ -81,7 +81,7 @@ devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее вре
 #================
 #===== Yandex =====
 #================
-yandexmMobileads = "8.3.0"          #
+yandexmMobileads = "8.4.0"          #
 yandexAppMetrica = "8.5.1"          #
 #================
 #===== Test =====
