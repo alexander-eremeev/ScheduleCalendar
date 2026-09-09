@@ -1,0 +1,341 @@
+[versions]
+#===================
+#===== Project =====
+#===================
+# @keep
+min-sdk = "26"
+target-sdk = "37"   #
+compile-sdk = "37"  #
+# @keep
+#plugin = "0.8.1"
+# @keep
+ndkVersion = "30.0.16138531"    #		30.0.16138531 rc3
+# @keep
+versionCode = "225"
+# @keep
+versionName = "2.2.5"
+# @keep
+applicationId = "com.childmathematics.android.shiftschedule"
+# @keep
+appNameRelease = "ScheduleCalendar"
+# @keep
+appNameDebug = "ScheduleCalendar Debug"
+# @keep
+buildToolsVersion = "37.0.0"    #
+# @keep
+keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleCalendar\\keystore.properties"
+#===================
+#===== Compile =====
+#===================
+#androidGradlePlugin
+agp = "9.4.0"                               #
+#---???????????????????
+jetbrainsKotlin = "2.4.20"                  #
+jetbrainsKotlinStdlib = "2.3.20"            #
+jetbrainsKotlinxCoroutines = "1.11.0"       #
+#----------------------------------------
+googleAccompanist = "0.36.0"
+googleDevToolsKsp = "2.3.11"                 #
+googleDaggerHilt = "2.60.1"                 #
+googleAds = "25.4.0"                        #
+googlePlayAppUpdate ="2.1.0"
+#---------------------------
+androidxAppcompatv7 = "28.0.0"
+androidxAppcompat = "1.8.0"
+androidxActivityKtx = "1.13.0"              #
+androidxCoreKtx = "1.19.0"                  #
+androidxRecyclerview = "1.4.0"
+androidx-glance = "1.2.0"                   #
+androidxNavigation = "2.10.0"                #
+androidxLifecycle = "2.11.0"                #
+androidxAnnotation = "1.10.0"               #
+androidxViewpager2 = "1.1.0"                #
+androidxRoom = "2.8.4"
+androidxProfileinstaller = "1.4.1"
+androidxStartup = "1.2.0"
+androidxWindow = "1.5.1"
+androidxUiToolingPreview = "1.12.0"         #
+androidx-webkit = "1.17.0"                  #
+#===========================
+#===== Android Compose ===       ==
+#===========================
+androidxComposeBom = "2026.08.00"           #
+#---------------
+androidxActivityCompose = "1.13.0"          #
+androidxComposeCompiler = "1.5.15"          #agp
+#--------------------------------
+firebaseBom = "34.18.0"
+firebaseCrashlyticsPlugin = "3.0.6"
+firebasePerfPlugin = "2.0.2"
+#--------------------------
+#this plugin provides a task to determine which dependencies have updates.
+benmanesVersions = "0.61.0"
+#littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
+littlerobotsVersionCatalogUpdate = "1.1.1"
+#Square’s meticulous HTTP client for Java and Kotlin.
+squareUpOkhttp = "5.5.0"
+#A type-safe HTTP client for Android and Java.
+squareUpRetrofit2 = "3.0.0"
+devSnapper = "0.3.0"        # 1.3.0         Snapper в настоящее время устарел, поскольку его функционал
+#                                   заменен на SnapFlingBehavior, доступный в Jetpack Compose 1.3.0.
+#================
+#===== Yandex =====
+#================
+yandexmMobileads = "8.4.0"          #
+yandexAppMetrica = "8.5.1"          #
+#================
+#===== Test =====
+#================
+androidxTest = "1.7.0"
+androidxTestExt = "1.3.0"
+androidxTestRunner = "1.7.0"
+androidxTestMonitor = "1.8.0"
+androidxTestEspressoCore = "3.7.0"
+androidxComposeUiTestManifest = "1.12.0"
+#testandroidxjunit = "1.1.3"
+#testandroidxrules =  "1.4.0"
+#testandroidxuiautomator =  "2.2.0"
+#JUnit is a unit testing framework to write and run repeatable automated tests on Java.
+junitTest = "4.13.2"
+toolsCore = "1.0.0-alpha14"
+material = "1.14.0"
+junit = "4.13.2"
+uiUnit = "1.12.0"
+foundationLayout = "1.12.0"
+foundation = "1.12.0"
+coreI18n = "1.0.0"
+core-splashscreen = "1.2.0"
+#===================#===================#===================#===================
+[libraries]
+#===================
+#====jetbrains  Libraries
+#===================
+jetbrains-kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "jetbrainsKotlin" }
+jetbrains-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "jetbrainsKotlin" }
+jetbrains-kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "jetbrainsKotlinxCoroutines" }
+jetbrains-kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "jetbrainsKotlinxCoroutines" }
+jetbrains-kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "jetbrainsKotlin" }
+jetbrains-test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "jetbrainsKotlinxCoroutines" }
+jetbrains-kotlin-metadata = { module = "org.jetbrains.kotlin:kotlin-metadata-jvm", version.ref = "jetbrainsKotlin" }
+#-------------------------
+google-accompanist-navigation = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "googleAccompanist" }
+google-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "googleAccompanist" }
+google-accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "googleAccompanist" }
+google-accompanist-insets = { module = "com.google.accompanist:accompanist-insets", version.ref = "googleAccompanist" }
+google-accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "googleAccompanist" }
+#================
+google-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "googleAds" }
+google-play-appupdate = { module = "com.google.android.play:app-update", version.ref = "googlePlayAppUpdate" }
+google-play-appupdate-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "googlePlayAppUpdate" }
+google-android-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+# Hilt
+google-dagger-hilt = { module = "com.google.dagger:hilt-android", version.ref = "googleDaggerHilt" }
+google-dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "googleDaggerHilt" }
+#================
+#===== Yandex =====
+#================
+yandex-mobileads = { module = "com.yandex.android:mobileads", version.ref = "yandexmMobileads" }
+#yandex-mobmetricaold = { module = "com.yandex.android:mobmetricalib", version.ref = "yandexMobMetrica" }
+yandex-appmetrica = { module = "io.appmetrica.analytics:analytics", version.ref = "yandexAppMetrica" }
+#===================
+#===== Androidx =====
+#===================
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
+android-appcompatv7 = { module = "com.android.support:appcompat-v7", version.ref = "androidxAppcompatv7" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCoreKtx" }
+androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivityKtx" }
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "androidxAnnotation" }
+androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidxNavigation" }
+androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidxNavigation" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidxRecyclerview" }
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "androidxViewpager2" }
+androidx-profileinstaller = { module = "androidx.profileinstaller:profileinstaller", version.ref = "androidxProfileinstaller" }
+androidx-startup = { module = "androidx.startup:startup-runtime", version.ref = "androidxStartup" }
+androidx-window = { module = "androidx.window:window", version.ref = "androidxWindow" }
+androidx-ui-tooling-preview-android = { module = "androidx.compose.ui:ui-tooling-preview-android", version.ref = "androidxUiToolingPreview" }
+androidx-glance = { module = "androidx.glance:glance", version.ref = "androidx-glance" }
+androidx-glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "androidx-glance" }
+androidx-glance-material3 = { module = "androidx.glance:glance-material3", version.ref = "androidx-glance" }
+androidx-webkit-webkit = { module = "androidx.webkit:webkit", version.ref = "androidx-webkit" }
+androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-privacysandbox-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "toolsCore" }
+#=============================
+#===== Androidx Lifecycle =====
+#=============================
+# ViewModel
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
+# LiveData
+androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
+# optional - helpers for implementing LifecycleOwner in a Service
+androidx-lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.ref = "androidxLifecycle" }
+# Lifecycles only (without ViewModel or LiveData)
+androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
+#androidx-lifecycle-runtimeCompose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+# Saved state module for ViewModel
+androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidxLifecycle" }
+#
+androidx-lifecycle-viewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+#===========================
+#===== Androidx Room ========
+#===========================
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidxRoom" }
+androidx-room-common = { module = "androidx.room:room-common", version.ref = "androidxRoom" }
+# kapt
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidxRoom" }
+# optional - Kotlin Extensions and Coroutines support for Room
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidxRoom" }
+# optional - RxJava support for Room
+androidx-room-rxjava2 = { module = "androidx.room:room-rxjava2", version.ref = "androidxRoom" }
+#===========================
+#===== Android Compose =====
+#===========================
+android-tools-build = { module  = "com.android.tools.build:gradle", version.ref = "agp" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBom" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivityCompose" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
+androidx-compose-material = { module = "androidx.compose.material:material" }
+androidx-compose-material-iconsCore = { module = "androidx.compose.material:material-icons-core" }
+androidx-compose-material-iconsExtended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-material3-window-size = { module = "androidx.compose.material3:material3-window-size-class" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-compose-ui-graphics= { module = "androidx.compose.ui:ui-graphics" }
+androidx-compose-ui-util = { module = "androidx.compose.ui:ui-util" }
+#---------------------------------------------------
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigation" }
+#----------------------------------------------------
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxTestEspressoCore" }
+androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "androidxTestEspressoCore" }
+androidx-espresso-web = { module = "androidx.test.espresso:espresso-web", version.ref = "androidxTestEspressoCore" }
+androidx-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "androidxTestEspressoCore" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidxTest" }
+androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidxTest" }
+androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidxTest" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidxTestRunner" }
+androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExt" }
+androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidxTestExt" }
+androidx-test-monitor = { module = "androidx.test:monitor", version.ref = "androidxTestMonitor" }
+androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidxComposeUiTestManifest"  }
+#androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+#androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+#-------------------------------------------------
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-cloud-messaging = { group = "com.google.firebase", name = "firebase-messaging" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+firebase-performance = { group = "com.google.firebase", name = "firebase-perf" }
+#---------------------------------------------------------------------------
+#square-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "squareUpOkhttp" }
+#square-okhttp-LogInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "squareUpOkhttp" }
+square-okhttp-mock = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "squareUpOkhttp" }
+#square-retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "squareUpRetrofit2" }
+square-retrofit2-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "squareUpRetrofit2" }
+#square-retrofit2-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "squareUpRetrofit2" }
+square-retrofit2-converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "squareUpRetrofit2" }
+square-retrofit2-adapter-rxjava2 = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref = "squareUpRetrofit2" }
+squareup-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "squareUpOkhttp" }
+squareup-retrofit-converter = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "squareUpRetrofit2" }
+squareup-retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "squareUpRetrofit2" }
+squareup-okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "squareUpOkhttp" }
+square-okhttp-mockjunit5 = { module = "com.squareup.okhttp3:mockwebserver3-junit5", version.ref = "squareUpOkhttp" }
+splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
+
+#----------------------
+junit-test = { module = "junit:junit", version.ref = "junitTest" }
+#----------------------
+dev-chrisbanes-snapper-snapper = { module = "dev.chrisbanes.snapper:snapper", version.ref = "devSnapper" }
+androidx-compose-ui-unit = { group = "androidx.compose.ui", name = "ui-unit", version.ref = "uiUnit" }
+androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "foundationLayout" }
+androidx-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
+androidx-core-i18n = { group = "androidx.core", name = "core-i18n", version.ref = "coreI18n" }
+#junit = { group = "junit", name = "junit", version.ref = "junit" }
+#===================#===================#===================#===================
+[bundles]
+networking = [
+    "squareup-okhttp",
+    "squareup-retrofit-converter",
+    "squareup-retrofit-core",
+]
+androidx-full = [
+    "androidx-annotation",
+    "androidx-appcompat",
+    "androidx-core-ktx",
+    "androidx-recyclerview",
+    "androidx-viewpager2",
+]
+androidx-main = [
+    "androidx-annotation",
+    "androidx-appcompat",
+    "androidx-core-ktx",
+    "androidx-recyclerview",
+]
+androidx-simple = [
+    "androidx-annotation",
+    "androidx-appcompat",
+    "androidx-core-ktx",
+]
+kotlin = [
+    "jetbrains-kotlin-coroutines-core",
+    "jetbrains-kotlin-coroutines-android",
+    "jetbrains-kotlin-reflect",
+]
+navigation = [
+    "androidx-navigation-fragment",
+    "androidx-navigation-ui",
+]
+lifecycle-full = [
+    "androidx-lifecycle-livedata",
+    "androidx-lifecycle-service",
+    "androidx-lifecycle-viewmodel",
+    "androidx-lifecycle-viewmodel-savedstate",
+]
+lifecycle-simple = [
+    "androidx-lifecycle-livedata",
+    "androidx-lifecycle-viewmodel",
+]
+room = [
+    "androidx-room-ktx",
+    "androidx-room-runtime",
+]
+square-retrofit2 = [
+    "squareup-retrofit-core",
+    "square-retrofit2-adapter-rxjava2",
+    "square-retrofit2-converter-scalars",
+    "square-retrofit2-gson",
+    "squareup-retrofit-converter",
+]
+test = [
+    "jetbrains-test-coroutines",
+    "jetbrains-kotlin-test-junit5",
+]
+android-test = [
+    "androidx-espresso-contrib",
+    "androidx-espresso-core",
+    "androidx-espresso-intents",
+    "androidx-espresso-web",
+    "androidx-test-core",
+    "androidx-test-core-ktx",
+    "androidx-test-ext-junit-ktx",
+    "androidx-test-monitor",
+    "androidx-test-runner",
+]
+#===================#===================#===================#===================
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+
+#Плагин Gradle для обнаружения обновлений зависимостей
+benmanes-versions = { id = "com.github.ben-manes.versions", version.ref = "benmanesVersions" }
+littlerobots-version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "littlerobotsVersionCatalogUpdate" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "googleDevToolsKsp" }
+#------Migrating a Compose Multiplatform project
+#jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+#kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "jetbrainsKotlin" }
+#-----Migrating a Jetpack Compose project
+#org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrainsKotlin" }
+jetbrains-kotlin-plugin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "jetbrainsKotlin" }

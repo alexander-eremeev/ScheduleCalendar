@@ -1,0 +1,45 @@
+package com.childmathematics.android.shiftschedule.presentation.ui.nonworkingdays.util
+
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import com.childmathematics.android.shiftschedule.data.models.NonWorkingDaysEntity
+
+@Composable
+fun NonWorkingDaysItem (nonWorkingDaysEnt: NonWorkingDaysEntity?) {
+    FlowRow(
+        modifier = Modifier
+            .fillMaxWidth(),
+//            .horizontalScroll(rememberScrollState())
+
+    ) {
+//----------------------------------------------------------
+        Text(nonWorkingDaysEnt?.day.toString()+"."+
+                nonWorkingDaysEnt?.month.toString()+"."+nonWorkingDaysEnt?.year.toString().substring(2,4),
+            textAlign = TextAlign.Right,color = Color.DarkGray
+            ,modifier = Modifier  .weight(.25f)
+        )
+        Spacer(modifier = Modifier.weight(.01f))
+        Text(nonWorkingDaysEnt?.name.toString(),textAlign = TextAlign.Left
+            ,modifier = Modifier    .weight(.52f)
+                .horizontalScroll(rememberScrollState()))
+        Spacer(modifier = Modifier.weight(.01f))
+        Text(" c "+nonWorkingDaysEnt?.moveDateDay.toString()+"."+
+                nonWorkingDaysEnt?.moveDateMonth.toString()+"."+
+                nonWorkingDaysEnt?.moveDateYear.toString().substring(2,4)+" ",
+                textAlign = TextAlign.Right,
+                modifier = Modifier    .weight(.21f))
+//-------------------------------------------------------------
+    }
+}

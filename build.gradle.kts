@@ -1,0 +1,18 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+plugins {
+    id("com.android.application") version libs.versions.agp apply false
+    id("com.android.library") version libs.versions.agp apply false
+
+//    id("org.jetbrains.kotlin.android") version libs.versions.jetbrainsKotlin apply false
+    id("org.jetbrains.kotlin.plugin.compose") version libs.versions.jetbrainsKotlin apply false
+
+    id("com.google.devtools.ksp") version libs.versions.googleDevToolsKsp apply false
+    id("com.google.dagger.hilt.android") version libs.versions.googleDaggerHilt apply false
+
+    // Plugin для настройки параметров компилятора Room
+    id("androidx.room") version libs.versions.androidxRoom apply false
+}
+tasks.register("clean", Delete::class) {
+    delete(rootProject.layout.buildDirectory)
+}

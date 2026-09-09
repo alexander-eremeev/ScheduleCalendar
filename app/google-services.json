@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "328609223907",
+    "project_id": "schedulecalendar-17f01",
+    "storage_bucket": "schedulecalendar-17f01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328609223907:android:e070496ebbc2b48ac3e1d6",
+        "android_client_info": {
+          "package_name": "com.childmathematics.android.shiftschedule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "328609223907-k0u5ka0h036vo275mquhpuhnglfa0hl3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9fLr8nilR4fXU4jc4xCYPRN1rJXhsY_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "328609223907-k0u5ka0h036vo275mquhpuhnglfa0hl3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328609223907:android:5d14d6b92d8fabefc3e1d6",
+        "android_client_info": {
+          "package_name": "com.childmathematics.android.shiftschedule.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "328609223907-k0u5ka0h036vo275mquhpuhnglfa0hl3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9fLr8nilR4fXU4jc4xCYPRN1rJXhsY_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "328609223907-k0u5ka0h036vo275mquhpuhnglfa0hl3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

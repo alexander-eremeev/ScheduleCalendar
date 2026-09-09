@@ -1,0 +1,149 @@
+<resources>
+
+    <string name="app_label">ScheduleCalendar</string>
+
+    <string name="drawer_header">Производственный календарь</string>
+    <string name="e_mail">E-mail : trening.childmathematics@gmail.com</string>
+
+    <!-- HomePage Screen -->
+    <string name="homepage_title">Главная</string>
+    <!-- About Screen -->
+    <string name="about_menu">О приложении</string>
+    <string name="about_help">Справка</string>
+    <string name="about_licenses">Лицензии</string>
+    <string name="about_localpolices">Политика конфиденциальности</string>
+    <!-- Help Screen -->
+    <string name="help_menu">Справка</string>
+    <string name="help_mainPage">Справка.Титульная страница</string>
+    <string name="help_Graphics">Справка.Графики смен</string>
+    <string name="help_About">Справка.О приложении</string>
+
+    <string name="licences">Лицензии</string>
+    <string name="localPolices">Политика конфиденциальности</string>
+
+    <string name="main_page">Производственный календарь</string>
+
+    <!--
+       ======================================================
+       -->
+    <!-- HomePage Screen
+name="schedule01_title">График прерывный, односменный, 8 часовой с выходными днями суббота,воскресенье (В РАЗРАБОТКЕ)
+    -->
+    <string name="schedule01_title">График односменный, 8 часовой с выходными днями СБ и ВС</string>
+    <string name="schedule01_titlemidle">График односменный,8 час. с выходн. СБ и ВС</string>
+    <string name="schedule01_titleshort">График 1см.5дн.2вых.(сб,вс)</string>
+    <string name="schedule01_MonthWorkDays">\tраб.дн.\t</string>
+    <string name="schedule01_MonthWorkHours">\tчас.\n</string>
+    <string name="schedule01_NoSelectedDays">Нет выделенных дат для расчета!!</string>
+    <string name="schedule01_SummingSelectedDays">Расчет рабочих часов для выделенных дат</string>
+
+    <string name="schedule500_title">График 12 часовой,4-х бригадный,2-х сменный</string>
+    <string name="schedule500_titleshort">График 12ч.4бр.2см.</string>
+    <string name="schedule511_title">График 11 часовой,4-х бригадный,2-х сменный</string>
+    <string name="schedule511_titleshort">11х4x2</string>
+    <string name="about_title">О приложении</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="tasks_header_image_content_description">Tasks header image</string>
+    <string name="no_tasks_image_content_description">No tasks image</string>
+    <string name="navigation_view_header_title">Todo</string>    <!--
+       ======================================================
+       -->
+    <string name="attention">Attention</string>
+    <string name="back_button">Back</string>
+    <string name="delete">Delete</string>
+    <string name="delete_question">Are you sure you want to delete?</string>
+    <string name="no_item_description">Oops!\nNo items in the inventory.\nTap + to add.</string>
+    <string name="edit_item_title">Edit Item</string>
+    <string name="item">Item</string>
+    <string name="item_detail_title">Item Details</string>
+    <string name="item_entry_title">Add Item</string>
+    <string name="item_name_req">Item Name*</string>
+    <string name="item_price_req">Item Price*</string>
+    <string name="no">No</string>
+    <string name="price">Price</string>
+    <string name="quantity_in_stock">Quantity in stock</string>
+    <string name="in_stock">%d in stock</string>
+    <string name="quantity_req">Quantity in Stock*</string>
+    <string name="save_action">Save</string>
+    <string name="sell">Sell</string>
+    <string name="yes">Yes</string>
+    <string name="required_fields">*required fields</string>
+    <!--
+    ADS Google
+   -->
+    <string name="ad_id_banner">ca-app-pub-3940256099942544/6300978111</string> <!-- Test Ad -->
+    <!-- Test Ad -->
+    <string name="ad_id_interstitial">ca-app-pub-3940256099942544/1033173712</string>
+    <!--
+    ADS Yandex
+   -->
+    <string name="ya_metrica_api_key">9331269b-d88b-49f2-811d-feecc9d4cec3</string>     <!-- YandexMetrica API KEY -->
+
+    <string name="ya_ads_banner_id">demo-banner-yandex</string>     <!-- Yandex ADS Banner -->
+    <string name="ya_ads_demo_banner_id">demo-banner-yandex</string>     <!-- Yandex ADS DEMO Banner -->
+    <string name="ya_ads_interstitial_id">R-M-DEMO-interstitial</string>     <!-- Yandex ADS DEMO interstitial  -->
+    <string name="ya_ads_demo_interstitial_id">demo-interstitial-yandex</string>     <!-- Yandex ADS DEMO interstitial -->
+    <!--
+    WebView
+
+    <string name="flex_banner_title">Flex banner</string>
+
+   -->
+    <!--
+    ===================================================================
+
+    JetNews
+
+
+    <string name="app_name">Jetnews</string>
+    -->
+    <string name="load_error">Can\'t update latest news</string>
+    <string name="retry">Retry</string>
+    <string name="cd_add_to_favorites">Add to favorites</string>
+    <string name="cd_share">Share</string>
+    <string name="cd_text_settings">Text settings</string>
+    <string name="cd_open_navigation_drawer">Open navigation drawer</string>
+    <string name="cd_more_actions">More actions</string>
+    <string name="unbookmark">unbookmark</string>
+    <string name="bookmark">bookmark</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_interests">Interests</string>
+    <string name="published_in">Published in: \n%1$s</string>
+    <string name="fewer_stories">Show fewer stories like this?</string>
+    <string name="fewer_stories_content">This feature is not yet implemented</string>
+    <string name="agree">Agree</string>
+    <string name="close">Close</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">Home</string>
+    <string name="home_tap_to_load_content">Tap to load content</string>
+    <string name="home_top_section_title">Top stories for you</string>
+    <string name="home_popular_section_title">Popular on Jetnews</string>
+    <string name="home_post_min_read">%1$s - %2$d min read</string>
+    <string name="home_post_based_on_history">BASED ON YOUR HISTORY</string>
+    <string name="home_search">Search articles</string>
+
+    <!-- Article Screen -->
+    <string name="article_functionality_not_available">Functionality not available \uD83D\uDE48</string>
+    <string name="article_share_post">Share post</string>
+    <string name="article_post_min_read">%1$s • %2$d min read</string>
+
+    <!-- Interests Screen -->
+    <string name="interests_title">Interests</string>
+    <string name="interests_section_topics">Topics</string>
+    <string name="interests_section_people">People</string>
+    <string name="interests_section_publications">Publications</string>
+
+    <!-- Navigation actions -->
+    <string name="cd_navigate_up">Navigate up</string>
+    <string name="cd_navigate_home">Navigate to the home screen</string>
+    <string name="cd_navigate_interests">Navigate to the interests screen</string>
+    <string name="inAppUpdatePage">Проверить наличие обновления</string>
+    <string name="inAppUpdate_Request_update">Запросить установку обновления</string>
+    <string name="UpdatePage">Обновить приложение</string>
+    <string name="nonWorkingDays_titleshort">Праздничные и нерабочие дни</string>
+    <string name="nonWorkingDays_MonthSelectedDays">Нерабочие дни года</string>
+    <string name="nonWorkingDays_title">Календарь праздничных и нерабочих дней</string>
+    <string name="nonWorkingDays_Year">Праздничные и нерабочие дни года</string>
+    <string name="countries_titleshort">Страны Countries</string>
+</resources>

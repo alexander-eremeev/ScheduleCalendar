@@ -1,0 +1,119 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "329e59e46422e871b3a645e9a17a5f72",
+    "entities": [
+      {
+        "tableName": "NonWorkingDays",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`NonWorkingDayId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `LanguageId` INTEGER NOT NULL, `CountryId` INTEGER NOT NULL, `Year` INTEGER, `Month` INTEGER, `Day` INTEGER NOT NULL, `Name` TEXT NOT NULL, `Typ` INTEGER NOT NULL, `MoveDateYear` INTEGER, `MoveDateMonth` INTEGER, `MoveDateDay` INTEGER, `Reason` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "nonWorkingDayId",
+            "columnName": "NonWorkingDayId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "languageId",
+            "columnName": "LanguageId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "countryId",
+            "columnName": "CountryId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "year",
+            "columnName": "Year",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "month",
+            "columnName": "Month",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "day",
+            "columnName": "Day",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "Name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typ",
+            "columnName": "Typ",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "moveDateYear",
+            "columnName": "MoveDateYear",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "moveDateMonth",
+            "columnName": "MoveDateMonth",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "moveDateDay",
+            "columnName": "MoveDateDay",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "reason",
+            "columnName": "Reason",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "NonWorkingDayId"
+          ]
+        }
+      },
+      {
+        "tableName": "Countries",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`CountryId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ShortName` TEXT, `LongName` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "countryId",
+            "columnName": "CountryId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shortName",
+            "columnName": "ShortName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "longName",
+            "columnName": "LongName",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "CountryId"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '329e59e46422e871b3a645e9a17a5f72')"
+    ]
+  }
+}
