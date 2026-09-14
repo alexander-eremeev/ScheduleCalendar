@@ -11,9 +11,9 @@ compile-sdk = "37"  #
 # @keep
 ndkVersion = "30.0.16138531"    #		30.0.16138531 rc3
 # @keep
-versionCode = "224"
+versionCode = "225"
 # @keep
-versionName = "2.2.4"
+versionName = "2.2.5"
 # @keep
 applicationId = "com.childmathematics.android.shiftschedule"
 # @keep
@@ -30,7 +30,7 @@ keystorePropertiesFile = "G:\\Public\\AndroidStudioProjects\\KeyStore\\ScheduleC
 #androidGradlePlugin
 agp = "9.4.0"                               #
 #---???????????????????
-jetbrainsKotlin = "2.4.10"                  #
+jetbrainsKotlin = "2.4.20"                  #
 jetbrainsKotlinStdlib = "2.3.20"            #
 jetbrainsKotlinxCoroutines = "1.11.0"       #
 #----------------------------------------
@@ -46,30 +46,30 @@ androidxActivityKtx = "1.13.0"              #
 androidxCoreKtx = "1.19.0"                  #
 androidxRecyclerview = "1.4.0"
 androidx-glance = "1.2.0"                   #
-androidxNavigation = "2.10.0"                #
+androidxNavigation = "2.10.1"                #
 androidxLifecycle = "2.11.0"                #
 androidxAnnotation = "1.10.0"               #
 androidxViewpager2 = "1.1.0"                #
-androidxRoom = "2.8.4"
+androidxRoom = "2.8.5"
 androidxProfileinstaller = "1.4.1"
 androidxStartup = "1.2.0"
 androidxWindow = "1.5.1"
-androidxUiToolingPreview = "1.12.0"         #
+androidxUiToolingPreview = "1.12.1"         #
 androidx-webkit = "1.17.0"                  #
 #===========================
 #===== Android Compose ===       ==
 #===========================
-androidxComposeBom = "2026.08.00"           #
+androidxComposeBom = "2026.09.00"           #
 #---------------
 androidxActivityCompose = "1.13.0"          #
 androidxComposeCompiler = "1.5.15"          #agp
 #--------------------------------
-firebaseBom = "34.18.0"
+firebaseBom = "34.19.0"
 firebaseCrashlyticsPlugin = "3.0.6"
 firebasePerfPlugin = "2.0.2"
 #--------------------------
 #this plugin provides a task to determine which dependencies have updates.
-benmanesVersions = "0.61.0"
+benmanesVersions = "0.62.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
 littlerobotsVersionCatalogUpdate = "1.1.1"
 #Square’s meticulous HTTP client for Java and Kotlin.
@@ -91,7 +91,7 @@ androidxTestExt = "1.3.0"
 androidxTestRunner = "1.7.0"
 androidxTestMonitor = "1.8.0"
 androidxTestEspressoCore = "3.7.0"
-androidxComposeUiTestManifest = "1.12.0"
+androidxComposeUiTestManifest = "1.12.1"
 #testandroidxjunit = "1.1.3"
 #testandroidxrules =  "1.4.0"
 #testandroidxuiautomator =  "2.2.0"
@@ -100,9 +100,9 @@ junitTest = "4.13.2"
 toolsCore = "1.0.0-alpha14"
 material = "1.14.0"
 junit = "4.13.2"
-uiUnit = "1.12.0"
-foundationLayout = "1.12.0"
-foundation = "1.12.0"
+uiUnit = "1.12.1"
+foundationLayout = "1.12.1"
+foundation = "1.12.1"
 coreI18n = "1.0.0"
 core-splashscreen = "1.2.0"
 #===================#===================#===================#===================
