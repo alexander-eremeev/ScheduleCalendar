@@ -2,8 +2,10 @@
 //pluginManager.apply (org.gradle.api.Action)
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
+
+        gradlePluginPortal()
+//        google()
         mavenCentral()
     }
 
