@@ -71,7 +71,7 @@ firebasePerfPlugin = "2.0.2"
 #this plugin provides a task to determine which dependencies have updates.
 benmanesVersions = "0.66.0"
 #littlerobotsVersionCatalogUpdate = "latest.release" #0.8.1"  # nl.littlerobots.version-catalog-update
-littlerobotsVersionCatalogUpdate = "1.1.1"
+littlerobotsVersionCatalogUpdate = "1.1.2"
 #Square’s meticulous HTTP client for Java and Kotlin.
 squareUpOkhttp = "5.5.1"
 #A type-safe HTTP client for Android and Java.
